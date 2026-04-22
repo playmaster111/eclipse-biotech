@@ -1,0 +1,12 @@
+# Local environment files
+.DS_Store
+Thumbs.db
+
+# Potential build or temp files
+node_modules/
+dist/
+build/
+.cache/
+
+# Large assets (keeping bg_music.mp3 since it's core to the experience)
+# bg_music.mp3

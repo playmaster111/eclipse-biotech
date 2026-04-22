@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eclipse Biotech | Comprehensive Pharmacology Platform</title>
+    <meta name="description" content="An interactive database detailing the different types of steroids, their medical uses, and primary mechanisms.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+</head>
+<body>
+    <!-- Modal (DECOMMISSIONED) -->
+    <div id="entry-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="security-badge"><i class="fas fa-shield-alt"></i> SECURE_NODE</div>
+            <h2 class="glitch" data-text="RESTRICTED ACCESS">RESTRICTED ACCESS</h2>
+            <div class="terminal-text">
+                <p>&gt; System encrypted. Verification required.</p>
+                <p>&gt; Authorization level: BIOTECH_ADMIN</p>
+            </div>
+            
+            <div class="pin-entry-wrap">
+                <label>ENTER ACCESS PIN</label>
+                <div class="pin-inputs">
+                    <input type="password" id="pin-field" maxlength="4" placeholder="****" autocomplete="off">
+                </div>
+                <p id="pin-error" style="color: #ff3a5c; font-size: 10px; margin-top: 10px; visibility: hidden;">&gt; INVALID_ACCESS_CODE</p>
+                <div id="laughing-skull" class="skull-container">
+                    <i class="fas fa-skull"></i>
+                    <div class="laugh-text">ACCESS_DENIED_HA_HA_HA</div>
+                </div>
+            </div>
+
+            <button id="accept-btn" class="cyber-btn">VERIFY_IDENTITY</button>
+        </div>
+    </div>
+
+
+
+    <!-- Backgrounds -->
+    <canvas id="particle-canvas" class="background-canvas"></canvas>
+    <div class="grid-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Main React-like App Wrapper -->
+    <div class="app-window">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-wrap">
+                    <div class="logo-main" style="font-size: 38px; cursor: pointer;" onclick="goHome()">
+                        <span class="logo-compound">ECLIPSE</span><span class="logo-db">BIOTECH</span>
+                        <div class="logo-scan"></div>
+                    </div>
+                </div>
+                <div class="search-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search database...">
+                </div>
+            </div>
+            
+            <nav id="sidebar-nav" class="sidebar-nav">
+                <!-- Dynamically populated by JS -->
+            </nav>
+
+            <div class="status-wrap">
+                <div class="status-title"><span class="status-dot"></span> System Status: <span id="sys-status">ONLINE</span></div>
+                <div class="status-source">Data Source: Clinical Rx</div>
+            </div>
+        </aside>
+
+        <!-- Main Article Container -->
+        <main class="article-viewer">
+            <div class="top-nav-bar">
+                <div class="breadcrumbs">
+                    <span id="home-breadcrumb" style="cursor: pointer;" onclick="goHome()">SYSTEM_CORE</span> <span class="divider">/</span> <span id="current-category">INDEX</span>
+                </div>
+                <div class="nav-controls">
+                    <div class="audio-wrap">
+                        <button id="musicToggle" class="music-btn" title="Toggle Background Music">
+                            <span class="music-icon">🔉</span>
+                            <span class="music-text" id="t-ambient">AMBIENT AUDIO</span>
+                        </button>
+                        <div class="volume-ctrl">
+                            <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.3">
+                        </div>
+                        <audio id="bgMusic" src="bg_music.mp3" loop pre-load="auto"></audio>
+                    </div>
+                    <div class="lang-selector">
+                        <select id="langSelect">
+                            <option value="en">EN</option>
+                            <option value="de">DE</option>
+                            <option value="it">IT</option>
+                            <option value="es">ES</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="article-mount" class="article-scroll-area">
+                <!-- Welcome screen by default -->
+                <div class="empty-state">
+                    <div class="glitch-icon">⚗</div>
+                    <h2 class="glitch-small" data-text="AWAITING INPUT">AWAITING INPUT</h2>
+                    <p style="max-width: 400px; line-height: 1.6;">Select a compound from the database index to initialize the clinical profile. Data encompasses mechanism of action, FDA/historical dosages, and physiological risks.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="data_i18n.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
