@@ -9,6 +9,11 @@
 
     if (!cursor || !follower) return;
 
+    // Create HUD Label
+    const label = document.createElement('div');
+    label.className = 'cursor-label';
+    follower.appendChild(label);
+
     // Force activation of CSS class
     document.body.classList.add('custom-cursor-active');
 
@@ -32,6 +37,9 @@
         
         cursor.style.left = cursorX + 'px';
         cursor.style.top = cursorY + 'px';
+
+        // Update HUD label
+        label.innerText = `X:${Math.round(cursorX)} Y:${Math.round(cursorY)}`;
     });
 
     const animateCursor = () => {

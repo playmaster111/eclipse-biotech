@@ -750,88 +750,140 @@ body::before {
 .ai-header h2 { font-family: var(--font-d); font-size: 32px; color: var(--accent); letter-spacing: 2px; }
 .ai-header p { font-size: 13px; color: var(--muted); }
 
-/* --- Custom Cursor Styles --- */
+/* --- Custom Cursor Styles (Clinical HUD) --- */
 .custom-cursor {
     position: fixed;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background: var(--accent);
     border-radius: 50%;
     pointer-events: none;
     z-index: 100000;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    transition: width 0.3s, height 0.3s, background-color 0.3s, transform 0.1s;
     mix-blend-mode: exclusion;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Crosshair inner dot */
 .custom-cursor::after {
     content: '';
-    width: 2px;
-    height: 2px;
+    width: 4px;
+    height: 4px;
     background: #000;
     border-radius: 50%;
 }
 
+/* Corner Brackets for HUD feel */
+.custom-cursor::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    opacity: 0.5;
+    animation: cursorPulse 2s infinite alternate;
+}
+
+@keyframes cursorPulse {
+    from { transform: scale(0.8); opacity: 0.3; }
+    to { transform: scale(1.1); opacity: 0.7; }
+}
+
 .custom-cursor-follower {
     position: fixed;
-    width: 44px;
-    height: 44px;
-    border: 1px solid var(--accent);
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(0, 240, 255, 0.2);
     border-radius: 50%;
     pointer-events: none;
     z-index: 99999;
     transform: translate(-50%, -50%);
     transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
-    background: rgba(0, 240, 255, 0.03);
+    background: rgba(0, 240, 255, 0.02);
     backdrop-filter: blur(1px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.custom-cursor-follower::before,
+/* Scanning Ring */
+.custom-cursor-follower::before {
+    content: '';
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    border: 1px dashed var(--accent);
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: cursorRotate 15s linear infinite;
+}
+
+/* Secondary Tech Ring */
 .custom-cursor-follower::after {
     content: '';
     position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid var(--accent);
+    width: 70%;
+    height: 70%;
+    border: 1px solid var(--accent2);
     border-radius: 50%;
-    opacity: 0.2;
-}
-
-.custom-cursor-follower::before {
-    width: 100%; height: 100%;
-    border-style: dashed;
-    animation: cursorRotate 10s linear infinite;
+    opacity: 0.1;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: cursorRotate 5s linear infinite reverse;
 }
 
 @keyframes cursorRotate {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
+/* Data Label (Coordinates/Status) */
+.cursor-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-family: var(--font-m);
+    font-size: 8px;
+    color: var(--accent);
+    opacity: 0.6;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* Hover/Active States */
 .custom-cursor.hover {
-    width: 12px;
-    height: 12px;
-    background: #fff;
+    width: 16px;
+    height: 16px;
+    background: var(--accent2);
+}
+
+.custom-cursor.hover::before {
+    width: 30px;
+    height: 30px;
+    border-color: var(--accent2);
+    border-radius: 50%;
 }
 
 .custom-cursor-follower.hover {
-    width: 60px;
-    height: 60px;
-    background: rgba(0, 240, 255, 0.15);
-    border-color: #fff;
-    border-width: 2px;
+    width: 70px;
+    height: 70px;
+    border-color: var(--accent2);
+    background: rgba(181, 255, 77, 0.05);
 }
 
 .custom-cursor.clicking {
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: translate(-50%, -50%) scale(0.6);
+    background: var(--red);
 }
 
 .custom-cursor-follower.clicking {
-    transform: translate(-50%, -50%) scale(1.2);
-    background: rgba(0, 240, 255, 0.3);
+    transform: translate(-50%, -50%) scale(1.4);
+    border-color: var(--red);
+    background: rgba(255, 58, 92, 0.1);
 }
 
 /* Hide cursor on mobile */
