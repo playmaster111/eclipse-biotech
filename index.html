@@ -119,9 +119,25 @@
         </main>
     </div>
 
+    <!-- Google Translate Hidden Element -->
+    <div id="google_translate_element" style="display:none"></div>
+
     <script src="translations.js"></script>
     <script src="data_i18n.js"></script>
     <script src="data.js"></script>
     <script src="script.js"></script>
+    
+    <!-- Google Translate API -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,de,es,it,fr,ru,ja,ko,zh-CN', // You can expand this
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

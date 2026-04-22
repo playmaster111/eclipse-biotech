@@ -192,6 +192,18 @@ function updateUIStrings() {
     if (selectedValue) selectedValue.innerText = currentLang.toUpperCase();
 }
 
+// --- Google Translate Bridge ---
+function triggerGoogleTranslate(langCode) {
+    const googleCombo = document.querySelector('.goog-te-combo');
+    if (googleCombo) {
+        googleCombo.value = langCode;
+        googleCombo.dispatchEvent(new Event('change'));
+    } else {
+        // If it's not loaded yet, try again in a moment
+        setTimeout(() => triggerGoogleTranslate(langCode), 500);
+    }
+}
+
 // Merge external translations into WIKI_DATA
 function mergeTranslations() {
     if (!window.DRUG_I18N) return;
@@ -391,6 +403,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 updateUIStrings();
                 renderSidebar(searchInput.value);
+                
+                // Trigger Google Translate
+                triggerGoogleTranslate(val);
                 
                 customSelect.classList.remove('active');
             });
