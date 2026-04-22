@@ -161,7 +161,13 @@ body::before {
     display: block; padding: 10px 24px; color: var(--text); font-size: 14px;
     cursor: pointer; transition: all .2s; border-left: 2px solid transparent;
 }
-.nav-item:hover { background: rgba(0, 240, 255, 0.05); color: var(--accent); }
+.nav-item:hover { 
+    background: rgba(255, 255, 255, 0.03); 
+    color: #fff !important; 
+    text-shadow: 0 0 8px currentColor, 0 0 15px currentColor;
+    transform: translateX(4px);
+    letter-spacing: 1px;
+}
 .nav-item.active { background: rgba(0, 240, 255, 0.08); border-left-color: var(--accent); color: var(--accent); font-weight: 500; }
 
 .nav-item-wrapper {
