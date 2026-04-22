@@ -76,14 +76,18 @@ let isAudioInitialized = false;
 function updateAudioUI() {
     if (!volumeIcon || !muteBtn) return;
     
-    if (bgMusic.paused || bgMusic.volume === 0) {
+    const isMuted = bgMusic.paused || bgMusic.volume === 0;
+    
+    if (isMuted) {
         volumeIcon.className = 'fas fa-volume-mute';
         muteBtn.classList.add('muted');
         muteBtn.classList.remove('playing');
+        if (volumeSlider) volumeSlider.classList.add('muted');
     } else {
         volumeIcon.className = 'fas fa-volume-up';
         muteBtn.classList.add('playing');
         muteBtn.classList.remove('muted');
+        if (volumeSlider) volumeSlider.classList.remove('muted');
     }
 }
 
