@@ -120,6 +120,57 @@
         </main>
     </div>
 
+    <!-- Contribution Modal -->
+    <div id="donation-modal" class="modal-overlay">
+        <div class="modal-window donation-window">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fas fa-wallet"></i> SECURE_CONTRIBUTION_PORTAL</div>
+                <button class="close-modal" onclick="closeDonationModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="donation-desc">Support the continued development of the Eclipse Biotech research terminal. All contributions are utilized for database expansion and server maintenance.</p>
+                
+                <div class="crypto-card">
+                    <div class="crypto-info">
+                        <i class="fab fa-bitcoin" style="color: #f7931a;"></i>
+                        <span>BITCOIN (BTC)</span>
+                    </div>
+                    <div class="address-box">
+                        <code id="btc-address">YOUR_BTC_ADDRESS_HERE</code>
+                        <button class="copy-btn" onclick="copyAddress('btc-address')"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="crypto-card">
+                    <div class="crypto-info">
+                        <i class="fab fa-ethereum" style="color: #627eea;"></i>
+                        <span>ETHEREUM (ETH / ERC20)</span>
+                    </div>
+                    <div class="address-box">
+                        <code id="eth-address">YOUR_ETH_ADDRESS_HERE</code>
+                        <button class="copy-btn" onclick="copyAddress('eth-address')"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="crypto-card">
+                    <div class="crypto-info">
+                        <img src="https://cryptologos.cc/logos/solana-sol-logo.png" style="width:14px; margin-right:8px;">
+                        <span>SOLANA (SOL)</span>
+                    </div>
+                    <div class="address-box">
+                        <code id="sol-address">YOUR_SOL_ADDRESS_HERE</code>
+                        <button class="copy-btn" onclick="copyAddress('sol-address')"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="donation-footer">
+                    <div class="status-dot"></div>
+                    <span>ENCRYPTED_PEER_TO_PEER_TRANSFER_ONLY</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Google Translate Hidden Element -->
     <div id="google_translate_element" style="display:none"></div>
 

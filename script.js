@@ -722,6 +722,43 @@ function renderSidebar(filter = '') {
         logBtn.onclick = () => loadChangelogView();
         navEl.appendChild(logBtn);
     }
+
+    // Add Support Button
+    if (filter === '') {
+        const supportWrap = document.createElement('div');
+        supportWrap.className = 'donate-trigger-wrap';
+        supportWrap.innerHTML = `
+            <button class="cyber-btn donate-trigger" onclick="openDonationModal()">
+                <i class="fas fa-heart"></i> _CONTRIBUTE
+            </button>
+        `;
+        navEl.appendChild(supportWrap);
+    }
+}
+
+// Modal Logic
+function openDonationModal() {
+    document.getElementById('donation-modal').classList.add('active');
+}
+
+function closeDonationModal() {
+    document.getElementById('donation-modal').classList.remove('active');
+}
+
+function copyAddress(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        // Find the button in the same crypto-card
+        const codeEl = document.getElementById(id);
+        const card = codeEl.closest('.crypto-card');
+        const btn = card.querySelector('.copy-btn');
+        
+        const originalIcon = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check" style="color: var(--accent2)"></i>';
+        setTimeout(() => {
+            btn.innerHTML = originalIcon;
+        }, 2000);
+    });
 }
 
 // Load AI View
@@ -2583,6 +2620,13 @@ function loadChangelogView() {
     const mount = document.getElementById('article-mount');
     
     const logs = [
+        {
+            ver: 'v3.7.5',
+            date: '2026.04.22',
+            title: 'CONTRIBUTION_PORTAL_ACTIVE',
+            desc: 'Deployed secure cryptocurrency contribution module with glassmorphism modal architecture and clipboard sync.',
+            tags: ['UI', 'SYSTEM']
+        },
         {
             ver: 'v3.7.0',
             date: '2026.04.22',
