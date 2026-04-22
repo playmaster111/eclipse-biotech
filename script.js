@@ -2584,6 +2584,13 @@ function loadChangelogView() {
     
     const logs = [
         {
+            ver: 'v3.7.0',
+            date: '2026.04.22',
+            title: 'GLOBAL_GLOW_PROTOCOL',
+            desc: 'Broadcasted reactive photonic effects across all primary UI nodes and interactive clusters. Enhanced tactile feedback for buttons and headers.',
+            tags: ['MAJOR', 'UI']
+        },
+        {
             ver: 'v3.6.8',
             date: '2026.04.22',
             title: 'GLOW_MATRIX_REACTIVE',
