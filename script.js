@@ -628,8 +628,16 @@ function renderSidebar(filter = '') {
                 
                 const folderHead = document.createElement('div');
                 folderHead.className = 'nav-folder-head';
-                folderHead.innerHTML = `<span>📁 ${folderName}</span> <span class="arrow">▼</span>`;
-                folderHead.onclick = () => folderDiv.classList.toggle('collapsed');
+                folderHead.innerHTML = `<i class="fas fa-folder folder-icon"></i> <span>${folderName}</span> <span class="arrow">▼</span>`;
+                folderHead.onclick = () => {
+                    folderDiv.classList.toggle('open');
+                    const icon = folderHead.querySelector('.folder-icon');
+                    if (folderDiv.classList.contains('open')) {
+                        icon.classList.replace('fa-folder', 'fa-folder-open');
+                    } else {
+                        icon.classList.replace('fa-folder-open', 'fa-folder');
+                    }
+                };
                 
                 const folderContent = document.createElement('div');
                 folderContent.className = 'nav-folder-content';

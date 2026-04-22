@@ -2653,3 +2653,80 @@ body {
 .goog-te-gadget span {
     display: none !important;
 }
+
+/* Folder Aesthetics & Animations */
+.nav-folder {
+    margin-bottom: 2px;
+}
+
+.nav-folder-head {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-folder-head:hover {
+    background: rgba(0, 240, 255, 0.05);
+    border-color: rgba(0, 240, 255, 0.2);
+}
+
+.folder-icon {
+    font-size: 14px;
+    margin-right: 12px;
+    color: var(--accent);
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 0 5px rgba(0, 240, 255, 0.3));
+}
+
+.nav-folder.open .folder-icon {
+    transform: scale(1.1);
+    color: var(--accent2);
+    filter: drop-shadow(0 0 8px var(--accent2));
+}
+
+.arrow {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--muted);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.nav-folder.open .arrow {
+    transform: rotate(180deg); /* Flip the arrow when open */
+    color: var(--accent);
+}
+
+.nav-folder-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.nav-folder.open .nav-folder-content {
+    max-height: 1000px;
+}
+
+.nav-folder-head span {
+    font-family: var(--font-m);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #a1abb8;
+    transition: color 0.3s;
+}
+
+.nav-folder-head:hover span {
+    color: #fff;
+}
+
+.nav-folder.open .nav-folder-head span {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
