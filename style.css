@@ -2312,7 +2312,8 @@ body::before {
     .sidebar {
         position: fixed;
         top: 0; left: 0;
-        width: 100%; height: 100%;
+        width: 85vw; height: 100%;
+        max-width: 320px;
         z-index: 2000; /* Above top nav */
         background: rgba(6, 8, 10, 0.98);
         transform: translateX(-100%);
@@ -2324,6 +2325,10 @@ body::before {
     }
     .sidebar:not(.collapsed) { transform: translateX(0); }
     .sidebar.collapsed { transform: translateX(-100%); }
+    
+    .sidebar.dragging {
+        transition: none !important;
+    }
     
     .article-viewer { padding-top: 60px; min-height: 100vh; }
     .top-nav-bar {

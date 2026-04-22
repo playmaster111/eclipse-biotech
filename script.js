@@ -295,6 +295,16 @@ function startSystemBoot() {
 function initApp() {
     mergeTranslations();
     updateUIStrings();
+    
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.add('collapsed');
+        } else {
+            sidebar.classList.remove('collapsed');
+        }
+    }
+    
     renderSidebar();
     
     // Smoothly reveal the app
@@ -374,6 +384,80 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault(); // Prevent focus switching
             if (sidebar) {
                 sidebar.classList.toggle('collapsed');
+            }
+        }
+    });
+
+    // --- Draggable Mobile Sidebar Interaction ---
+    let touchStartX = 0;
+    let isDraggingSidebar = false;
+    const sidebarEdgeThreshold = 40; // Zone for edge swipe
+
+    document.addEventListener('touchstart', (e) => {
+        if (window.innerWidth > 900) return; // Only on mobile/tablet
+        
+        const touchX = e.touches[0].clientX;
+        const isCollapsed = sidebar.classList.contains('collapsed');
+        
+        // Start dragging if:
+        // 1. Sidebar is collapsed AND touch is near the left edge
+        // 2. Sidebar is NOT collapsed AND touch is ON the sidebar
+        if (isCollapsed && touchX < sidebarEdgeThreshold) {
+            touchStartX = touchX;
+            isDraggingSidebar = true;
+            sidebar.classList.add('dragging');
+        } else if (!isCollapsed) {
+            const rect = sidebar.getBoundingClientRect();
+            if (touchX <= rect.right) {
+                touchStartX = touchX;
+                isDraggingSidebar = true;
+                sidebar.classList.add('dragging');
+            }
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!isDraggingSidebar) return;
+        
+        const touchX = e.touches[0].clientX;
+        const isCollapsed = sidebar.classList.contains('collapsed');
+        const sidebarWidth = sidebar.getBoundingClientRect().width;
+        
+        let deltaX = touchX - touchStartX;
+        let translate = 0;
+
+        if (isCollapsed) {
+            // Dragging to open: translate from -sidebarWidth to 0
+            translate = Math.min(0, -sidebarWidth + deltaX);
+        } else {
+            // Dragging to close: translate from 0 to -sidebarWidth
+            translate = Math.min(0, Math.max(-sidebarWidth, deltaX));
+        }
+
+        sidebar.style.transform = `translateX(${translate}px)`;
+    }, { passive: false }); // Need passive: false to prevent potential scrolling issues during drag
+
+    document.addEventListener('touchend', (e) => {
+        if (!isDraggingSidebar) return;
+        
+        isDraggingSidebar = false;
+        sidebar.classList.remove('dragging');
+        sidebar.style.transform = ''; 
+
+        const touchEndX = e.changedTouches[0].clientX;
+        const deltaX = touchEndX - touchStartX;
+        const sidebarWidth = sidebar.getBoundingClientRect().width;
+        const threshold = sidebarWidth / 4; // 25% threshold to commit the action
+
+        const isCollapsed = sidebar.classList.contains('collapsed');
+
+        if (isCollapsed) {
+            if (deltaX > threshold) {
+                sidebar.classList.remove('collapsed');
+            }
+        } else {
+            if (deltaX < -threshold) {
+                sidebar.classList.add('collapsed');
             }
         }
     });
