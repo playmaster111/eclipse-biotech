@@ -2737,3 +2737,38 @@ function loadChangelogView() {
         </div>
     `;
 }
+
+// Logo Kinetic Overhaul
+const scrambleTarget = document.getElementById('scramble-target');
+const mainLogo = document.getElementById('main-logo');
+
+if (mainLogo && scrambleTarget) {
+    const chars = '0123456789ABCDEFGHJKLMNOPQRSTUVWXYZ$%&#@!?';
+    let isScrambling = false;
+
+    const scramble = () => {
+        if (isScrambling) return;
+        isScrambling = true;
+        
+        const original = scrambleTarget.getAttribute('data-text');
+        let iteration = 0;
+        
+        const interval = setInterval(() => {
+            scrambleTarget.innerText = original.split('')
+                .map((letter, index) => {
+                    if (index < iteration) return original[index];
+                    return chars[Math.floor(Math.random() * chars.length)];
+                })
+                .join('');
+            
+            if (iteration >= original.length) {
+                clearInterval(interval);
+                isScrambling = false;
+            }
+            
+            iteration += 1 / 3;
+        }, 30);
+    };
+
+    mainLogo.addEventListener('mouseenter', scramble);
+}
