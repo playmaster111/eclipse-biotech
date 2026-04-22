@@ -2554,6 +2554,13 @@ function loadChangelogView() {
     
     const logs = [
         {
+            ver: 'v3.5.3',
+            date: '2026.04.22',
+            title: 'LOGS_VISIBILITY_PATCH',
+            desc: 'Enhanced color contrast for the System Logs utility and finalized production server synchronization protocols.',
+            tags: ['UI', 'SYNC']
+        },
+        {
             ver: 'v3.5.2',
             date: '2026.04.22',
             title: 'I18N_CORE_UPGRADE',
