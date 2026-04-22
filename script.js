@@ -68,14 +68,28 @@ initParticles(); animateParticles();
 // --- Ambient Audio Logic ---
 // --------------------------------
 const bgMusic = document.getElementById('bgMusic');
-const musicToggle = document.getElementById('musicToggle');
+const muteBtn = document.getElementById('muteBtn');
 const volumeSlider = document.getElementById('volumeSlider');
+const volumeIcon = document.getElementById('volumeIcon');
 let isAudioInitialized = false;
+
+function updateAudioUI() {
+    if (!volumeIcon || !muteBtn) return;
+    
+    if (bgMusic.paused || bgMusic.volume === 0) {
+        volumeIcon.className = 'fas fa-volume-mute';
+        muteBtn.classList.add('muted');
+        muteBtn.classList.remove('playing');
+    } else {
+        volumeIcon.className = 'fas fa-volume-up';
+        muteBtn.classList.add('playing');
+        muteBtn.classList.remove('muted');
+    }
+}
 
 function initAudio() {
     if (isAudioInitialized) return;
     
-    // Load saved volume or default up to 0.3
     const savedVol = localStorage.getItem('eclipse_volume');
     const initialVol = savedVol !== null ? parseFloat(savedVol) : 0.3;
     bgMusic.volume = initialVol;
@@ -85,7 +99,7 @@ function initAudio() {
     if (playAttempt !== undefined) {
         playAttempt.then(() => {
             isAudioInitialized = true;
-            musicToggle.classList.add('playing');
+            updateAudioUI();
             document.removeEventListener('click', initAudio);
             document.removeEventListener('keydown', initAudio);
         }).catch(error => {
@@ -97,25 +111,24 @@ function initAudio() {
 function toggleMusic() {
     if (bgMusic.paused) {
         bgMusic.play();
-        musicToggle.classList.add('playing');
         localStorage.setItem('eclipse_audio', 'on');
     } else {
         bgMusic.pause();
-        musicToggle.classList.remove('playing');
         localStorage.setItem('eclipse_audio', 'off');
     }
+    updateAudioUI();
 }
 
-if (musicToggle) {
-    musicToggle.addEventListener('click', (e) => {
+if (muteBtn) {
+    muteBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (!isAudioInitialized) {
             isAudioInitialized = true;
             bgMusic.volume = volumeSlider ? volumeSlider.value : 0.3;
             bgMusic.play();
-            musicToggle.classList.add('playing');
             localStorage.setItem('eclipse_audio', 'on');
             document.removeEventListener('click', initAudio);
+            updateAudioUI();
         } else {
             toggleMusic();
         }
@@ -128,10 +141,10 @@ if (volumeSlider) {
         bgMusic.volume = val;
         localStorage.setItem('eclipse_volume', val);
         
-        // Auto-initialize if moving slider
         if (!isAudioInitialized && val > 0) {
             initAudio();
         }
+        updateAudioUI();
     });
 }
 

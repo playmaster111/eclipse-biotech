@@ -280,44 +280,68 @@ body::before {
     box-shadow: 0 0 10px var(--accent);
 }
 
-.music-btn {
+.audio-btn {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 4px 12px;
+    padding: 6px 14px;
     border-radius: 4px;
     font-family: var(--font-m);
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 1px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: all 0.3s;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
 }
 
-.music-btn:hover {
-    background: rgba(0, 240, 255, 0.1);
-    border-color: var(--accent);
+.audio-btn i {
+    font-size: 14px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     color: var(--accent);
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
 }
 
-.music-btn.playing {
+.audio-btn:hover {
+    background: rgba(0, 240, 255, 0.1);
     border-color: var(--accent);
     color: var(--accent);
     box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
 }
 
-.music-btn.playing .music-icon {
-    animation: pulse 1.5s infinite;
+.audio-btn.playing {
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
-@keyframes pulse {
-    0% { opacity: 0.5; transform: scale(0.95); }
-    50% { opacity: 1; transform: scale(1.1); text-shadow: 0 0 8px var(--accent); }
-    100% { opacity: 0.5; transform: scale(0.95); }
+.audio-btn.muted {
+    border-color: var(--red);
+    color: var(--red);
+    background: rgba(255, 58, 92, 0.05);
+}
+
+.audio-btn.muted i {
+    color: var(--red);
+    transform: scale(0.9) rotate(-15deg);
+    filter: drop-shadow(0 0 5px var(--red));
+}
+
+.audio-btn.muted:hover {
+    background: rgba(255, 58, 92, 0.1);
+    box-shadow: 0 0 15px rgba(255, 58, 92, 0.2);
+}
+
+.audio-btn.playing i {
+    animation: audioPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes audioPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 2px var(--accent)); }
+    50% { transform: scale(1.2); filter: drop-shadow(0 0 8px var(--accent)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 2px var(--accent)); }
 }
 
 .lang-selector {
