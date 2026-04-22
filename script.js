@@ -2772,3 +2772,4 @@ if (mainLogo && scrambleTarget) {
 
     mainLogo.addEventListener('mouseenter', scramble);
 }
+
