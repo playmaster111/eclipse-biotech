@@ -2584,6 +2584,13 @@ function loadChangelogView() {
     
     const logs = [
         {
+            ver: 'v3.6.8',
+            date: '2026.04.22',
+            title: 'GLOW_MATRIX_REACTIVE',
+            desc: 'Implemented photonic glow effects and kinetic hover states across all navigation nodes for enhanced tactile feedback.',
+            tags: ['UI', 'FX']
+        },
+        {
             ver: 'v3.6.0',
             date: '2026.04.22',
             title: 'GOOGLE_TRANSLATE_SYNC',
