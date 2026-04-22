@@ -352,8 +352,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Sidebar Toggle Logic (TAB Key)
+    // Sidebar Toggle Logic (TAB Key & Mobile Toggle)
     const sidebar = document.querySelector('.sidebar');
+    const mobileToggle = document.getElementById('mobile-menu-toggle');
+
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+            if (sidebar) sidebar.classList.toggle('collapsed');
+        });
+    }
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Tab') {
             e.preventDefault(); // Prevent focus switching
@@ -888,6 +896,11 @@ function generateAIResponse(q) {
 
 // Load Article into Main Mount
 function loadArticle(id) {
+    const sidebar = document.querySelector('.sidebar');
+    if (window.innerWidth <= 768 && sidebar) {
+        sidebar.classList.add('collapsed');
+    }
+
     const item = WIKI_DATA.find(x => x.id === id);
     if (!item) return;
 
