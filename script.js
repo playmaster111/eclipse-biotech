@@ -2569,6 +2569,13 @@ function loadChangelogView() {
     
     const logs = [
         {
+            ver: 'v3.6.0',
+            date: '2026.04.22',
+            title: 'GOOGLE_TRANSLATE_SYNC',
+            desc: 'Integrated automated translation engine with custom UI bridging and banner suppression. Added support for 100+ global languages.',
+            tags: ['MAJOR', 'I18N']
+        },
+        {
             ver: 'v3.5.3',
             date: '2026.04.22',
             title: 'LOGS_VISIBILITY_PATCH',
