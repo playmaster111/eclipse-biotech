@@ -628,7 +628,11 @@ function renderSidebar(filter = '') {
                 
                 const folderHead = document.createElement('div');
                 folderHead.className = 'nav-folder-head';
-                folderHead.innerHTML = `<i class="fas fa-folder folder-icon"></i> <span>${folderName}</span> <span class="arrow">▼</span>`;
+                folderHead.innerHTML = `
+                    <i class="fas fa-folder folder-icon"></i>
+                    <span>${folderName.toUpperCase()}</span>
+                    <i class="fas fa-chevron-right arrow"></i>
+                `;
                 folderHead.onclick = () => {
                     folderDiv.classList.toggle('open');
                     const icon = folderHead.querySelector('.folder-icon');
