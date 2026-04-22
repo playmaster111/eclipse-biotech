@@ -183,6 +183,8 @@ function updateUIStrings() {
     // Refresh current article if open
     if (window.currentDrug) {
         loadArticle(window.currentDrug.id);
+    } else {
+        updateWelcomeScreen();
     }
 
     // Update custom lang selector text
@@ -193,13 +195,23 @@ function updateUIStrings() {
 // Merge external translations into WIKI_DATA
 function mergeTranslations() {
     if (!window.DRUG_I18N) return;
+    
+    function deepMerge(target, source, lang) {
+        Object.keys(source).forEach(field => {
+            if (typeof source[field] === 'object' && source[field] !== null && !Array.isArray(source[field])) {
+                // If it's an object (like experimental), we store it as field_lang
+                target[`${field}_${lang}`] = source[field];
+            } else {
+                target[`${field}_${lang}`] = source[field];
+            }
+        });
+    }
+
     window.WIKI_DATA.forEach(item => {
         const trans = window.DRUG_I18N[item.id];
         if (trans) {
             Object.keys(trans).forEach(lang => {
-                Object.keys(trans[lang]).forEach(field => {
-                    item[`${field}_${lang}`] = trans[lang][field];
-                });
+                deepMerge(item, trans[lang], lang);
             });
         }
     });
@@ -380,11 +392,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateUIStrings();
                 renderSidebar(searchInput.value);
                 
-                if (window.currentActiveItem) {
-                    loadArticle(window.currentActiveItem);
-                } else {
-                    updateWelcomeScreen();
-                }
                 customSelect.classList.remove('active');
             });
         });
@@ -577,7 +584,8 @@ function renderSidebar(filter = '') {
                 
                 const navItem = document.createElement('div');
                 navItem.className = 'nav-item' + (isSub ? ' sub-item' : '');
-                navItem.innerText = item.name + (item.status === 'discontinued' ? ' ⚠️' : '');
+                const localizedName = item[`name_${currentLang}`] || item.name;
+                navItem.innerText = localizedName + (item.status === 'discontinued' ? ' ⚠️' : '');
                 navItem.dataset.id = item.id;
                 navItem.onclick = () => loadArticle(item.id);
                 
@@ -676,7 +684,13 @@ function renderSidebar(filter = '') {
         labBtn.onclick = () => loadLabVerifierView();
         navEl.appendChild(labBtn);
 
-        navEl.appendChild(labBtn);
+        const logBtn = document.createElement('div');
+        logBtn.className = 'nav-item';
+        logBtn.innerText = '> _SYSTEM_LOGS';
+        logBtn.id = 'logs-nav-btn';
+        logBtn.style.color = '#ff9d00'; // Amber for system logs
+        logBtn.onclick = () => loadChangelogView();
+        navEl.appendChild(logBtn);
     }
 }
 
@@ -1028,6 +1042,9 @@ function loadArticle(id) {
     const item = WIKI_DATA.find(x => x.id === id);
     if (!item) return;
 
+    window.currentDrug = item;
+    window.currentActiveItem = id;
+
     document.querySelectorAll('.nav-item').forEach(el => {
         el.classList.remove('active');
         if(el.dataset.id === id) el.classList.add('active');
@@ -1045,11 +1062,11 @@ function loadArticle(id) {
         <div class="pros-cons-grid">
             <div class="pro-con-box pro">
                 <div class="box-header">+ ${currentLang === 'en' ? 'OBSERVED BENEFITS' : getT('status_safe').toUpperCase() + ' / ' + getT('dosage_clinical').toUpperCase()}</div>
-                <div class="box-content">${item[`benefits_${currentLang}`] || item.benefits || 'No specific performance benefits documented.'}</div>
+                <div class="box-content">${item[`benefits_${currentLang}`] || item.benefits || getT('not_applicable')}</div>
             </div>
             <div class="pro-con-box con">
                 <div class="box-header">- ${getT('risks').toUpperCase()}</div>
-                <div class="box-content">${item[`risks_${currentLang}`] || item.risks || 'Standard hormonal risks apply.'}</div>
+                <div class="box-content">${item[`risks_${currentLang}`] || item.risks || getT('not_applicable')}</div>
             </div>
         </div>
     ` : '';
@@ -1088,15 +1105,15 @@ function loadArticle(id) {
         <article class="wiki-article">
             <header class="article-header">
                 <div class="header-main">
-                    <h1>${item.name}</h1>
-                    <button class="cyber-btn wiki-ai-consult" onclick="triggerAIExplain('${item.name}')">
-                        <i class="fas fa-brain"></i> ASK_ECLIPSE
+                    <h1>${item[`name_${currentLang}`] || item.name}</h1>
+                    <button class="cyber-btn wiki-ai-consult" onclick="triggerAIExplain('${item[`name_${currentLang}`] || item.name}')">
+                        <i class="fas fa-brain"></i> ${getT('ask_ai') || 'ASK_ECLIPSE'}
                     </button>
                 </div>
                 <div class="badges">
-                    <span class="badge cat">${item.type}</span>
-                    <span class="badge" style="${item.status === 'discontinued' ? 'color: var(--red); border-color: var(--red)' : ''}">${item.status.toUpperCase()}</span>
-                    ${item.esters ? `<span class="badge" style="border-color: var(--accent2); color: var(--accent2)">${item.esters.replace(/[\(\)]/g, '')}</span>` : ''}
+                    <span class="badge cat">${getT(item.type.toLowerCase()) || item.type}</span>
+                    <span class="badge" style="${item.status === 'discontinued' ? 'color: var(--red); border-color: var(--red)' : ''}">${getT(item.status.toLowerCase()) || item.status.toUpperCase()}</span>
+                    ${item.esters ? `<span class="badge" style="border-color: var(--accent2); color: var(--accent2)">${item[`esters_${currentLang}`] || item.esters.replace(/[\(\)]/g, '')}</span>` : ''}
                 </div>
             </header>
 
@@ -1169,11 +1186,23 @@ function loadArticle(id) {
                         <div class="data-box" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-bottom: 1px solid var(--border2);">
                             <div>
                                 <div class="data-box-label">${getT('exp_beginner')}</div>
-                                <div class="data-box-value" style="color: var(--accent2)">${item.experimental ? (item.experimental.b === 'N/A' ? getT('not_applicable') : item.experimental.b) : getT('not_applicable')}</div>
+                                <div class="data-box-value" style="color: var(--accent2)">
+                                    ${(() => {
+                                        const exp = item[`experimental_${currentLang}`] || item.experimental;
+                                        if (!exp || !exp.b || exp.b === 'N/A') return getT('not_applicable');
+                                        return exp.b;
+                                    })()}
+                                </div>
                             </div>
                             <div>
                                 <div class="data-box-label">${getT('exp_advanced')}</div>
-                                <div class="data-box-value" style="color: var(--accent2)">${item.experimental ? (item.experimental.a === 'N/A' ? getT('not_applicable') : item.experimental.a) : getT('not_applicable')}</div>
+                                <div class="data-box-value" style="color: var(--accent2)">
+                                    ${(() => {
+                                        const exp = item[`experimental_${currentLang}`] || item.experimental;
+                                        if (!exp || !exp.a || exp.a === 'N/A') return getT('not_applicable');
+                                        return exp.a;
+                                    })()}
+                                </div>
                             </div>
                         </div>
                         <div style="padding: 10px 20px; font-size: 9px; color: var(--muted); font-family: var(--font-m); line-height: 1.4;">
@@ -2513,4 +2542,79 @@ function updateHeatMap(item) {
             </div>
         `;
     }).join('');
+}
+// --- Changelog View ---
+function loadChangelogView() {
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    const btn = document.getElementById('logs-nav-btn');
+    if (btn) btn.classList.add('active');
+    document.getElementById('current-category').innerText = "SYSTEM_LOGS";
+
+    const mount = document.getElementById('article-mount');
+    
+    const logs = [
+        {
+            ver: 'v3.5.2',
+            date: '2026.04.22',
+            title: 'I18N_CORE_UPGRADE',
+            desc: 'Implemented recursive deep-merge translation engine. Synchronized real-time UI updates for drug profiles and sidebar navigation.',
+            tags: ['CORE', 'I18N']
+        },
+        {
+            ver: 'v3.4.0',
+            date: '2026.04.20',
+            title: 'DATABANK_EXPANSION',
+            desc: 'Added comprehensive pharmacological profiles for 50+ new compounds across Anabolic, Psychedelic, and Nootropic categories.',
+            tags: ['DATA']
+        },
+        {
+            ver: 'v3.2.5',
+            date: '2026.04.18',
+            title: 'HOLO_MESH_v2',
+            desc: 'Upgraded Three.js rendering engine with context-aware geometry (DNA Spirals, Vials, and Molecular clusters).',
+            tags: ['GFX']
+        },
+        {
+            ver: 'v3.0.0',
+            date: '2026.04.15',
+            title: 'AI_CORTEX_SYNC',
+            desc: 'Integrated the Eclipse_AI reasoning module for real-time risk assessment and protocol analysis.',
+            tags: ['AI', 'MAJOR']
+        },
+        {
+            ver: 'v2.8.0',
+            date: '2026.04.10',
+            title: 'MOBILE_NODES_ACTIVE',
+            desc: 'Optimized touch-gestures and edge-swipe sidebar interactions for mobile-link research environments.',
+            tags: ['UX']
+        }
+    ];
+
+    mount.innerHTML = `
+        <div class="changelog-view">
+            <div class="ai-header">
+                <h2><span class="glitch" data-text="SYSTEM UPDATES">SYSTEM UPDATES</span></h2>
+                <p>Tracking the evolution of the Eclipse Biotech terminal hardware and software protocols.</p>
+            </div>
+            
+            <div class="timeline">
+                ${logs.map(log => `
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="log-meta">
+                                <span class="log-ver">${log.ver}</span>
+                                <span class="log-date">${log.date}</span>
+                            </div>
+                            <h3 class="log-title">${log.title}</h3>
+                            <p class="log-desc">${log.desc}</p>
+                            <div class="log-tags">
+                                ${log.tags.map(t => `<span class="log-tag">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
 }
