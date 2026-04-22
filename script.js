@@ -362,6 +362,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const sidebarClose = document.getElementById('sidebar-close');
+    if (sidebarClose) {
+        sidebarClose.addEventListener('click', () => {
+            if (sidebar) sidebar.classList.add('collapsed');
+        });
+    }
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Tab') {
             e.preventDefault(); // Prevent focus switching

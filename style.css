@@ -2357,6 +2357,24 @@ body::before {
     .chat-msg { max-width: 95%; }
     
     .logo-main { font-size: 28px !important; }
+
+    /* Mobile Close Button in Sidebar */
+    .mobile-close {
+        display: flex !important;
+        position: absolute;
+        top: -5px; right: -5px;
+        width: 32px; height: 32px;
+        background: rgba(255, 58, 92, 0.1);
+        border: 1px solid rgba(255, 58, 92, 0.3);
+        border-radius: 4px;
+        color: var(--red);
+        justify-content: center; align-items: center;
+        cursor: pointer;
+        font-size: 16px;
+        z-index: 100;
+        transition: all 0.3s;
+    }
+    .mobile-close:hover { background: rgba(255, 58, 92, 0.2); box-shadow: 0 0 10px rgba(255, 58, 92, 0.3); }
 }
 
 @media (max-width: 480px) {
