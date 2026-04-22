@@ -2714,23 +2714,18 @@ body {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transform: translateY(-5px) scaleY(0.98);
-    transform-origin: top;
     transition: 
-        max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-        opacity 0.3s ease-out,
-        transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.2s ease-out;
     background: rgba(0, 0, 0, 0.15);
-    border-left: 1px solid rgba(0, 240, 255, 0.05);
-    margin-left: 20px;
+    border-left: 1px solid rgba(0, 240, 255, 0.1);
+    margin-left: 10px;
 }
 
 .nav-folder.open .nav-folder-content {
-    max-height: 800px; /* Reduced for tighter animation timing */
+    max-height: 1000px;
     opacity: 1;
-    transform: translateY(0) scaleY(1);
     padding-bottom: 5px;
-    margin-top: 2px;
 }
 
 .sub-item {
