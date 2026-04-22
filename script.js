@@ -624,7 +624,7 @@ function renderSidebar(filter = '') {
             // Render Folders
             for (const [folderName, folderItems] of Object.entries(folders)) {
                 const folderDiv = document.createElement('div');
-                folderDiv.className = 'nav-folder' + (filter === '' ? ' collapsed' : '');
+                folderDiv.className = 'nav-folder' + (filter !== '' ? ' open' : '');
                 
                 const folderHead = document.createElement('div');
                 folderHead.className = 'nav-folder-head';
@@ -645,6 +645,9 @@ function renderSidebar(filter = '') {
                 
                 const folderContent = document.createElement('div');
                 folderContent.className = 'nav-folder-content';
+                if (filter !== '') {
+                    folderContent.style.maxHeight = 'none'; // Ensure visibility if searching
+                }
                 
                 folderItems.forEach(item => renderNavItem(item, folderContent, true)); // True means sub-item
                 

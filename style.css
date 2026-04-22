@@ -2711,7 +2711,19 @@ body {
 }
 
 .nav-folder.open .nav-folder-content {
-    max-height: 1000px;
+    max-height: 2000px;
+    opacity: 1;
+    padding-bottom: 10px;
+}
+
+.sub-item {
+    padding-left: 45px !important;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.sub-item:hover {
+    opacity: 1;
 }
 
 .nav-folder-head span {
@@ -2729,4 +2741,8 @@ body {
 .nav-folder.open .nav-folder-head span {
     color: #fff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.nav-folder-content .nav-item-wrapper {
+    background: rgba(255, 255, 255, 0.01);
 }
