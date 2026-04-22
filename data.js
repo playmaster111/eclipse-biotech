@@ -397,7 +397,7 @@ const WIKI_DATA = [
 
     // --- CORTICOSTEROIDS ---
     {
-        id: 'prednisone', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Prednisone', esters: '', status: 'active',
+        id: 'prednisone', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Prednisone', esters: '', status: 'active',
         overview: 'Prednisone is a synthetic glucocorticoid mostly used to suppress the immune system and decrease inflammation in conditions such as asthma, COPD, and rheumatologic diseases.',
         primaryUses: 'Asthma, autoimmune diseases, severe allergies',
         mechanism: 'Systemic, potent anti-inflammatory and immunosuppressant. A prodrug that is converted by the liver into prednisolone.',
@@ -409,7 +409,7 @@ const WIKI_DATA = [
         cycleExamples: '<strong>The Flare Blast:</strong> A standard 60mg daily dose for 5 days, followed by a slow taper over 14 days, is often used to treat acute asthma or joint inflammation.'
     },
     {
-        id: 'prednisolone', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Prednisolone', esters: '', status: 'active',
+        id: 'prednisolone', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Prednisolone', esters: '', status: 'active',
         overview: 'Prednisolone is the active metabolite of Prednisone. It is used directly when patients suffer from severe liver failure and cannot convert prednisone.',
         primaryUses: 'Uveitis, asthma, rheumatoid arthritis',
         mechanism: 'Directly acts on glucocorticoid receptors to halt the transcription of inflammatory genes.',
@@ -418,7 +418,7 @@ const WIKI_DATA = [
         risks: 'Cataracts, adrenal suppression, skin thinning.',
     },
     {
-        id: 'dexamethasone', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Dexamethasone', esters: '', status: 'active',
+        id: 'dexamethasone', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Dexamethasone', esters: '', status: 'active',
         overview: 'Dexamethasone is an extraordinarily potent, long-acting synthetic glucocorticoid—roughly 25 times more potent than endogenous cortisol.',
         primaryUses: 'Cerebral edema, severe inflammation, certain cancers',
         mechanism: 'Halts inflammatory pathways instantly. Almost entirely devoid of mineralocorticoid (salt-retaining) activity.',
@@ -427,7 +427,7 @@ const WIKI_DATA = [
         risks: 'Potent mass immunosuppression, severe adrenal suppression risk.',
     },
     {
-        id: 'hydrocortisone', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Hydrocortisone', esters: '', status: 'active',
+        id: 'hydrocortisone', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Hydrocortisone', esters: '', status: 'active',
         overview: 'Hydrocortisone is the direct pharmaceutical term for cortisol. Often used to literally replace missing cortisol in Addisons disease patients.',
         primaryUses: 'Adrenal insufficiency, severe eczema',
         mechanism: 'Replaces natural cortisol, carrying equal parts glucocorticoid and mineralocorticoid activity.',
@@ -436,7 +436,7 @@ const WIKI_DATA = [
         risks: 'HPA axis suppression, fluid retention, skin thinning.',
     },
     {
-        id: 'cortisone', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Cortisone', esters: '', status: 'active',
+        id: 'cortisone', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Cortisone', esters: '', status: 'active',
         overview: 'Often administered via painful injections directly into joints to provide rapid, localized relief from arthritis or severe tendonitis.',
         primaryUses: 'Joint inflammation, tendonitis, bursitis',
         mechanism: 'Inactive until converted to cortisol by the liver. Depresses the immune response and localized swelling.',
@@ -445,7 +445,7 @@ const WIKI_DATA = [
         risks: 'Cartilage destruction (if injected too frequently), localized tendon rupture.',
     },
     {
-        id: 'betamethasone', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Betamethasone', esters: '', status: 'active',
+        id: 'betamethasone', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Betamethasone', esters: '', status: 'active',
         overview: 'Betamethasone is extremely potent and routinely given to pregnant mothers right before premature delivery to rapidly accelerate the baby’s lung development.',
         primaryUses: 'Fetal lung maturation, severe eczema (topical)',
         mechanism: 'Easily crosses the placenta. Promotes the production of surfactant within the fetal lungs.',
@@ -454,7 +454,7 @@ const WIKI_DATA = [
         risks: 'Stunted long-term fetal growth (if overused), typical corticosteroid risks.',
     },
     {
-        id: 'methylprednisolone', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Methylprednisolone', esters: '', status: 'active',
+        id: 'methylprednisolone', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Methylprednisolone', esters: '', status: 'active',
         overview: 'Typically administered as a "dose pack" starting extremely high and tapering off over a week to blast out acute autoimmune attacks or poison ivy.',
         primaryUses: 'Acute asthmatic attacks, severe allergic reactions',
         mechanism: 'Intense anti-inflammatory properties, marginally more potent than prednisone with slightly less water retention.',
@@ -463,7 +463,7 @@ const WIKI_DATA = [
         risks: 'Intense sleep disruption, dramatic mood swings.',
     },
     {
-        id: 'triamcinolone', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Triamcinolone', esters: '', status: 'active',
+        id: 'triamcinolone', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Triamcinolone', esters: '', status: 'active',
         overview: 'A long-acting corticosteroid often injected into joint spaces or used topically for mouth sores and eczema.',
         primaryUses: 'Intra-articular joint arthritis, severe aphthous stomatitis',
         mechanism: 'Highly localized anti-inflammatory mechanisms. Five times as potent as cortisol.',
@@ -472,7 +472,7 @@ const WIKI_DATA = [
         risks: 'Skin discoloration at injection site, systemic absorption side effects.',
     },
     {
-        id: 'fluticasone', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Fluticasone', esters: '(Flonase)', status: 'active',
+        id: 'fluticasone', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Fluticasone', esters: '(Flonase)', status: 'active',
         overview: 'Extremely common OTC nasal spray (Flonase) and inhaled powder (Flovent) used daily by millions to battle seasonal allergies or asthma.',
         primaryUses: 'Allergic rhinitis, mild to moderate asthma',
         mechanism: 'Topical/inhaled application heavily mitigates systemic absorption while radically reducing localized nasal or bronchial mast-cell degranulation.',
@@ -481,7 +481,7 @@ const WIKI_DATA = [
         risks: 'Nosebleeds, mild throat irritation, oral thrush (if inhaled via mouth).',
     },
     {
-        id: 'budesonide', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Budesonide', esters: '', status: 'active',
+        id: 'budesonide', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Budesonide', esters: '', status: 'active',
         overview: 'Widely heavily used to combat severe gastrointestinal diseases like Crohns via encapsulated pills designed to release exclusively in the intestines.',
         primaryUses: 'Crohn’s disease, ulcerative colitis, asthma',
         mechanism: 'Features incredibly high first-pass metabolism, meaning when swallowed it hits the gut with massive inflammation suppression but is destroyed before reaching systemic circulation.',
