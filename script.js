@@ -184,6 +184,10 @@ function updateUIStrings() {
     if (window.currentDrug) {
         loadArticle(window.currentDrug.id);
     }
+
+    // Update custom lang selector text
+    const selectedValue = document.getElementById('langSelectedValue');
+    if (selectedValue) selectedValue.innerText = currentLang.toUpperCase();
 }
 
 // Merge external translations into WIKI_DATA
@@ -345,20 +349,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startSystemBoot();
     
-    const langSelect = document.getElementById('langSelect');
-    if (langSelect) {
-        langSelect.value = currentLang;
-        langSelect.addEventListener('change', (e) => {
-            currentLang = e.target.value;
-            localStorage.setItem('eclipse_lang', currentLang);
-            updateUIStrings();
-            renderSidebar(searchInput.value);
-            // Refresh current article if open
-            if (window.currentActiveItem) {
-                loadArticle(window.currentActiveItem);
-            } else {
-                updateWelcomeScreen();
-            }
+    // Custom Dropdown Logic
+    const customSelect = document.getElementById('langCustomSelect');
+    const selectedValue = document.getElementById('langSelectedValue');
+    const options = document.querySelectorAll('.lang-option');
+
+    if (customSelect && selectedValue) {
+        selectedValue.innerText = currentLang.toUpperCase();
+        
+        // Mark active
+        options.forEach(opt => {
+            if (opt.dataset.value === currentLang) opt.classList.add('active');
+        });
+
+        customSelect.addEventListener('click', (e) => {
+            e.stopPropagation();
+            customSelect.classList.toggle('active');
+        });
+
+        options.forEach(opt => {
+            opt.addEventListener('click', () => {
+                const val = opt.dataset.value;
+                currentLang = val;
+                localStorage.setItem('eclipse_lang', currentLang);
+                selectedValue.innerText = currentLang.toUpperCase();
+                
+                options.forEach(o => o.classList.remove('active'));
+                opt.classList.add('active');
+                
+                updateUIStrings();
+                renderSidebar(searchInput.value);
+                
+                if (window.currentActiveItem) {
+                    loadArticle(window.currentActiveItem);
+                } else {
+                    updateWelcomeScreen();
+                }
+                customSelect.classList.remove('active');
+            });
+        });
+
+        // Close on outside click
+        document.addEventListener('click', () => {
+            customSelect.classList.remove('active');
         });
     }
 
