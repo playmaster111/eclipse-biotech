@@ -750,8 +750,8 @@ body::before {
 .ai-header h2 { font-family: var(--font-d); font-size: 32px; color: var(--accent); letter-spacing: 2px; }
 .ai-header p { font-size: 13px; color: var(--muted); }
 
-/* --- Custom Cursor Styles (Clinical HUD) --- */
-.custom-cursor {
+/* --- Custom Cursor Styles (Molecular) --- */
+.custom-cursor.molecule-center {
     position: fixed;
     width: 12px;
     height: 12px;
@@ -760,130 +760,109 @@ body::before {
     pointer-events: none;
     z-index: 100000;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s, transform 0.1s;
-    mix-blend-mode: exclusion;
+    box-shadow: 0 0 15px var(--accent);
+    mix-blend-mode: normal; /* Better for molecular look */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Crosshair inner dot */
-.custom-cursor::after {
+.custom-cursor.molecule-center::after {
     content: '';
     width: 4px;
     height: 4px;
-    background: #000;
+    background: rgba(255,255,255,0.8);
     border-radius: 50%;
 }
 
-/* Corner Brackets for HUD feel */
-.custom-cursor::before {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--accent);
-    border-radius: 2px;
-    opacity: 0.5;
-    animation: cursorPulse 2s infinite alternate;
-}
-
-@keyframes cursorPulse {
-    from { transform: scale(0.8); opacity: 0.3; }
-    to { transform: scale(1.1); opacity: 0.7; }
-}
-
-.custom-cursor-follower {
+.custom-cursor-follower.molecule-structure {
     position: fixed;
-    width: 50px;
-    height: 50px;
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    border-radius: 50%;
+    width: 80px;
+    height: 80px;
     pointer-events: none;
     z-index: 99999;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
-    background: rgba(0, 240, 255, 0.02);
-    backdrop-filter: blur(1px);
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: moleculeRotate 8s linear infinite;
 }
 
-/* Scanning Ring */
-.custom-cursor-follower::before {
-    content: '';
+@keyframes moleculeRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.atom {
     position: absolute;
-    width: 110%;
-    height: 110%;
-    border: 1px dashed var(--accent);
-    border-radius: 50%;
-    opacity: 0.15;
-    animation: cursorRotate 15s linear infinite;
-}
-
-/* Secondary Tech Ring */
-.custom-cursor-follower::after {
-    content: '';
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    border: 1px solid var(--accent2);
-    border-radius: 50%;
-    opacity: 0.1;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    animation: cursorRotate 5s linear infinite reverse;
-}
-
-@keyframes cursorRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Data Label (Coordinates/Status) */
-.cursor-label {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    font-family: var(--font-m);
-    font-size: 8px;
-    color: var(--accent);
-    opacity: 0.6;
-    white-space: nowrap;
-    pointer-events: none;
-}
-
-/* Hover/Active States */
-.custom-cursor.hover {
-    width: 16px;
-    height: 16px;
+    width: 6px;
+    height: 6px;
     background: var(--accent2);
-}
-
-.custom-cursor.hover::before {
-    width: 30px;
-    height: 30px;
-    border-color: var(--accent2);
     border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.bond {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0.3;
+    transform-origin: left center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Atomic Positions & Bond Rotations */
+.a1 { transform: rotate(0deg) translateX(30px); }
+.a2 { transform: rotate(120deg) translateX(30px); }
+.a3 { transform: rotate(240deg) translateX(30px); }
+
+.b1 { width: 30px; transform: rotate(0deg); }
+.b2 { width: 30px; transform: rotate(120deg); }
+.b3 { width: 30px; transform: rotate(240deg); }
+
+/* Hover States */
 .custom-cursor-follower.hover {
-    width: 70px;
-    height: 70px;
-    border-color: var(--accent2);
-    background: rgba(181, 255, 77, 0.05);
+    animation-duration: 3s;
 }
 
+.custom-cursor-follower.hover .atom {
+    background: #fff;
+    box-shadow: 0 0 12px #fff;
+    transform: scale(1.5) rotate(var(--r)) translateX(45px); /* Note: translateX must be repeated after rotate in composite transform if not careful */
+}
+/* Overriding positions on hover for expansion */
+.custom-cursor-follower.hover .a1 { transform: rotate(0deg) translateX(45px); }
+.custom-cursor-follower.hover .a2 { transform: rotate(120deg) translateX(45px); }
+.custom-cursor-follower.hover .a3 { transform: rotate(240deg) translateX(45px); }
+
+.custom-cursor-follower.hover .bond {
+    opacity: 0.6;
+    width: 45px;
+}
+
+/* Clicking State */
 .custom-cursor.clicking {
-    transform: translate(-50%, -50%) scale(0.6);
+    transform: translate(-50%, -50%) scale(0.5);
     background: var(--red);
+    box-shadow: 0 0 20px var(--red);
 }
 
-.custom-cursor-follower.clicking {
-    transform: translate(-50%, -50%) scale(1.4);
-    border-color: var(--red);
-    background: rgba(255, 58, 92, 0.1);
+.custom-cursor-follower.clicking .atom {
+    background: var(--red);
+    transform: scale(0.2) translateX(10px) !important;
+    opacity: 0;
+}
+
+.custom-cursor-follower.clicking .bond {
+    width: 5px;
+    opacity: 0;
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+    .molecule-center, .molecule-structure { display: none; }
+    body, a, button, .nav-item { cursor: auto !important; }
 }
 
 /* Hide cursor on mobile */

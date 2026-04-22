@@ -1,18 +1,8 @@
-/**
- * Eclipse Biotech - Custom Cursor System
- * High-fidelity interaction layer
- */
-
 (function() {
     const cursor = document.getElementById('cursor');
     const follower = document.getElementById('cursor-follower');
 
     if (!cursor || !follower) return;
-
-    // Create HUD Label
-    const label = document.createElement('div');
-    label.className = 'cursor-label';
-    follower.appendChild(label);
 
     // Force activation of CSS class
     document.body.classList.add('custom-cursor-active');
@@ -37,14 +27,12 @@
         
         cursor.style.left = cursorX + 'px';
         cursor.style.top = cursorY + 'px';
-
-        // Update HUD label
-        label.innerText = `X:${Math.round(cursorX)} Y:${Math.round(cursorY)}`;
     });
 
     const animateCursor = () => {
-        followerX += (cursorX - followerX) * 0.15;
-        followerY += (cursorY - followerY) * 0.15;
+        // Molecular trailing (slightly tighter than before)
+        followerX += (cursorX - followerX) * 0.2;
+        followerY += (cursorY - followerY) * 0.2;
         
         follower.style.left = followerX + 'px';
         follower.style.top = followerY + 'px';
