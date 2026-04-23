@@ -1839,10 +1839,34 @@ const WIKI_DATA = [
         primaryUses: 'Recreational',
         mechanism: 'Partial agonist of 5-HT2A and 2C receptors.',
         dosage: '10mg to 30mg (2C-series); 1mg-5mg (DOx series).',
+        experimental: { b: 'Not documented', a: 'Not documented' },
         benefits: 'Unique blend of LSD-like visuals and MDMA-like physical euphoria; 2C-B is highly prized for its clarity and tactile enhancement.',
         risks: 'Nausea, HPPD, confusion, extreme duration (DOx series can last 24+ hours).',
         impact: { brain: 4, heart: 6, liver: 2, kidneys: 1, blood: 4, hair: 0, joints: 0 },
         cycleExamples: '<strong>2C-B Experience:</strong> 20mg oral dose for a 4-6 hour psychedelic journey with a very manageable headspace.'
+    },
+    {
+        id: 'k2_spice', folder: 'Synthetic Cannabinoids', category: 'nps', type: 'Synthetic CB-Agonist', name: 'K2 / Spice (Synthetic Cannabinoids)', esters: '(JWH-018 / AM-2201 / HU-210)', status: 'restricted',
+        overview: 'K2 and Spice refer to a diverse range of synthetic cannabinoids that were originally developed for research into the endocannabinoid system. They are often sprayed on herbal mixtures and sold as "legal" alternatives to cannabis.',
+        primaryUses: 'Forensic research, chemical modeling of CB receptors',
+        mechanism: 'Full agonists at the CB1 and CB2 receptors. Unlike natural THC (a partial agonist), synthetic cannabinoids can saturate these receptors, leading to a catastrophic cascade of neurotransmitter release and potential "cytokine storms."',
+        dosage: '0.5mg to 2mg (Varies by compound; high potency).',
+        experimental: { b: 'FATAL_RISK', a: 'EXTREME_TOXICITY' },
+        benefits: 'None identified in a performance or clinical setting.',
+        risks: 'Acute psychosis, seizures, myocardial infarction, kidney failure, and extreme dependency.',
+        impact: { brain: 9, heart: 7, liver: 3, kidneys: 5, blood: 4, hair: 0, joints: 0 },
+        aestheticProfile: 'N/A',
+        physiologicalTargets: 'CB1 receptors in the central nervous system and CB2 receptors in the peripheral immune system.',
+        synthesis: 'Chemical synthesis based on aminoalkylindole or cyclohexylphenol structures.',
+        synthesisSteps: [
+            'Preparation of the indole or indazole core.',
+            'N-alkylation with a specific side chain (e.g., pentyl or fluorinated analogs).',
+            'Acylation at the 3-position to attach the naphthoyl or similar group.',
+            'Purification via recrystallization or chromatography.'
+        ],
+        ingredients: ['Indole', 'Naphthoyl Chloride', 'Alkyl Halides', 'Sodium Hydride', 'Dimethylformamide (DMF)'],
+        location: 'Global Research Labs, Forensic Facilities',
+        storage: { temp: '2-8°C (Long term)', light: 'Light sensitive', shelf: '12 Months', notes: 'Highly potent; handle with extreme caution in a laboratory setting.' }
     },
     {
         id: 'misc_tryptamines', folder: 'Tryptamines', category: 'psychedelics', type: 'Tryptamine', name: 'Research Tryptamines', esters: '(4-AcO-DMT / 4-HO-MET / DET / DiPT)', status: 'experimental',
