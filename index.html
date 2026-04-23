@@ -49,6 +49,7 @@
 
     <!-- Main React-like App Wrapper -->
     <div class="app-window">
+        <div id="mobile-sidebar-overlay" class="mobile-overlay"></div>
         <!-- Sidebar Navigation -->
         <aside class="sidebar collapsed">
             <div class="sidebar-header">
@@ -118,6 +119,11 @@
                     <p style="max-width: 400px; line-height: 1.6;">Select a compound from the database index to initialize the clinical profile. Data encompasses mechanism of action, FDA/historical dosages, and physiological risks.</p>
                 </div>
             </div>
+
+            <!-- Back to Top Button -->
+            <button id="back-to-top" class="back-to-top" title="Back to top">
+                <i class="fas fa-chevron-up"></i>
+            </button>
         </main>
     </div>
 

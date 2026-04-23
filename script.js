@@ -444,6 +444,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const mobileOverlay = document.getElementById('mobile-sidebar-overlay');
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', () => {
+            if (sidebar) sidebar.classList.add('collapsed');
+        });
+    }
+
     const sidebarClose = document.getElementById('sidebar-close');
     if (sidebarClose) {
         sidebarClose.addEventListener('click', () => {
@@ -459,6 +466,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // --- Back to Top Logic ---
+    const backToTopBtn = document.getElementById('back-to-top');
+    const scrollArea = document.getElementById('article-mount');
+
+    if (backToTopBtn && scrollArea) {
+        scrollArea.addEventListener('scroll', () => {
+            if (scrollArea.scrollTop > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
     // --- Draggable Mobile Sidebar Interaction ---
     let touchStartX = 0;

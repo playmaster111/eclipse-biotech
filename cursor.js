@@ -2,7 +2,13 @@
     const cursor = document.getElementById('cursor');
     const follower = document.getElementById('cursor-follower');
 
-    if (!cursor || !follower) return;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice) {
+        cursor.style.display = 'none';
+        follower.style.display = 'none';
+        document.body.classList.remove('custom-cursor-active');
+        return;
+    }
 
     // Force activation of CSS class
     document.body.classList.add('custom-cursor-active');

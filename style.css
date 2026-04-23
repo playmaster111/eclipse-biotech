@@ -219,8 +219,9 @@ body::before {
     text-transform: uppercase; letter-spacing: .1em; padding: 12px 24px 6px; margin-top: 8px;
 }
 .nav-item {
-    display: block; padding: 10px 24px; color: var(--text); font-size: 14px;
+    display: block; padding: 14px 24px; color: var(--text); font-size: 14px;
     cursor: pointer; transition: all .2s; border-left: 2px solid transparent;
+    -webkit-tap-highlight-color: transparent;
 }
 .nav-item:hover { 
     background: rgba(255, 255, 255, 0.03); 
@@ -537,8 +538,13 @@ body::before {
     margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border);
 }
 .article-header h1 {
-    font-family: var(--font-d); font-size: 64px; color: var(--text);
-    letter-spacing: 2px; line-height: 1; margin-bottom: 16px; text-shadow: 0 0 20px rgba(0,240,255,0.1);
+    font-family: var(--font-d);
+    font-size: clamp(32px, 8vw, 64px);
+    color: var(--text);
+    letter-spacing: 2px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    text-shadow: 0 0 20px rgba(0,240,255,0.1);
 }
 .badges { display: flex; gap: 8px; flex-wrap: wrap; }
 .badge {
@@ -721,12 +727,11 @@ body::before {
 
 /* Sidebar Folders */
 .nav-folder { margin-top: 4px; }
-.nav-folder-head {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 24px; color: var(--text); font-size: 15px; font-weight: 500;
-    cursor: pointer; transition: all .2s; border-left: 2px solid transparent;
-}
 .nav-folder-head:hover { background: rgba(0, 240, 255, 0.05); color: var(--accent); }
+.nav-folder-head {
+    padding: 14px 24px;
+    -webkit-tap-highlight-color: transparent;
+}
 .nav-folder-head .arrow { font-size: 10px; transition: transform 0.2s; color: var(--muted); }
 .nav-folder-head:hover .arrow { color: var(--accent); }
 .nav-folder.collapsed .arrow { transform: rotate(-90deg); }
@@ -876,6 +881,9 @@ body::before {
     body, a, button, [onclick], .nav-item, .nav-folder-head, input, select, .copy-btn {
         cursor: auto !important;
     }
+    /* Mobile stacking refinement */
+    .pros-cons-grid { grid-template-columns: 1fr; }
+    .blueprint-content { grid-template-columns: 1fr; }
 }
 
 
@@ -2637,17 +2645,36 @@ body::before {
         top: 0; left: 0;
         width: 85vw; height: 100%;
         max-width: 320px;
-        z-index: 2000; /* Above top nav */
+        z-index: 2000;
         background: rgba(6, 8, 10, 0.98);
+        backdrop-filter: blur(25px);
         transform: translateX(-100%);
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         visibility: visible;
         opacity: 1;
         pointer-events: auto;
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.8);
+        border-right: 1px solid rgba(0, 240, 255, 0.1);
     }
     .sidebar:not(.collapsed) { transform: translateX(0); }
     .sidebar.collapsed { transform: translateX(-100%); }
+
+    .mobile-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+    }
+
+    .sidebar:not(.collapsed) ~ .mobile-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
     
     .sidebar.dragging {
         transition: none !important;
@@ -2660,6 +2687,10 @@ body::before {
         z-index: 1000;
         height: 60px;
         padding: 0 15px;
+        background: rgba(6, 8, 10, 0.7);
+        backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
     
     .article-scroll-area { padding: 20px; padding-bottom: 80px; }
@@ -2670,15 +2701,23 @@ body::before {
     /* Mobile Menu Button */
     .mobile-toggle {
         display: flex !important;
-        width: 38px; height: 38px;
+        width: 42px; height: 42px;
         justify-content: center; align-items: center;
-        background: rgba(0, 240, 255, 0.1);
-        border: 1px solid rgba(0, 240, 255, 0.3);
-        border-radius: 4px;
+        background: rgba(0, 240, 255, 0.05);
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        border-radius: 8px;
         color: var(--accent);
         cursor: pointer;
-        margin-right: 10px;
-        font-size: 18px;
+        margin-right: 12px;
+        font-size: 20px;
+        transition: var(--transition);
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .mobile-toggle:active {
+        transform: scale(0.92);
+        background: rgba(0, 240, 255, 0.15);
+        border-color: var(--accent);
     }
 
     .ai-chat-container { height: calc(100vh - 120px); }
@@ -2703,6 +2742,65 @@ body::before {
         transition: all 0.3s;
     }
     .mobile-close:hover { background: rgba(255, 58, 92, 0.2); box-shadow: 0 0 10px rgba(255, 58, 92, 0.3); }
+
+    /* Content Stacking & Data Panels */
+    .wiki-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+    
+    .data-panel {
+        position: relative !important;
+        top: 0 !important;
+        margin-top: 40px;
+        background: rgba(13, 16, 20, 0.6);
+        border: 1px solid rgba(0, 240, 255, 0.1);
+    }
+    
+    .article-header {
+        margin-bottom: 30px;
+    }
+    
+    .article-header h1 {
+        font-size: clamp(28px, 10vw, 42px) !important;
+        line-height: 1.1;
+    }
+
+    .pros-cons-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        background: rgba(0, 240, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        border-radius: 50%;
+        color: var(--accent);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 900;
+        transition: all 0.3s;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .back-to-top.visible {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .back-to-top:hover {
+        background: rgba(0, 240, 255, 0.2);
+        border-color: var(--accent);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    }
 }
 
 @media (max-width: 480px) {
