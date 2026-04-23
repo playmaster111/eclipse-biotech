@@ -15,8 +15,7 @@ const CATEGORIES = {
     'recreational': { name: 'Stimulants & Neuro-Enhancers', desc: 'CNS stimulants, amphetamines, and wakefulness agents widely utilized to enforce peak cognitive performance and training intensity.' },
     'reference': { name: 'Bloodwork & Health Markers', desc: 'Clinical reference ranges and deep dives into the essential biomarkers impacted by performance enhancing drugs.' },
     'sarms': { name: 'SARMs & PPAR Agonists', desc: 'Selective Androgen Receptor Modulators engineered to target muscle and bone tissue while minimizing prostate and hairline side effects.' },
-    'sex-hormones': { name: 'Sex Hormones & Others', desc: 'Steroids primarily involved in reproductive systems, contraceptives, and specialty treatments.' },
-    'protocols': { name: 'Community Intel & Protocols', desc: 'User-submitted optimization strategies, bio-hacking threads, and experiential data logs.' }
+    'sex-hormones': { name: 'Sex Hormones & Others', desc: 'Steroids primarily involved in reproductive systems, contraceptives, and specialty treatments.' }
 };
 
 const WIKI_DATA = [
@@ -2263,92 +2262,6 @@ const WIKI_DATA = [
         aestheticProfile: 'During use, the subject looks "flat," exhausted, and often drenched in yellow sweat. Post-cycle, the fat loss is dramatic, revealing an extremely shredded physique.',
         physiologicalTargets: 'The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely.'
     },
-    {
-        id: 'semen_retention_protocol', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Semen Retention & Androgen Sensitivity', esters: '', status: 'active',
-        aka: 'SR, NoFap, Brahmacharya, Transmutation',
-        overview: 'Semen retention is the practice of abstaining from ejaculation. In the context of performance pharmacology, it is often researched for its supposed effects on androgen receptor (AR) density and dopaminergic signaling.',
-        primaryUses: 'Androgen receptor up-regulation, dopamine recovery, cognitive drive',
-        mechanism: 'Theoretically based on the reduction of prolactin spikes associated with orgasm. Chronic ejaculation leads to down-regulation of AR and elevated prolactin, which can antagonize the effects of exogenous or endogenous androgens.',
-        dosage: 'N/A (Behavioral)',
-        experimental: { b: '7-14 Days', a: '30-90 Days' },
-        benefits: 'Increased aggression (useful for heavy training), improved focus, enhanced muscle "hardness" via neurological drive.',
-        risks: 'Prostate congestion (if prolonged indefinitely), psychological frustration, potential for "blue balls" (epididymal hypertension).',
-        impact: { brain: -2, heart: 0, liver: 0, kidneys: 0, blood: 0, hair: 0, joints: 0 },
-        physiologicalTargets: 'Androgen receptor clusters in the skeletal muscle and CNS. Primary focus on the D2 dopamine receptor pathways.',
-        posts: [
-            { user: 'Biohacker_Prime', date: '2026.04.12', text: 'I\'ve been running 200mg Test C and doing SR for 3 weeks. The aggression in the gym is noticeably higher. Seems to act as a multiplier for the test.' },
-            { user: 'Clinical_Shadow', date: '2026.04.13', text: 'The theory is sound regarding AR density. Frequent ejaculation causes a spike in prolactin which suppresses DHT and AR expression. Retaining keeps you in a higher androgenic state.' },
-            { user: 'Tren_Aesthetic', date: '2026.04.15', text: 'Anyone else find this impossible on Tren? The libido is too high.' },
-            { user: 'Neuro_Mod', date: '2026.04.18', text: 'SR is essentially a dopamine fast. You\'re training the brain to find reward in the hunt/training rather than the release. Vital for long-term cycle success.' }
-        ]
-    },
-    {
-        id: 'dopamine_detox', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Dopamine Detox & Receptor Reset', esters: '', status: 'active',
-        aka: 'Dopamine Fast, Monk Mode, Digital Detox',
-        overview: 'A protocol involving the temporary elimination of hyper-stimulating activities (social media, video games, highly palatable foods) to restore baseline dopaminergic sensitivity.',
-        primaryUses: 'Neuro-reset, focus restoration, overcoming "brain fog"',
-        mechanism: 'Reduces the chronic over-stimulation of the Nucleus Accumbens, allowing D2 receptors to up-regulate. This shifts the subjects motivation from "cheap dopamine" to high-effort tasks.',
-        dosage: '24 Hours to 30 Days.',
-        experimental: { b: '24h/week', a: '2-week "Monk Mode"' },
-        benefits: 'Elimination of procrastination, enhanced enjoyment of mundane tasks, profound mental clarity.',
-        risks: 'Acute boredom, social withdrawal, potential for relapse into old habits.',
-        impact: { brain: -3, heart: 0, liver: 0, kidneys: 0, blood: 0, hair: 0, joints: 0 },
-        physiologicalTargets: 'Mesolimbic dopamine pathway and the prefrontal cortex.',
-        posts: [
-            { user: 'Silicon_Sage', date: '2026.04.10', text: '24 hours of no screens or sugar. By the end, reading a book felt like watching an IMAX movie. The brain just needs to recalibrate.' },
-            { user: 'Dopa_Fiend', date: '2026.04.15', text: 'Hardest part is the first 6 hours. After that, the "itch" starts to fade. Great for getting back into a deep work routine.' }
-        ]
-    },
-    {
-        id: 'cold_exposure_protocol', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Cold Exposure & BAT Activation', esters: '', status: 'active',
-        aka: 'Ice Bath, Wim Hof, Cold Plunge',
-        overview: 'Deliberate exposure to freezing temperatures to induce physiological adaptation, including the activation of Brown Adipose Tissue (BAT) and norepinephrine release.',
-        primaryUses: 'Inflammation reduction, metabolism boosting, mental toughness',
-        mechanism: 'Induces a massive spike in norepinephrine (up to 300%) and triggers mitochondrial thermogenesis. Chronic use converts white fat into metabolically active brown fat.',
-        dosage: '11 Minutes per week (Total).',
-        experimental: { b: '2 min/day', a: '5 min/day @ 3-5°C' },
-        benefits: 'Significant reduction in muscle soreness, elevated metabolic rate, and improved immune response.',
-        risks: 'Cold shock response, potential for hypothermia if unmonitored.',
-        impact: { brain: -1, heart: -1, liver: 0, kidneys: 0, blood: -1, hair: 0, joints: -2 },
-        physiologicalTargets: 'Autonomic nervous system and mitochondrial density in adipose tissue.',
-        posts: [
-            { user: 'Ice_King', date: '2026.04.05', text: 'Started doing 3 minutes at 40°F every morning. My resting heart rate dropped by 5 bpm after a month.' },
-            { user: 'Recovery_Pro', date: '2026.04.08', text: 'Nothing beats an ice bath after a heavy leg day. Cuts the DOMS in half.' }
-        ]
-    },
-    {
-        id: 'mewing_orthotropics', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Orthotropics & Facial Structural Gain', esters: '', status: 'active',
-        aka: 'Mewing, Tongue Posture, Faceshaping',
-        overview: 'A set of exercises and postural adjustments focused on resting the tongue on the roof of the mouth to potentially alter facial structure over time.',
-        primaryUses: 'Jawline definition, improved breathing, aesthetic enhancement',
-        mechanism: 'Exerts constant upward pressure on the maxilla, which (theoretically) can widen the dental arch and move the midface forward, improving the chin profile.',
-        dosage: '24/7 (Passive habit).',
-        experimental: { b: 'Consistency', a: 'Hard Mewing' },
-        benefits: 'Defined jawline, elimination of mouth breathing, improved facial symmetry.',
-        risks: 'TMJ issues if done incorrectly, limited results after the growth plates have fused.',
-        impact: { brain: 0, heart: 0, liver: 0, kidneys: 0, blood: 0, hair: 0, joints: 1 },
-        physiologicalTargets: 'Maxilla and mandibular bone structures.',
-        posts: [
-            { user: 'Jawline_Architect', date: '2026.04.01', text: '2 years of consistent tongue posture. My cheekbones look significantly higher and my double chin is gone. It takes forever but it works.' },
-            { user: 'Skeptical_Mew', date: '2026.04.03', text: 'I think it mostly just trains the muscles in the neck. Hard to believe it moves bone in an adult, but the visual difference is real regardless.' }
-        ]
-    },
-    {
-        id: 'sleep_light_protocol', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Circadian Light Optimization', esters: '', status: 'active',
-        aka: 'Blue Light Blocking, Red Light Therapy, Circadian Alignment',
-        overview: 'Managing light exposure to align the body\'s internal clock with the natural day-night cycle, primarily through the suppression of blue light in the evening.',
-        primaryUses: 'Sleep quality, melatonin optimization, energy management',
-        mechanism: 'Blue light (450-480nm) suppresses melatonin production via the suprachiasmatic nucleus (SCN). Blocking it after sunset allows for natural hormonal sleep onset.',
-        dosage: 'N/A (Environmental).',
-        experimental: { b: 'Blue-blockers @ 8PM', a: 'Blackout + Red Light only' },
-        benefits: 'Faster sleep onset, more time in REM and Deep sleep stages, improved morning alertness.',
-        impact: { brain: -2, heart: -1, liver: 0, kidneys: 0, blood: 0, hair: 0, joints: 0 },
-        physiologicalTargets: 'Pineal gland and the circadian rhythm controllers.',
-        posts: [
-            { user: 'Night_Owl_Fixed', date: '2026.03.25', text: 'Switching to all red bulbs after 9 PM was a game changer. I actually feel sleepy for the first time in years.' },
-            { user: 'Data_Sleeper', date: '2026.03.28', text: 'Oura ring shows a 15% increase in Deep sleep since I stopped using my phone in bed. Light is the most powerful drug for sleep.' }
-        ]
-    }
 ];
 
 // Attach to window so script.js can use it
