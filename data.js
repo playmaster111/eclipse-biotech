@@ -2281,6 +2281,73 @@ const WIKI_DATA = [
             { user: 'Tren_Aesthetic', date: '2026.04.15', text: 'Anyone else find this impossible on Tren? The libido is too high.' },
             { user: 'Neuro_Mod', date: '2026.04.18', text: 'SR is essentially a dopamine fast. You\'re training the brain to find reward in the hunt/training rather than the release. Vital for long-term cycle success.' }
         ]
+    },
+    {
+        id: 'dopamine_detox', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Dopamine Detox & Receptor Reset', esters: '', status: 'active',
+        aka: 'Dopamine Fast, Monk Mode, Digital Detox',
+        overview: 'A protocol involving the temporary elimination of hyper-stimulating activities (social media, video games, highly palatable foods) to restore baseline dopaminergic sensitivity.',
+        primaryUses: 'Neuro-reset, focus restoration, overcoming "brain fog"',
+        mechanism: 'Reduces the chronic over-stimulation of the Nucleus Accumbens, allowing D2 receptors to up-regulate. This shifts the subjects motivation from "cheap dopamine" to high-effort tasks.',
+        dosage: '24 Hours to 30 Days.',
+        experimental: { b: '24h/week', a: '2-week "Monk Mode"' },
+        benefits: 'Elimination of procrastination, enhanced enjoyment of mundane tasks, profound mental clarity.',
+        risks: 'Acute boredom, social withdrawal, potential for relapse into old habits.',
+        impact: { brain: -3, heart: 0, liver: 0, kidneys: 0, blood: 0, hair: 0, joints: 0 },
+        physiologicalTargets: 'Mesolimbic dopamine pathway and the prefrontal cortex.',
+        posts: [
+            { user: 'Silicon_Sage', date: '2026.04.10', text: '24 hours of no screens or sugar. By the end, reading a book felt like watching an IMAX movie. The brain just needs to recalibrate.' },
+            { user: 'Dopa_Fiend', date: '2026.04.15', text: 'Hardest part is the first 6 hours. After that, the "itch" starts to fade. Great for getting back into a deep work routine.' }
+        ]
+    },
+    {
+        id: 'cold_exposure_protocol', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Cold Exposure & BAT Activation', esters: '', status: 'active',
+        aka: 'Ice Bath, Wim Hof, Cold Plunge',
+        overview: 'Deliberate exposure to freezing temperatures to induce physiological adaptation, including the activation of Brown Adipose Tissue (BAT) and norepinephrine release.',
+        primaryUses: 'Inflammation reduction, metabolism boosting, mental toughness',
+        mechanism: 'Induces a massive spike in norepinephrine (up to 300%) and triggers mitochondrial thermogenesis. Chronic use converts white fat into metabolically active brown fat.',
+        dosage: '11 Minutes per week (Total).',
+        experimental: { b: '2 min/day', a: '5 min/day @ 3-5°C' },
+        benefits: 'Significant reduction in muscle soreness, elevated metabolic rate, and improved immune response.',
+        risks: 'Cold shock response, potential for hypothermia if unmonitored.',
+        impact: { brain: -1, heart: -1, liver: 0, kidneys: 0, blood: -1, hair: 0, joints: -2 },
+        physiologicalTargets: 'Autonomic nervous system and mitochondrial density in adipose tissue.',
+        posts: [
+            { user: 'Ice_King', date: '2026.04.05', text: 'Started doing 3 minutes at 40°F every morning. My resting heart rate dropped by 5 bpm after a month.' },
+            { user: 'Recovery_Pro', date: '2026.04.08', text: 'Nothing beats an ice bath after a heavy leg day. Cuts the DOMS in half.' }
+        ]
+    },
+    {
+        id: 'mewing_orthotropics', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Orthotropics & Facial Structural Gain', esters: '', status: 'active',
+        aka: 'Mewing, Tongue Posture, Faceshaping',
+        overview: 'A set of exercises and postural adjustments focused on resting the tongue on the roof of the mouth to potentially alter facial structure over time.',
+        primaryUses: 'Jawline definition, improved breathing, aesthetic enhancement',
+        mechanism: 'Exerts constant upward pressure on the maxilla, which (theoretically) can widen the dental arch and move the midface forward, improving the chin profile.',
+        dosage: '24/7 (Passive habit).',
+        experimental: { b: 'Consistency', a: 'Hard Mewing' },
+        benefits: 'Defined jawline, elimination of mouth breathing, improved facial symmetry.',
+        risks: 'TMJ issues if done incorrectly, limited results after the growth plates have fused.',
+        impact: { brain: 0, heart: 0, liver: 0, kidneys: 0, blood: 0, hair: 0, joints: 1 },
+        physiologicalTargets: 'Maxilla and mandibular bone structures.',
+        posts: [
+            { user: 'Jawline_Architect', date: '2026.04.01', text: '2 years of consistent tongue posture. My cheekbones look significantly higher and my double chin is gone. It takes forever but it works.' },
+            { user: 'Skeptical_Mew', date: '2026.04.03', text: 'I think it mostly just trains the muscles in the neck. Hard to believe it moves bone in an adult, but the visual difference is real regardless.' }
+        ]
+    },
+    {
+        id: 'sleep_light_protocol', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Circadian Light Optimization', esters: '', status: 'active',
+        aka: 'Blue Light Blocking, Red Light Therapy, Circadian Alignment',
+        overview: 'Managing light exposure to align the body\'s internal clock with the natural day-night cycle, primarily through the suppression of blue light in the evening.',
+        primaryUses: 'Sleep quality, melatonin optimization, energy management',
+        mechanism: 'Blue light (450-480nm) suppresses melatonin production via the suprachiasmatic nucleus (SCN). Blocking it after sunset allows for natural hormonal sleep onset.',
+        dosage: 'N/A (Environmental).',
+        experimental: { b: 'Blue-blockers @ 8PM', a: 'Blackout + Red Light only' },
+        benefits: 'Faster sleep onset, more time in REM and Deep sleep stages, improved morning alertness.',
+        impact: { brain: -2, heart: -1, liver: 0, kidneys: 0, blood: 0, hair: 0, joints: 0 },
+        physiologicalTargets: 'Pineal gland and the circadian rhythm controllers.',
+        posts: [
+            { user: 'Night_Owl_Fixed', date: '2026.03.25', text: 'Switching to all red bulbs after 9 PM was a game changer. I actually feel sleepy for the first time in years.' },
+            { user: 'Data_Sleeper', date: '2026.03.28', text: 'Oura ring shows a 15% increase in Deep sleep since I stopped using my phone in bed. Light is the most powerful drug for sleep.' }
+        ]
     }
 ];
 
