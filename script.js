@@ -835,7 +835,7 @@ function loadAIView() {
     setTimeout(() => { 
         const inputEl = document.getElementById('aiChatInput');
         if (inputEl) {
-            inputEl.focus(); 
+            if (window.innerWidth > 768) inputEl.focus(); 
             inputEl.addEventListener('keypress', (e) => {
                 if(e.key === 'Enter') submitAIQuery();
             });
@@ -1767,7 +1767,7 @@ function loadSynthesisView() {
         </div>
     `;
 
-    document.getElementById('oracle-search').focus();
+    if (window.innerWidth > 768) document.getElementById('oracle-search').focus();
     document.getElementById('oracle-search').addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
         const filtered = synthesized.filter(d => d.name.toLowerCase().includes(term));
@@ -1921,7 +1921,7 @@ function loadPathologyView() {
     setTimeout(() => {
         const input = document.getElementById('pathologyInput');
         if (input) {
-            input.focus();
+            if (window.innerWidth > 768) input.focus();
             input.addEventListener('keypress', (e) => { if(e.key === 'Enter') solvePathology(); });
         }
     }, 100);
