@@ -537,14 +537,19 @@ body::before {
 .article-header {
     margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border);
 }
-.article-header h1 {
-    font-family: var(--font-d);
-    font-size: clamp(32px, 8vw, 64px);
-    color: var(--text);
-    letter-spacing: 2px;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    text-shadow: 0 0 20px rgba(0,240,255,0.1);
+.aka-row {
+    margin-top: 12px;
+    font-family: var(--font-m);
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.8;
+}
+.aka-names {
+    color: var(--accent);
+    font-weight: 500;
 }
 .badges { display: flex; gap: 8px; flex-wrap: wrap; }
 .badge {

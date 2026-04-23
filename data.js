@@ -222,6 +222,7 @@ const WIKI_DATA = [
     },
     {
         id: 'trenbolone_acetate', folder: 'Nandrolone Derivatives', category: 'anabolic', type: 'AAS', name: 'Trenbolone Acetate', esters: '(Finaplix)', status: 'discontinued',
+        aka: 'Tren A, Fina, The Breakfast of Champions, Trenbolone 75',
         overview: 'A notoriously powerful, fast-acting veterinary steroid. It was never approved for human therapeutic use, instead utilized exclusively to radically increase feed efficiency in cattle.',
         primaryUses: 'Livestock feed efficiency',
         mechanism: 'A 19-nor derivative that is 5x more anabolic and androgenic than testosterone. Extreme nutrient partitioning effects.',
@@ -270,6 +271,7 @@ const WIKI_DATA = [
     // --- ORAL ANABOLICS ---
     {
         id: 'methandrostenolone', folder: 'Oral Anabolics', category: 'anabolic', type: 'AAS', name: 'Methandrostenolone', esters: '(Dianabol)', status: 'discontinued',
+        aka: 'Dbol, The Breakfast of Champions, Pinkies, Arnold\'s Arnold',
         overview: 'Dianabol was famously developed by Dr. John Ziegler and Ciba Pharmaceuticals specifically to help the US Olympic lifting team beat the Soviets in 1956.',
         primaryUses: 'Historically: Muscle wasting, athletic doping',
         mechanism: '17-alpha-alkylated oral steroid. Interacts heavily with aromatase, converting to highly potent 17a-methylestradiol causing enormous rapid water retention and mass gain.',
@@ -1259,7 +1261,7 @@ const WIKI_DATA = [
         primaryUses: 'Asthma, hypotension under anesthesia',
         mechanism: 'Stimulates the release of norepinephrine, violently ramping up heart rate, thermogenesis, and acting as a profound appetite suppressant.',
         dosage: '12.5mg to 25mg three times daily.',
-        experimental: { b: '12.5mg 2x/day', a: '25mg 3x/day' },
+        experimental: { b: '12.5mg 2x/day', a: '25mg/3x/day' },
         benefits: 'Kills appetite entirely, massively increases BMR (Basal Metabolic Rate).',
         risks: 'Stroke, extreme blood pressure, severe dehydration.',
         cycleExamples: '<strong>The ECA Stack:</strong> 25mg Ephedrine + 200mg Caffeine + 81mg Baby Aspirin taken 2-3 times per day for absolute appetite annihilation.'
@@ -1640,7 +1642,8 @@ const WIKI_DATA = [
     // --- NPS & BATH SALTS ---
     {
         id: 'bath_salts', folder: 'Cathinones', category: 'nps', type: 'Synthetic Cathinone', name: 'Bath Salts', esters: '(Mephedrone / Bubble / Bounce)', status: 'restricted',
-        overview: 'Synthetic cathinones, commonly known as bath salts, are human-made stimulants chemically related to khat. Emerged as "legal highs" in headshops.',
+        aka: 'Cloud Nine, White Lightning, Scarface, Vanilla Sky, Drone',
+        overview: 'Synthetic cathinones, widely known as "Bath Salts," are powerful CNS stimulants chemically related to cathinone, a substance found in the khat plant.',
         primaryUses: 'Recreational (Severe)',
         mechanism: 'Acts as powerful monoamine oxidase inhibitors and releasing agents, flooding the synapse with serotonin and dopamine.',
         dosage: '25mg to 150mg.',
@@ -1847,6 +1850,7 @@ const WIKI_DATA = [
     },
     {
         id: 'k2_spice', folder: 'Synthetic Cannabinoids', category: 'nps', type: 'Synthetic CB-Agonist', name: 'K2 / Spice (Synthetic Cannabinoids)', esters: '(JWH-018 / AM-2201 / HU-210)', status: 'restricted',
+        aka: 'Black Mamba, Kush, Fake Weed, Moon Rocks, Bliss, Fire',
         overview: 'K2 and Spice refer to a diverse range of synthetic cannabinoids that were originally developed for research into the endocannabinoid system. They are often sprayed on herbal mixtures and sold as "legal" alternatives to cannabis.',
         primaryUses: 'Forensic research, chemical modeling of CB receptors',
         mechanism: 'Full agonists at the CB1 and CB2 receptors. Unlike natural THC (a partial agonist), synthetic cannabinoids can saturate these receptors, leading to a catastrophic cascade of neurotransmitter release and potential "cytokine storms."',

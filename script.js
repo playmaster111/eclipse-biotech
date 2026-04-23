@@ -1224,6 +1224,7 @@ function loadArticle(id) {
                     <span class="badge" style="${item.status === 'discontinued' ? 'color: var(--red); border-color: var(--red)' : ''}">${getT(item.status.toLowerCase()) || item.status.toUpperCase()}</span>
                     ${item.esters ? `<span class="badge" style="border-color: var(--accent2); color: var(--accent2)">${item[`esters_${currentLang}`] || item.esters.replace(/[\(\)]/g, '')}</span>` : ''}
                 </div>
+                ${item.aka ? `<div class="aka-row"><i class="fas fa-tags"></i> AKA: <span class="aka-names">${item.aka}</span></div>` : ''}
             </header>
 
             <div class="wiki-grid">
