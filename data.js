@@ -15,7 +15,8 @@ const CATEGORIES = {
     'recreational': { name: 'Stimulants & Neuro-Enhancers', desc: 'CNS stimulants, amphetamines, and wakefulness agents widely utilized to enforce peak cognitive performance and training intensity.' },
     'reference': { name: 'Bloodwork & Health Markers', desc: 'Clinical reference ranges and deep dives into the essential biomarkers impacted by performance enhancing drugs.' },
     'sarms': { name: 'SARMs & PPAR Agonists', desc: 'Selective Androgen Receptor Modulators engineered to target muscle and bone tissue while minimizing prostate and hairline side effects.' },
-    'sex-hormones': { name: 'Sex Hormones & Others', desc: 'Steroids primarily involved in reproductive systems, contraceptives, and specialty treatments.' }
+    'sex-hormones': { name: 'Sex Hormones & Others', desc: 'Steroids primarily involved in reproductive systems, contraceptives, and specialty treatments.' },
+    'protocols': { name: 'Community Intel & Protocols', desc: 'User-submitted optimization strategies, bio-hacking threads, and experiential data logs.' }
 };
 
 const WIKI_DATA = [
@@ -2261,6 +2262,25 @@ const WIKI_DATA = [
         impact: { brain: 7, heart: 10, liver: 8, kidneys: 9, blood: 8, hair: 0, joints: 0 },
         aestheticProfile: 'During use, the subject looks "flat," exhausted, and often drenched in yellow sweat. Post-cycle, the fat loss is dramatic, revealing an extremely shredded physique.',
         physiologicalTargets: 'The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely.'
+    }
+    {
+        id: 'semen_retention_protocol', folder: 'Bio-Optimization', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Semen Retention & Androgen Sensitivity', esters: '', status: 'active',
+        aka: 'SR, NoFap, Brahmacharya, Transmutation',
+        overview: 'Semen retention is the practice of abstaining from ejaculation. In the context of performance pharmacology, it is often researched for its supposed effects on androgen receptor (AR) density and dopaminergic signaling.',
+        primaryUses: 'Androgen receptor up-regulation, dopamine recovery, cognitive drive',
+        mechanism: 'Theoretically based on the reduction of prolactin spikes associated with orgasm. Chronic ejaculation leads to down-regulation of AR and elevated prolactin, which can antagonize the effects of exogenous or endogenous androgens.',
+        dosage: 'N/A (Behavioral)',
+        experimental: { b: '7-14 Days', a: '30-90 Days' },
+        benefits: 'Increased aggression (useful for heavy training), improved focus, enhanced muscle "hardness" via neurological drive.',
+        risks: 'Prostate congestion (if prolonged indefinitely), psychological frustration, potential for "blue balls" (epididymal hypertension).',
+        impact: { brain: -2, heart: 0, liver: 0, kidneys: 0, blood: 0, hair: 0, joints: 0 },
+        physiologicalTargets: 'Androgen receptor clusters in the skeletal muscle and CNS. Primary focus on the D2 dopamine receptor pathways.',
+        posts: [
+            { user: 'Biohacker_Prime', date: '2026.04.12', text: 'I\'ve been running 200mg Test C and doing SR for 3 weeks. The aggression in the gym is noticeably higher. Seems to act as a multiplier for the test.' },
+            { user: 'Clinical_Shadow', date: '2026.04.13', text: 'The theory is sound regarding AR density. Frequent ejaculation causes a spike in prolactin which suppresses DHT and AR expression. Retaining keeps you in a higher androgenic state.' },
+            { user: 'Tren_Aesthetic', date: '2026.04.15', text: 'Anyone else find this impossible on Tren? The libido is too high.' },
+            { user: 'Neuro_Mod', date: '2026.04.18', text: 'SR is essentially a dopamine fast. You\'re training the brain to find reward in the hunt/training rather than the release. Vital for long-term cycle success.' }
+        ]
     }
 ];
 

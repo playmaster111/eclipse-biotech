@@ -1276,6 +1276,29 @@ function loadArticle(id) {
 
                     ${prosConsHTML}
                     ${cycleHTML}
+
+                    ${item.posts ? `
+                    <section class="forum-section">
+                        <h2><i class="fas fa-comments"></i> COMMUNITY_INTEL_STREAM</h2>
+                        <div class="forum-container">
+                            ${item.posts.map(post => `
+                                <div class="forum-post">
+                                    <div class="post-meta">
+                                        <span class="post-user"><i class="fas fa-user-secret"></i> ${post.user}</span>
+                                        <span class="post-date">${post.date}</span>
+                                    </div>
+                                    <div class="post-body">${post.text}</div>
+                                </div>
+                            `).join('')}
+                            
+                            <div class="post-reply-sim">
+                                <input type="text" placeholder="Transmit intel to this thread..." disabled>
+                                <button class="cyber-btn" disabled style="margin: 0; padding: 5px 15px; font-size: 10px;">TRANSMIT</button>
+                                <div style="font-size: 10px; color: var(--muted); margin-top: 5px;">[LOCAL_WRITE_ACCESS_RESTRICTED]</div>
+                            </div>
+                        </div>
+                    </section>
+                    ` : ''}
                 </div>
 
                 <aside class="wiki-side-col">
