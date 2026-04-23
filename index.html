@@ -227,6 +227,21 @@
         <div class="atom a3"></div>
     </div>
 
+    <!-- Custom Notification System -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Custom Confirm Modal -->
+    <div id="confirm-modal" class="modal-overlay" style="display: none; z-index: 10001;">
+        <div class="modal-content" style="max-width: 350px;">
+            <div class="security-badge"><i class="fas fa-exclamation-triangle"></i> SYSTEM_CONFIRM</div>
+            <div id="confirm-message" class="terminal-text" style="margin: 20px 0; font-size: 13px;"></div>
+            <div class="modal-actions">
+                <button id="confirm-cancel-btn" class="cyber-btn muted-btn">ABORT</button>
+                <button id="confirm-ok-btn" class="cyber-btn">PROCEED</button>
+            </div>
+        </div>
+    </div>
+
     <script src="translations.js"></script>
     <script src="data_i18n.js"></script>
     <script src="data.js"></script>

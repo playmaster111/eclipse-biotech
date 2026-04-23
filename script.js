@@ -65,6 +65,42 @@ function animateParticles() {
 }
 initParticles(); animateParticles();
 // --------------------------------
+// --- Custom Dialog System ---
+function showNotify(message, duration = 4000) {
+    const container = document.getElementById('notification-container');
+    if (!container) return;
+    const toast = document.createElement('div');
+    toast.className = 'notification';
+    toast.innerHTML = `<i class="fas fa-info-circle" style="margin-right: 10px; color: var(--accent)"></i> ${message}`;
+    container.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.classList.add('fade-out');
+        setTimeout(() => toast.remove(), 400);
+    }, duration);
+}
+
+function showConfirm(message, onConfirm) {
+    const modal = document.getElementById('confirm-modal');
+    const msgEl = document.getElementById('confirm-message');
+    const okBtn = document.getElementById('confirm-ok-btn');
+    const cancelBtn = document.getElementById('confirm-cancel-btn');
+    
+    if (!modal || !msgEl) return;
+    
+    msgEl.innerText = message;
+    modal.style.display = 'flex';
+    
+    okBtn.onclick = () => {
+        modal.style.display = 'none';
+        if (onConfirm) onConfirm();
+    };
+    
+    cancelBtn.onclick = () => {
+        modal.style.display = 'none';
+    };
+}
+// --------------------------------
 // --- Ambient Audio Logic ---
 // --------------------------------
 const bgMusic = document.getElementById('bgMusic');
@@ -384,12 +420,12 @@ function initBioIdSystem() {
     
     bioIdBtn.onclick = () => {
         if (currentUser) {
-            if (confirm(`SYSTEM_LOGOUT: DISCONNECT BIO-ID [${currentUser.username}]?`)) {
+            showConfirm(`SYSTEM_LOGOUT: DISCONNECT BIO-ID [${currentUser.username}]?`, () => {
                 currentUser = null;
                 localStorage.removeItem('eclipse_user');
                 updateBioIdUI();
                 goHome();
-            }
+            });
         } else {
             switchMode('login');
             bioModal.style.display = 'flex';
@@ -443,7 +479,7 @@ function initBioIdSystem() {
             
             // Welcome screen update
             goHome();
-            alert(`SUCCESS: BIO-ID [${currentUser.username.toUpperCase()}] SYNCHRONIZED.`);
+            showNotify(`SUCCESS: BIO-ID [${currentUser.username.toUpperCase()}] SYNCHRONIZED.`);
         }, 1200);
     };
 
@@ -2357,7 +2393,7 @@ window.calculatePCT = function() {
     const resultDiv = document.getElementById('pct-result');
 
     if (!dose || !dateStr) {
-        alert("Please enter dose and date.");
+        showNotify("Please enter dose and date.");
         return;
     }
 
