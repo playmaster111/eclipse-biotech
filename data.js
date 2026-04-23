@@ -2262,7 +2262,7 @@ const WIKI_DATA = [
         impact: { brain: 7, heart: 10, liver: 8, kidneys: 9, blood: 8, hair: 0, joints: 0 },
         aestheticProfile: 'During use, the subject looks "flat," exhausted, and often drenched in yellow sweat. Post-cycle, the fat loss is dramatic, revealing an extremely shredded physique.',
         physiologicalTargets: 'The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely.'
-    }
+    },
     {
         id: 'semen_retention_protocol', folder: 'Bio-Optimization', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Semen Retention & Androgen Sensitivity', esters: '', status: 'active',
         aka: 'SR, NoFap, Brahmacharya, Transmutation',
