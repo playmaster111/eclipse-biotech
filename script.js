@@ -957,9 +957,21 @@ function copyAddress(id) {
 function loadAIView() {
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     document.getElementById('ai-nav-btn').classList.add('active');
-    document.getElementById('current-category').innerText = "BIOTECH ASSISTANT";
+    document.getElementById('current-category').innerText = "ECLIPSE_CORTEX_AI";
 
     const mount = document.getElementById('article-mount');
+    
+    if (!currentUser) {
+        mount.innerHTML = `
+            <div class="empty-state">
+                <div class="glitch-icon" style="color: var(--red)"><i class="fas fa-brain"></i></div>
+                <h2 class="glitch-small" data-text="NEURAL_LINK_FAILED" style="color: var(--red)">NEURAL_LINK_FAILED</h2>
+                <p style="max-width: 400px; line-height: 1.6; margin-bottom: 25px;">The Cortex AI requires a secure neural handshake via a verified BIO-ID to process heuristic research queries.</p>
+                <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn">ENROLL_BIO_ID_FOR_ACCESS</button>
+            </div>
+        `;
+        return;
+    }
     
     mount.innerHTML = `
         <div class="ai-chat-container">
@@ -1510,6 +1522,18 @@ function loadCoachView() {
 
     const mount = document.getElementById('article-mount');
     
+    if (!currentUser) {
+        mount.innerHTML = `
+            <div class="empty-state">
+                <div class="glitch-icon" style="color: var(--red)"><i class="fas fa-lock"></i></div>
+                <h2 class="glitch-small" data-text="ACCESS RESTRICTED" style="color: var(--red)">ACCESS RESTRICTED</h2>
+                <p style="max-width: 400px; line-height: 1.6; margin-bottom: 25px;">The AI Cycle Architect requires a verified BIO-ID to initialize biological parameter calculations and protocol synthesis.</p>
+                <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn">ENROLL_BIO_ID_TO_CONTINUE</button>
+            </div>
+        `;
+        return;
+    }
+    
     mount.innerHTML = `
         <div class="cycle-generator-view">
             <div class="coach-tabs">
@@ -1900,6 +1924,18 @@ function loadSynthesisView() {
 
     const mount = document.getElementById('article-mount');
     
+    if (!currentUser) {
+        mount.innerHTML = `
+            <div class="empty-state">
+                <div class="glitch-icon" style="color: var(--red)"><i class="fas fa-vial"></i></div>
+                <h2 class="glitch-small" data-text="DATABASE_LOCKED" style="color: var(--red)">DATABASE_LOCKED</h2>
+                <p style="max-width: 400px; line-height: 1.6; margin-bottom: 25px;">Synthesis protocols for peptide structures and chemical precursors are restricted to authorized research Bio-IDs.</p>
+                <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn">VERIFY_BIO_ID_FOR_SYNTHESIS</button>
+            </div>
+        `;
+        return;
+    }
+
     // Get only drugs with synthesis data
     const synthesized = WIKI_DATA.filter(d => d.synthesis);
 
@@ -2051,6 +2087,18 @@ function loadPathologyView() {
     document.getElementById('current-category').innerText = "PATHOLOGY SOLVER";
 
     const mount = document.getElementById('article-mount');
+    
+    if (!currentUser) {
+        mount.innerHTML = `
+            <div class="empty-state">
+                <div class="glitch-icon" style="color: var(--red)"><i class="fas fa-heartbeat"></i></div>
+                <h2 class="glitch-small" data-text="MEDICAL_BLOCKADE" style="color: var(--red)">MEDICAL_BLOCKADE</h2>
+                <p style="max-width: 400px; line-height: 1.6; margin-bottom: 25px;">The Pathology Solver module contains sensitive clinical data. BIO-ID verification is mandatory for symptomatic cross-referencing.</p>
+                <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn">AUTHENTICATE_TO_SOLVE</button>
+            </div>
+        `;
+        return;
+    }
     
     mount.innerHTML = `
         <div class="pathology-view">
@@ -2435,6 +2483,18 @@ function loadLabVerifierView() {
     document.getElementById('current-category').innerText = "LAB VERIFIER";
 
     const mount = document.getElementById('article-mount');
+    
+    if (!currentUser) {
+        mount.innerHTML = `
+            <div class="empty-state">
+                <div class="glitch-icon" style="color: var(--red)"><i class="fas fa-microscope"></i></div>
+                <h2 class="glitch-small" data-text="VERIFICATION_HALTED" style="color: var(--red)">VERIFICATION_HALTED</h2>
+                <p style="max-width: 400px; line-height: 1.6; margin-bottom: 25px;">Certificate of Analysis generation requires a validated operator ID to prevent unauthorized forensic data retrieval.</p>
+                <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn">VALIDATE_BIO_ID</button>
+            </div>
+        `;
+        return;
+    }
     
     mount.innerHTML = `
         <div class="lab-verifier-view">
