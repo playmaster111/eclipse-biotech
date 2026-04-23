@@ -42,7 +42,9 @@ window.TRANSLATIONS = {
         'suspension': 'SUSPENSION',
         'aesthetic_profile': 'Aesthetic & Visual Profile',
         'physiological_targets': 'Physiological Targets',
-        'sensory_impact': 'Sensory & Cognitive Impact'
+        'sensory_impact': 'Sensory & Cognitive Impact',
+        'cat_protocols': 'COMMUNITY INTEL & PROTOCOLS',
+        'discussion thread': 'DISCUSSION_THREAD'
     },
     'de': {
         'search_placeholder': 'Datenbank durchsuchen...',
@@ -87,7 +89,9 @@ window.TRANSLATIONS = {
         'suspension': 'SUSPENSION',
         'aesthetic_profile': 'Ästhetisches & Visuelles Profil',
         'physiological_targets': 'Physiologische Zielzonen',
-        'sensory_impact': 'Sensorische & Kognitive Auswirkungen'
+        'sensory_impact': 'Sensorische & Kognitive Auswirkungen',
+        'cat_protocols': 'COMMUNITY INTEL & PROTOKOLE',
+        'discussion thread': 'DISKUSSIONS_THREAD'
     },
     'it': {
         'search_placeholder': 'Cerca nel database...',

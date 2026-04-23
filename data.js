@@ -2264,7 +2264,7 @@ const WIKI_DATA = [
         physiologicalTargets: 'The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely.'
     },
     {
-        id: 'semen_retention_protocol', folder: 'Bio-Optimization', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Semen Retention & Androgen Sensitivity', esters: '', status: 'active',
+        id: 'semen_retention_protocol', category: 'protocols', type: 'Discussion Thread', name: 'Intel-Log: Semen Retention & Androgen Sensitivity', esters: '', status: 'active',
         aka: 'SR, NoFap, Brahmacharya, Transmutation',
         overview: 'Semen retention is the practice of abstaining from ejaculation. In the context of performance pharmacology, it is often researched for its supposed effects on androgen receptor (AR) density and dopaminergic signaling.',
         primaryUses: 'Androgen receptor up-regulation, dopamine recovery, cognitive drive',
