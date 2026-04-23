@@ -337,6 +337,78 @@ function startSystemBoot() {
     }, 2500); // Splash screen duration
 }
 
+// --- Bio-ID Account System ---
+let currentUser = JSON.parse(localStorage.getItem('eclipse_user')) || null;
+
+function updateBioIdUI() {
+    const btnText = document.getElementById('bioIdText');
+    if (currentUser) {
+        btnText.innerText = `OPERATOR: ${currentUser.username.toUpperCase()}`;
+    } else {
+        btnText.innerText = 'ENROLL_BIO_ID';
+    }
+}
+
+function initBioIdSystem() {
+    const bioIdBtn = document.getElementById('bioIdBtn');
+    const bioModal = document.getElementById('bio-id-modal');
+    const cancelBtn = document.getElementById('cancel-enroll-btn');
+    const confirmBtn = document.getElementById('confirm-enroll-btn');
+    
+    bioIdBtn.onclick = () => {
+        if (currentUser) {
+            // Logout confirmation simulation
+            if (confirm(`SYSTEM_LOGOUT: DISCONNECT BIO-ID [${currentUser.username}]?`)) {
+                currentUser = null;
+                localStorage.removeItem('eclipse_user');
+                updateBioIdUI();
+                goHome();
+            }
+        } else {
+            bioModal.style.display = 'flex';
+        }
+    };
+
+    cancelBtn.onclick = () => {
+        bioModal.style.display = 'none';
+    };
+
+    confirmBtn.onclick = () => {
+        const username = document.getElementById('bio-username').value;
+        const pass = document.getElementById('bio-password').value;
+        const access = document.getElementById('bio-access').value;
+
+        if (username.length < 3 || pass.length < 4) {
+            alert('ERROR: IDENTIFIER STRINGS TOO SHORT');
+            return;
+        }
+
+        currentUser = {
+            username,
+            access,
+            enrolled: new Date().toISOString()
+        };
+
+        localStorage.setItem('eclipse_user', JSON.stringify(currentUser));
+        
+        // Success animation simulation
+        confirmBtn.innerText = 'ENROLLING...';
+        confirmBtn.disabled = true;
+        
+        setTimeout(() => {
+            bioModal.style.display = 'none';
+            confirmBtn.innerText = 'ENROLL_IDENTITY';
+            confirmBtn.disabled = false;
+            updateBioIdUI();
+            
+            // Show welcome alert
+            alert(`BIO-ID ENROLLED: WELCOME OPERATOR ${username.toUpperCase()} [LEVEL: ${access.toUpperCase()}]`);
+        }, 1500);
+    };
+
+    updateBioIdUI();
+}
+
 function initApp() {
     mergeTranslations();
     updateUIStrings();
@@ -351,6 +423,7 @@ function initApp() {
     }
     
     renderSidebar();
+    initBioIdSystem();
     
     // Smoothly reveal the app
     const appWindow = document.querySelector('.app-window');
