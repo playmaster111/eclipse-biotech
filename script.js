@@ -917,6 +917,14 @@ function renderSidebar(filter = '') {
         coachBtn.onclick = () => loadCoachView();
         navEl.appendChild(coachBtn);
 
+        const vaultBtn = document.createElement('div');
+        vaultBtn.className = 'nav-item';
+        vaultBtn.innerText = '> _RESEARCH_VAULT';
+        vaultBtn.id = 'vault-nav-btn';
+        vaultBtn.style.color = '#00d4ff';
+        vaultBtn.onclick = () => loadVaultView();
+        navEl.appendChild(vaultBtn);
+
         const pathologyBtn = document.createElement('div');
         pathologyBtn.className = 'nav-item';
         pathologyBtn.innerText = '> _PATHOLOGY_SOLVER';
@@ -1618,7 +1626,10 @@ function loadCoachView() {
                         </select>
                     </div>
                     <button id="generate-btn" class="cyber-btn" style="grid-column: 1 / -1; border-color: var(--accent2); color: var(--accent2); margin-top:10px;">GENERATE_PROTOCOL</button>
-                    <button id="download-protocol-btn" class="cyber-btn" style="grid-column: 1 / -1; border-color: var(--muted); color: var(--muted); margin-top:5px; display: none;" onclick="downloadProtocol()">EXPORT_TO_DATA_LOG</button>
+                    <div style="display: flex; gap: 10px; grid-column: 1 / -1;">
+                        <button id="download-protocol-btn" class="cyber-btn" style="flex: 1; border-color: var(--muted); color: var(--muted); margin-top:5px; display: none;" onclick="downloadProtocol()">EXPORT_TXT</button>
+                        <button id="save-protocol-btn" class="cyber-btn" style="flex: 1; border-color: var(--accent); color: var(--accent); margin-top:5px; display: none;" onclick="saveProtocolToVault()">SAVE_TO_VAULT</button>
+                    </div>
                 </div>
                 </div>
                 <div id="cycle-result" class="cycle-result"></div>
@@ -1946,6 +1957,7 @@ function generateCycle() {
 
     resultDiv.innerHTML = cycleHTML;
     document.getElementById('download-protocol-btn').style.display = 'block';
+    document.getElementById('save-protocol-btn').style.display = 'block';
 }
 
 window.downloadProtocol = function() {
@@ -1957,6 +1969,122 @@ window.downloadProtocol = function() {
     a.download = `ECLIPSE_PROTOCOL_${new Date().getTime()}.txt`;
     a.click();
     URL.revokeObjectURL(url);
+}
+
+window.saveProtocolToVault = async function() {
+    const content = document.getElementById('cycle-result').innerHTML;
+    const title = document.querySelector('#cycle-result h3')?.innerText || "Untitled Protocol";
+    
+    const newEntry = {
+        id: 'prot_' + Date.now(),
+        title: title,
+        content: content,
+        timestamp: new Date().toISOString(),
+        type: 'AI_ARCHITECT'
+    };
+
+    if (supabase) {
+        const { error } = await supabase.from('vault').insert([{ 
+            user_id: currentUser.username, 
+            data: newEntry 
+        }]);
+        if (error) {
+            showNotify("CLOUD_SAVE_FAILED: " + error.message);
+            return;
+        }
+    } else {
+        const vault = JSON.parse(localStorage.getItem('eclipse_vault') || '[]');
+        vault.push(newEntry);
+        localStorage.setItem('eclipse_vault', JSON.stringify(vault));
+    }
+
+    showNotify("PROTOCOL_SYNCED: Saved to Research Vault.");
+}
+
+function loadVaultView() {
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    document.getElementById('vault-nav-btn').classList.add('active');
+    document.getElementById('current-category').innerText = "RESEARCH VAULT";
+
+    const mount = document.getElementById('article-mount');
+    
+    if (!currentUser) {
+        mount.innerHTML = `
+            <div class="empty-state">
+                <div class="glitch-icon" style="color: var(--red)"><i class="fas fa-lock"></i></div>
+                <h2 class="glitch-small" data-text="ACCESS RESTRICTED" style="color: var(--red)">ACCESS RESTRICTED</h2>
+                <p style="max-width: 400px; line-height: 1.6; margin-bottom: 25px;">The Research Vault requires a verified BIO-ID to decrypt and load personal pharmacological data logs.</p>
+                <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn">ENROLL_BIO_ID_FOR_ACCESS</button>
+            </div>
+        `;
+        return;
+    }
+
+    mount.innerHTML = `
+        <div class="vault-view">
+            <div class="vault-header">
+                <h2><i class="fas fa-database"></i> RESEARCH_VAULT // ${currentUser.username.toUpperCase()}</h2>
+                <p>Personalized dossier of archived protocols, stacks, and clinical assessments.</p>
+            </div>
+            
+            <div id="vault-list" class="vault-list">
+                <div class="loading-msg">SYNCHRONIZING_WITH_VAULT...</div>
+            </div>
+        </div>
+    `;
+
+    renderVaultItems();
+}
+
+async function renderVaultItems() {
+    const listEl = document.getElementById('vault-list');
+    let items = [];
+
+    if (supabase) {
+        const { data, error } = await supabase.from('vault').select('*').eq('user_id', currentUser.username);
+        if (data) items = data.map(d => d.data);
+    } else {
+        items = JSON.parse(localStorage.getItem('eclipse_vault') || '[]');
+    }
+
+    if (items.length === 0) {
+        listEl.innerHTML = `
+            <div class="empty-vault-msg">
+                <i class="fas fa-folder-open"></i>
+                <p>Vault is empty. Generate and save protocols in the Cycle Architect to populate this sector.</p>
+            </div>
+        `;
+        return;
+    }
+
+    listEl.innerHTML = items.reverse().map(item => `
+        <div class="vault-card">
+            <div class="vault-card-header">
+                <div class="vault-card-title">${item.title}</div>
+                <div class="vault-card-meta">${item.type} // ${new Date(item.timestamp).toLocaleDateString()}</div>
+            </div>
+            <div class="vault-card-body">${item.content}</div>
+            <div class="vault-card-actions">
+                <button class="cyber-btn tiny" onclick="deleteFromVault('${item.id}')">DELETE_ENTRY</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+window.deleteFromVault = async function(id) {
+    showConfirm("PERMANENT_DELETE: Are you sure you want to purge this data log from the vault?", async () => {
+        if (supabase) {
+            // Complex to delete by nested data ID in Supabase if using one row, 
+            // but for now we'll just assume a simpler table structure or filter local for MVP
+            showNotify("CLOUD_DELETE: Not implemented for MVP. Please use local mode.");
+        } else {
+            let vault = JSON.parse(localStorage.getItem('eclipse_vault') || '[]');
+            vault = vault.filter(v => v.id !== id);
+            localStorage.setItem('eclipse_vault', JSON.stringify(vault));
+            renderVaultItems();
+            showNotify("ENTRY_PURGED: Data log removed.");
+        }
+    });
 }
 
 // Synthesis Oracle View

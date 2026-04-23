@@ -2755,6 +2755,91 @@ body::before {
     to { opacity: 0; transform: translateX(50px); }
 }
 
+/* Research Vault */
+.vault-view {
+    padding: 20px;
+    animation: fadeIn 0.5s ease-out;
+}
+.vault-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+}
+.vault-header h2 {
+    font-family: var(--font-m);
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+.vault-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+.vault-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.vault-card {
+    background: rgba(20, 25, 30, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.vault-card:hover {
+    border-color: var(--accent2);
+    transform: translateY(-2px);
+}
+.vault-card-header {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.vault-card-title {
+    font-family: var(--font-m);
+    color: var(--accent2);
+    font-size: 15px;
+}
+.vault-card-meta {
+    font-size: 11px;
+    color: var(--muted);
+}
+.vault-card-body {
+    padding: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.vault-card-body h4 {
+    margin: 15px 0 8px 0;
+    color: var(--text);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.vault-card-body ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+.vault-card-actions {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid var(--border);
+    text-align: right;
+}
+.empty-vault-msg {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+}
+.empty-vault-msg i {
+    font-size: 40px;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
 @media (max-width: 900px) {
     .wiki-grid { grid-template-columns: 1fr; }
     .data-panel { position: relative; margin-top: 20px; }
