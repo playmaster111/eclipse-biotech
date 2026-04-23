@@ -2,6 +2,23 @@
 
 // --- Neural Canvas Background ---
 const canvas = document.getElementById('particle-canvas');
+
+// --- Supabase Cloud Sync Configuration ---
+// TO ENABLE CLOUD ACCOUNTS: Replace these placeholders with your Supabase credentials
+const SUPABASE_URL = ''; 
+const SUPABASE_KEY = ''; 
+let supabase = null;
+
+if (SUPABASE_URL && SUPABASE_KEY) {
+    try {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        console.log("ECLIPSE_DATABASE: CLOUD_SYNC_INITIALIZED");
+    } catch (e) {
+        console.error("ECLIPSE_DATABASE: CLOUD_SYNC_FAILED", e);
+    }
+} else {
+    console.warn("ECLIPSE_DATABASE: LOCAL_ONLY_MODE (No credentials found)");
+}
 const ctx = canvas.getContext('2d');
 let width, height;
 let particles = [];
@@ -436,7 +453,7 @@ function initBioIdSystem() {
         bioModal.style.display = 'none';
     };
 
-    confirmBtn.onclick = () => {
+    confirmBtn.onclick = async () => {
         const username = document.getElementById('bio-username').value;
         const pass = document.getElementById('bio-password').value;
 
@@ -445,42 +462,68 @@ function initBioIdSystem() {
             return;
         }
 
+        confirmBtn.innerText = 'VERIFYING...';
+        confirmBtn.disabled = true;
+
+        let success = false;
+
         if (mode === 'login') {
-            // Check Admin Credentials
             if (username.toUpperCase() === 'ADMIN' && pass === 'ECLIPSE_MASTER') {
                 currentUser = { username: 'Admin', access: 'admin', enrolled: 'SYSTEM_GENESIS' };
+                success = true;
+            } else if (supabase) {
+                // Cloud Sync Login
+                const { data, error } = await supabase.from('users').select('*').eq('username', username).eq('password', pass).single();
+                if (data) {
+                    currentUser = { username: data.username, access: data.access, enrolled: data.created_at };
+                    success = true;
+                } else {
+                    authStatus.innerHTML = '<span style="color: var(--red)">ERROR: CLOUD_SYNC_INVALID_ID</span>';
+                }
             } else {
-                // Check local storage for registered users (simplified to 1 user for now)
+                // Local Fallback Login
                 const stored = JSON.parse(localStorage.getItem('eclipse_registered_user'));
                 if (stored && stored.username === username && stored.password === pass) {
                     currentUser = { username: stored.username, access: stored.access, enrolled: stored.enrolled };
+                    success = true;
                 } else {
-                    authStatus.innerHTML = '<span style="color: var(--red)">ERROR: INVALID_CREDENTIALS</span>';
-                    return;
+                    authStatus.innerHTML = '<span style="color: var(--red)">ERROR: INVALID_LOCAL_ID</span>';
                 }
             }
         } else {
             // Signup logic
-            const newUser = { username, password: pass, access: 'standard', enrolled: new Date().toISOString() };
-            localStorage.setItem('eclipse_registered_user', JSON.stringify(newUser));
-            currentUser = { username: newUser.username, access: newUser.access, enrolled: newUser.enrolled };
+            if (supabase) {
+                // Cloud Sync Signup
+                const { data, error } = await supabase.from('users').insert([{ username, password: pass, access: 'standard' }]).select();
+                if (error) {
+                    authStatus.innerHTML = `<span style="color: var(--red)">ERROR: CLOUD_SYNC_FAILED [${error.message}]</span>`;
+                } else {
+                    currentUser = { username: data[0].username, access: data[0].access, enrolled: data[0].created_at };
+                    success = true;
+                }
+            } else {
+                // Local Fallback Signup
+                const newUser = { username, password: pass, access: 'standard', enrolled: new Date().toISOString() };
+                localStorage.setItem('eclipse_registered_user', JSON.stringify(newUser));
+                currentUser = { username: newUser.username, access: newUser.access, enrolled: newUser.enrolled };
+                success = true;
+            }
         }
 
-        localStorage.setItem('eclipse_user', JSON.stringify(currentUser));
-        
-        confirmBtn.innerText = 'VERIFYING...';
-        confirmBtn.disabled = true;
-        
-        setTimeout(() => {
-            bioModal.style.display = 'none';
+        if (success) {
+            localStorage.setItem('eclipse_user', JSON.stringify(currentUser));
+            setTimeout(() => {
+                bioModal.style.display = 'none';
+                confirmBtn.innerText = mode === 'login' ? 'VERIFY_ID' : 'ENROLL_ID';
+                confirmBtn.disabled = false;
+                updateBioIdUI();
+                goHome();
+                showNotify(`SUCCESS: BIO-ID [${currentUser.username.toUpperCase()}] SYNCHRONIZED.`);
+            }, 1200);
+        } else {
             confirmBtn.innerText = mode === 'login' ? 'VERIFY_ID' : 'ENROLL_ID';
             confirmBtn.disabled = false;
-            updateBioIdUI();
-            
-            // Welcome screen update
-            goHome();
-            showNotify(`SUCCESS: BIO-ID [${currentUser.username.toUpperCase()}] SYNCHRONIZED.`);
-        }, 1200);
+        }
     };
 
     updateBioIdUI();
