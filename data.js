@@ -1943,6 +1943,28 @@ const WIKI_DATA = [
         risks: 'Nausea, gastroparesis (stomach paralysis), potential muscle wasting if protein intake isn\'t high.',
     },
     {
+        id: 'retatrutide', folder: 'Metabolics', category: 'peptides', type: 'GLP-1/GIP/Glucagon Agonist', name: 'Retatrutide', esters: '(LY3437943 / Triple Agonist)', status: 'experimental',
+        overview: 'The latest evolution in metabolic peptides. A "Triple Agonist" that activates GLP-1, GIP, and Glucagon receptors, potentially offering even greater weight loss than Tirzepatide.',
+        primaryUses: 'Investigational weight management, Type 2 Diabetes',
+        mechanism: 'Simultaneously agonizes GLP-1 (appetite/insulin), GIP (metabolism/fat), and Glucagon (energy expenditure/thermogenesis) receptors.',
+        dosage: '1mg to 12mg weekly (experimental titration).',
+        experimental: { b: '1.0–4.0 mg/wk', a: '8.0–12.0 mg/wk' },
+        synthesis: 'A complex synthetic peptide manufactured via solid-phase peptide synthesis (SPPS), featuring a unique structure that allows binding to three distinct receptors.',
+        synthesisSteps: [
+            'Automated sequence assembly of the multi-agonist peptide chain.',
+            'Precision folding and stabilization of the triple-binding motif.',
+            'Acylation with a fatty acid side chain to prolong half-life.',
+            'Cleavage from the solid support and purification via RP-HPLC.',
+            'Lyophilization to produce the final research-grade powder.'
+        ],
+        ingredients: ['Fmoc-protected Amino Acids', 'Resin Support', 'Fatty Acid Side Chain', 'Coupling Reagents', 'TFA', 'Purified Water'],
+        benefits: 'Average weight loss of up to 24-28% in trials; significant improvement in metabolic markers; potential "thermogenic" effect due to glucagon agonism.',
+        risks: 'Gastrointestinal distress (nausea, vomiting), transient heart rate elevation, potential for muscle loss if weight loss is too rapid.',
+        impact: { brain: 2, heart: 5, liver: 0, kidneys: 0, blood: 4, hair: 0, joints: 0 },
+        aestheticProfile: 'Rapid and severe depletion of adipose tissue. May cause a "sunken" facial appearance if weight loss occurs too quickly.',
+        physiologicalTargets: 'GLP-1, GIP, and Glucagon receptors in the brain, pancreas, liver, and adipose tissue.'
+    },
+    {
         id: 'melanotan_ii', folder: 'Systemic & Cosmetic', category: 'peptides', type: 'Peptide', name: 'Melanotan II', esters: '(MT2 / Barbarian Tanning)', status: 'experimental',
         overview: 'A synthetic analog of the alpha-melanocyte-stimulating hormone. It induces skin tanning without the need for UV exposure.',
         primaryUses: 'Skin pigmentation, erectile dysfunction (historical)',
