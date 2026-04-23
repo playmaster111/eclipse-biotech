@@ -2015,6 +2015,29 @@ const WIKI_DATA = [
         risks: 'Stomach ulcers, increased bleeding from minor cuts/bruises.'
     },
     {
+        id: 'vitamin_k2', folder: 'Micronutrient Optimization', category: 'ancillaries', type: 'Vitamin / Cofactor', name: 'Vitamin K2 (MK-7)', esters: '', status: 'active',
+        overview: 'Vitamin K2, specifically the MK-7 subtype, is a critical regulator of calcium metabolism. It is frequently utilized in pharmacological research to mitigate the risks of soft tissue calcification associated with high-dose Vitamin D3 administration.',
+        primaryUses: 'Arterial health, bone density optimization, cardiovascular protection',
+        mechanism: 'Activates Vitamin K-dependent proteins (VKDPs), specifically Matrix Gla Protein (MGP) and Osteocalcin. These proteins act as biological switches that direct calcium into the bone matrix while actively removing it from the vascular walls.',
+        dosage: '100mcg to 200mcg daily (oral).',
+        experimental: { b: '100mcg/day', a: '200–500 mcg/day' },
+        benefits: 'Prevents vascular stiffness, reverses early-stage arterial calcification, and ensures synergistic safety when utilizing mega-dosed Vitamin D3 protocols.',
+        risks: 'Minimal; interference with blood-thinning medications (Warfarin).',
+        impact: { brain: 0, heart: -2, liver: 0, kidneys: 0, blood: 1, hair: 0, joints: -1 },
+        aestheticProfile: 'N/A',
+        physiologicalTargets: 'Vascular smooth muscle cells and osteoblasts. Primary focus is the maintenance of arterial elasticity.',
+        synthesis: 'Produced via bacterial fermentation (Bacillus subtilis natto).',
+        synthesisSteps: [
+            'Inoculation of a sterile substrate with Bacillus subtilis.',
+            'Controlled fermentation to maximize menaquinone-7 (MK-7) yield.',
+            'Supercritical CO2 extraction to isolate the lipophilic K2 fraction.',
+            'Purification via molecular distillation to achieve clinical grade potency.'
+        ],
+        ingredients: ['Bacillus subtilis', 'Substrate (Soy or Chickpea)', 'CO2 (Extraction)'],
+        location: 'Japan, European Union',
+        storage: { temp: '15-25°C', light: 'Light sensitive', shelf: '24 Months', notes: 'Fat soluble; must be consumed with a lipid source for optimal absorption.' }
+    },
+    {
         id: 'tadalafil', folder: 'Sexual Health', category: 'ancillaries', type: 'PDE5 Inhibitor', name: 'Tadalafil / Sildenafil', esters: '(Cialis / Viagra)', status: 'active',
         overview: 'Beyond erectile dysfunction, these are used by athletes to improve blood flow, gym "pumps," and lower systemic blood pressure.',
         primaryUses: 'ED, BPH, Pulmonary Hypertension',
