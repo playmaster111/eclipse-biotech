@@ -356,7 +356,6 @@ function initBioIdSystem() {
     const confirmBtn = document.getElementById('confirm-enroll-btn');
     const tabLogin = document.getElementById('tab-login');
     const tabSignup = document.getElementById('tab-signup');
-    const accessRow = document.getElementById('access-row');
     const modalTitle = document.getElementById('modal-title');
     const authStatus = document.getElementById('auth-status');
     
@@ -367,14 +366,12 @@ function initBioIdSystem() {
         if (mode === 'login') {
             tabLogin.classList.add('active');
             tabSignup.classList.remove('active');
-            accessRow.style.display = 'none';
             modalTitle.innerText = 'SYSTEM ACCESS';
             modalTitle.setAttribute('data-text', 'SYSTEM ACCESS');
             confirmBtn.innerText = 'VERIFY_ID';
         } else {
             tabSignup.classList.add('active');
             tabLogin.classList.remove('active');
-            accessRow.style.display = 'flex';
             modalTitle.innerText = 'BIO ENROLLMENT';
             modalTitle.setAttribute('data-text', 'BIO ENROLLMENT');
             confirmBtn.innerText = 'ENROLL_ID';
@@ -406,7 +403,6 @@ function initBioIdSystem() {
     confirmBtn.onclick = () => {
         const username = document.getElementById('bio-username').value;
         const pass = document.getElementById('bio-password').value;
-        const access = document.getElementById('bio-access').value;
 
         if (username.length < 3 || pass.length < 4) {
             authStatus.innerHTML = '<span style="color: var(--red)">ERROR: IDENTIFIER STRINGS TOO SHORT</span>';
@@ -429,7 +425,7 @@ function initBioIdSystem() {
             }
         } else {
             // Signup logic
-            const newUser = { username, password: pass, access, enrolled: new Date().toISOString() };
+            const newUser = { username, password: pass, access: 'standard', enrolled: new Date().toISOString() };
             localStorage.setItem('eclipse_registered_user', JSON.stringify(newUser));
             currentUser = { username: newUser.username, access: newUser.access, enrolled: newUser.enrolled };
         }
