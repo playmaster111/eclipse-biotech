@@ -354,10 +354,39 @@ function initBioIdSystem() {
     const bioModal = document.getElementById('bio-id-modal');
     const cancelBtn = document.getElementById('cancel-enroll-btn');
     const confirmBtn = document.getElementById('confirm-enroll-btn');
+    const tabLogin = document.getElementById('tab-login');
+    const tabSignup = document.getElementById('tab-signup');
+    const accessRow = document.getElementById('access-row');
+    const modalTitle = document.getElementById('modal-title');
+    const authStatus = document.getElementById('auth-status');
+    
+    let mode = 'login'; // 'login' or 'signup'
+
+    const switchMode = (newMode) => {
+        mode = newMode;
+        if (mode === 'login') {
+            tabLogin.classList.add('active');
+            tabSignup.classList.remove('active');
+            accessRow.style.display = 'none';
+            modalTitle.innerText = 'SYSTEM ACCESS';
+            modalTitle.setAttribute('data-text', 'SYSTEM ACCESS');
+            confirmBtn.innerText = 'VERIFY_ID';
+        } else {
+            tabSignup.classList.add('active');
+            tabLogin.classList.remove('active');
+            accessRow.style.display = 'flex';
+            modalTitle.innerText = 'BIO ENROLLMENT';
+            modalTitle.setAttribute('data-text', 'BIO ENROLLMENT');
+            confirmBtn.innerText = 'ENROLL_ID';
+        }
+        authStatus.innerText = '';
+    };
+
+    tabLogin.onclick = () => switchMode('login');
+    tabSignup.onclick = () => switchMode('signup');
     
     bioIdBtn.onclick = () => {
         if (currentUser) {
-            // Logout confirmation simulation
             if (confirm(`SYSTEM_LOGOUT: DISCONNECT BIO-ID [${currentUser.username}]?`)) {
                 currentUser = null;
                 localStorage.removeItem('eclipse_user');
@@ -365,6 +394,7 @@ function initBioIdSystem() {
                 goHome();
             }
         } else {
+            switchMode('login');
             bioModal.style.display = 'flex';
         }
     };
@@ -379,31 +409,46 @@ function initBioIdSystem() {
         const access = document.getElementById('bio-access').value;
 
         if (username.length < 3 || pass.length < 4) {
-            alert('ERROR: IDENTIFIER STRINGS TOO SHORT');
+            authStatus.innerHTML = '<span style="color: var(--red)">ERROR: IDENTIFIER STRINGS TOO SHORT</span>';
             return;
         }
 
-        currentUser = {
-            username,
-            access,
-            enrolled: new Date().toISOString()
-        };
+        if (mode === 'login') {
+            // Check Admin Credentials
+            if (username.toUpperCase() === 'ADMIN' && pass === 'ECLIPSE_MASTER') {
+                currentUser = { username: 'Admin', access: 'admin', enrolled: 'SYSTEM_GENESIS' };
+            } else {
+                // Check local storage for registered users (simplified to 1 user for now)
+                const stored = JSON.parse(localStorage.getItem('eclipse_registered_user'));
+                if (stored && stored.username === username && stored.password === pass) {
+                    currentUser = { username: stored.username, access: stored.access, enrolled: stored.enrolled };
+                } else {
+                    authStatus.innerHTML = '<span style="color: var(--red)">ERROR: INVALID_CREDENTIALS</span>';
+                    return;
+                }
+            }
+        } else {
+            // Signup logic
+            const newUser = { username, password: pass, access, enrolled: new Date().toISOString() };
+            localStorage.setItem('eclipse_registered_user', JSON.stringify(newUser));
+            currentUser = { username: newUser.username, access: newUser.access, enrolled: newUser.enrolled };
+        }
 
         localStorage.setItem('eclipse_user', JSON.stringify(currentUser));
         
-        // Success animation simulation
-        confirmBtn.innerText = 'ENROLLING...';
+        confirmBtn.innerText = 'VERIFYING...';
         confirmBtn.disabled = true;
         
         setTimeout(() => {
             bioModal.style.display = 'none';
-            confirmBtn.innerText = 'ENROLL_IDENTITY';
+            confirmBtn.innerText = mode === 'login' ? 'VERIFY_ID' : 'ENROLL_ID';
             confirmBtn.disabled = false;
             updateBioIdUI();
             
-            // Show welcome alert
-            alert(`BIO-ID ENROLLED: WELCOME OPERATOR ${username.toUpperCase()} [LEVEL: ${access.toUpperCase()}]`);
-        }, 1500);
+            // Welcome screen update
+            goHome();
+            alert(`SUCCESS: BIO-ID [${currentUser.username.toUpperCase()}] SYNCHRONIZED.`);
+        }, 1200);
     };
 
     updateBioIdUI();
