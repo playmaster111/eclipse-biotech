@@ -2,16 +2,17 @@
 
 // --- Neural Canvas Background ---
 const canvas = document.getElementById('particle-canvas');
+let ctx = canvas ? canvas.getContext('2d') : null;
 
 // --- Supabase Cloud Sync Configuration ---
 // TO ENABLE CLOUD ACCOUNTS: Replace these placeholders with your Supabase credentials
 const SUPABASE_URL = ''; 
 const SUPABASE_KEY = ''; 
-let supabase = null;
+let sb = null;
 
 if (SUPABASE_URL && SUPABASE_KEY) {
     try {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         console.log("ECLIPSE_DATABASE: CLOUD_SYNC_INITIALIZED");
     } catch (e) {
         console.error("ECLIPSE_DATABASE: CLOUD_SYNC_FAILED", e);
@@ -19,40 +20,85 @@ if (SUPABASE_URL && SUPABASE_KEY) {
 } else {
     console.warn("ECLIPSE_DATABASE: LOCAL_ONLY_MODE (No credentials found)");
 }
-const ctx = canvas.getContext('2d');
+
 let width, height;
 let particles = [];
+let currentParticleMode = localStorage.getItem('eclipse_particle_mode') || 'neural';
+let currentVelocityScale = parseFloat(localStorage.getItem('eclipse_velocity_scale') || '1');
+const CONNECTION_DISTANCE = 150;
+
 const PARTICLE_COUNT = 60;
-const CONNECTION_DISTANCE = 160;
 let mouse = { x: null, y: null };
 
 window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
 window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
 
-function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+window.onerror = function(msg, url, lineNo, columnNo, error) {
+    console.error("ECLIPSE_CRITICAL_ERROR:", msg, "at", url, ":", lineNo);
+    showNotify("SYSTEM_ERROR: " + msg, 10000);
+    return false;
+};
+
+function resize() { 
+    if (!canvas) return;
+    width = canvas.width = window.innerWidth; 
+    height = canvas.height = window.innerHeight; 
+}
 window.addEventListener('resize', resize); resize();
 
 class Particle {
     constructor() {
+        this.init();
+    }
+    init() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 1.5;
-        this.vy = (Math.random() - 0.5) * 1.5;
         this.size = Math.random() * 2 + 1;
+        this.resetVelocity();
+    }
+    resetVelocity() {
+        const baseSpeed = currentParticleMode === 'stars' ? 3 : 1.5;
+        this.vx = (Math.random() - 0.5) * baseSpeed * currentVelocityScale;
+        this.vy = (Math.random() - 0.5) * baseSpeed * currentVelocityScale;
+        if (currentParticleMode === 'stars') {
+            this.vx = (Math.random() * 2 + 1) * currentVelocityScale;
+            this.vy = (Math.random() - 0.5) * 0.5 * currentVelocityScale;
+        }
+        if (currentParticleMode === 'snow') {
+            this.vy = (Math.random() * 1 + 0.5) * currentVelocityScale;
+            this.vx = (Math.random() - 0.5) * 0.5 * currentVelocityScale;
+        }
     }
     update() {
         this.x += this.vx; this.y += this.vy;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-        if (mouse.x && mouse.y) {
+        if (currentParticleMode === 'neural') {
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+        } else {
+            if (this.x > width) this.x = 0;
+            if (this.x < 0) this.x = width;
+            if (this.y > height) this.y = 0;
+            if (this.y < 0) this.y = height;
+        }
+        if (mouse.x && mouse.y && currentParticleMode === 'neural') {
             let dx = mouse.x - this.x, dy = mouse.y - this.y;
             let dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 120) { this.x -= dx * 0.05; this.y -= dy * 0.05; }
+            if (dist < 120) { this.x -= dx * 0.02; this.y -= dy * 0.02; }
         }
     }
     draw() {
-        ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 240, 255, 0.6)'; ctx.fill();
+        if (!ctx) return;
+        ctx.beginPath();
+        if (currentParticleMode === 'stars') {
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x - this.vx * 4, this.y - this.vy * 4);
+            ctx.strokeStyle = 'rgba(0, 240, 255, 0.7)';
+            ctx.stroke();
+        } else {
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = currentParticleMode === 'snow' ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 240, 255, 0.6)';
+            ctx.fill();
+        }
     }
 }
 
@@ -62,25 +108,33 @@ function initParticles() {
 }
 
 function animateParticles() {
+    if (!ctx || currentParticleMode === 'none') {
+        if (ctx) ctx.clearRect(0, 0, width, height);
+        requestAnimationFrame(animateParticles);
+        return;
+    }
     ctx.clearRect(0, 0, width, height);
     for (let i = 0; i < particles.length; i++) {
         particles[i].update(); particles[i].draw();
-        for (let j = i; j < particles.length; j++) {
-            let dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < CONNECTION_DISTANCE) {
-                ctx.beginPath();
-                ctx.strokeStyle = `rgba(0, 240, 255, ${0.4 * (1 - distance / CONNECTION_DISTANCE)})`;
-                ctx.lineWidth = 1;
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.stroke();
+        if (currentParticleMode === 'neural') {
+            for (let j = i + 1; j < particles.length; j++) {
+                let dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < CONNECTION_DISTANCE) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(0, 240, 255, ${0.3 * (1 - distance / CONNECTION_DISTANCE)})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
             }
         }
     }
     requestAnimationFrame(animateParticles);
 }
-initParticles(); animateParticles();
+initParticles(); 
+if (ctx) animateParticles();
 // --------------------------------
 // --- Custom Dialog System ---
 function showNotify(message, duration = 4000) {
@@ -120,17 +174,26 @@ function showConfirm(message, onConfirm) {
 // --------------------------------
 // --- Ambient Audio Logic ---
 // --------------------------------
+// --- Ambient Audio Logic ---
 const bgMusic = document.getElementById('bgMusic');
+const introAudio = document.getElementById('introAudio');
 const muteBtn = document.getElementById('muteBtn');
 const volumeSlider = document.getElementById('volumeSlider');
 const volumeIcon = document.getElementById('volumeIcon');
+
+const SONG_LIBRARY = [
+    { id: 'main', name: 'MAIN_THEME', artist: 'Eclipse Biotech', url: 'bg_music.mp3' },
+    { id: 'track2', name: 'Something To Me', artist: 'Josh Baker', url: 'Josh Baker - Something To Me.mp3' },
+    { id: 'track3', name: 'Torino', artist: 'Unknown', url: 'Torino.mp3' },
+    { id: 'track4', name: 'Make U Whole', artist: 'Unknown', url: 'Make U Whole.mp3' }
+];
+
 let isAudioInitialized = false;
+let currentTrackIndex = parseInt(localStorage.getItem('eclipse_track_index') || '0');
 
 function updateAudioUI() {
     if (!volumeIcon || !muteBtn) return;
-    
     const isMuted = bgMusic.paused || bgMusic.volume === 0;
-    
     if (isMuted) {
         volumeIcon.className = 'fas fa-volume-mute';
         muteBtn.classList.add('muted');
@@ -144,14 +207,30 @@ function updateAudioUI() {
     }
 }
 
-function initAudio() {
-    if (isAudioInitialized) return;
-    
+function initAudio(skipPlay = false) {
+    if (isAudioInitialized && !skipPlay) return;
     const savedVol = localStorage.getItem('eclipse_volume');
-    const initialVol = savedVol !== null ? parseFloat(savedVol) : 0.3;
+    const initialVol = savedVol !== null ? parseFloat(savedVol) : 0.6;
+    if (!bgMusic.src || bgMusic.src.includes('undefined')) {
+        bgMusic.src = SONG_LIBRARY[currentTrackIndex].url;
+    }
     bgMusic.volume = initialVol;
     if (volumeSlider) volumeSlider.value = initialVol;
+    if (skipPlay) { isAudioInitialized = true; return; }
     
+    // Fallback logic for missing files
+    bgMusic.onerror = () => {
+        console.warn("ECLIPSE_AUDIO: Source error, falling back to main theme.");
+        if (currentTrackIndex !== 0) {
+            currentTrackIndex = 0;
+            localStorage.setItem('eclipse_track_index', 0);
+            bgMusic.src = SONG_LIBRARY[0].url;
+            bgMusic.play().catch(e => {});
+            if (typeof initTrackSelector === 'function') initTrackSelector();
+            showNotify("AUDIO_RECOVERY: Default theme restored.", 3000);
+        }
+    };
+
     const playAttempt = bgMusic.play();
     if (playAttempt !== undefined) {
         playAttempt.then(() => {
@@ -160,70 +239,38 @@ function initAudio() {
             document.removeEventListener('click', initAudio);
             document.removeEventListener('keydown', initAudio);
         }).catch(error => {
-            console.log("Autoplay blocked, waiting for interaction.");
+            if (error.name === 'NotAllowedError') {
+                console.log("Autoplay blocked, waiting for interaction.");
+            } else {
+                console.error("Playback failed:", error);
+            }
         });
     }
 }
 
 function toggleMusic() {
-    if (bgMusic.paused) {
-        bgMusic.play();
-        localStorage.setItem('eclipse_audio', 'on');
-    } else {
-        bgMusic.pause();
-        localStorage.setItem('eclipse_audio', 'off');
-    }
+    if (bgMusic.paused) bgMusic.play();
+    else bgMusic.pause();
     updateAudioUI();
 }
 
 if (muteBtn) {
     muteBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (!isAudioInitialized) {
-            isAudioInitialized = true;
-            bgMusic.volume = volumeSlider ? volumeSlider.value : 0.3;
-            bgMusic.play();
-            localStorage.setItem('eclipse_audio', 'on');
-            document.removeEventListener('click', initAudio);
-            updateAudioUI();
-        } else {
-            toggleMusic();
-        }
+        if (!isAudioInitialized) initAudio();
+        else toggleMusic();
     });
 }
-
 if (volumeSlider) {
     volumeSlider.addEventListener('input', (e) => {
         const val = e.target.value;
         bgMusic.volume = val;
         localStorage.setItem('eclipse_volume', val);
-        
-        if (!isAudioInitialized && val > 0) {
-            initAudio();
-        }
         updateAudioUI();
     });
 }
-
-// Global listeners for first interaction
 document.addEventListener('click', initAudio);
 document.addEventListener('keydown', initAudio);
-
-// Check preference on load
-window.addEventListener('DOMContentLoaded', () => {
-    const audioPref = localStorage.getItem('eclipse_audio');
-    const savedVol = localStorage.getItem('eclipse_volume');
-    if (savedVol !== null && volumeSlider) {
-        volumeSlider.value = savedVol;
-        bgMusic.volume = savedVol;
-    }
-    
-    if (audioPref === 'off') {
-        // Stay paused
-    }
-});
-// --------------------------------
-
 // --- Localization Logic ---
 let currentLang = localStorage.getItem('eclipse_lang') || 'en';
 
@@ -289,6 +336,10 @@ function mergeTranslations() {
         });
     }
 
+    if (!window.WIKI_DATA) {
+        console.warn("ECLIPSE_CORE: WIKI_DATA not found during merge.");
+        return;
+    }
     window.WIKI_DATA.forEach(item => {
         const trans = window.DRUG_I18N[item.id];
         if (trans) {
@@ -382,7 +433,15 @@ function startSystemBoot() {
                 clearInterval(interval);
                 setTimeout(() => {
                     overlay.style.opacity = '0';
-                    setTimeout(() => overlay.remove(), 1000);
+                    setTimeout(() => {
+                        overlay.remove();
+                        // Final safety check to ensure app is visible
+                        const appWindow = document.querySelector('.app-window');
+                        if (appWindow) {
+                            appWindow.style.opacity = '1';
+                            appWindow.style.filter = 'blur(0)';
+                        }
+                    }, 1000);
                     initApp();
                 }, 500);
             }
@@ -471,9 +530,9 @@ function initBioIdSystem() {
             if (username.toUpperCase() === 'ADMIN' && pass === 'ECLIPSE_MASTER') {
                 currentUser = { username: 'Admin', access: 'admin', enrolled: 'SYSTEM_GENESIS' };
                 success = true;
-            } else if (supabase) {
+            } else if (sb) {
                 // Cloud Sync Login
-                const { data, error } = await supabase.from('users').select('*').eq('username', username).eq('password', pass).single();
+                const { data, error } = await sb.from('users').select('*').eq('username', username).eq('password', pass).single();
                 if (data) {
                     currentUser = { username: data.username, access: data.access, enrolled: data.created_at };
                     success = true;
@@ -492,9 +551,9 @@ function initBioIdSystem() {
             }
         } else {
             // Signup logic
-            if (supabase) {
+            if (sb) {
                 // Cloud Sync Signup
-                const { data, error } = await supabase.from('users').insert([{ username, password: pass, access: 'standard' }]).select();
+                const { data, error } = await sb.from('users').insert([{ username, password: pass, access: 'standard' }]).select();
                 if (error) {
                     authStatus.innerHTML = `<span style="color: var(--red)">ERROR: CLOUD_SYNC_FAILED [${error.message}]</span>`;
                 } else {
@@ -530,20 +589,54 @@ function initBioIdSystem() {
 }
 
 function initApp() {
+    applySidebarStagger();
+    startUptimeCounter();
+    initBackToTop();
+    initTrackSelector();
     mergeTranslations();
     updateUIStrings();
     
     const sidebar = document.querySelector('.sidebar');
     if (sidebar) {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 1024) {
             sidebar.classList.add('collapsed');
         } else {
             sidebar.classList.remove('collapsed');
         }
     }
     
-    renderSidebar();
-    initBioIdSystem();
+    // Verify Data Integrity
+    console.log("ECLIPSE_CORE: Verifying data presence...");
+    const checkData = () => {
+        if (!window.WIKI_DATA || !window.CATEGORIES) {
+            console.error("ECLIPSE_CORE: CRITICAL DATA MISSING");
+            showNotify("CRITICAL: DATABASE OFFLINE", "error");
+            return false;
+        }
+        return true;
+    };
+
+    const tryRender = (retries = 0) => {
+        if (!checkData() && retries < 20) {
+            console.log(`ECLIPSE_CORE: Retrying database connection... (${retries})`);
+            setTimeout(() => tryRender(retries + 1), 500);
+            return;
+        }
+        
+        try {
+            renderSidebar(); applySidebarStagger();
+        } catch (e) {
+            console.error("ECLIPSE_CORE: renderSidebar failed", e);
+        }
+    };
+    
+    tryRender();
+    
+    try {
+        initBioIdSystem();
+    } catch (e) {
+        console.error("ECLIPSE_CORE: initBioIdSystem failed", e);
+    }
     
     // Smoothly reveal the app
     const appWindow = document.querySelector('.app-window');
@@ -552,7 +645,11 @@ function initApp() {
         appWindow.style.filter = 'blur(0)';
     }
 
-    goHome();
+    try {
+        goHome();
+    } catch (e) {
+        console.error("ECLIPSE_CORE: goHome failed", e);
+    }
 
     // Persistent Identity Awareness
     const visitCount = parseInt(localStorage.getItem('biotech_visits') || "0");
@@ -573,15 +670,20 @@ function initApp() {
 
 // Initial UI setup
 document.addEventListener('DOMContentLoaded', () => {
-    // Hide app window for boot sequence
     const appWindow = document.querySelector('.app-window');
     if (appWindow) {
-        appWindow.style.opacity = '0';
+        appWindow.style.opacity = '0'; // Start hidden
         appWindow.style.filter = 'blur(20px)';
-        appWindow.style.transition = 'all 1s ease';
+        appWindow.style.pointerEvents = 'none'; // Non-interactable until boot
     }
-
-    startSystemBoot();
+    attachInitListener();
+    
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            renderSidebar(e.target.value);
+        });
+    }
     
     // Custom Dropdown Logic
     const customSelect = document.getElementById('langCustomSelect');
@@ -612,7 +714,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 opt.classList.add('active');
                 
                 updateUIStrings();
-                renderSidebar(searchInput.value);
+                const searchInput = document.getElementById('searchInput');
+                renderSidebar(searchInput ? searchInput.value : '');
                 
                 // Trigger Google Translate
                 triggerGoogleTranslate(val);
@@ -631,11 +734,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.querySelector('.sidebar');
     const mobileToggle = document.getElementById('mobile-menu-toggle');
 
+    const toggleSidebar = () => {
+        if (!sidebar) return;
+        sidebar.classList.toggle('collapsed');
+        console.log("ECLIPSE_CORE: Sidebar toggled", sidebar.classList.contains('collapsed'));
+    };
+
     if (mobileToggle) {
-        mobileToggle.addEventListener('click', () => {
-            if (sidebar) sidebar.classList.toggle('collapsed');
+        mobileToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleSidebar();
         });
     }
+    
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            toggleSidebar();
+        }
+    });
 
     const mobileOverlay = document.getElementById('mobile-sidebar-overlay');
     if (mobileOverlay) {
@@ -756,6 +874,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function updateWelcomeScreen() {
     const mount = document.getElementById('article-mount');
     if (!mount) return;
+    mount.classList.remove('article-loading');
+    void mount.offsetWidth; // trigger reflow
+    mount.classList.add('article-loading');
     const emptyState = mount.querySelector('.empty-state');
     if (emptyState) {
         const glitchSmall = emptyState.querySelector('.glitch-small');
@@ -788,21 +909,34 @@ window.goHome = function() {
 };
 // -------------------------
 
-// Render Sidebar
-const navEl = document.getElementById('sidebar-nav');
-const searchInput = document.getElementById('searchInput');
+// Render Sidebar helper
 
 function renderSidebar(filter = '') {
+    const navEl = document.getElementById('sidebar-nav');
+    if (!navEl) return;
     navEl.innerHTML = '';
     
+    const categories = window.CATEGORIES || {};
+    const wikiData = window.WIKI_DATA || [];
+    const currentLang = localStorage.getItem('eclipse_lang') || 'en';
+    
+    console.log("ECLIPSE_SIDEBAR: Initializing render", { 
+        catCount: Object.keys(categories).length, 
+        wikiCount: wikiData.length,
+        filter: filter 
+    });
+    
     // Add Dynamic Compounds
-    for (const [catKey, catData] of Object.entries(CATEGORIES)) {
-        const items = WIKI_DATA.filter(item => 
-            item.category === catKey && 
-            (item.name.toLowerCase().includes(filter.toLowerCase()) || 
-             item.id.toLowerCase().includes(filter.toLowerCase()) ||
-             (item.folder && item.folder.toLowerCase().includes(filter.toLowerCase())))
-        );
+    for (const [catKey, catData] of Object.entries(categories)) {
+        try {
+            const items = wikiData.filter(item => {
+                if (!item) return false;
+                const searchStr = (filter || "").toLowerCase();
+                const nameMatch = (item.name || "").toLowerCase().includes(searchStr);
+                const idMatch = (item.id || "").toLowerCase().includes(searchStr);
+                const folderMatch = (item.folder || "").toLowerCase().includes(searchStr);
+                return item.category === catKey && (nameMatch || idMatch || folderMatch);
+            });
 
         if (items.length > 0) {
             const header = document.createElement('div');
@@ -891,7 +1025,10 @@ function renderSidebar(filter = '') {
                 navEl.appendChild(folderDiv);
             }
         }
+    } catch (err) {
+        console.error("ECLIPSE_SIDEBAR: Error rendering category", catKey, err);
     }
+}
 
     // Add UI/AI Utilities
     if (filter === '') {
@@ -976,6 +1113,14 @@ function renderSidebar(filter = '') {
             </button>
         `;
         navEl.appendChild(supportWrap);
+    }
+
+    if (navEl.innerHTML === '') {
+        const empty = document.createElement('div');
+        empty.className = 'nav-item';
+        empty.style.color = 'var(--muted)';
+        empty.innerText = filter === '' ? '> NO_RECORDS_FOUND' : '> NO_MATCHES_FOUND';
+        navEl.appendChild(empty);
     }
 }
 
@@ -1555,9 +1700,12 @@ function loadArticle(id) {
 }
 
 // Search Listener
-searchInput.addEventListener('input', (e) => {
-    renderSidebar(e.target.value);
-});
+const searchInput = document.getElementById('searchInput');
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        renderSidebar(e.target.value);
+    });
+}
 
 // -------------------------
 // Initialization
@@ -1983,8 +2131,8 @@ window.saveProtocolToVault = async function() {
         type: 'AI_ARCHITECT'
     };
 
-    if (supabase) {
-        const { error } = await supabase.from('vault').insert([{ 
+    if (sb) {
+        const { error } = await sb.from('vault').insert([{ 
             user_id: currentUser.username, 
             data: newEntry 
         }]);
@@ -2040,8 +2188,8 @@ async function renderVaultItems() {
     const listEl = document.getElementById('vault-list');
     let items = [];
 
-    if (supabase) {
-        const { data, error } = await supabase.from('vault').select('*').eq('user_id', currentUser.username);
+    if (sb) {
+        const { data, error } = await sb.from('vault').select('*').eq('user_id', currentUser.username);
         if (data) items = data.map(d => d.data);
     } else {
         items = JSON.parse(localStorage.getItem('eclipse_vault') || '[]');
@@ -2073,7 +2221,7 @@ async function renderVaultItems() {
 
 window.deleteFromVault = async function(id) {
     showConfirm("PERMANENT_DELETE: Are you sure you want to purge this data log from the vault?", async () => {
-        if (supabase) {
+        if (sb) {
             // Complex to delete by nested data ID in Supabase if using one row, 
             // but for now we'll just assume a simpler table structure or filter local for MVP
             showNotify("CLOUD_DELETE: Not implemented for MVP. Please use local mode.");
@@ -2779,173 +2927,215 @@ window.generateCOA = function() {
 let holoScene, holoCamera, holoRenderer, holoMesh, holoRequestID;
 
 function initHologram(type) {
-    const container = document.getElementById('hologram-canvas-container');
+    var container = document.getElementById('hologram-canvas-container');
     if (!container) return;
-
     if (holoRequestID) cancelAnimationFrame(holoRequestID);
-    if (holoRenderer) {
-        container.innerHTML = '';
-        holoRenderer.dispose();
-    }
+    if (holoRenderer) { container.innerHTML = ''; holoRenderer.dispose(); }
 
     holoScene = new THREE.Scene();
-    holoCamera = new THREE.PerspectiveCamera(45, container.offsetWidth / container.offsetHeight, 0.1, 1000);
-    holoCamera.position.z = 5;
+
+    holoCamera = new THREE.PerspectiveCamera(40, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+    holoCamera.position.set(0, 1.5, 6);
+    holoCamera.lookAt(0, 0, 0);
 
     holoRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     holoRenderer.setSize(container.offsetWidth, container.offsetHeight);
-    holoRenderer.setPixelRatio(window.devicePixelRatio);
+    holoRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(holoRenderer.domElement);
 
-    const material = new THREE.MeshBasicMaterial({ color: 0x00f0ff, wireframe: true, transparent: true, opacity: 0.6 });
+    // Lighting
+    holoScene.add(new THREE.AmbientLight(0x40a0b0, 2.5));
+    var keyLight = new THREE.PointLight(0x00f0ff, 4, 25);
+    keyLight.position.set(3, 3, 3);
+    holoScene.add(keyLight);
+    var fillLight = new THREE.PointLight(0xb5ff4d, 2.5, 20);
+    fillLight.position.set(-3, -1, 2);
+    holoScene.add(fillLight);
+    var rimLight = new THREE.PointLight(0xff3a5c, 1.5, 18);
+    rimLight.position.set(0, -3, -3);
+    holoScene.add(rimLight);
 
-    const group = new THREE.Group();
+    // Materials
+    var cyMat = new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x004060, transparent: true, opacity: 0.55, wireframe: true, shininess: 100 });
+    var cyFill = new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x003040, transparent: true, opacity: 0.18, shininess: 80 });
+    var grMat = new THREE.MeshPhongMaterial({ color: 0xb5ff4d, emissive: 0x204000, transparent: true, opacity: 0.55, wireframe: true });
+    var rdMat = new THREE.MeshPhongMaterial({ color: 0xff3a5c, emissive: 0x400020, transparent: true, opacity: 0.55, wireframe: true });
+    var orMat = new THREE.MeshPhongMaterial({ color: 0xff9d00, emissive: 0x402000, transparent: true, opacity: 0.55, wireframe: true });
+    var glowMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.08 });
+    var lineMat = new THREE.LineBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.25 });
+
+    var group = new THREE.Group();
+
+    // Base plate
+    var baseGeo = new THREE.CylinderGeometry(2.2, 2.4, 0.06, 48);
+    var baseMat = new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x001015, transparent: true, opacity: 0.15 });
+    var base = new THREE.Mesh(baseGeo, baseMat);
+    base.position.y = -2.2;
+    group.add(base);
+    var baseRing = new THREE.Mesh(new THREE.TorusGeometry(2.3, 0.02, 8, 64), new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.4 }));
+    baseRing.rotation.x = Math.PI/2; baseRing.position.y = -2.17;
+    group.add(baseRing);
+    // Grid on base
+    for (var gi = -2; gi <= 2; gi += 0.4) {
+        var pts1 = [new THREE.Vector3(gi, -2.17, -2.3), new THREE.Vector3(gi, -2.17, 2.3)];
+        var pts2 = [new THREE.Vector3(-2.3, -2.17, gi), new THREE.Vector3(2.3, -2.17, gi)];
+        var gMat = new THREE.LineBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.06 });
+        group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts1), gMat));
+        group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts2), gMat));
+    }
+
+    // Scan ring helper
+    function addScan(g, r) {
+        var sr = new THREE.Mesh(new THREE.TorusGeometry(r, 0.02, 8, 64), new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.5 }));
+        sr.rotation.x = Math.PI/2; sr.userData.scan = true; g.add(sr);
+    }
+    // Particles
+    function addDust(g, n, s) {
+        for (var i=0;i<n;i++) {
+            var p = new THREE.Mesh(new THREE.SphereGeometry(0.015+Math.random()*0.02,4,4), new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.3+Math.random()*0.5 }));
+            p.position.set((Math.random()-0.5)*s,(Math.random()-0.5)*s,(Math.random()-0.5)*s);
+            p.userData.drift = {spd:0.001+Math.random()*0.003, off:Math.random()*6.28}; g.add(p);
+        }
+    }
 
     if (type === 'pill') {
-        const geometry = new THREE.CapsuleGeometry(0.8, 1.2, 3, 16);
-        const mesh = new THREE.Mesh(geometry, material);
-        group.add(mesh);
-
-        for(let i=0; i<15; i++) {
-            const p = new THREE.Mesh(new THREE.SphereGeometry(0.04, 4, 4), material);
-            const r = 0.5 * Math.sqrt(Math.random());
-            const theta = Math.random() * Math.PI * 2;
-            const y = (Math.random() - 0.5) * 1.5;
-            p.position.set(r * Math.cos(theta), y, r * Math.sin(theta));
-            group.add(p);
+        var outer = new THREE.Mesh(new THREE.CapsuleGeometry(0.85,1.5,12,32), cyMat);
+        var fill = new THREE.Mesh(new THREE.CapsuleGeometry(0.85,1.5,12,32), cyFill);
+        var inner = new THREE.Mesh(new THREE.CapsuleGeometry(0.45,0.9,6,16), grMat);
+        var band = new THREE.Mesh(new THREE.TorusGeometry(0.87,0.04,12,48), new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x00f0ff, transparent: true, opacity: 0.8 }));
+        band.rotation.x = Math.PI/2;
+        var glow = new THREE.Mesh(new THREE.CapsuleGeometry(1.1,1.8,6,16), glowMat);
+        group.add(outer, fill, inner, band, glow);
+        for (var i=0;i<50;i++) {
+            var sz = 0.02+Math.random()*0.04;
+            var mat = i%4===0 ? grMat : (i%5===0 ? rdMat : cyMat);
+            var dot = new THREE.Mesh(new THREE.SphereGeometry(sz,6,6), mat);
+            var r=0.55*Math.sqrt(Math.random()), th=Math.random()*6.28, y=(Math.random()-0.5)*1.8;
+            dot.position.set(r*Math.cos(th),y,r*Math.sin(th)); group.add(dot);
         }
-        // Revert to vertical standing for pills
-        group.rotation.z = 0;
+        addScan(group,1.1); addDust(group,35,4);
+
     } else if (type === 'vial') {
-        const body = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 2, 16), material);
-        const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.4, 16), material);
-        const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.2, 16), material);
-        const shoulder = new THREE.Mesh(new THREE.TorusGeometry(0.5, 0.2, 4, 16), material);
-        
-        shoulder.rotation.x = Math.PI/2;
-        shoulder.position.y = 1.0;
-        neck.position.y = 1.35;
-        cap.position.y = 1.6;
-        
-        const liquidGeo = new THREE.CylinderGeometry(0.6, 0.6, 1.2, 8);
-        const liquidMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.2 });
-        const liquid = new THREE.Mesh(liquidGeo, liquidMat);
-        liquid.position.y = -0.3;
-        
-        group.add(body, neck, cap, shoulder, liquid);
-        // Standing vertical for stability
-        group.rotation.z = 0;
+        var body = new THREE.Mesh(new THREE.CylinderGeometry(0.65,0.65,2.2,32), cyMat);
+        var bodyF = new THREE.Mesh(new THREE.CylinderGeometry(0.65,0.65,2.2,32), cyFill);
+        var btm = new THREE.Mesh(new THREE.SphereGeometry(0.65,32,16,0,6.28,1.57,1.57), cyFill);
+        btm.position.y = -1.1;
+        var shldr = new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.65,0.4,32), cyMat);
+        shldr.position.y = 1.3;
+        var neck = new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.35,0.5,32), cyMat);
+        neck.position.y = 1.6;
+        var cap = new THREE.Mesh(new THREE.CylinderGeometry(0.42,0.42,0.25,32), new THREE.MeshPhongMaterial({ color: 0xb5ff4d, emissive: 0xb5ff4d, transparent: true, opacity: 0.6, wireframe: true }));
+        cap.position.y = 1.95;
+        var liq = new THREE.Mesh(new THREE.CylinderGeometry(0.55,0.55,1.4,24), new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x003040, transparent: true, opacity: 0.15 }));
+        liq.position.y = -0.2; liq.userData.liquid = true;
+        group.add(body,bodyF,btm,shldr,neck,cap,liq);
+        // Measurement ticks
+        for (var m=0;m<7;m++) { var ly=-0.9+m*0.3, tl=m%2===0?0.18:0.1;
+            group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0.66,ly,0), new THREE.Vector3(0.66+tl,ly,0)]), lineMat));
+        }
+        // Bubbles
+        for (var b=0;b<15;b++) {
+            var bub = new THREE.Mesh(new THREE.SphereGeometry(0.025+Math.random()*0.035,8,8), new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x004050, transparent: true, opacity: 0.25 }));
+            bub.position.set((Math.random()-0.5)*0.7,-0.8+Math.random()*1.2,(Math.random()-0.5)*0.7);
+            bub.userData.bub = {spd:0.002+Math.random()*0.004, off:Math.random()*6.28}; group.add(bub);
+        }
+        var glow2 = new THREE.Mesh(new THREE.CylinderGeometry(0.9,0.9,2.8,16), glowMat);
+        group.add(glow2);
+        addScan(group,0.85); addDust(group,30,3.5);
+
     } else if (type === 'dna') {
-        const curve1 = [];
-        const curve2 = [];
-        for (let i = 0; i < 40; i++) {
-            const angle = i * 0.4;
-            const y = i * 0.1 - 2;
-            const x = Math.sin(angle) * 0.8;
-            const z = Math.cos(angle) * 0.8;
-            
-            const s1 = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 8), material);
-            s1.position.set(x, y, z);
-            group.add(s1);
-            curve1.push(new THREE.Vector3(x, y, z));
-
-            const s2 = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 8), material);
-            s2.position.set(-x, y, -z);
-            group.add(s2);
-            curve2.push(new THREE.Vector3(-x, y, -z));
-
-            if (i % 2 === 0) {
-                const points = [new THREE.Vector3(x, y, z), new THREE.Vector3(-x, y, -z)];
-                const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
-                group.add(new THREE.Line(lineGeo, new THREE.LineBasicMaterial({ color: 0xb5ff4d, transparent: true, opacity: 0.3 })));
+        var N=70, R=0.95, H=5.5, c1=[], c2=[];
+        for (var i=0;i<N;i++) {
+            var t=i/N, a=t*Math.PI*8, y=t*H-H/2;
+            var x1=Math.sin(a)*R, z1=Math.cos(a)*R;
+            var x2=Math.sin(a+Math.PI)*R, z2=Math.cos(a+Math.PI)*R;
+            var s1=new THREE.Mesh(new THREE.SphereGeometry(0.055,10,10), cyMat);
+            s1.position.set(x1,y,z1); group.add(s1); c1.push(new THREE.Vector3(x1,y,z1));
+            var s2=new THREE.Mesh(new THREE.SphereGeometry(0.055,10,10), cyMat);
+            s2.position.set(x2,y,z2); group.add(s2); c2.push(new THREE.Vector3(x2,y,z2));
+            if (i%2===0) {
+                var mx=(x1+x2)/2, mz=(z1+z2)/2;
+                var c1m = i%4===0 ? 0xb5ff4d : 0xff9d00;
+                var c2m = i%4===0 ? 0xff3a5c : 0x00f0ff;
+                group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x1,y,z1),new THREE.Vector3(mx,y,mz)]), new THREE.LineBasicMaterial({color:c1m,transparent:true,opacity:0.5})));
+                group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(mx,y,mz),new THREE.Vector3(x2,y,z2)]), new THREE.LineBasicMaterial({color:c2m,transparent:true,opacity:0.5})));
+                var hb=new THREE.Mesh(new THREE.OctahedronGeometry(0.04,0), new THREE.MeshPhongMaterial({color:0xffffff,emissive:0x404040,transparent:true,opacity:0.6}));
+                hb.position.set(mx,y,mz); group.add(hb);
+            }
+            if (i%6===0) {
+                var nd=new THREE.Mesh(new THREE.OctahedronGeometry(0.1,0), grMat);
+                nd.position.set(x1,y,z1); group.add(nd);
             }
         }
-        const b1Geo = new THREE.BufferGeometry().setFromPoints(curve1);
-        const b2Geo = new THREE.BufferGeometry().setFromPoints(curve2);
-        group.add(new THREE.Line(b1Geo, material));
-        group.add(new THREE.Line(b2Geo, material));
-        // DNA often looks better horizontal for depth
-        group.rotation.z = Math.PI / 2;
-    } else { // molecule
-        const atoms = [
-            { pos: [0,0,0], size: 0.5 },
-            { pos: [1,0.5,0], size: 0.3 }, { pos: [-1,-0.5,0], size: 0.3 },
-            { pos: [0.5,1,0.5], size: 0.3 }, { pos: [-0.5,-1,-0.5], size: 0.3 },
-            { pos: [0,0.5,1], size: 0.3 }, { pos: [0,-0.5,-1], size: 0.3 },
-            { pos: [1.5,0,1], size: 0.2 }, { pos: [-1.5,0,-1], size: 0.2 }
+        group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(c1), new THREE.LineBasicMaterial({color:0x00f0ff,transparent:true,opacity:0.7})));
+        group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(c2), new THREE.LineBasicMaterial({color:0x00f0ff,transparent:true,opacity:0.7})));
+        addDust(group,50,5); addScan(group,1.3);
+        group.rotation.z = Math.PI/2;
+
+    } else {
+        var atoms = [
+            {p:[0,0,0],s:0.5,c:0x00f0ff},{p:[1.3,0.3,0.2],s:0.3,c:0x00f0ff},
+            {p:[-1.1,-0.4,0.3],s:0.3,c:0xb5ff4d},{p:[0.4,1.2,0.6],s:0.3,c:0x00f0ff},
+            {p:[-0.3,-1.1,-0.5],s:0.3,c:0xb5ff4d},{p:[0.1,0.4,1.3],s:0.25,c:0xff9d00},
+            {p:[-0.2,-0.3,-1.2],s:0.25,c:0xff9d00},{p:[1.7,0.9,0.8],s:0.2,c:0xff3a5c},
+            {p:[-1.5,0.6,-0.7],s:0.2,c:0xff3a5c},{p:[0.8,-1.3,0.9],s:0.2,c:0xb5ff4d},
+            {p:[-0.9,1.4,-0.4],s:0.2,c:0x00f0ff},{p:[1.9,-0.5,-0.3],s:0.15,c:0x00f0ff},
+            {p:[-1.8,-0.8,0.5],s:0.15,c:0xff9d00},{p:[0.5,1.8,-0.8],s:0.15,c:0xb5ff4d}
         ];
-
-        atoms.forEach((a, idx) => {
-            const mesh = new THREE.Mesh(new THREE.SphereGeometry(a.size, 12, 12), material);
-            mesh.position.set(...a.pos);
-            group.add(mesh);
-
-            atoms.slice(idx + 1).forEach(target => {
-                const dist = new THREE.Vector3(...a.pos).distanceTo(new THREE.Vector3(...target.pos));
-                if (dist < 1.8) {
-                    const points = [new THREE.Vector3(...a.pos), new THREE.Vector3(...target.pos)];
-                    const geo = new THREE.BufferGeometry().setFromPoints(points);
-                    group.add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.2 })));
+        atoms.forEach(function(a,idx){
+            var am=new THREE.MeshPhongMaterial({color:a.c,emissive:a.c,emissiveIntensity:0.15,transparent:true,opacity:0.45,wireframe:true,shininess:120});
+            var af=new THREE.MeshPhongMaterial({color:a.c,emissive:a.c,emissiveIntensity:0.05,transparent:true,opacity:0.1});
+            var m=new THREE.Mesh(new THREE.SphereGeometry(a.s,20,20),am);
+            var f=new THREE.Mesh(new THREE.SphereGeometry(a.s,20,20),af);
+            m.position.set(a.p[0],a.p[1],a.p[2]); f.position.set(a.p[0],a.p[1],a.p[2]);
+            group.add(m,f);
+            if(a.s>0.2){
+                var sh=new THREE.Mesh(new THREE.SphereGeometry(a.s*1.7,10,10),new THREE.MeshBasicMaterial({color:a.c,transparent:true,opacity:0.04}));
+                sh.position.set(a.p[0],a.p[1],a.p[2]); group.add(sh);
+            }
+            atoms.slice(idx+1).forEach(function(t){
+                var d=new THREE.Vector3(a.p[0],a.p[1],a.p[2]).distanceTo(new THREE.Vector3(t.p[0],t.p[1],t.p[2]));
+                if(d<2.0){
+                    var dir=new THREE.Vector3(t.p[0]-a.p[0],t.p[1]-a.p[1],t.p[2]-a.p[2]).normalize();
+                    var perp=new THREE.Vector3(-dir.y,dir.x,0).normalize().multiplyScalar(0.04);
+                    var pa=new THREE.Vector3(a.p[0],a.p[1],a.p[2]), pb=new THREE.Vector3(t.p[0],t.p[1],t.p[2]);
+                    group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([pa.clone().add(perp),pb.clone().add(perp)]),lineMat));
+                    group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([pa.clone().sub(perp),pb.clone().sub(perp)]),lineMat));
                 }
             });
         });
+        addDust(group,45,5); addScan(group,1.8);
     }
 
-    holoScene.add(group);
-    holoMesh = group;
+    holoScene.add(group); holoMesh = group;
 
-    // --- Interactive Rotation Logic ---
-    let isDragging = false;
-    let previousMouseX = 0;
+    // Interaction
+    var drag=false, prevX=0;
+    container.addEventListener('mousedown',function(e){drag=true;prevX=e.clientX;});
+    window.addEventListener('mouseup',function(){drag=false;});
+    window.addEventListener('mousemove',function(e){if(drag&&holoMesh){holoMesh.rotation.y+=(e.clientX-prevX)*0.01;prevX=e.clientX;}});
+    container.addEventListener('touchstart',function(e){drag=true;prevX=e.touches[0].clientX;});
+    window.addEventListener('touchend',function(){drag=false;});
+    window.addEventListener('touchmove',function(e){if(drag&&holoMesh){holoMesh.rotation.y+=(e.touches[0].clientX-prevX)*0.01;prevX=e.touches[0].clientX;}});
 
-    container.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        previousMouseX = e.clientX;
-    });
-
-    window.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
-
-    window.addEventListener('mousemove', (e) => {
-        if (isDragging && holoMesh) {
-            const deltaX = e.clientX - previousMouseX;
-            holoMesh.rotation.y += deltaX * 0.01;
-            previousMouseX = e.clientX;
-        }
-    });
-
-    // Touch support
-    container.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        previousMouseX = e.touches[0].clientX;
-    });
-
-    window.addEventListener('touchend', () => {
-        isDragging = false;
-    });
-
-    window.addEventListener('touchmove', (e) => {
-        if (isDragging && holoMesh) {
-            const deltaX = e.touches[0].clientX - previousMouseX;
-            holoMesh.rotation.y += deltaX * 0.01;
-            previousMouseX = e.touches[0].clientX;
-        }
-    });
-
-    const animate = () => {
+    // Animation
+    var time0 = Date.now();
+    var animate = function() {
         holoRequestID = requestAnimationFrame(animate);
-        
-        // Auto-rotation (subtle if not dragging)
-        if (!isDragging) {
-            holoMesh.rotation.y += 0.005;
-        }
-        
-        holoMesh.position.y = Math.sin(Date.now() * 0.002) * 0.1;
-
-        if (holoRenderer && holoScene && holoCamera) {
-            holoRenderer.render(holoScene, holoCamera);
-        }
+        if (!holoMesh) return;
+        var t = (Date.now()-time0)*0.001;
+        if (!drag) holoMesh.rotation.y += 0.003;
+        holoMesh.position.y = Math.sin(t*1.2)*0.1;
+        // Pulse lights
+        keyLight.intensity = 2 + Math.sin(t*2)*0.5;
+        fillLight.intensity = 1 + Math.sin(t*1.5+1)*0.3;
+        holoMesh.children.forEach(function(ch){
+            if(ch.userData.scan){ch.position.y=Math.sin(t*1.5)*1.8;ch.material.opacity=0.3+Math.sin(t*3)*0.2;}
+            if(ch.userData.drift){ch.position.y+=Math.sin(t*2+ch.userData.drift.off)*0.0008;}
+            if(ch.userData.bub){ch.position.y+=ch.userData.bub.spd*0.3;if(ch.position.y>1.2)ch.position.y=-0.8;}
+            if(ch.userData.liquid){ch.rotation.z=Math.sin(t*0.8)*0.02;}
+        });
+        if(holoRenderer&&holoScene&&holoCamera) holoRenderer.render(holoScene,holoCamera);
     };
     animate();
 }
@@ -3147,7 +3337,16 @@ function loadChangelogView() {
 
 // Logo Kinetic Overhaul
 const scrambleTarget = document.getElementById('scramble-target');
-const mainLogo = document.getElementById('main-logo');
+const mainLogo = document.getElementById('main-logo');// Ensure all clicks work by re-attaching listeners if needed
+document.addEventListener('click', (e) => {
+    const target = e.target.closest('[onclick]');
+    if (target) {
+        const attr = target.getAttribute('onclick');
+        if (attr && attr.includes('()')) {
+            console.log("ECLIPSE_DEBUG: Click captured on", target.id || target.className);
+        }
+    }
+});
 
 if (mainLogo && scrambleTarget) {
     const chars = '0123456789ABCDEFGHJKLMNOPQRSTUVWXYZ$%&#@!?';
@@ -3180,3 +3379,320 @@ if (mainLogo && scrambleTarget) {
     mainLogo.addEventListener('mouseenter', scramble);
 }
 
+
+
+// --- Neural Uplink ---
+function startNeuralUplink() {
+    const mount = document.getElementById('boot-mount');
+    const appWindow = document.querySelector('.app-window');
+    const initOverlay = document.getElementById('init-trigger-overlay');
+    if (!mount) return;
+
+    if (initOverlay) initOverlay.style.display = 'none';
+    mount.style.display = 'flex';
+    mount.style.opacity = '1';
+    mount.style.pointerEvents = 'auto';
+    if (appWindow) { appWindow.style.opacity = '0'; appWindow.style.pointerEvents = 'none'; }
+
+    let phase1Fired = false, phase2Fired = false, logIdx = 0;
+    let logArea, progBar, statusText, pctText, logTimer = null;
+    const now = new Date();
+    const LOG_INTERVAL_MS = 320;
+
+    const bootLogs = [
+        { msg: 'BIOS_HANDSHAKE // SECURE_BOOT_VERIFIED', type: '' },
+        { msg: 'LOADING_KERNEL: eclipse_core.sys', type: '' },
+        { msg: 'MOUNTING_ENCRYPTED_VOLUME: /dev/pharma_idx', type: '' },
+        { msg: 'DECRYPTING_COMPOUND_DATABASE... 2,847 ENTRIES', type: '' },
+        { msg: 'INITIALIZING_NEURAL_MESH_INTERFACE', type: '' },
+        { msg: 'ESTABLISHING_SYNAPTIC_BRIDGE: PORT 8832', type: '' },
+        { msg: 'WARNING: ELEVATED_CLEARANCE_REQUIRED', type: 'warning' },
+        { msg: 'CLEARANCE_GRANTED: OMEGA_LEVEL_ACCESS', type: 'success' },
+        { msg: 'SYNCING_CLINICAL_TRIAL_DATA... 14.2 GB', type: '' },
+        { msg: 'LOADING_MOLECULAR_RENDERER_v3.2', type: '' },
+        { msg: 'CALIBRATING_DOPAMINE_PATHWAY_MODELS', type: '' },
+        { msg: 'VERIFYING_BLOCKCHAIN_INTEGRITY... OK', type: 'success' },
+        { msg: 'SPAWNING_AI_INFERENCE_ENGINE: 8 THREADS', type: '' },
+        { msg: 'LOADING_SYNTHESIS_ORACLE', type: '' },
+        { msg: 'BINDING_BIOMETRIC_SIGNATURE', type: '' },
+        { msg: 'ALL_SUBSYSTEMS_NOMINAL', type: 'success' },
+        { msg: 'NEURAL_UPLINK_ESTABLISHED', type: 'success' },
+    ];
+
+    function pushLog() {
+        if (!logArea || logIdx >= bootLogs.length) { if (logTimer) clearInterval(logTimer); return; }
+        const entry = bootLogs[logIdx];
+        const line = document.createElement('div');
+        line.className = 'intro-log-line' + (entry.type ? ' ' + entry.type : '');
+        const ts = new Date(now.getTime() + logIdx * LOG_INTERVAL_MS);
+        const timeStr = ts.toTimeString().split(' ')[0] + '.' + String(ts.getMilliseconds()).padStart(3,'0');
+        line.innerHTML = '<span class="timestamp">' + timeStr + '</span> > ' + entry.msg;
+        logArea.appendChild(line);
+        logArea.scrollTop = logArea.scrollHeight;
+        const pct = Math.round(((logIdx + 1) / bootLogs.length) * 100);
+        if (progBar) progBar.style.width = pct + '%';
+        if (pctText) pctText.innerText = pct + '%';
+        if (statusText) statusText.innerText = entry.msg.split('...')[0].split(':')[0];
+        logIdx++;
+    }
+
+    function startPhase1(v) {
+        if (phase1Fired) return; phase1Fired = true;
+        v.innerHTML = '<div class="intro-hex-grid"></div>' +
+            '<div class="intro-corner tl"></div><div class="intro-corner tr"></div>' +
+            '<div class="intro-corner bl"></div><div class="intro-corner br"></div>' +
+            '<div class="intro-data-readout left" style="animation-delay:0.1s">NODE_ADDR: 0x7F3A92<br>CIPHER: AES-512-GCM<br>CLEARANCE: OMEGA</div>' +
+            '<div class="intro-data-readout right" style="animation-delay:0.2s">KERNEL: v5.1.882<br>LATENCY: 4ms<br>UPTIME: 99.97%</div>' +
+            '<div class="intro-boot-terminal">' +
+                '<div class="intro-term-header"><div class="intro-term-dots"><span></span><span></span><span></span></div><span>ECLIPSE_KERNEL // BOOT_SEQUENCE</span></div>' +
+                '<div class="intro-log-area" id="intro-log-area"></div>' +
+                '<div class="intro-progress-wrap"><div class="intro-progress-bar" id="intro-progress-bar"></div></div>' +
+                '<div class="intro-progress-text"><span id="intro-status-text">INITIALIZING...</span><span id="intro-pct-text">0%</span></div>' +
+            '</div>';
+        logArea = document.getElementById('intro-log-area');
+        progBar = document.getElementById('intro-progress-bar');
+        statusText = document.getElementById('intro-status-text');
+        pctText = document.getElementById('intro-pct-text');
+        logTimer = setInterval(pushLog, LOG_INTERVAL_MS);
+    }
+
+    function startPhase2(v) {
+        if (phase2Fired) return; phase2Fired = true;
+        if (logTimer) clearInterval(logTimer);
+        while (logIdx < bootLogs.length) pushLog();
+        const flash = document.createElement('div');
+        flash.className = 'intro-access-granted';
+        flash.innerHTML = '<div class="intro-access-text">ACCESS_GRANTED</div>';
+        document.body.appendChild(flash);
+        setTimeout(function() { flash.remove(); }, 1500);
+        setTimeout(function() {
+            if (introAudio) {
+                const fadeOut = setInterval(function() {
+                    if (introAudio.volume > 0.05) introAudio.volume -= 0.05;
+                    else { clearInterval(fadeOut); introAudio.pause(); bgMusic.play().catch(function(e){}); }
+                }, 60);
+            } else { bgMusic.play().catch(function(e){}); }
+            v.classList.add('fade-out');
+            setTimeout(function() {
+                mount.classList.add('fade-out');
+                mount.style.pointerEvents = 'none';
+                if (appWindow) { appWindow.style.opacity = '1'; appWindow.style.filter = 'blur(0)'; appWindow.style.pointerEvents = 'auto'; }
+                setTimeout(function() { mount.style.display = 'none'; initApp(); }, 500);
+            }, 1000);
+        }, 400);
+    }
+
+    // ====== PHASE 0: THE VOID ======
+    mount.innerHTML = '';
+    const void0 = document.createElement('div');
+    void0.className = 'intro-void';
+    void0.innerHTML = '<div class="intro-hex-grid"></div>' +
+        '<div class="intro-scan-sweep"></div>' +
+        '<div class="intro-corner tl"></div><div class="intro-corner tr"></div>' +
+        '<div class="intro-corner bl"></div><div class="intro-corner br"></div>' +
+        '<div class="intro-data-readout left">NODE_ADDR: 0x7F3A92<br>CIPHER: AES-512-GCM<br>REGION: EU-WEST-3<br>CLEARANCE: OMEGA</div>' +
+        '<div class="intro-data-readout right">KERNEL: v5.1.882<br>LATENCY: 4ms<br>UPTIME: 99.97%<br>THREAT_LVL: NULL</div>' +
+        '<div class="intro-data-readout bottom-left">SESSION: ' + Date.now().toString(16).toUpperCase() + '<br>PROTOCOL: NEURAL_LINK_v3</div>' +
+        '<div class="intro-data-readout bottom-right">TEMP: 31.2\u00B0C<br>PWR_DRAW: 847W</div>' +
+        '<div class="intro-title-wrap">' +
+            '<div class="intro-main-title" id="introGlitchTitle">ECLIPSE</div>' +
+            '<div style="display:flex;justify-content:center;"><div class="intro-subtitle">BIOTECH RESEARCH TERMINAL v5.1</div></div>' +
+        '</div>';
+    mount.appendChild(void0);
+
+    // Title scramble
+    var titleEl = document.getElementById('introGlitchTitle');
+    if (titleEl) {
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        var original = 'ECLIPSE';
+        var iter = 0;
+        var glitchInterval = setInterval(function() {
+            titleEl.innerText = original.split('').map(function(c, i) {
+                if (i < iter) return original[i];
+                return chars[Math.floor(Math.random() * chars.length)];
+            }).join('');
+            iter += 0.4;
+            if (iter >= original.length) { clearInterval(glitchInterval); titleEl.innerText = original; }
+        }, 40);
+    }
+
+    // ====== AUDIO-SYNCED TRIGGERS ======
+    if (introAudio) {
+        introAudio.volume = bgMusic.volume;
+        introAudio.currentTime = 0;
+        introAudio.play().catch(function(e){});
+        var onTimeUpdate = function() {
+            var t = introAudio.currentTime;
+            if (t >= 3.0 && !phase1Fired) startPhase1(void0);
+            if (t >= 8.5 && !phase2Fired) startPhase2(void0);
+        };
+        introAudio.addEventListener('timeupdate', onTimeUpdate);
+        introAudio.addEventListener('ended', function() {
+            introAudio.removeEventListener('timeupdate', onTimeUpdate);
+            if (!phase2Fired) startPhase2(void0);
+        }, { once: true });
+    } else {
+        setTimeout(function() { startPhase1(void0); }, 3000);
+        setTimeout(function() { startPhase2(void0); }, 8500);
+    }
+}
+
+function initTrackSelector() {
+    var trackToggle = document.getElementById('trackToggle');
+    var trackSelector = document.getElementById('trackSelector');
+    var trackList = document.getElementById('trackDropdown');
+    var activeTrackDisplay = document.getElementById('activeTrackName');
+    if (!trackToggle || !trackSelector || !trackList) return;
+
+    trackList.innerHTML = SONG_LIBRARY.map(function(track, i) {
+        return '<div class="track-item ' + (i === currentTrackIndex ? 'active' : '') + '" data-idx="' + i + '">' +
+            '<div class="track-info"><div class="track-name">' + track.name + '</div>' +
+            '<div class="track-artist">' + track.artist + '</div></div></div>';
+    }).join('');
+
+    if (activeTrackDisplay) activeTrackDisplay.innerText = SONG_LIBRARY[currentTrackIndex].name;
+
+    // Toggle open/close
+    trackToggle.onclick = function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        trackSelector.classList.toggle('active');
+    };
+
+    // Each track item click
+    var items = trackList.querySelectorAll('.track-item');
+    for (var j = 0; j < items.length; j++) {
+        items[j].addEventListener('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var idx = parseInt(this.getAttribute('data-idx'));
+            if (!isNaN(idx)) window.selectTrack(idx);
+            trackSelector.classList.remove('active');
+        });
+    }
+
+    // Prevent dropdown clicks from closing
+    trackList.addEventListener('click', function(e) { e.stopPropagation(); });
+}
+
+window.selectTrack = function(index) {
+    if (index === currentTrackIndex && !bgMusic.paused) return;
+    currentTrackIndex = index;
+    localStorage.setItem('eclipse_track_index', currentTrackIndex);
+    bgMusic.src = SONG_LIBRARY[index].url;
+    initTrackSelector();
+    bgMusic.play().then(() => { isAudioInitialized = true; updateAudioUI(); }).catch(e => {
+        showNotify(`ERROR: Audio file missing: ${SONG_LIBRARY[index].url}`);
+        selectTrack(0);
+    });
+}
+
+function attachInitListener() {
+    const initBtn = document.getElementById('init-btn');
+    const overlay = document.getElementById('init-trigger-overlay');
+    if (initBtn) {
+        initBtn.onclick = () => {
+            console.log("ECLIPSE_CORE: Initialization triggered.");
+            if (overlay) overlay.style.display = 'none';
+            initAudio(true);
+            startNeuralUplink();
+        };
+    }
+}
+
+function toggleVisuals() {
+    const modal = document.getElementById('visualsModal');
+    if (!modal) return;
+    const isVisible = modal.classList.contains('active');
+    if (isVisible) {
+        modal.classList.remove('active');
+    } else {
+        modal.classList.add('active');
+        // Set active button
+        document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.getElementById('m-' + currentParticleMode);
+        if (activeBtn) activeBtn.classList.add('active');
+        // Set range values
+        const densityInput = document.getElementById('particleDensity');
+        if (densityInput) densityInput.value = particles.length;
+        const speedInput = document.getElementById('particleSpeed');
+        if (speedInput) speedInput.value = currentVelocityScale;
+    }
+}
+
+function changeParticleMode(mode) {
+    currentParticleMode = mode;
+    localStorage.setItem('eclipse_particle_mode', mode);
+    document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+    const btn = document.getElementById('m-' + mode);
+    if (btn) btn.classList.add('active');
+    particles.forEach(p => p.resetVelocity());
+    showNotify(`ATMOSPHERE_CORE: MODE_SET_TO_${mode.toUpperCase()}`, 2000);
+}
+
+function updateParticleSpeed() {
+    const input = document.getElementById('particleSpeed');
+    if (input) {
+        currentVelocityScale = parseFloat(input.value);
+        localStorage.setItem('eclipse_velocity_scale', currentVelocityScale);
+        particles.forEach(p => p.resetVelocity());
+    }
+}
+
+function updateVisuals() {
+    const scanlines = document.getElementById('toggleScanlines');
+    const overlay = document.querySelector('.scan-line-v');
+    if (scanlines && overlay) {
+        overlay.style.display = scanlines.checked ? 'block' : 'none';
+    }
+}
+
+function initParticles() {
+    const densityInput = document.getElementById('particleDensity');
+    const count = densityInput ? parseInt(densityInput.value) : (PARTICLE_COUNT || 60);
+    particles = [];
+    for (let i = 0; i < count; i++) particles.push(new Particle());
+}
+
+// Gold Standard: Sidebar stagger animation
+function applySidebarStagger() {
+    const items = document.querySelectorAll('.sidebar-nav .nav-item-wrapper, .sidebar-nav .nav-category, .sidebar-nav .nav-item:not(.nav-item-wrapper .nav-item)');
+    items.forEach((item, i) => {
+        item.style.animationDelay = (i * 30) + 'ms';
+    });
+}
+
+// Gold Standard: Live uptime counter
+function startUptimeCounter() {
+    const telemetry = document.querySelector('.card-telemetry');
+    if (!telemetry) return;
+    const startTime = Date.now();
+    setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const secs = Math.floor(elapsed / 1000);
+        const mins = Math.floor(secs / 60);
+        const hrs = Math.floor(mins / 60);
+        const uptimeStr = String(hrs).padStart(2,'0') + ':' + String(mins%60).padStart(2,'0') + ':' + String(secs%60).padStart(2,'0');
+        telemetry.innerText = 'CONNECTED_NODE: 0x882 // LATENCY: ' + (3 + Math.floor(Math.random()*3)) + 'ms // UPTIME: ' + uptimeStr;
+    }, 1000);
+}
+
+// Gold Standard: Back-to-top visibility
+function initBackToTop() {
+    const btn = document.getElementById('back-to-top');
+    const scrollArea = document.querySelector('.article-scroll-area');
+    if (!btn || !scrollArea) return;
+    scrollArea.addEventListener('scroll', () => {
+        if (scrollArea.scrollTop > 300) btn.classList.add('visible');
+        else btn.classList.remove('visible');
+    });
+    btn.addEventListener('click', () => {
+        scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// Gold Standard: Smooth scroll behavior
+(function() {
+    const scrollArea = document.querySelector('.article-scroll-area');
+    if (scrollArea) scrollArea.style.scrollBehavior = 'smooth';
+})();

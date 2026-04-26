@@ -10,3 +10,4 @@ build/
 
 # Large assets (keeping bg_music.mp3 since it's core to the experience)
 # bg_music.mp3
+.vercel

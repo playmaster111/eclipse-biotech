@@ -1,4 +1,4 @@
-const CATEGORIES = {
+var CATEGORIES = {
     'anabolic': { name: 'Anabolic-Androgenic (AAS)', desc: 'Synthetic variations of testosterone used to treat hormonal imbalances and muscle wasting conditions.' },
     'ancillaries': { name: 'Ancillaries & Medications', desc: 'Pharmaceuticals utilized for side-effect management, fertility preservation, Post Cycle Therapy (PCT), and extreme fat loss.' },
     'cannabis': { name: 'Cannabis & Concentrates', desc: 'Compounds found in the cannabis plant that interact with the endocannabinoid system and liver metabolism (edibles).' },
@@ -17,8 +17,9 @@ const CATEGORIES = {
     'sarms': { name: 'SARMs & PPAR Agonists', desc: 'Selective Androgen Receptor Modulators engineered to target muscle and bone tissue while minimizing prostate and hairline side effects.' },
     'sex-hormones': { name: 'Sex Hormones & Others', desc: 'Steroids primarily involved in reproductive systems, contraceptives, and specialty treatments.' }
 };
+window.CATEGORIES = CATEGORIES;
 
-const WIKI_DATA = [
+var WIKI_DATA = [
     // --- TESTOSTERONES ---
     {
         id: 'testosterone_suspension', folder: 'Testosterones', category: 'anabolic', type: 'AAS', name: 'Testosterone (No Ester)', esters: '(Suspension)', status: 'active',
@@ -824,6 +825,32 @@ const WIKI_DATA = [
         experimental: { b: 'N/A', a: 'N/A' },
         risks: 'Extremely safe; minor skin irritation on ultra-sensitive individuals.',
         impact: { brain: 0, heart: 0, liver: 0, kidneys: 0, blood: 0, hair: 0, joints: 0 }
+    },
+
+    {
+        id: 'creatine', folder: 'Performance Supplements', category: 'peptides', type: 'Ergogenic Aid', name: 'Creatine Monohydrate', esters: '', status: 'active',
+        overview: 'Creatine is the most scientifically validated performance supplement in existence. It is a nitrogenous organic acid that occurs naturally in vertebrates and helps to supply energy to all cells in the body, primarily muscle.',
+        primaryUses: 'ATP regeneration, muscular power output, cellular hydration, neuroprotection.',
+        mechanism: 'Increases systemic phosphocreatine stores, allowing for rapid regeneration of Adenosine Triphosphate (ATP) during high-intensity mechanical load. Also promotes osmotic water retention within the muscle cell (intracellular hydration) and upregulates satellite cell signaling.',
+        dosage: '3g to 5g daily (Saturation dose).',
+        experimental: { b: '5g/day', a: '10g/day' },
+        benefits: 'Significant increases in explosive power, improved muscular endurance, enhanced muscle fullness, and potential cognitive improvements via brain energy buffering.',
+        risks: 'Mild gastrointestinal distress if not fully dissolved, temporary weight gain (water), theoretical kidney strain only in individuals with pre-existing renal pathology.',
+        impact: { brain: -2, heart: 0, liver: 0, kidneys: 1, blood: 1, hair: 1, joints: -2 },
+        aestheticProfile: 'Provides a "fuller" look to the muscles due to increased intracellular water. Unlike AAS, it does not cause subcutaneous "bloat" or facial edema.',
+        physiologicalTargets: 'Primarily Type II (Fast-Twitch) muscle fibers and the hippocampus in the brain.',
+        synthesis: 'Industrial synthesis via the reaction of sarcosine and cyanamide.',
+        synthesisSteps: [
+            'Preparation of sarcosine from chloroacetic acid and methylamine.',
+            'Reaction of cyanamide with sarcosine in an aqueous medium.',
+            'Heating the mixture to promote the formation of raw creatine.',
+            'Purification via recrystallization to remove dicyandiamide and dihydrotriazine contaminants.',
+            'Drying and micronization to produce the final white crystalline powder.'
+        ],
+        ingredients: ['Sarcosine', 'Cyanamide', 'Methylamine', 'Chloroacetic Acid', 'Purified Water'],
+        location: 'Global (Large scale industrial chemical facilities), primarily China and Germany.',
+        storage: { temp: '15-30°C', light: 'Protect from moisture', shelf: '36-60 Months', notes: 'Creatine is highly stable in powder form but degrades into creatinine if left in liquid solution for long periods.' },
+        cycleExamples: '<strong>The Perpetual Base:</strong> 5g daily, taken at any time, year-round. No "loading phase" or "cycling" is strictly required as the muscle reaches saturation within 2-4 weeks of consistent dosing.'
     },
 
     // --- ANCILLARIES & MEDICATIONS ---
@@ -2264,6 +2291,5 @@ const WIKI_DATA = [
     },
 ];
 
-// Attach to window so script.js can use it
 window.WIKI_DATA = WIKI_DATA;
 window.CATEGORIES = CATEGORIES;

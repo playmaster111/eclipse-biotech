@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="theme-color" content="#06080a">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eclipse Biotech | Comprehensive Pharmacology Platform</title>
     <meta name="description" content="An interactive database detailing the different types of steroids, their medical uses, and primary mechanisms.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=4.0.2">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=4.0.4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
 </head>
@@ -73,17 +74,44 @@
 
 
 
+    <!-- Initialization Trigger Overlay (Browser Autoplay Compliance) -->
+    <div id="init-trigger-overlay" class="init-overlay">
+        <div class="init-content">
+            <div class="init-logo">
+                <span class="glitch-logo bf3-logo" data-text="ECLIPSEBIOTECH"><span class="logo-w">ECLIPSE</span><span class="logo-c">BIOTECH</span></span>
+
+                <span class="init-sub">BIOTECH_TERMINAL_v4.0.5</span>
+            </div>
+            <button id="init-btn" class="init-cyber-btn">
+                <span class="btn-glitch-bg"></span>
+                <span class="btn-text">RESONANCE_INIT</span>
+                <div class="btn-scanline"></div>
+            </button>
+            <div class="init-status">
+                <span class="status-dot"></span> SECURE_CONNECTION_STABLE // STANDBY
+            </div>
+        </div>
+    </div>
+
+    <!-- Digital Noise Overlay (BF3 Style) -->
+    <div id="bf3-noise-overlay" class="bf3-noise"></div>
+
     <!-- Backgrounds -->
+
+
     <canvas id="particle-canvas" class="background-canvas"></canvas>
     <div class="grid-bg"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
 
+    <!-- Boot Sequence Overlay -->
+    <div id="boot-mount"></div>
+
     <!-- Main React-like App Wrapper -->
     <div class="app-window">
         <div id="mobile-sidebar-overlay" class="mobile-overlay"></div>
         <!-- Sidebar Navigation -->
-        <aside class="sidebar collapsed">
+        <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="logo-wrap">
                     <div id="sidebar-close" class="mobile-close" style="display: none;">✕</div>
@@ -115,10 +143,10 @@
                     <span id="home-breadcrumb" style="cursor: pointer;" onclick="goHome()">SYSTEM_CORE</span> <span class="divider">/</span> <span id="current-category">INDEX</span>
                 </div>
                 <div class="nav-controls">
-                    <button id="bioIdBtn" class="cyber-btn" style="margin-right: 15px; padding: 5px 12px; font-size: 11px;">
+                    <button id="bioIdBtn" class="cyber-btn">
                         <i class="fas fa-id-card"></i> <span id="bioIdText">ENROLL_BIO_ID</span>
                     </button>
-                    <div id="mobile-menu-toggle" class="mobile-toggle" style="display: none;">
+                    <div id="mobile-menu-toggle" class="mobile-toggle">
                         <span>☰</span>
                     </div>
                     <div class="audio-wrap">
@@ -127,31 +155,58 @@
                             <span>AMBIENT AUDIO</span>
                         </button>
                         <div class="volume-ctrl">
-                            <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.3">
+                            <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.6">
                         </div>
-                        <!-- Music restored with bandwidth optimization -->
-                        <audio id="bgMusic" src="bg_music.mp3" loop preload="none"></audio>
-                    </div>
-                    <div class="lang-selector">
-                        <div class="lang-custom-select" id="langCustomSelect">
-                            <div class="lang-selected" id="langSelectedValue">EN</div>
-                            <div class="lang-options" id="langOptions">
-                                <div class="lang-option" data-value="en">EN</div>
-                                <div class="lang-option" data-value="de">DE</div>
-                                <div class="lang-option" data-value="it">IT</div>
-                                <div class="lang-option" data-value="es">ES</div>
+                        
+                        <div class="track-selector-custom" id="trackSelector">
+                            <div class="track-toggle" id="trackToggle" title="Select Track">
+                                <i class="fas fa-compact-disc"></i>
+                                <span id="activeTrackName">MAIN_THEME</span>
+                            </div>
+                            <div class="track-dropdown" id="trackDropdown">
+                                <!-- Populated by JS -->
                             </div>
                         </div>
+
+                        <audio id="bgMusic" src="bg_music.mp3" loop preload="none"></audio>
+                        <audio id="introAudio" src="intro_audio.mp3" preload="auto"></audio>
+                        <audio id="clickSound" src="click.wav" preload="auto"></audio>
                     </div>
+
+                    <div class="lang-custom-select" id="langCustomSelect">
+                        <div class="lang-selected" id="langSelectedValue">EN</div>
+                        <div class="lang-options">
+                            <div class="lang-option active" data-value="en">EN</div>
+                            <div class="lang-option" data-value="de">DE</div>
+                            <div class="lang-option" data-value="es">ES</div>
+                            <div class="lang-option" data-value="it">IT</div>
+                        </div>
+                    </div>
+
+                    <button id="visualsBtn" class="cyber-btn" onclick="toggleVisuals()">
+                        <i class="fas fa-paint-brush"></i>
+                    </button>
                 </div>
             </div>
 
             <div id="article-mount" class="article-scroll-area">
                 <!-- Welcome screen by default -->
                 <div class="empty-state">
-                    <div class="glitch-icon">⚗</div>
-                    <h2 class="glitch-small" data-text="AWAITING INPUT">AWAITING INPUT</h2>
-                    <p style="max-width: 400px; line-height: 1.6;">Select a compound from the database index to initialize the clinical profile. Data encompasses mechanism of action, FDA/historical dosages, and physiological risks.</p>
+                    <div class="welcome-card">
+                        <div class="bio-scan-orb">
+                            <div class="orb-core"></div>
+                            <div class="orb-scan"></div>
+                        </div>
+                        <h1 id="welcome-title" class="glitch-large" data-text="WELCOME ADMIN">WELCOME ADMIN</h1>
+                        <div class="card-telemetry">CONNECTED_NODE: 0x882 // LATENCY: 4ms</div>
+                        <p style="max-width: 450px; line-height: 1.8; color: rgba(255,255,255,0.7); font-size: 14px;">The biotech databank has been synchronized with your previous research sessions. Select a compound from the neural index to initialize a high-fidelity clinical profile.</p>
+                        <div class="card-actions">
+                            <button onclick="document.getElementById('mobile-menu-toggle').click()" class="cyber-btn" style="width: auto; padding: 10px 25px;">OPEN_DATABASE_INDEX</button>
+                            <button onclick="loadAIView()" class="cyber-btn" style="width: auto; padding: 10px 25px;">
+                                <i class="fas fa-brain"></i> ASK_ECLIPSE
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -163,7 +218,7 @@
     </div>
 
     <!-- Contribution Modal -->
-    <div id="donation-modal" class="modal-overlay">
+    <div id="donation-modal" class="modal-overlay" style="display: none;">
         <div class="modal-window donation-window">
             <div class="modal-header">
                 <div class="modal-title"><i class="fas fa-wallet"></i> SECURE_CONTRIBUTION_PORTAL</div>
@@ -206,15 +261,29 @@
                 </div>
 
                 <div class="donation-footer">
-                    <div class="status-dot"></div>
-                    <span>ENCRYPTED_PEER_TO_PEER_TRANSFER_ONLY</span>
+                    <button class="cyber-btn signal-btn" onclick="signalTransfer()">
+                        <i class="fas fa-satellite-dish"></i> SIGNAL_TRANSFER_COMPLETE
+                    </button>
+                    <div class="footer-meta">
+                        <div class="status-dot"></div>
+                        <span>ENCRYPTED_PEER_TO_PEER_TRANSFER_ONLY</span>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Cinematic Thanks Screen -->
+            <div class="thanks-screen">
+                <div class="thanks-icon"><i class="fas fa-project-diagram"></i></div>
+                <h2 class="thanks-title">CONTRIBUTION_RECEIVED</h2>
+                <p class="thanks-msg">NEURAL_LINK_STRENGTHENED. YOUR SUPPORT ENSURES THE CONTINUED EVOLUTION OF THE ECLIPSE NETWORK.</p>
+                <button class="cyber-btn" style="width: auto; padding: 10px 30px; margin-top: 30px;" onclick="closeDonationModal()">TERMINATE_SESSION</button>
             </div>
         </div>
     </div>
 
     <!-- Google Translate Hidden Element -->
     <div id="google_translate_element" style="display:none"></div>
+
 
     <!-- Custom Molecular Cursor -->
     <div class="custom-cursor molecule-center" id="cursor"></div>
@@ -242,12 +311,56 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="translations.js"></script>
-    <script src="data_i18n.js"></script>
-    <script src="data.js"></script>
-    <script src="script.js?v=4.0.2"></script>
-    <script src="cursor.js?v=4.0.2"></script>
+    <!-- Visuals Modal -->
+    <div id="visualsModal" class="modal">
+        <div class="modal-content glass-card" style="max-width: 400px;">
+            <h2 class="terminal-title">ATMOSPHERE_CONFIG</h2>
+            <div class="settings-grid" style="margin-top: 30px;">
+                <div class="setting-item" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                    <span>ATMOSPHERE_ENGINE_CORE</span>
+                    <div class="mode-selector">
+                        <button class="mode-btn" id="m-neural" onclick="changeParticleMode('neural')" title="Neural Network">
+                            <i class="fas fa-project-diagram"></i>
+                        </button>
+                        <button class="mode-btn" id="m-snow" onclick="changeParticleMode('snow')" title="Synthetic Snow">
+                            <i class="fas fa-snowflake"></i>
+                        </button>
+                        <button class="mode-btn" id="m-stars" onclick="changeParticleMode('stars')" title="Streak Stars">
+                            <i class="fas fa-meteor"></i>
+                        </button>
+                        <button class="mode-btn" id="m-none" onclick="changeParticleMode('none')" title="Deactivate">
+                            <i class="fas fa-power-off"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <span>PARTICLE_DENSITY</span>
+                    <input type="range" id="particleDensity" min="20" max="150" value="60" onchange="initParticles()">
+                </div>
+                <div class="setting-item">
+                    <span>VELOCITY_SCALE</span>
+                    <input type="range" id="particleSpeed" min="0.1" max="5" step="0.1" value="1" oninput="updateParticleSpeed()">
+                </div>
+                <div class="setting-item">
+                    <span>SCANLINE_OVERLAY</span>
+                    <label class="switch">
+                        <input type="checkbox" id="toggleScanlines" checked onchange="updateVisuals()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div style="margin-top: 40px;">
+                <button onclick="toggleVisuals()" class="cyber-btn" style="width: 100%;">SAVE_ATMOSPHERE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="translations.js" defer></script>
+    <script src="data_i18n.js" defer></script>
+    <script src="data.js?v=4.0.1" defer></script>
+    <script src="script.js?v=4.0.5" defer></script>
+    <script src="cursor.js?v=4.0.2" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer crossorigin="anonymous"></script>
     
     <!-- Google Translate API -->
     <script type="text/javascript">
