@@ -4801,6 +4801,8 @@ body {
 
 /* Responsive Content Grids & Touch Feedback */
 @media (max-width: 768px) {
+    .nav-controls .audio-wrap { background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; gap: 8px !important; }
+    .audio-btn, .track-toggle { background: rgba(0, 240, 255, 0.05) !important; border: 1px solid rgba(0, 240, 255, 0.4) !important; border-radius: 4px !important; }
     .breadcrumbs { display: none !important; }
     .lang-custom-select { display: none !important; }
     .nav-controls { width: 100%; justify-content: flex-end; gap: 8px !important; }
