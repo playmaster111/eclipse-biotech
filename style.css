@@ -4801,6 +4801,10 @@ body {
 
 /* Responsive Content Grids & Touch Feedback */
 @media (max-width: 768px) {
+    .heat-map-panel, .timeline-content { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: #0a0d14 !important; border: 1px solid rgba(0, 240, 255, 0.2) !important; }
+    .timeline-content .log-title, .heat-map-header { color: #fff !important; }
+    .timeline-content .log-desc, .zone-label { color: #dce8f0 !important; }
+    .timeline-content .log-ver, .timeline-content .log-date { color: var(--cyan) !important; }
     .nav-controls .audio-wrap { background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; gap: 8px !important; }
     .audio-btn, .track-toggle { background: rgba(0, 240, 255, 0.05) !important; border: 1px solid rgba(0, 240, 255, 0.4) !important; border-radius: 4px !important; }
     .breadcrumbs { display: none !important; }
