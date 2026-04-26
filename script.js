@@ -1148,6 +1148,15 @@ function copyAddress(id) {
         }, 2000);
     });
 }
+ 
+function signalTransfer() {
+    var modal = document.querySelector('.donation-window');
+    if (!modal) return;
+    var body = modal.querySelector('.modal-body');
+    var thanks = modal.querySelector('.thanks-screen');
+    if (body) body.style.display = 'none';
+    if (thanks) thanks.style.display = 'flex';
+}
 
 // Load AI View
 function loadAIView() {
