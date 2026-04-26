@@ -5750,3 +5750,8 @@ body::before { pointer-events: none !important; }
     .track-item { padding: 14px 12px !important; min-height: 48px; }
     .copy-btn { min-width: 44px; min-height: 44px; }
 }
+
+/* Fix thanks screen bleeding */
+.thanks-screen {
+    border-radius: 12px;
+}
