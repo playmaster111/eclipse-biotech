@@ -1506,6 +1506,17 @@ var WIKI_DATA = [
         location: 'Global Industrial Pharmaceutical Hubs (India, China, Italy, Germany).'
     },
     {
+        id: 'pregabalin', folder: 'Gabapentinoids', category: 'depressants', type: 'Gabapentinoid', name: 'Pregabalin', aka: 'Lyrica', esters: '(Lyrica / Pregabalin)', status: 'active',
+        overview: 'Pregabalin is an anticonvulsant, analgesic, and anxiolytic medication used to treat epilepsy, neuropathic pain, fibromyalgia, and generalized anxiety disorder. It is a more potent successor to gabapentin.',
+        primaryUses: 'Neuropathic pain, anxiety, seizures, fibromyalgia',
+        mechanism: 'Binds to the alpha2-delta site of voltage-gated calcium channels in the central nervous system, reducing the release of excitatory neurotransmitters.',
+        dosage: '75mg to 300mg (Medical) / 300mg to 600mg+ (Recreational).',
+        experimental: { b: '150mg', a: '600mg+' },
+        benefits: 'Significant reduction in nerve pain, profound anxiety relief, euphoria, mild dissociation, and sociability enhancement.',
+        risks: 'Dizziness, extreme drowsiness, weight gain, physical dependence, severe withdrawal syndrome, and lowered seizure threshold at massive doses.',
+        impact: { brain: 8, heart: 2, liver: 3, kidneys: 2, blood: 1, hair: 0, joints: 0 }
+    },
+    {
         id: 'ghb', folder: 'Sedatives', category: 'depressants', type: 'CNS Depressant', name: 'GHB / GBL', esters: '(Liquid Ecstasy / G)', status: 'restricted',
         overview: 'Gamma-hydroxybutyrate is a naturally occurring neurotransmitter used as a date-rape drug and a sleep-aid for narcolepsy (Xyrem).',
         primaryUses: 'Narcolepsy, alcohol withdrawal',
