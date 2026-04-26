@@ -4801,6 +4801,12 @@ body {
 
 /* Responsive Content Grids & Touch Feedback */
 @media (max-width: 768px) {
+    .breadcrumbs { display: none !important; }
+    .lang-custom-select { display: none !important; }
+    .nav-controls { width: 100%; justify-content: flex-end; gap: 8px !important; }
+    .track-toggle span, .audio-btn span, #bioIdBtn span { display: none !important; }
+    .track-toggle, .audio-btn, #bioIdBtn, .mobile-toggle { width: 36px !important; height: 36px !important; justify-content: center; padding: 0 !important; min-width: unset !important; }
+    .volume-ctrl { display: none !important; }
     .clinical-meta-grid {
         grid-template-columns: 1fr !important;
     }
