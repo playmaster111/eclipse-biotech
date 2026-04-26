@@ -15,7 +15,8 @@ var CATEGORIES = {
     'recreational': { name: 'Stimulants & Neuro-Enhancers', desc: 'CNS stimulants, amphetamines, and wakefulness agents widely utilized to enforce peak cognitive performance and training intensity.' },
     'reference': { name: 'Bloodwork & Health Markers', desc: 'Clinical reference ranges and deep dives into the essential biomarkers impacted by performance enhancing drugs.' },
     'sarms': { name: 'SARMs & PPAR Agonists', desc: 'Selective Androgen Receptor Modulators engineered to target muscle and bone tissue while minimizing prostate and hairline side effects.' },
-    'sex-hormones': { name: 'Sex Hormones & Others', desc: 'Steroids primarily involved in reproductive systems, contraceptives, and specialty treatments.' }
+    'sex-hormones': { name: 'Sex Hormones & Others', desc: 'Steroids primarily involved in reproductive systems, contraceptives, and specialty treatments.' },
+    'antidepressants': { name: 'Antidepressants & SSRIs', desc: 'Medications utilized to treat major depressive disorders, often through the modulation of serotonin, dopamine, and norepinephrine.' }
 };
 window.CATEGORIES = CATEGORIES;
 
@@ -2300,6 +2301,106 @@ var WIKI_DATA = [
         aestheticProfile: 'During use, the subject looks "flat," exhausted, and often drenched in yellow sweat. Post-cycle, the fat loss is dramatic, revealing an extremely shredded physique.',
         physiologicalTargets: 'The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely.'
     },
+    // --- ANTIDEPRESSANTS ---
+    {
+        id: 'fluoxetine', folder: 'SSRIs', category: 'antidepressants', type: 'SSRI', name: 'Fluoxetine', esters: '(Prozac)', status: 'active',
+        overview: 'Fluoxetine is one of the oldest and most widely prescribed Selective Serotonin Reuptake Inhibitors (SSRIs). It is famous for its extremely long half-life.',
+        primaryUses: 'Major Depressive Disorder, OCD, Bulimia, Panic Disorder',
+        mechanism: 'Selectively blocks the reuptake of serotonin at the neuronal membrane, enhancing serotonergic function in the CNS. The active metabolite, norfluoxetine, stays in the system for weeks.',
+        dosage: '20mg to 60mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Significant mood elevation, reduction in obsessive thoughts, high clinical safety profile.',
+        risks: 'Sexual dysfunction, emotional blunting, insomnia, risk of Serotonin Syndrome if combined with MAOIs.',
+        impact: { brain: 6, heart: 2, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'sertraline', folder: 'SSRIs', category: 'antidepressants', type: 'SSRI', name: 'Sertraline', esters: '(Zoloft)', status: 'active',
+        overview: 'Sertraline is a potent SSRI that also exhibits very mild dopamine reuptake inhibition (DRI) properties at high doses.',
+        primaryUses: 'Major Depressive Disorder, PTSD, Social Anxiety Disorder',
+        mechanism: 'Primarily inhibits the serotonin transporter (SERT). Its mild dopaminergic action can make it slightly more stimulating than other SSRIs.',
+        dosage: '50mg to 200mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Highly effective for severe anxiety and panic disorders alongside depression.',
+        risks: 'Gastrointestinal distress (common), sexual dysfunction, emotional blunting, weight changes.',
+        impact: { brain: 6, heart: 2, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'escitalopram', folder: 'SSRIs', category: 'antidepressants', type: 'SSRI', name: 'Escitalopram', esters: '(Lexapro)', status: 'active',
+        overview: 'Escitalopram is the highly purified S-enantiomer of citalopram. It is often considered the most highly selective SSRI available, meaning fewer off-target side effects.',
+        primaryUses: 'Major Depressive Disorder, Generalized Anxiety Disorder',
+        mechanism: 'Extremely selective and potent inhibition of SERT with virtually zero affinity for other receptors (histamine, dopamine, norepinephrine).',
+        dosage: '10mg to 20mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Considered to have the cleanest side-effect profile of the SSRIs; very rapid onset of anxiolytic effects.',
+        risks: 'Lethargy, sexual dysfunction, dose-dependent QT interval prolongation (heart rhythm changes).',
+        impact: { brain: 6, heart: 3, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'venlafaxine', folder: 'SNRIs', category: 'antidepressants', type: 'SNRI', name: 'Venlafaxine', esters: '(Effexor)', status: 'active',
+        overview: 'Venlafaxine is a Serotonin-Norepinephrine Reuptake Inhibitor (SNRI). It acts like an SSRI at low doses and increasingly boosts norepinephrine at high doses.',
+        primaryUses: 'Severe Depression, Panic Disorder, Neuropathic Pain',
+        mechanism: 'Inhibits both serotonin and norepinephrine transporters. The norepinephrine boost provides significant energy and focus for severely lethargic depressed patients.',
+        dosage: '75mg to 225mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Highly effective for treatment-resistant depression and chronic pain conditions.',
+        risks: 'Severe withdrawal syndrome ("brain zaps"), elevated blood pressure, severe sweating, insomnia.',
+        impact: { brain: 7, heart: 5, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'duloxetine', folder: 'SNRIs', category: 'antidepressants', type: 'SNRI', name: 'Duloxetine', esters: '(Cymbalta)', status: 'active',
+        overview: 'Duloxetine is a potent SNRI that is heavily prescribed not just for depression, but specifically for somatic (physical) pain associated with depression.',
+        primaryUses: 'Major Depressive Disorder, Fibromyalgia, Chronic Musculoskeletal Pain',
+        mechanism: 'Potent dual reuptake inhibitor of serotonin and norepinephrine. Highly effective at modulating descending pain pathways in the central nervous system.',
+        dosage: '40mg to 60mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Simultaneously treats depression and severe physical pain/fibromyalgia.',
+        risks: 'Liver toxicity (especially if combined with alcohol), intense withdrawal syndrome, nausea.',
+        impact: { brain: 7, heart: 4, liver: 4, kidneys: 1, blood: 1, hair: 0, joints: -2 }
+    },
+    {
+        id: 'bupropion', folder: 'Atypicals', category: 'antidepressants', type: 'NDRI', name: 'Bupropion', esters: '(Wellbutrin / Zyban)', status: 'active',
+        overview: 'Bupropion is a unique atypical antidepressant that does not affect serotonin. Instead, it boosts dopamine and norepinephrine, making it highly stimulating.',
+        primaryUses: 'Major Depressive Disorder, Smoking Cessation, ADHD (off-label)',
+        mechanism: 'Norepinephrine-Dopamine Reuptake Inhibitor (NDRI). Structurally related to substituted cathinones (amphetamines).',
+        dosage: '150mg to 300mg per day (Extended Release).',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Increases energy and libido (often used to reverse SSRI-induced sexual dysfunction); highly effective for quitting nicotine.',
+        risks: 'Severe risk of drug-induced seizures at high doses, anxiety escalation, insomnia, weight loss.',
+        impact: { brain: 7, heart: 5, liver: 2, kidneys: 1, blood: 1, hair: 1, joints: 0 }
+    },
+    {
+        id: 'mirtazapine', folder: 'Atypicals', category: 'antidepressants', type: 'TeCA', name: 'Mirtazapine', esters: '(Remeron)', status: 'active',
+        overview: 'Mirtazapine is a tetracyclic antidepressant famously known for causing extreme drowsiness and massive appetite increases.',
+        primaryUses: 'Depression with Severe Insomnia, Cachexia (weight loss)',
+        mechanism: 'Antagonizes central alpha-2 adrenergic auto-receptors (increasing serotonin/norepinephrine release) while heavily antagonizing histamine (H1) receptors (causing extreme sedation).',
+        dosage: '15mg to 45mg per day (taken at night).',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Instant cure for severe insomnia; massive weight gain for underweight patients; virtually zero sexual dysfunction.',
+        risks: 'Severe grogginess ("hangover effect"), extreme rapid weight gain/obesity, lipid disruption.',
+        impact: { brain: 6, heart: 2, liver: 2, kidneys: 1, blood: 2, hair: 0, joints: 0 }
+    },
+    {
+        id: 'amitriptyline', folder: 'Tricyclics', category: 'antidepressants', type: 'TCA', name: 'Amitriptyline', esters: '(Elavil)', status: 'active',
+        overview: 'One of the oldest Tricyclic Antidepressants (TCAs). While highly effective for depression, it is mostly used today in low doses for severe nerve pain and migraines due to its heavy side-effect profile.',
+        primaryUses: 'Neuropathic pain, Migraine prophylaxis, Severe Depression',
+        mechanism: 'Inhibits reuptake of serotonin and norepinephrine, but also heavily antagonizes histamine, muscarinic acetylcholine, and alpha-adrenergic receptors (causing its dirty side-effect profile).',
+        dosage: '10mg to 50mg (Pain) / 75mg to 150mg (Depression).',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Incredible efficacy for neuropathic pain and chronic migraines; profound sedative effects for insomnia.',
+        risks: 'Lethal in overdose (cardiotoxicity), extreme dry mouth, severe constipation, urinary retention, weight gain.',
+        impact: { brain: 8, heart: 7, liver: 3, kidneys: 2, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'tranylcypromine', folder: 'MAOIs', category: 'antidepressants', type: 'MAOI', name: 'Tranylcypromine', esters: '(Parnate)', status: 'active',
+        overview: 'An irreversible Monoamine Oxidase Inhibitor (MAOI). It is considered a "last-line" atomic bomb for treatment-resistant depression when all else fails.',
+        primaryUses: 'Treatment-Resistant Major Depressive Disorder',
+        mechanism: 'Irreversibly destroys the MAO enzymes (types A and B) that break down serotonin, dopamine, and norepinephrine in the brain, leading to a massive flood of neurotransmitters.',
+        dosage: '30mg to 60mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Can completely cure extreme, treatment-resistant atypical depression where literally nothing else works.',
+        risks: '<strong>Lethal Dietary Interactions (The "Cheese Effect").</strong> Eating tyramine-rich foods (aged cheese, wine, cured meats) can cause a lethal hypertensive crisis (exploding blood pressure).',
+        impact: { brain: 10, heart: 8, liver: 4, kidneys: 2, blood: 2, hair: 0, joints: 0 }
+    }
 ];
 
 window.WIKI_DATA = WIKI_DATA;
