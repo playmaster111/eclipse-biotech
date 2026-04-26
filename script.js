@@ -936,7 +936,8 @@ function renderSidebar(filter = '') {
                 const idMatch = (item.id || "").toLowerCase().includes(searchStr);
                 const folderMatch = (item.folder || "").toLowerCase().includes(searchStr);
                 const akaMatch = (item.aka || "").toLowerCase().includes(searchStr);
-                return item.category === catKey && (nameMatch || idMatch || folderMatch || akaMatch);
+                const estersMatch = (item.esters || "").toLowerCase().includes(searchStr);
+                return item.category === catKey && (nameMatch || idMatch || folderMatch || akaMatch || estersMatch);
             });
 
         if (items.length > 0) {
