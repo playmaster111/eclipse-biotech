@@ -4787,15 +4787,7 @@ body {
     .mobile-toggle {
         display: flex !important;
     }
-    .mobile-close {
-        display: block !important;
-        position: absolute;
-        right: 20px;
-        top: 30px;
-        color: var(--accent);
-        font-size: 24px;
-        cursor: pointer;
-    }
+
     .article-viewer {
         width: 100%;
     }
