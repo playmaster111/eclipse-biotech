@@ -2395,11 +2395,218 @@ var WIKI_DATA = [
         overview: 'An irreversible Monoamine Oxidase Inhibitor (MAOI). It is considered a "last-line" atomic bomb for treatment-resistant depression when all else fails.',
         primaryUses: 'Treatment-Resistant Major Depressive Disorder',
         mechanism: 'Irreversibly destroys the MAO enzymes (types A and B) that break down serotonin, dopamine, and norepinephrine in the brain, leading to a massive flood of neurotransmitters.',
+        mechanism: 'Melanocortin receptor agonist (primarily MC4R), stimulating the neural pathways responsible for sexual arousal.',
+        dosage: '1.75mg (Injection).',
+        experimental: { b: '1.0mg', a: '2.0mg' },
+        benefits: 'Dramatic increase in libido and erectile function without affecting blood pressure significantly.',
+        risks: 'Severe transient nausea, facial flushing, potential for increased blood pressure during use.'
+    },
+    {
+        id: 'cabergoline', folder: 'Prolactin & 5AR', category: 'ancillaries', type: 'Dopamine Agonist', name: 'Cabergoline', esters: '(Dostinex)', status: 'active',
+        overview: 'A potent dopamine agonist primarily used to lower prolactin levels. Extremely popular among users of 19-nor steroids (Tren/Deca) to prevent "Deca Dick".',
+        primaryUses: 'Prolactinoma, High Prolactin',
+        mechanism: 'High-affinity agonist for dopamine D2 receptors, suppressing the pituitary\'s release of prolactin.',
+        dosage: '0.25mg to 0.5mg twice weekly.',
+        experimental: { b: '0.25mg/wk', a: '0.5mg/wk' },
+        benefits: 'Lowers refractory period, restores libido suppressed by prolactin, terminates lactation from high doses of androgens.',
+        risks: 'Cardiac valve strain (at high doses), dizziness, "Cabergoline comedown" (depression).'
+    },
+    {
+        id: 'dapoxetine', folder: 'Sexual Optimization', category: 'ancillaries', type: 'SSRI', name: 'Dapoxetine', esters: '(Priligy)', status: 'active',
+        overview: 'The first and only compound specifically designed to treat premature ejaculation. It is a short-acting SSRI that increases the time it takes to reach climax.',
+        primaryUses: 'Premature Ejaculation (PE)',
+        mechanism: 'Selective serotonin reuptake inhibition, increasing the synaptic activity of serotonin which is known to delay ejaculation.',
+        dosage: '30mg to 60mg (1-3 hours before activity).',
+        experimental: { b: '30mg', a: '60mg' },
+        benefits: 'Significantly increases intravaginal ejaculatory latency time (IELT); improves control over ejaculation.',
+        risks: 'Nausea, dizziness, headache, dry mouth.'
+    },
+    {
+        id: 'hashish', folder: 'Cannabis & Concentrates', category: 'cannabis', type: 'Concentrate', name: 'Hashish', esters: '(Resinoid)', status: 'active',
+        overview: 'A potent concentrate derived from the compressed or purified preparations of stalked resin glands, called trichomes, from the cannabis plant.',
+        primaryUses: 'Nausea, chronic pain, insomnia, appetite stimulation.',
+        mechanism: 'Direct agonism of CB1 and CB2 receptors. Because it is a concentrate, THC levels typically exceed standard flower by 3x-10x, leading to profound inhibition of neurotransmitter release (GABA/Glutamate) in the CNS.',
+        dosage: 'Highly variable (10mg to 100mg+ THC equivalent).',
+        experimental: { b: 'Variable', a: 'High tolerance' },
+        benefits: 'Extreme sensory enhancement, pain dissociation, significant anti-emetic properties.',
+        risks: 'Acute anxiety/panic, cognitive lethargy, vulnerability to drug-induced psychosis in predisposed individuals, cannabinoid hyperemesis syndrome (CHS).',
+        impact: { brain: 5, heart: 4, liver: 0, kidneys: 0, blood: 2, hair: 0, joints: 0 }
+    },
+    {
+        id: 'ayahuasca', folder: 'Psychedelics & Hallucinogens', category: 'psychedelics', type: 'Decoction', name: 'Ayahuasca', esters: '(DMT/MAOI)', status: 'active',
+        overview: 'A traditional Amazonian decoction composed of the Banisteriopsis caapi vine and various DMT-containing plants. It induces a long-duration, intense psychedelic experience.',
+        primaryUses: 'Shamanic rituals, treatment-resistant depression (experimental), addiction counseling (experimental).',
+        mechanism: 'The Harmala alkaloids (Harmine/Harmaline) act as reversible Monoamine Oxidase Inhibitors (MAOIs), preventing the breakdown of DMT in the digestive tract and enabling its oral bioavailability to the brain\'s 5-HT2A receptors.',
+        dosage: 'Ritual/Clinical (Standardized at 0.5-1.0 mg/kg DMT).',
+        experimental: { b: 'Not recommended', a: 'Guided session' },
+        benefits: 'Profound spiritual/introspective insights, rapid reduction in depressive symptoms, long-term neuroplasticity.',
+        risks: 'Serotonin Syndrome (Lethal if combined with SSRIs), hypertensive crisis, extreme physiological purge (vomiting/diarrhea), severe psychological distress.',
+        impact: { brain: 4, heart: 5, liver: 2, kidneys: 1, blood: 3, hair: 0, joints: 0 },
+        sensoryImpact: 'Vivid, immersive mythological visions, auditory messages from "nature spirits," and a profound sense of ego death followed by rebirth. Time perception is completely obliterated.'
+    },
+    {
+        id: 'clenbuterol', folder: 'Metabolics', category: 'recreational', type: 'Beta-2 Agonist', name: 'Clenbuterol', esters: '(Clen)', status: 'active',
+        overview: 'A powerful bronchodilator and thermogenic agent. While used to treat asthma in some countries, it is most famous in bodybuilding for its ability to incinerate fat while preserving lean tissue.',
+        primaryUses: 'Asthma (outside USA), Extreme fat loss',
+        mechanism: 'Stimulates the Beta-2 receptors in the body, which drastically increases core body temperature (thermogenesis) and basal metabolic rate (BMR). It is not a hormone.',
+        dosage: '20mcg to 40mcg per day (Medical).',
+        experimental: { b: '20–60 mcg/day', a: '80–140 mcg/day' },
+        benefits: 'Rapid fat oxidation, slight anti-catabolic effect, improved aerobic capacity.',
+        risks: 'Cardiac hypertrophy (thickening of the heart), extreme tremors, insomnia, taurine depletion.',
+        impact: { brain: 4, heart: 9, liver: 1, kidneys: 3, blood: 5, hair: 0, joints: 0 },
+        aestheticProfile: 'Creates an extremely "ripped" look with thin skin. Enhances muscle separation and reveals hidden vascularity. Often causes visible shaking or "trembling" of the muscles.',
+        physiologicalTargets: 'Beta-2 adrenoceptors located throughout the cardiovascular system and adipose (fat) tissue. Primarily targets the myocardium (heart muscle) at high doses.'
+    },
+    {
+        id: 'hgh_somatropin', folder: 'Growth Factors', category: 'peptides', type: 'Hormone', name: 'HGH (Somatropin)', esters: '(Humatrope / Genotropin)', status: 'active',
+        overview: 'Exogenous Human Growth Hormone. A 191-amino acid single-chain polypeptide that is essential for the growth and regeneration of cells.',
+        primaryUses: 'Growth hormone deficiency, muscle wasting (HIV), short stature',
+        mechanism: 'Stimulates the liver to produce IGF-1 (Insulin-like Growth Factor 1). Promotes lipolysis (fat loss) and cellular hyperplasia (creation of new muscle cells).',
+        dosage: '1 IU to 3 IU daily (Medical).',
+        experimental: { b: '2–4 IU/day', a: '6–12 IU/day' },
+        benefits: 'Unmatched fat loss, superior recovery, improved skin/hair quality, and the potential for new muscle fiber creation (Hyperplasia).',
+        risks: 'Insulin resistance, carpal tunnel syndrome, organomegaly (growth of internal organs), potential for accelerated cancer growth.',
+        impact: { brain: -2, heart: 6, liver: 3, kidneys: 2, blood: 4, hair: -5, joints: -10 },
+        aestheticProfile: 'Provides a "youthful" glow to the skin. Causes a distinct look of "fullness" and "roundness" to the muscles. Long-term high doses can lead to "HGH Gut" (distended abdomen).',
+        physiologicalTargets: 'Systemic cellular impact. Targets the liver for IGF-1 conversion and directly affects adipose tissue for fat mobilization.'
+    },
+    {
+        id: 'insulin_humalog', folder: 'Elite Anabolics', category: 'peptides', type: 'Hormone', name: 'Insulin (Fast Acting)', esters: '(Humalog / Novolog)', status: 'active',
+        overview: 'The most anabolic hormone in the human body. Used by elite bodybuilders to drive nutrients into muscle cells at a rate far exceeding physiological norms.',
+        primaryUses: 'Type 1 Diabetes, Extreme Hypertrophy',
+        mechanism: 'Transports glucose, amino acids, and creatine into the muscle cells by activating GLUT4 transporters. Completely shuts down muscle breakdown.',
+        dosage: 'Variable (Medical).',
+        experimental: { b: '2–5 IU (Pre/Post workout)', a: '10–20 IU (Pre/Post workout)' },
+        benefits: 'Instantaneous muscle fullness, rapid recovery, and massive weight gain in record time.',
+        risks: '<strong>Lethal Hypoglycemia.</strong> One incorrect dose or missing a meal can result in immediate coma or death. High risk of visceral fat gain.',
+        impact: { brain: 5, heart: 4, liver: 2, kidneys: 4, blood: 6, hair: 0, joints: 0 },
+        aestheticProfile: 'Creates a "balloon-like" muscle appearance. Muscles look hyper-inflated and dense. Can lead to "spilling over" and losing definition if carbohydrate timing is off.',
+        physiologicalTargets: 'Insulin receptors located on almost every cell in the body, with a heavy focus on skeletal muscle and adipose tissue.'
+    },
+    {
+        id: 'dnp_extreme', folder: 'Metabolics', category: 'recreational', type: 'Uncoupler', name: 'DNP (2,4-Dinitrophenol)', esters: '', status: 'lethal/Restricted',
+        overview: 'A chemical used in munitions and dyes that acts as a mitochondrial uncoupler. It is the most powerful (and dangerous) fat burner in existence.',
+        primaryUses: 'Industrial chemicals, Munitions',
+        mechanism: 'Uncouples oxidative phosphorylation, forcing the body to burn fat for energy at an efficiency rate of near 0%, releasing the excess energy as pure heat.',
+        dosage: 'None (Toxic).',
+        experimental: { b: '100–200 mg/day', a: '400 mg+ (Lethal Risk)' },
+        benefits: 'Fat loss of up to 1lb per day. Does not require exercise or caloric deficit to work.',
+        risks: '<strong>Death by Overheating.</strong> The body literally "cooks" from the inside out. Cataracts, neuropathy, and organ failure.',
+        impact: { brain: 7, heart: 10, liver: 8, kidneys: 9, blood: 8, hair: 0, joints: 0 },
+        aestheticProfile: 'During use, the subject looks "flat," exhausted, and often drenched in yellow sweat. Post-cycle, the fat loss is dramatic, revealing an extremely shredded physique.',
+        physiologicalTargets: 'The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely.'
+    },
+    // --- ANTIDEPRESSANTS ---
+    {
+        id: 'fluoxetine', folder: 'SSRIs', category: 'antidepressants', type: 'SSRI', name: 'Fluoxetine', esters: '(Prozac)', status: 'active',
+        overview: 'Fluoxetine is one of the oldest and most widely prescribed Selective Serotonin Reuptake Inhibitors (SSRIs). It is famous for its extremely long half-life.',
+        primaryUses: 'Major Depressive Disorder, OCD, Bulimia, Panic Disorder',
+        mechanism: 'Selectively blocks the reuptake of serotonin at the neuronal membrane, enhancing serotonergic function in the CNS. The active metabolite, norfluoxetine, stays in the system for weeks.',
+        dosage: '20mg to 60mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Significant mood elevation, reduction in obsessive thoughts, high clinical safety profile.',
+        risks: 'Sexual dysfunction, emotional blunting, insomnia, risk of Serotonin Syndrome if combined with MAOIs.',
+        impact: { brain: 6, heart: 2, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'sertraline', folder: 'SSRIs', category: 'antidepressants', type: 'SSRI', name: 'Sertraline', esters: '(Zoloft)', status: 'active',
+        overview: 'Sertraline is a potent SSRI that also exhibits very mild dopamine reuptake inhibition (DRI) properties at high doses.',
+        primaryUses: 'Major Depressive Disorder, PTSD, Social Anxiety Disorder',
+        mechanism: 'Primarily inhibits the serotonin transporter (SERT). Its mild dopaminergic action can make it slightly more stimulating than other SSRIs.',
+        dosage: '50mg to 200mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Highly effective for severe anxiety and panic disorders alongside depression.',
+        risks: 'Gastrointestinal distress (common), sexual dysfunction, emotional blunting, weight changes.',
+        impact: { brain: 6, heart: 2, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'escitalopram', folder: 'SSRIs', category: 'antidepressants', type: 'SSRI', name: 'Escitalopram', esters: '(Lexapro)', status: 'active',
+        overview: 'Escitalopram is the highly purified S-enantiomer of citalopram. It is often considered the most highly selective SSRI available, meaning fewer off-target side effects.',
+        primaryUses: 'Major Depressive Disorder, Generalized Anxiety Disorder',
+        mechanism: 'Extremely selective and potent inhibition of SERT with virtually zero affinity for other receptors (histamine, dopamine, norepinephrine).',
+        dosage: '10mg to 20mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Considered to have the cleanest side-effect profile of the SSRIs; very rapid onset of anxiolytic effects.',
+        risks: 'Lethargy, sexual dysfunction, dose-dependent QT interval prolongation (heart rhythm changes).',
+        impact: { brain: 6, heart: 3, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'venlafaxine', folder: 'SNRIs', category: 'antidepressants', type: 'SNRI', name: 'Venlafaxine', esters: '(Effexor)', status: 'active',
+        overview: 'Venlafaxine is a Serotonin-Norepinephrine Reuptake Inhibitor (SNRI). It acts like an SSRI at low doses and increasingly boosts norepinephrine at high doses.',
+        primaryUses: 'Severe Depression, Panic Disorder, Neuropathic Pain',
+        mechanism: 'Inhibits both serotonin and norepinephrine transporters. The norepinephrine boost provides significant energy and focus for severely lethargic depressed patients.',
+        dosage: '75mg to 225mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Highly effective for treatment-resistant depression and chronic pain conditions.',
+        risks: 'Severe withdrawal syndrome ("brain zaps"), elevated blood pressure, severe sweating, insomnia.',
+        impact: { brain: 7, heart: 5, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'duloxetine', folder: 'SNRIs', category: 'antidepressants', type: 'SNRI', name: 'Duloxetine', esters: '(Cymbalta)', status: 'active',
+        overview: 'Duloxetine is a potent SNRI that is heavily prescribed not just for depression, but specifically for somatic (physical) pain associated with depression.',
+        primaryUses: 'Major Depressive Disorder, Fibromyalgia, Chronic Musculoskeletal Pain',
+        mechanism: 'Potent dual reuptake inhibitor of serotonin and norepinephrine. Highly effective at modulating descending pain pathways in the central nervous system.',
+        dosage: '40mg to 60mg per day.',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Simultaneously treats depression and severe physical pain/fibromyalgia.',
+        risks: 'Liver toxicity (especially if combined with alcohol), intense withdrawal syndrome, nausea.',
+        impact: { brain: 7, heart: 4, liver: 4, kidneys: 1, blood: 1, hair: 0, joints: -2 }
+    },
+    {
+        id: 'bupropion', folder: 'Atypicals', category: 'antidepressants', type: 'NDRI', name: 'Bupropion', esters: '(Wellbutrin / Zyban)', status: 'active',
+        overview: 'Bupropion is a unique atypical antidepressant that does not affect serotonin. Instead, it boosts dopamine and norepinephrine, making it highly stimulating.',
+        primaryUses: 'Major Depressive Disorder, Smoking Cessation, ADHD (off-label)',
+        mechanism: 'Norepinephrine-Dopamine Reuptake Inhibitor (NDRI). Structurally related to substituted cathinones (amphetamines).',
+        dosage: '150mg to 300mg per day (Extended Release).',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Increases energy and libido (often used to reverse SSRI-induced sexual dysfunction); highly effective for quitting nicotine.',
+        risks: 'Severe risk of drug-induced seizures at high doses, anxiety escalation, insomnia, weight loss.',
+        impact: { brain: 7, heart: 5, liver: 2, kidneys: 1, blood: 1, hair: 1, joints: 0 }
+    },
+    {
+        id: 'mirtazapine', folder: 'Atypicals', category: 'antidepressants', type: 'TeCA', name: 'Mirtazapine', esters: '(Remeron)', status: 'active',
+        overview: 'Mirtazapine is a tetracyclic antidepressant famously known for causing extreme drowsiness and massive appetite increases.',
+        primaryUses: 'Depression with Severe Insomnia, Cachexia (weight loss)',
+        mechanism: 'Antagonizes central alpha-2 adrenergic auto-receptors (increasing serotonin/norepinephrine release) while heavily antagonizing histamine (H1) receptors (causing extreme sedation).',
+        dosage: '15mg to 45mg per day (taken at night).',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Instant cure for severe insomnia; massive weight gain for underweight patients; virtually zero sexual dysfunction.',
+        risks: 'Severe grogginess ("hangover effect"), extreme rapid weight gain/obesity, lipid disruption.',
+        impact: { brain: 6, heart: 2, liver: 2, kidneys: 1, blood: 2, hair: 0, joints: 0 }
+    },
+    {
+        id: 'amitriptyline', folder: 'Tricyclics', category: 'antidepressants', type: 'TCA', name: 'Amitriptyline', esters: '(Elavil)', status: 'active',
+        overview: 'One of the oldest Tricyclic Antidepressants (TCAs). While highly effective for depression, it is mostly used today in low doses for severe nerve pain and migraines due to its heavy side-effect profile.',
+        primaryUses: 'Neuropathic pain, Migraine prophylaxis, Severe Depression',
+        mechanism: 'Inhibits reuptake of serotonin and norepinephrine, but also heavily antagonizes histamine, muscarinic acetylcholine, and alpha-adrenergic receptors (causing its dirty side-effect profile).',
+        dosage: '10mg to 50mg (Pain) / 75mg to 150mg (Depression).',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Incredible efficacy for neuropathic pain and chronic migraines; profound sedative effects for insomnia.',
+        risks: 'Lethal in overdose (cardiotoxicity), extreme dry mouth, severe constipation, urinary retention, weight gain.',
+        impact: { brain: 8, heart: 7, liver: 3, kidneys: 2, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'tranylcypromine', folder: 'MAOIs', category: 'antidepressants', type: 'MAOI', name: 'Tranylcypromine', esters: '(Parnate)', status: 'active',
+        overview: 'An irreversible Monoamine Oxidase Inhibitor (MAOI). It is considered a "last-line" atomic bomb for treatment-resistant depression when all else fails.',
+        primaryUses: 'Treatment-Resistant Major Depressive Disorder',
+        mechanism: 'Irreversibly destroys the MAO enzymes (types A and B) that break down serotonin, dopamine, and norepinephrine in the brain, leading to a massive flood of neurotransmitters.',
         dosage: '30mg to 60mg per day.',
         experimental: { b: 'Variable', a: 'Variable' },
         benefits: 'Can completely cure extreme, treatment-resistant atypical depression where literally nothing else works.',
         risks: '<strong>Lethal Dietary Interactions (The "Cheese Effect").</strong> Eating tyramine-rich foods (aged cheese, wine, cured meats) can cause a lethal hypertensive crisis (exploding blood pressure).',
         impact: { brain: 10, heart: 8, liver: 4, kidneys: 2, blood: 2, hair: 0, joints: 0 }
+    },
+    // --- OPIOIDS (ADDITIONAL) ---
+    {
+        id: 'codeine', folder: 'Opioids', category: 'opioids', type: 'Opioid', name: 'Codeine', esters: '(Lean / Sizzurp / Tylenol 3)', status: 'active',
+        overview: 'Codeine is a naturally occurring opiate alkaloid found in the opium poppy. It is heavily utilized as a mild painkiller, cough suppressant, and famously in pop culture as the main ingredient in "Lean".',
+        primaryUses: 'Mild to moderate pain, cough suppression, severe diarrhea',
+        mechanism: 'Codeine is actually a prodrug; it is very weak on its own but is converted by the liver enzyme CYP2D6 into morphine, which binds directly to mu-opioid receptors.',
+        dosage: '15mg to 60mg every 4-6 hours (Clinical) / 100mg to 300mg (Recreational).',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Provides mild to moderate euphoria, strong cough suppression, and pain relief. Much milder than oxycodone or fentanyl.',
+        risks: 'Lethal respiratory depression at massive doses, severe constipation, intense histamine release (itching), physical dependence.',
+        impact: { brain: 5, heart: 2, liver: 3, kidneys: 1, blood: 1, hair: 0, joints: -4 }
     }
 ];
 
