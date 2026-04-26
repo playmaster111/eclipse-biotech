@@ -3048,34 +3048,39 @@ function initHologram(type) {
         group.add(glow2);
         addScan(group,0.85); addDust(group,30,3.5);
 
+    
     } else if (type === 'dna') {
         var N=70, R=0.95, H=5.5, c1=[], c2=[];
+        var dnaGroup = new THREE.Group();
         for (var i=0;i<N;i++) {
             var t=i/N, a=t*Math.PI*8, y=t*H-H/2;
             var x1=Math.sin(a)*R, z1=Math.cos(a)*R;
             var x2=Math.sin(a+Math.PI)*R, z2=Math.cos(a+Math.PI)*R;
             var s1=new THREE.Mesh(new THREE.SphereGeometry(0.055,10,10), cyMat);
-            s1.position.set(x1,y,z1); group.add(s1); c1.push(new THREE.Vector3(x1,y,z1));
+            s1.position.set(x1,y,z1); dnaGroup.add(s1); c1.push(new THREE.Vector3(x1,y,z1));
             var s2=new THREE.Mesh(new THREE.SphereGeometry(0.055,10,10), cyMat);
-            s2.position.set(x2,y,z2); group.add(s2); c2.push(new THREE.Vector3(x2,y,z2));
+            s2.position.set(x2,y,z2); dnaGroup.add(s2); c2.push(new THREE.Vector3(x2,y,z2));
             if (i%2===0) {
                 var mx=(x1+x2)/2, mz=(z1+z2)/2;
                 var c1m = i%4===0 ? 0xb5ff4d : 0xff9d00;
                 var c2m = i%4===0 ? 0xff3a5c : 0x00f0ff;
-                group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x1,y,z1),new THREE.Vector3(mx,y,mz)]), new THREE.LineBasicMaterial({color:c1m,transparent:true,opacity:0.5})));
-                group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(mx,y,mz),new THREE.Vector3(x2,y,z2)]), new THREE.LineBasicMaterial({color:c2m,transparent:true,opacity:0.5})));
+                dnaGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x1,y,z1),new THREE.Vector3(mx,y,mz)]), new THREE.LineBasicMaterial({color:c1m,transparent:true,opacity:0.5})));
+                dnaGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(mx,y,mz),new THREE.Vector3(x2,y,z2)]), new THREE.LineBasicMaterial({color:c2m,transparent:true,opacity:0.5})));
                 var hb=new THREE.Mesh(new THREE.OctahedronGeometry(0.04,0), new THREE.MeshPhongMaterial({color:0xffffff,emissive:0x404040,transparent:true,opacity:0.6}));
-                hb.position.set(mx,y,mz); group.add(hb);
+                hb.position.set(mx,y,mz); dnaGroup.add(hb);
             }
             if (i%6===0) {
                 var nd=new THREE.Mesh(new THREE.OctahedronGeometry(0.1,0), grMat);
-                nd.position.set(x1,y,z1); group.add(nd);
+                nd.position.set(x1,y,z1); dnaGroup.add(nd);
             }
         }
-        group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(c1), new THREE.LineBasicMaterial({color:0x00f0ff,transparent:true,opacity:0.7})));
-        group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(c2), new THREE.LineBasicMaterial({color:0x00f0ff,transparent:true,opacity:0.7})));
-        addDust(group,50,5); addScan(group,1.3);
-        group.rotation.z = Math.PI/2;
+        dnaGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(c1), new THREE.LineBasicMaterial({color:0x00f0ff,transparent:true,opacity:0.7})));
+        dnaGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(c2), new THREE.LineBasicMaterial({color:0x00f0ff,transparent:true,opacity:0.7})));
+        addDust(dnaGroup,50,5); addScan(dnaGroup,1.3);
+        dnaGroup.rotation.z = Math.PI/2;
+        group.add(dnaGroup);
+
+        
 
     } else {
         var atoms = [
@@ -3134,7 +3139,7 @@ function initHologram(type) {
         // Pulse lights
         keyLight.intensity = 2 + Math.sin(t*2)*0.5;
         fillLight.intensity = 1 + Math.sin(t*1.5+1)*0.3;
-        holoMesh.children.forEach(function(ch){
+        holoMesh.traverse(function(ch){
             if(ch.userData.scan){ch.position.y=Math.sin(t*1.5)*1.8;ch.material.opacity=0.3+Math.sin(t*3)*0.2;}
             if(ch.userData.drift){ch.position.y+=Math.sin(t*2+ch.userData.drift.off)*0.0008;}
             if(ch.userData.bub){ch.position.y+=ch.userData.bub.spd*0.3;if(ch.position.y>1.2)ch.position.y=-0.8;}
