@@ -5649,3 +5649,104 @@ body::before { pointer-events: none !important; }
 /* Fix: Top nav stacking above article scroll area */
 .top-nav-bar { z-index: 100 !important; position: relative !important; }
 .article-scroll-area { z-index: 1; position: relative; }
+
+
+/* ==========================================
+   MOBILE POLISH PASS v5.2
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .nav-controls .cyber-btn span, .audio-btn span { display: none; }
+    .nav-controls .cyber-btn { padding: 0 10px !important; min-width: 36px; justify-content: center; }
+    .audio-btn { padding: 0 10px !important; }
+    .top-nav-bar { height: 52px; padding: 0 12px !important; }
+    .nav-controls { gap: 6px !important; }
+    .breadcrumbs { font-size: 10px; }
+    .welcome-card { padding: 40px 25px; max-width: 90vw; }
+    .glitch-large { font-size: 1.4rem !important; }
+    .intro-main-title { font-size: clamp(2.5rem, 10vw, 5rem) !important; }
+    .intro-subtitle { font-size: 0.6rem !important; letter-spacing: 0.2em !important; }
+    .intro-boot-terminal { width: 90vw !important; padding: 18px 20px !important; }
+    .intro-data-readout { font-size: 0.55rem !important; }
+    .intro-data-readout.bottom-left, .intro-data-readout.bottom-right { display: none; }
+    .intro-corner { width: 25px; height: 25px; }
+}
+
+@media (max-width: 768px) {
+    .sidebar { width: 100% !important; }
+    .top-nav-bar { height: 48px; padding: 0 10px !important; }
+    .nav-controls { gap: 4px !important; }
+    .nav-controls .cyber-btn, .nav-controls .audio-wrap, .nav-controls .lang-custom-select { height: 32px !important; }
+    #visualsBtn { width: 36px !important; height: 36px !important; border-radius: 6px !important; }
+    .welcome-card { padding: 30px 20px; margin: 15px; }
+    .glitch-large { font-size: 1.2rem !important; letter-spacing: 0.08em !important; }
+    .card-telemetry { font-size: 0.55rem !important; letter-spacing: 0.1em !important; padding: 4px 10px !important; }
+    .card-actions { flex-direction: column; gap: 8px; }
+    .card-actions .cyber-btn { width: 100% !important; }
+    .bio-scan-orb { width: 60px; height: 60px; margin-bottom: 20px; }
+    .orb-core { width: 22px; height: 22px; }
+    .orb-scan { width: 60px; height: 60px; }
+    .article-scroll-area { padding: 15px !important; }
+    .article-header { padding: 20px !important; }
+    .article-header h1 { font-size: 1.3rem !important; }
+    .info-grid { grid-template-columns: 1fr !important; }
+    .data-grid-v2 { grid-template-columns: 1fr !important; }
+    .hologram-viewport { height: 200px !important; }
+    .hologram-data-stream { font-size: 0.5rem !important; }
+    .modal-content { max-width: 95vw !important; margin: 10px !important; }
+    .donation-window { width: 95vw !important; max-height: 90vh; overflow-y: auto; }
+    .address-box code { font-size: 0.6rem !important; word-break: break-all; }
+    #visualsModal .modal-content { max-width: 95vw !important; padding: 20px !important; }
+    .mode-selector { flex-wrap: wrap; }
+    .mode-btn { flex: 1; min-width: 44px; }
+    .track-dropdown { right: -40px !important; width: 220px !important; }
+    .logo-main { font-size: 28px !important; }
+    .notification { max-width: 90vw !important; font-size: 0.7rem !important; }
+    .intro-main-title { font-size: clamp(2rem, 12vw, 3.5rem) !important; }
+    .intro-subtitle { font-size: 0.5rem !important; }
+    .intro-boot-terminal { width: 95vw !important; padding: 15px !important; }
+    .intro-log-line { font-size: 0.6rem !important; }
+    .intro-log-line .timestamp { min-width: 55px !important; font-size: 0.55rem !important; }
+    .intro-data-readout { display: none !important; }
+    .intro-corner { display: none; }
+    .intro-progress-text { font-size: 0.5rem !important; }
+    .intro-access-text { font-size: 1.5rem !important; letter-spacing: 0.15em !important; }
+    .init-content { padding: 20px; }
+    .glitch-logo { font-size: 8vw !important; }
+    .init-sub { font-size: 0.6rem !important; }
+    .init-cyber-btn { padding: 12px 30px !important; font-size: 0.75rem !important; }
+    .init-status { font-size: 0.55rem !important; }
+    .back-to-top { bottom: 15px; right: 15px; width: 38px; height: 38px; }
+    .custom-cursor, .custom-cursor-follower { display: none !important; }
+}
+
+@media (max-width: 400px) {
+    .top-nav-bar { padding: 0 6px !important; }
+    .nav-controls .cyber-btn { padding: 0 6px !important; font-size: 9px !important; }
+    .breadcrumbs { display: none; }
+    .logo-main { font-size: 22px !important; }
+    .welcome-card { padding: 20px 15px; }
+    .glitch-large { font-size: 1rem !important; }
+    .intro-main-title { font-size: 2rem !important; }
+    .article-header h1 { font-size: 1.1rem !important; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .intro-void { padding: 10px; }
+    .intro-main-title { font-size: 2rem !important; }
+    .intro-boot-terminal { max-height: 70vh; }
+    .intro-log-area { max-height: 120px !important; }
+    .welcome-card { padding: 20px; }
+    .bio-scan-orb { width: 40px; height: 40px; margin-bottom: 10px; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .nav-item:hover { transform: none; letter-spacing: inherit; }
+    .logo-wrap:hover .logo-main { animation: none; }
+    .custom-cursor, .custom-cursor-follower { display: none !important; }
+    body.custom-cursor-active, body.custom-cursor-active * { cursor: auto !important; }
+    .nav-item { padding: 16px 24px !important; min-height: 48px; }
+    .cyber-btn { min-height: 44px; }
+    .track-item { padding: 14px 12px !important; min-height: 48px; }
+    .copy-btn { min-width: 44px; min-height: 44px; }
+}
