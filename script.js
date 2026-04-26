@@ -1157,7 +1157,7 @@ function signalTransfer() {
 // Load AI View
 function loadAIView() {
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    document.getElementById('ai-nav-btn').classList.add('active');
+    if(document.getElementById('ai-nav-btn')) document.getElementById('ai-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "ECLIPSE_CORTEX_AI";
 
     const mount = document.getElementById('article-mount');
@@ -1721,7 +1721,7 @@ let customStack = [];
 // Load Cycle Coach View
 function loadCoachView() {
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    document.getElementById('coach-nav-btn').classList.add('active');
+    if(document.getElementById('coach-nav-btn')) document.getElementById('coach-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "AI CYCLE ARCHITECT";
 
     const mount = document.getElementById('article-mount');
@@ -2156,7 +2156,7 @@ window.saveProtocolToVault = async function() {
 
 function loadVaultView() {
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    document.getElementById('vault-nav-btn').classList.add('active');
+    if(document.getElementById('vault-nav-btn')) document.getElementById('vault-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "RESEARCH VAULT";
 
     const mount = document.getElementById('article-mount');
@@ -2407,7 +2407,7 @@ function showSynthesisDetail(id) {
 
 function loadPathologyView() {
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    document.getElementById('pathology-nav-btn').classList.add('active');
+    if(document.getElementById('pathology-nav-btn')) document.getElementById('pathology-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "PATHOLOGY SOLVER";
 
     const mount = document.getElementById('article-mount');
@@ -2589,7 +2589,7 @@ function loadQuickFinderView() {
     finderData = { goal: '', risk: '', exp: '' };
     
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    document.getElementById('finder-nav-btn').classList.add('active');
+    if(document.getElementById('finder-nav-btn')) document.getElementById('finder-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "QUICK FINDER";
 
     renderFinderStep();
@@ -2709,7 +2709,7 @@ const HALF_LIVES = {
 
 function loadPCTView() {
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    document.getElementById('pct-nav-btn').classList.add('active');
+    if(document.getElementById('pct-nav-btn')) document.getElementById('pct-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "PCT CALCULATOR";
 
     const mount = document.getElementById('article-mount');
