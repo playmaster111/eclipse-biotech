@@ -22,7 +22,7 @@ export default async function handler(req) {
         const apiUrl = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${apiKey}`;
 
         // Convert OpenAI-style messages to Gemini format
-        const systemInstruction = `You are the "Eclipse Biotech Mainframe", an advanced sci-fi AI assistant. 
+        const systemPrompt = `You are the "Eclipse Biotech Mainframe", an advanced sci-fi AI assistant. 
 You answer pharmacology, chemistry, and biology questions. 
 Keep your tone clinical, precise, and slightly robotic/cyberpunk, but very helpful.
 If the user is viewing a specific compound, they will provide context. 
@@ -33,6 +33,16 @@ Current Context: ${context || 'None'}`;
             parts: [{ text: m.content }]
         }));
 
+        // Prepend system prompt to the first user message for v1 compatibility
+        if (contents.length > 0 && contents[0].role === 'user') {
+            contents[0].parts[0].text = `${systemPrompt}\n\nUSER_QUERY: ${contents[0].parts[0].text}`;
+        } else {
+            contents.unshift({
+                role: 'user',
+                parts: [{ text: systemPrompt }]
+            });
+        }
+
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -40,9 +50,6 @@ Current Context: ${context || 'None'}`;
             },
             body: JSON.stringify({
                 contents: contents,
-                systemInstruction: {
-                    parts: [{ text: systemInstruction }]
-                },
                 generationConfig: {
                     maxOutputTokens: 1000,
                     temperature: 0.7
