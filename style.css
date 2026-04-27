@@ -6011,3 +6011,65 @@ body::before { pointer-events: none !important; }
     font-style: italic;
     color: #ffd280;
 }
+
+/* ========================================== 
+   DRUG PROFILE STABILIZATION (HOTFIX) 
+   ========================================== */ 
+
+@media (max-width: 1024px) { 
+    .wiki-grid { 
+        display: block !important; 
+        width: 100% !important; 
+    } 
+
+    .wiki-main-col, .wiki-side-col { 
+        width: 100% !important; 
+        max-width: 100% !important; 
+        display: block !important; 
+        margin-bottom: 30px; 
+    } 
+
+    .hologram-viewport { 
+        height: 250px !important; 
+        margin-bottom: 25px; 
+        background: radial-gradient(circle at center, rgba(0, 240, 255, 0.1), transparent 80%) !important; 
+        border-bottom: 1px solid rgba(0, 240, 255, 0.15) !important; 
+    } 
+
+    .hologram-data-stream { 
+        font-size: 8px !important; 
+        top: 15px !important; 
+        right: 15px !important; 
+    } 
+
+    .data-panel { 
+        position: relative !important; 
+        top: 0 !important; 
+        margin-top: 20px; 
+        width: 100% !important; 
+    } 
+
+    .heat-map-panel { 
+        margin-top: 30px !important; 
+        width: 100% !important; 
+    } 
+} 
+
+/* Hologram Fallback Pulse */ 
+#hologram-canvas-container:empty::after { 
+    content: ''; 
+    position: absolute; 
+    top: 50%; left: 50%; 
+    width: 60px; height: 60px; 
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%); 
+    transform: translate(-50%, -50%); 
+    border-radius: 50%; 
+    animation: holoPulse 2s infinite ease-in-out; 
+    opacity: 0.4; 
+    z-index: 1; 
+} 
+
+@keyframes holoPulse { 
+    0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.2; } 
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; } 
+}

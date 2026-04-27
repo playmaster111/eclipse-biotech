@@ -1837,7 +1837,9 @@ function loadArticle(id) {
 
     // Initialize 3D Mesh
     setTimeout(() => {
-        initHologram(holoType);
+        setTimeout(() => {
+            initHologram(holoType);
+        }, 50);
         updateHeatMap(item);
     }, 50);
 }
