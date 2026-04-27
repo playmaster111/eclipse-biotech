@@ -2701,6 +2701,18 @@ var WIKI_DATA = [
         benefits: 'Total muscle relaxation; intense euphoric "jelly-like" body high (the "Soma Coma").',
         risks: 'Extremely addictive, dangerous withdrawal profile, highly lethal when mixed with alcohol or opioids due to synergistic respiratory depression.',
         impact: { brain: 6, heart: 3, liver: 4, kidneys: 2, blood: 1, hair: 0, joints: 0 }
+    },
+    // --- ADDITIONAL OPIOIDS ---
+    {
+        id: 'morphine', folder: 'Opioids', category: 'opioids', type: 'Opiate', name: 'Morphine', esters: '(MS Contin / Roxanol)', status: 'active',
+        overview: 'The primary active alkaloid in opium and the gold standard by which all other opioids are measured. Used extensively in palliative care and severe trauma.',
+        primaryUses: 'Severe acute or chronic pain, Palliative care, Myocardial infarction',
+        mechanism: 'Potent full agonist at the mu-opioid receptor in the central nervous system. It inhibits ascending pain pathways and alters the perception of pain.',
+        dosage: '10mg to 30mg every 4 hours (Oral/Clinical).',
+        experimental: { b: 'Variable', a: 'High Risk' },
+        benefits: 'Profound pain relief, significant euphoria, relief of severe respiratory distress (air hunger) in terminal patients.',
+        risks: 'Lethal respiratory depression, severe physical addiction, profound constipation, histamine release leading to severe itching and hypotension.',
+        impact: { brain: 6, heart: 3, liver: 3, kidneys: 2, blood: 1, hair: 0, joints: 0 }
     }
 ];
 
