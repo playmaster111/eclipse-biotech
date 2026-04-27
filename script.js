@@ -1461,7 +1461,10 @@ function generateAIResponse(q) {
     let identifiedCompound = null;
     let originalTerm = '';
 
-    // Step -1: Forced Override (For button triggers)
+    // Stop words to ignore in fuzzy matching
+    const STOP_WORDS = new Set(['how', 'much', 'take', 'does', 'work', 'what', 'risk', 'safe', 'dose', 'dosage', 'tell', 'about', 'show', 'need', 'know', 'give', 'into', 'with', 'many', 'long', 'week', 'weeks', 'days', 'time', 'more', 'less', 'high', 'low', 'best', 'good', 'badly']);
+
+    // Step -1: Forced Override
     if (aiSession.forcedCompound) {
         const forced = aiSession.forcedCompound.toLowerCase();
         identifiedCompound = WIKI_DATA.find(c => c.name.toLowerCase() === forced || c.id.toLowerCase() === forced);
@@ -1469,15 +1472,31 @@ function generateAIResponse(q) {
         aiSession.forcedCompound = null;
     }
 
-    // Step 0: Advanced Multi-Field Scan (Name, ID, Esters, AKA)
+    // Step 0: Extract Keywords (Words > 3 chars and not in STOP_WORDS)
+    const keywords = query.split(/\s+/).filter(w => w.length > 2 && !STOP_WORDS.has(w));
+
+    // Step 1: Alias Priority (Checks aliases against ALL query words)
+    if (!identifiedCompound) {
+        const allWords = query.split(/\s+/);
+        for (const word of allWords) {
+            if (COMPOUND_ALIASES[word]) {
+                const targetId = COMPOUND_ALIASES[word];
+                identifiedCompound = WIKI_DATA.find(c => c.id === targetId || c.name.toLowerCase() === targetId || (c.esters && c.esters.toLowerCase().includes(targetId)));
+                if (identifiedCompound) {
+                    originalTerm = word.toUpperCase();
+                    break;
+                }
+            }
+        }
+    }
+
+    // Step 2: Direct ID/Name Match (Scan for presence of full name or ID)
     if (!identifiedCompound) {
         for (let c of WIKI_DATA) {
             const name = c.name.toLowerCase();
             const id = c.id.toLowerCase();
-            const esters = (c.esters || '').toLowerCase();
-            const aka = (c.aka || '').toLowerCase();
-            
-            if (query.includes(name) || query.includes(id) || query.includes(esters) || query.includes(aka)) {
+            // Check if any significant keyword matches the name or ID exactly
+            if (keywords.some(k => k === name || k === id)) {
                 identifiedCompound = c;
                 originalTerm = c.name;
                 break;
@@ -1485,18 +1504,20 @@ function generateAIResponse(q) {
         }
     }
 
-    // Step 1: Alias Resolution
+    // Step 3: Deep Field Scan (Esters and AKA)
     if (!identifiedCompound) {
-        for (const [alias, full] of Object.entries(COMPOUND_ALIASES)) {
-            if (query.match(new RegExp(`\\b${alias}\\b`))) {
-                identifiedCompound = WIKI_DATA.find(c => c.id.includes(full) || c.name.toLowerCase().includes(full) || (c.esters && c.esters.toLowerCase().includes(full)));
-                originalTerm = alias.toUpperCase();
+        for (let c of WIKI_DATA) {
+            const esters = (c.esters || '').toLowerCase();
+            const aka = (c.aka || '').toLowerCase();
+            if (keywords.some(k => (esters.includes(k) || aka.includes(k)) && k.length > 3)) {
+                identifiedCompound = c;
+                originalTerm = c.name;
                 break;
             }
         }
     }
 
-    // Step 2: Context Awareness (Follow-up)
+    // Step 3.5: Context Awareness (Follow-up)
     if (!identifiedCompound) {
         const isFollowup = query.match(/\bit\b|\bthat\b|\bthis\b/);
         const hasIntent = query.match(/dose|dosage|risk|side effect|mechanism|how does|mg|take|toxic|work/);
@@ -1506,19 +1527,15 @@ function generateAIResponse(q) {
         }
     }
 
-    // Step 3: Fuzzy / Partial Match
+    // Step 4: Fuzzy Keyword Fallback (Partial matches)
     if (!identifiedCompound) {
-        const queryWords = query.split(' ');
-        for (let word of queryWords) {
-            if (word.length < 4) continue;
-            for (let c of WIKI_DATA) {
-                if (c.name.toLowerCase().includes(word) || c.id.toLowerCase().includes(word)) {
-                    identifiedCompound = c;
-                    originalTerm = word.toUpperCase() + "?";
-                    break;
-                }
+        for (let k of keywords) {
+            if (k.length < 4) continue;
+            identifiedCompound = WIKI_DATA.find(c => c.name.toLowerCase().includes(k) || c.id.toLowerCase().includes(k));
+            if (identifiedCompound) {
+                originalTerm = k.toUpperCase() + "?";
+                break;
             }
-            if (identifiedCompound) break;
         }
     }
 
