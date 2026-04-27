@@ -1935,7 +1935,7 @@ var WIKI_DATA = [
         cycleExamples: '<strong>Traditional Brew:</strong> Cold water extraction of 300 seeds to minimize the nauseating plant matter while isolating the LSA.'
     },
     {
-        id: 'methamphetamine', folder: 'Stimulants', category: 'recreational', type: 'Amphetamine', name: 'Methamphetamine', esters: '(Meth / Crystal / Ice)', status: 'active (Restricted)',
+        id: 'methamphetamine', folder: 'Stimulants', category: 'recreational', type: 'Amphetamine', name: 'Methamphetamine', esters: '(Desoxyn / Meth / Crystal / Ice)', status: 'active (Restricted)',
         overview: 'A tremendously potent CNS stimulant. Desoxyn is the pharmaceutical version prescribed for extreme ADHD and obesity.',
         primaryUses: 'ADHD (rare), Narcolepsy, Illicit recreation',
         mechanism: 'Potent releaser and reuptake inhibitor of Dopamine, Serotonin, and Norepinephrine. Crosses the blood-brain barrier far more efficiently than amphetamine.',
