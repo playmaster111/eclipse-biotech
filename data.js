@@ -2620,6 +2620,18 @@ var WIKI_DATA = [
         benefits: 'Massive boost in cellular energy, profound mental clarity, accelerated recovery from intense training or substance abuse, anti-aging properties.',
         risks: 'Intense physiological discomfort during IV infusion (chest tightness, stomach cramps, anxiety). Generally very safe.',
         impact: { brain: 8, heart: 2, liver: 3, kidneys: 1, blood: 1, hair: 0, joints: 2 }
+    },
+    // --- HEALING PEPTIDES ---
+    {
+        id: 'tb500', folder: 'Growth Factors', category: 'peptides', type: 'Peptide', name: 'TB-500', esters: '(Thymosin Beta-4 / TB4)', status: 'active',
+        overview: 'A synthetic version of the naturally occurring peptide Thymosin Beta-4. It is world-renowned for its ability to dramatically accelerate the healing of muscle, tendon, ligament, and tissue injuries.',
+        primaryUses: 'Severe tissue injury, tendinopathy, surgical recovery',
+        mechanism: 'Upregulates actin, a vital cell-building protein, and promotes angiogenesis (the creation of new blood vessels) directly at the site of injury, accelerating cellular migration to the wound.',
+        dosage: '2mg to 5mg twice weekly (Subcutaneous Injection).',
+        experimental: { b: '2mg/wk', a: '10mg/wk' },
+        benefits: 'Rapid localized healing of acute injuries, reduced joint inflammation, increased flexibility, and potential hair regrowth.',
+        risks: 'Lethargy, head rush immediately post-injection, theoretical risk of accelerating pre-existing cancer growth due to extreme angiogenesis.',
+        impact: { brain: 0, heart: 2, liver: 0, kidneys: 0, blood: 4, hair: 3, joints: 9 }
     }
 ];
 
