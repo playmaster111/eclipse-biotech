@@ -802,7 +802,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarEdgeThreshold = 40; // Zone for edge swipe
 
     document.addEventListener('touchstart', (e) => {
-        if (window.innerWidth > 900) return; // Only on mobile/tablet
+        if (window.innerWidth > 1024) return; // Only on mobile/tablet
         
         const touchX = e.touches[0].clientX;
         const isCollapsed = sidebar.classList.contains('collapsed');
@@ -1090,9 +1090,9 @@ function renderSidebar(filter = '') {
 
         const nutritionBtn = document.createElement('div');
         nutritionBtn.className = 'nav-item';
-        nutritionBtn.innerText = '> _NUTRITION_ARCHITECT';
+        nutritionBtn.innerText = '> _DIET_PLANNER';
         nutritionBtn.id = 'nutrition-nav-btn';
-        nutritionBtn.style.color = '#00ffaa'; // Emerald for nutrition
+        nutritionBtn.style.color = '#ff9d00';
         nutritionBtn.onclick = () => loadNutritionView();
         navEl.appendChild(nutritionBtn);
 
@@ -1224,16 +1224,10 @@ function generateThoughtLog(query) {
         "ANALYZING_KINETIC_TRAJECTORY",
         "CROSS_REFERENCING_TOXICITY_MARKERS",
         "FETCHING_CLINICAL_ASSETS",
-        "SYNTHESIZING_RESPONSE_MATRIX",
-        "EVALUATING_HEURISTIC_PROJECTIONS",
-        "CALIBRATING_INTERACTION_MATRIX",
-        "SIMULATING_METABOLIC_DEGRADATION",
-        "VERIFYING_RECEPTOR_AFFINITY",
-        "ACCESSING_ARCHIVAL_RESEARCH_LOGS"
+        "SYNTHESIZING_RESPONSE_MATRIX"
     ];
-    // Dynamic selection based on query complexity
-    const complexity = query.length > 30 ? 6 : 4;
-    const count = complexity + Math.floor(Math.random() * 3);
+    // Randomize 3-5 steps
+    const count = 3 + Math.floor(Math.random() * 3);
     const shuffled = steps.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
 }
@@ -1262,9 +1256,6 @@ window.submitAIQuery = function() {
         const typingId = 'typing_' + Date.now();
         const thoughtLog = generateThoughtLog(query);
         
-        const chatContainer = document.querySelector('.ai-chat-container');
-        if (chatContainer) chatContainer.classList.add('neural-pulse');
-
         history.insertAdjacentHTML('beforeend', `
             <div class="chat-msg ai thinking" id="${typingId}">
                 <div class="msg-sender">ECLIPSE_AI</div>
@@ -1303,9 +1294,6 @@ function finishAIResponse(query, typingId) {
         const history = document.getElementById('chatHistory');
         const typingEl = document.getElementById(typingId);
         if(typingEl) typingEl.remove();
-
-        const chatContainer = document.querySelector('.ai-chat-container');
-        if (chatContainer) chatContainer.classList.remove('neural-pulse');
 
         const response = generateAIResponse(query);
         if (history) {
@@ -1362,30 +1350,7 @@ const COMPOUND_ALIASES = {
     'sdrol': 'methasterone',
     'tbol': 'turinabol',
     'npp': 'nandrolone_npp',
-    'aya': 'ayahuasca',
-    'xanax': 'alprazolam',
-    'xan': 'alprazolam',
-    'bars': 'alprazolam',
-    'footballs': 'alprazolam',
-    'blues': 'alprazolam',
-    'valium': 'diazepam',
-    'kpins': 'clonazepam',
-    'klonopin': 'clonazepam',
-    'ativan': 'lorazepam',
-    'soma': 'carisoprodol',
-    'ambien': 'zolpidem',
-    'lyrica': 'pregabalin',
-    'gabapentin': 'gabapentin',
-    'phenibut': 'phenibut',
-    'adderall': 'amphetamine',
-    'addy': 'amphetamine',
-    'vyvanse': 'lisdexamfetamine',
-    'ritalin': 'methylphenidate',
-    'concerta': 'methylphenidate',
-    'modafinil': 'modafinil',
-    'provigil': 'modafinil',
-    'armodafinil': 'armodafinil',
-    'nuvigil': 'armodafinil'
+    'aya': 'ayahuasca'
 };
 
 function triggerAIExplain(compoundName) {
@@ -1405,183 +1370,86 @@ function triggerAIExplain(compoundName) {
     }, 200);
 }
 
-function analyzeInteractions(c1, c2) {
-    let risks = [];
-    let synergy = [];
-    
-    // 1. Cardiovascular Impact
-    if (c1.impact.heart >= 7 && c2.impact.heart >= 7) {
-        risks.push("CRITICAL_CARDIOVASCULAR_STRAIN: Both compounds exhibit high cardiac toxicity.");
-    }
-    
-    // 2. Stimulant + AAS (The classic risk)
-    if ((c1.category === 'recreational' && c2.category === 'anabolic') || (c1.category === 'anabolic' && c2.category === 'recreational')) {
-        risks.push("HEURISTIC_WARNING: Stimulant use during high-androgen phases significantly elevates LVH risk.");
-    }
-
-    // 3. Multi-Oral Liver Strain
-    const isOral = (c) => c.dosage.toLowerCase().includes('oral') || c.id.match(/dbol|anavar|winny|sdrol|tbol/);
-    if (isOral(c1) && isOral(c2)) {
-        risks.push("HEPATOTOXIC_ALERT: Simultaneous C17-aa oral administration detected. Severe liver enzyme elevation probable.");
-    }
-
-    // 4. SSRI + MAOI (Lethal)
-    if ((c1.type === 'SSRI' && c2.type === 'MAOI') || (c1.type === 'MAOI' && c2.type === 'SSRI')) {
-        risks.push("LETHAL_INTERACTION: Combination of SSRIs and MAOIs carries a high risk of Serotonin Syndrome.");
-    }
-
-    // 5. Growth Synergy
-    if ((c1.id.includes('somatropin') && c2.id.includes('insulin')) || (c1.id.includes('insulin') && c2.id.includes('somatropin'))) {
-        synergy.push("ANABOLIC_SYNERGY: HGH and Insulin exhibit potent synergistic nutrient partitioning effects.");
-    }
-
-    // 6. Test Base Requirement
-    if (c1.category === 'anabolic' && c2.category === 'anabolic') {
-        if (!c1.id.includes('testosterone') && !c2.id.includes('testosterone')) {
-            risks.push("PHYSIOLOGICAL_CRASH: Dual non-testosterone AAS usage without an androgenic base detected.");
-        }
-    }
-
-    return { risks, synergy };
-}
-
-function generateHeuristicProjection(c) {
-    const impacts = [];
-    if (c.impact.heart > 5) impacts.push("Weeks 2-4: Progressive Left Ventricular strain detected.");
-    if (c.impact.liver > 5) impacts.push("Weeks 1-6: Hepatic enzyme (AST/ALT) elevation trend.");
-    if (c.impact.brain > 5) impacts.push("Phase 1: Significant neurotransmitter receptor downregulation.");
-    if (impacts.length === 0) impacts.push("Phase 1: Gradual homeostatic adjustment with minimal systemic flux.");
-    
-    return impacts.map(i => `<div>> ${i}</div>`).join('');
-}
-
-
 function generateAIResponse(q) {
     let query = q.toLowerCase().replace(/[?.,!]/g, '');
     let identifiedCompound = null;
     let originalTerm = '';
 
-    // Stop words to ignore in fuzzy matching
-    const STOP_WORDS = new Set(['how', 'much', 'take', 'does', 'work', 'what', 'risk', 'safe', 'dose', 'dosage', 'tell', 'about', 'show', 'need', 'know', 'give', 'into', 'with', 'many', 'long', 'week', 'weeks', 'days', 'time', 'more', 'less', 'high', 'low', 'best', 'good', 'badly']);
-
-    // Step -1: Forced Override
+    // Step -1: Forced Override (For button triggers)
     if (aiSession.forcedCompound) {
         const forced = aiSession.forcedCompound.toLowerCase();
         identifiedCompound = WIKI_DATA.find(c => c.name.toLowerCase() === forced || c.id.toLowerCase() === forced);
         if (identifiedCompound) originalTerm = identifiedCompound.name;
-        aiSession.forcedCompound = null;
+        aiSession.forcedCompound = null; // Clear after use
     }
 
-    // Step 0: Extract Keywords (Words > 3 chars and not in STOP_WORDS)
-    const keywords = query.split(/\s+/).filter(w => w.length > 2 && !STOP_WORDS.has(w));
-
-    // Step 1: Alias Priority (Checks aliases against ALL query words)
-    if (!identifiedCompound) {
-        const allWords = query.split(/\s+/);
-        for (const word of allWords) {
-            if (COMPOUND_ALIASES[word]) {
-                const targetId = COMPOUND_ALIASES[word];
-                identifiedCompound = WIKI_DATA.find(c => c.id === targetId || c.name.toLowerCase() === targetId || (c.esters && c.esters.toLowerCase().includes(targetId)));
-                if (identifiedCompound) {
-                    originalTerm = word.toUpperCase();
-                    break;
-                }
-            }
-        }
-    }
-
-    // Step 2: Direct ID/Name Match (Scan for presence of full name or ID)
+    // Step 0: Priority Direct Match (Exactly matches name or ID)
     if (!identifiedCompound) {
         for (let c of WIKI_DATA) {
-            const name = c.name.toLowerCase();
-            const id = c.id.toLowerCase();
-            // Check if any significant keyword matches the name or ID exactly
-            if (keywords.some(k => k === name || k === id)) {
-                identifiedCompound = c;
-                originalTerm = c.name;
-                break;
-            }
+        const cName = c.name.toLowerCase();
+        if (query.includes(cName) || query.includes(c.id.toLowerCase())) {
+            identifiedCompound = c;
+            originalTerm = c.name;
+            break;
         }
     }
+}
 
-    // Step 3: Deep Field Scan (Esters and AKA)
-    if (!identifiedCompound) {
-        for (let c of WIKI_DATA) {
-            const esters = (c.esters || '').toLowerCase();
-            const aka = (c.aka || '').toLowerCase();
-            if (keywords.some(k => (esters.includes(k) || aka.includes(k)) && k.length > 3)) {
-                identifiedCompound = c;
-                originalTerm = c.name;
-                break;
-            }
-        }
-    }
-
-    // Step 3.5: Context Awareness (Follow-up)
+    // Step 1: Context Awareness (Follow-up handling)
     if (!identifiedCompound) {
         const isFollowup = query.match(/\bit\b|\bthat\b|\bthis\b/);
         const hasIntent = query.match(/dose|dosage|risk|side effect|mechanism|how does|mg|take|toxic|work/);
+        
         if (isFollowup && hasIntent && aiSession.lastCompound) {
             identifiedCompound = aiSession.lastCompound;
-            originalTerm = identifiedCompound.name + " (CONTEXTUAL)";
+            originalTerm = identifiedCompound.name + " (CONTEXTUAL_FOLLOW_UP)";
         }
     }
 
-    // Step 4: Fuzzy Keyword Fallback (Partial matches)
+    // Step 2: Alias Resolution (If not already found by context)
     if (!identifiedCompound) {
-        for (let k of keywords) {
-            if (k.length < 4) continue;
-            identifiedCompound = WIKI_DATA.find(c => c.name.toLowerCase().includes(k) || c.id.toLowerCase().includes(k));
-            if (identifiedCompound) {
-                originalTerm = k.toUpperCase() + "?";
+        for (const [alias, full] of Object.entries(COMPOUND_ALIASES)) {
+            if (query.match(new RegExp(`\\b${alias}\\b`))) {
+                identifiedCompound = WIKI_DATA.find(c => c.id.includes(full) || c.name.toLowerCase().includes(full));
+                originalTerm = alias.toUpperCase();
                 break;
             }
+        }
+    }
+
+    // Step 3: Direct hits
+    if (!identifiedCompound) {
+        for (let c of WIKI_DATA) {
+            if (query.includes(c.name.toLowerCase()) || query.includes(c.id)) {
+                identifiedCompound = c;
+                originalTerm = c.name;
+                break;
+            }
+        }
+    }
+
+    // Step 4: Fuzzy Matching
+    if (!identifiedCompound) {
+        const queryWords = query.split(' ');
+        for (let word of queryWords) {
+            if (word.length < 4) continue;
+            for (let c of WIKI_DATA) {
+                const name = c.name.toLowerCase();
+                if (name.includes(word) || word.includes(name.substring(0, 4))) {
+                    identifiedCompound = c;
+                    originalTerm = word.toUpperCase() + "? (Assuming " + c.name + ")";
+                    break;
+                }
+            }
+            if (identifiedCompound) break;
         }
     }
 
     if (identifiedCompound) {
-        aiSession.lastCompound = identifiedCompound;
+        aiSession.lastCompound = identifiedCompound; // Store for next turn
         const c = identifiedCompound;
         const msgHeader = `<div class="msg-meta">[TARGET: ${originalTerm}]</div>`;
         
-        // --- Multi-Compound Detection (v4.0) ---
-        const secondaryCompound = WIKI_DATA.find(alt => alt.id !== c.id && (query.includes(alt.name.toLowerCase()) || query.includes(alt.id)));
-        
-        if (secondaryCompound) {
-            const analysis = analyzeInteractions(c, secondaryCompound);
-            let report = `<div class="msg-meta">[MATRIX_ANALYSIS: ${c.name} + ${secondaryCompound.name}]</div>`;
-            report += `<div class="ai-report-section">`;
-            report += `<div class="report-header">[HEURISTIC_INTERACTION_REPORT]</div>`;
-            
-            if (analysis.risks.length > 0) {
-                report += `<div class="report-risk-list">`;
-                analysis.risks.forEach(r => report += `<div style="color:var(--red); margin-bottom: 5px;">> ${r}</div>`);
-                report += `</div>`;
-            } else {
-                report += `<p>No critical contraindications identified between identified entities.</p>`;
-            }
-
-            if (analysis.synergy.length > 0) {
-                report += `<div class="report-synergy-list" style="margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px;">`;
-                analysis.synergy.forEach(s => report += `<div style="color:var(--accent)">> ${s}</div>`);
-                report += `</div>`;
-            }
-            
-            report += `</div>`;
-            report += `<div class="ai-suggestion">Interaction matrix finalized. Should I simulate a prolonged metabolic projection for this combination?</div>`;
-            return report;
-        }
-
-        // --- New: Heuristic Projection Trigger ---
-        if (query.includes('project') || query.includes('timeline') || query.includes('weeks')) {
-            const projection = generateHeuristicProjection(c);
-            return `${msgHeader}<div class="ai-report-section">
-                <div class="report-header">[METABOLIC_PROJECTION_MODEL]</div>
-                <div class="projection-log">${projection}</div>
-            </div>
-            <div class="ai-suggestion">Projection model based on heuristic markers. Clinical results may vary.</div>`;
-        }
-
         // --- New: Full Synthesis Deep Dive (ASK_ECLIPSE trigger) ---
         if (query.includes('pharmacological profile') || query.includes('clinical use') || (query.match(/explain|describe|tell me about|analyze/) && query.length > 20)) {
             let report = `${msgHeader}`;
@@ -1605,7 +1473,7 @@ function generateAIResponse(q) {
             report += `<p><strong>Clinical Baseline:</strong> ${c.dosage}<br><strong>Performance Observed:</strong> ${c.experimental.b} — ${c.experimental.a}</p>`;
             report += `</div>`;
             
-            report += `<div class="ai-suggestion">Analysis complete. Would you like to project these effects over a standard 12-week timeline?</div>`;
+            report += `<div class="ai-suggestion">Analysis complete. Would you like to cross-reference this profile with its respective cycle archetypes?</div>`;
             return report;
         }
 
@@ -1628,24 +1496,20 @@ function generateAIResponse(q) {
         return `${msgHeader}<strong>${c.name}</strong> (${c.type}) is primarily used for: ${c.primaryUses}. <br><br>${c.overview}`;
     }
 
-    // Step 4: Catch-all / Helpful Failure
-    const common = ["Testosterone", "Trenbolone", "HGH", "Insulin", "Xanax", "Anavar", "Clenbuterol"];
-    const suggestion = common[Math.floor(Math.random() * common.length)];
+    // Step 2: General queries
+    if (query.match(/hello|hi|greetings|system/)) return "Greetings. I am the Eclipse Biotech internal assistant. How can I assist your research today?";
+    if (query.match(/who represent|who are you|what are you/)) return "I am a simulated clinical AI (v3.0) embedded within the Eclipse Biotech databanks. I utilizing enhanced 'Cortex' modules for contextual reasoning.";
+    if (query.match(/cycle|stack|recommend/)) return "I am restricted from providing performance-enhancing recommendations or stacking protocols. I can only provide explicitly documented clinical data and physiological risk assessments.";
     
-    return `
-        <div class="msg-meta">[COGNITIVE_FALLBACK_REACHED]</div>
-        I was unable to identify a specific biochemical entity in your query. Ensure you are using clinical names (e.g., <em>Alprazolam</em>) or common aliases (e.g., <em>Xanax</em>).
-        <br><br>
-        <div class="ai-suggestion">
-            <strong>SUGGESTED_QUERY:</strong> "Tell me about ${suggestion}" or "What are the risks of ${suggestion}?"
-        </div>
-    `;
+    // Step 3: Failure
+    const suggestions = ["Trenbolone", "Testosterone", "Anavar", "Clenbuterol", "HGH"];
+    return `I could not identify a specific compound in your query. <br><br><span style="color:var(--muted)">TARGET_IDENTIFICATION_FAILED. Please specify a substance (e.g., "${suggestions[Math.floor(Math.random()*suggestions.length)]}").</span>`;
 }
 
 // Load Article into Main Mount
 function loadArticle(id) {
     const sidebar = document.querySelector('.sidebar');
-    if (window.innerWidth <= 768 && sidebar) {
+    if (window.innerWidth <= 1024 && sidebar) {
         sidebar.classList.add('collapsed');
     }
 
@@ -1837,9 +1701,7 @@ function loadArticle(id) {
 
     // Initialize 3D Mesh
     setTimeout(() => {
-        setTimeout(() => {
-            initHologram(holoType);
-        }, 50);
+        initHologram(holoType);
         updateHeatMap(item);
     }, 50);
 }
@@ -3354,9 +3216,225 @@ function getMealDesc(time) {
     return "200g Chicken Breast, 150g Sweet Potato, large Asparagus portion, 10g Olive Oil.";
 }
 
-// Lab Verifier / COA View
+function loadPCTView() {
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    if(document.getElementById('pct-nav-btn')) document.getElementById('pct-nav-btn').classList.add('active');
+    document.getElementById('current-category').innerText = "PCT CALCULATOR";
+
+    const mount = document.getElementById('article-mount');
+    
+    mount.innerHTML = `
+        <div class="pct-view">
+            <div class="ai-header">
+                <h2><span class="glitch" data-text="CLEARANCE CALCULATOR">CLEARANCE CALCULATOR</span></h2>
+                <p>Calculate metabolic half-life to determine the precise window for HPTA recovery initialization.</p>
+            </div>
+            
+            <div class="generator-form">
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label>Select Last Compound Used</label>
+                    <select id="pct-compound" style="background: rgba(0,0,0,0.5); color: #fff; width: 100%; padding: 10px; border: 1px solid var(--border);">
+                        <option value="testosterone_enanthate">Testosterone Enanthate (7.5 days)</option>
+                        <option value="testosterone_cypionate">Testosterone Cypionate (8 days)</option>
+                        <option value="testosterone_propionate">Testosterone Propionate (2 days)</option>
+                        <option value="nandrolone_decanoate">Nandrolone Decanoate / Deca (15 days)</option>
+                        <option value="trenbolone_acetate">Trenbolone Acetate (1 day)</option>
+                        <option value="trenbolone_enanthate">Trenbolone Enanthate (8 days)</option>
+                        <option value="boldenone_undecylenate">Boldenone / Equipoise (15 days)</option>
+                        <option value="primobolan_enanthate">Primobolan Enanthate (10 days)</option>
+                        <option value="masteron_propionate">Masteron Propionate (2 days)</option>
+                        <option value="sustanon_250">Sustanon 250 (15 days)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Last Dose (mg)</label>
+                    <input type="number" id="pct-dose" placeholder="e.g. 250">
+                </div>
+                <div class="form-group">
+                    <label>Date of Last Injection</label>
+                    <input type="date" id="pct-date">
+                </div>
+                <button class="cyber-btn" onclick="calculatePCT()" style="grid-column: 1 / -1; border-color: #ff3a5c; color: #ff3a5c; margin-top:10px;">ANALYZE_CLEARANCE</button>
+            </div>
+
+            <div id="pct-result" class="pct-result-display" style="display: none; margin-top: 30px; padding: 25px; border: 1px solid var(--red); background: rgba(255,58,92,0.05); border-radius: 8px;">
+            </div>
+        </div>
+    `;
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('pct-date').value = today;
+}
+
+window.calculatePCT = function() {
+    const compound = document.getElementById('pct-compound').value;
+    const dose = parseInt(document.getElementById('pct-dose').value);
+    const dateStr = document.getElementById('pct-date').value;
+    const resultDiv = document.getElementById('pct-result');
+
+    if (!dose || !dateStr) {
+        showNotify("Please enter dose and date.");
+        return;
+    }
+
+    const hl = HALF_LIVES[compound];
+    const lastDate = new Date(dateStr);
+    
+    // Recovery usually starts at 4.5 half-lives (95%+ clearance)
+    const daysToClearance = Math.ceil(hl * 4.5);
+    const clearanceDate = new Date(lastDate);
+    clearanceDate.setDate(lastDate.getDate() + daysToClearance);
+
+    // Mid-way point for levels dropping significantly
+    const lowLevelDate = new Date(lastDate);
+    lowLevelDate.setDate(lastDate.getDate() + Math.ceil(hl * 2));
+
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `
+        <h3 style="color: #ff3a5c; border-bottom: 1px solid #ff3a5c; padding-bottom: 10px; margin-bottom: 15px;">CLEARANCE DIAGNOSTIC</h3>
+        <p style="font-size: 16px; margin-bottom: 10px;">Metabolic Half-Life: <span style="color: #fff;">${hl} days</span></p>
+        <p style="font-size: 16px; margin-bottom: 10px;">Last Dose Saturation: <span style="color: #fff;">${dose}mg</span></p>
+        <hr style="border: 0; border-top: 1px solid rgba(255,58,92,0.2); margin: 15px 0;">
+        
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 4px; border-left: 4px solid #ff3a5c;">
+            <p style="color: #ff3a5c; font-weight: bold; font-size: 14px; margin-bottom: 5px;">ESTIMATED PCT START DATE:</p>
+            <p style="font-size: 24px; color: #fff; font-family: var(--font-m);">${clearanceDate.toDateString().toUpperCase()}</p>
+            <p style="font-size: 12px; color: var(--muted); margin-top: 5px;">* This date represents ~95% systemic clearance (4.5 half-lives). Initializing SERMs earlier may result in failed pituitary restart.</p>
+        </div>
+
+        <div style="margin-top: 20px; font-size: 13px; line-height: 1.6; color: #a1abb8;">
+            <p><strong>Clinical Note:</strong> For long esters like Nandrolone Decanoate, the clearance window is exceptionally wide (60+ days) due to their storage in adipose tissue. Bloodwork is recommended to confirm hormone levels have dropped below 300ng/dL before starting Nolvadex/Clomid.</p>
+        </div>
+    `;
+}
 
 // Lab Verifier / COA View
+function loadLabVerifierView() {
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    if(document.getElementById('lab-nav-btn')) document.getElementById('lab-nav-btn').classList.add('active');
+    document.getElementById('current-category').innerText = "LAB VERIFIER";
+
+    const mount = document.getElementById('article-mount');
+    
+    if (!currentUser) {
+        mount.innerHTML = `
+            <div class="empty-state">
+                <div class="glitch-icon" style="color: var(--red)"><i class="fas fa-microscope"></i></div>
+                <h2 class="glitch-small" data-text="VERIFICATION_HALTED" style="color: var(--red)">VERIFICATION_HALTED</h2>
+                <p style="max-width: 400px; line-height: 1.6; margin-bottom: 25px;">Certificate of Analysis generation requires a validated operator ID to prevent unauthorized forensic data retrieval.</p>
+                <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn">VALIDATE_BIO_ID</button>
+            </div>
+        `;
+        return;
+    }
+    
+    mount.innerHTML = `
+        <div class="lab-verifier-view">
+            <div class="lab-header">
+                <h2><i class="fas fa-microscope"></i> ECLIPSE ANALYTICS // BATCH_VERIFICATION</h2>
+                <p>Generate a certified Lab Report (COA) for any substance in the biotech databank.</p>
+            </div>
+
+            <div class="lab-controls">
+                <select id="lab-item-select">
+                    <option value="">-- SELECT SUBSTANCE --</option>
+                    ${WIKI_DATA.map(item => `<option value="${item.id}">${item.name}</option>`).join('')}
+                </select>
+                <button class="cyber-btn" onclick="generateCOA()" style="margin: 0; width: 230px; border-color: #00ff00; color: #00ff00;">GENERATE_LAB_REPORT</button>
+            </div>
+
+            <div id="coa-output" class="coa-output-container">
+                <div class="coa-placeholder">SELECT PARAMETERS TO INITIALIZE ASSAY...</div>
+            </div>
+        </div>
+    `;
+}
+
+window.generateCOA = function() {
+    const id = document.getElementById('lab-item-select').value;
+    if(!id) return;
+
+    const item = WIKI_DATA.find(d => d.id === id);
+    const output = document.getElementById('coa-output');
+    
+    const batchId = "ECL-" + Math.floor(Math.random()*10000) + "-X" + (Math.random()*10).toFixed(0);
+    const purity = (98.5 + Math.random()*1.4).toFixed(2);
+
+    output.innerHTML = `
+        <div class="coa-document">
+            <div class="coa-header">
+                <div class="coa-logo">ECLIPSE_ANALYTICS</div>
+                <div class="coa-title">CERTIFICATE OF ANALYSIS</div>
+            </div>
+
+            <div class="coa-meta-grid">
+                <div class="meta-box"><span>SUBSTANCE:</span> <strong>${item.name.toUpperCase()}</strong></div>
+                <div class="meta-box"><span>BATCH_ID:</span> <strong>${batchId}</strong></div>
+                <div class="meta-box"><span>TEST_DATE:</span> <strong>${new Date().toLocaleDateString()}</strong></div>
+                <div class="meta-box"><span>STATUS:</span> <strong style="color: #00ff00;">PASS</strong></div>
+            </div>
+
+            <table class="coa-table">
+                <thead>
+                    <tr>
+                        <th>PARAMETER</th>
+                        <th>SPECIFICATION</th>
+                        <th>RESULT</th>
+                        <th>METHOD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>IDENTIFICATION</td>
+                        <td>Matches Standard</td>
+                        <td>Confirmed</td>
+                        <td>FTIR / HPLC</td>
+                    </tr>
+                    <tr>
+                        <td>PURITY (ASSAY)</td>
+                        <td>≥ 98.00%</td>
+                        <td style="color: #00ff00; font-weight: 700;">${purity}%</td>
+                        <td>HPLC-UV</td>
+                    </tr>
+                    <tr>
+                        <td>HEAVY METALS</td>
+                        <td>< 1.0 ppm</td>
+                        <td>0.12 ppm</td>
+                        <td>ICP-MS</td>
+                    </tr>
+                    <tr>
+                        <td>BACTERIAL ENDOTOXINS</td>
+                        <td>< 0.5 EU/ml</td>
+                        <td>Negative</td>
+                        <td>LAL Test</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="coa-hplc-section">
+                <h3>SIMULATED HPLC CHROMATOGRAM</h3>
+                <div class="hplc-chart">
+                    <div class="hplc-peak" style="left: 45%; height: 90%;"></div>
+                    <div class="hplc-peak small" style="left: 10%; height: 5%;"></div>
+                    <div class="hplc-peak small" style="left: 80%; height: 3%;"></div>
+                    <div class="hplc-baseline"></div>
+                </div>
+            </div>
+
+            <div class="coa-footer">
+                <div class="signature">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jon_Foreman_Signature.png" style="filter: invert(1); opacity: 0.5; height: 30px;">
+                    <p>DR. ARIS KALE (HEAD OF ANALYTICS)</p>
+                </div>
+                <div class="btn-group">
+                    <button class="cyber-btn" onclick="window.print()" style="margin: 0; padding: 5px 15px; font-size: 10px; border-color: #666; color: #666;">PRINT_EXPORT</button>
+                    <div class="stamp">OFFICIAL_VERIFIED</div>
+                </div>
+            </div>
+            </div>
+        </div>
+    `;
+}
+
 // --- Three.js Hologram Engine ---
 let holoScene, holoCamera, holoRenderer, holoMesh, holoRequestID;
 
