@@ -19,7 +19,7 @@ export default async function handler(req) {
         }
 
         const model = "gemini-1.5-flash";
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${apiKey}`;
 
         // Convert OpenAI-style messages to Gemini format
         const systemInstruction = `You are the "Eclipse Biotech Mainframe", an advanced sci-fi AI assistant. 
