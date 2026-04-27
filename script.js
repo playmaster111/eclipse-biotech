@@ -1289,18 +1289,55 @@ window.submitAIQuery = function() {
     }
 }
 
-function finishAIResponse(query, typingId) {
+async function finishAIResponse(query, typingId) {
     try {
         const history = document.getElementById('chatHistory');
         const typingEl = document.getElementById(typingId);
+        
+        // Let's keep the typing element but change its text to downloading...
+        if(typingEl) {
+            const textEl = typingEl.querySelector('.msg-text');
+            if (textEl) textEl.innerHTML = 'DOWNLOADING_RESPONSE<span>.</span><span>.</span><span>.</span>';
+        }
+
+        let responseText = "ERROR: Failed to reach Eclipse Mainframe.";
+        try {
+            // Build context from current session
+            const contextName = aiSession.lastCompound ? aiSession.lastCompound.name : 'General Database';
+            const contextDesc = aiSession.lastCompound ? aiSession.lastCompound.shortDesc : 'No specific compound selected.';
+            
+            aiSession.history.push({ role: 'user', content: query });
+            
+            const res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    messages: aiSession.history,
+                    context: `Viewing: ${contextName} - ${contextDesc}`
+                })
+            });
+            
+            const data = await res.json();
+            if (res.ok && data.message) {
+                responseText = data.message;
+                aiSession.history.push({ role: 'assistant', content: responseText });
+            } else {
+                responseText = `ERROR: ${data.error || 'Unknown API failure'}`;
+            }
+        } catch (fetchErr) {
+            console.error("Fetch Error:", fetchErr);
+            responseText = "ERROR: Network failure. Could not reach /api/chat. Ensure you are running on Vercel or local dev server.";
+        }
+
         if(typingEl) typingEl.remove();
 
-        const response = generateAIResponse(query);
         if (history) {
+            // Replace newlines with <br> for HTML rendering
+            const formattedResponse = responseText.replace(/\n/g, '<br>');
             history.insertAdjacentHTML('beforeend', `
                 <div class="chat-msg ai">
                     <div class="msg-sender">ECLIPSE_AI</div>
-                    <div class="msg-text">${response}</div>
+                    <div class="msg-text">${formattedResponse}</div>
                     <div class="msg-actions">
                         <button class="action-btn" onclick="copyToClipboard(this)">COPY_REPORT</button>
                         <button class="action-btn" onclick="triggerAIExplain('${aiSession.lastCompound ? aiSession.lastCompound.name : ''}')">DEEP_DIVE</button>
