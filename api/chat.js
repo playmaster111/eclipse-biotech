@@ -10,18 +10,16 @@ export default async function handler(req) {
     try {
         const { messages, context } = await req.json();
 
-        // Use Gemini API Key
-        const apiKey = process.env.GEMINI_API_KEY;
+        // Use OpenAI API Key
+        const apiKey = process.env.OPENAI_API_KEY;
         if (!apiKey) {
             return new Response(JSON.stringify({
-                error: 'Gemini API Key not configured. Please add GEMINI_API_KEY to your Vercel project.'
+                error: 'OpenAI API Key not configured. Please add OPENAI_API_KEY to your Vercel project.'
             }), { status: 500, headers: { 'content-type': 'application/json' } });
         }
 
-        // Use Gemini's OpenAI-compatible endpoint
-        // This is more reliable as it supports standard OpenAI payload formats
-        const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions';
-        const model = 'gemini-1.5-flash';
+        const apiUrl = 'https://api.openai.com/v1/chat/completions';
+        const model = 'gpt-4o-mini';
 
         const systemMessage = {
             role: 'system',
@@ -48,7 +46,7 @@ Current Context: ${context || 'None'}`
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`Gemini API returned ${response.status}: ${errorText}`);
+            throw new Error(`OpenAI API returned ${response.status}: ${errorText}`);
         }
 
         const data = await response.json();
