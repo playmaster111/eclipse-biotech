@@ -1362,7 +1362,30 @@ const COMPOUND_ALIASES = {
     'sdrol': 'methasterone',
     'tbol': 'turinabol',
     'npp': 'nandrolone_npp',
-    'aya': 'ayahuasca'
+    'aya': 'ayahuasca',
+    'xanax': 'alprazolam',
+    'xan': 'alprazolam',
+    'bars': 'alprazolam',
+    'footballs': 'alprazolam',
+    'blues': 'alprazolam',
+    'valium': 'diazepam',
+    'kpins': 'clonazepam',
+    'klonopin': 'clonazepam',
+    'ativan': 'lorazepam',
+    'soma': 'carisoprodol',
+    'ambien': 'zolpidem',
+    'lyrica': 'pregabalin',
+    'gabapentin': 'gabapentin',
+    'phenibut': 'phenibut',
+    'adderall': 'amphetamine',
+    'addy': 'amphetamine',
+    'vyvanse': 'lisdexamfetamine',
+    'ritalin': 'methylphenidate',
+    'concerta': 'methylphenidate',
+    'modafinil': 'modafinil',
+    'provigil': 'modafinil',
+    'armodafinil': 'armodafinil',
+    'nuvigil': 'armodafinil'
 };
 
 function triggerAIExplain(compoundName) {
@@ -1443,47 +1466,18 @@ function generateAIResponse(q) {
         const forced = aiSession.forcedCompound.toLowerCase();
         identifiedCompound = WIKI_DATA.find(c => c.name.toLowerCase() === forced || c.id.toLowerCase() === forced);
         if (identifiedCompound) originalTerm = identifiedCompound.name;
-        aiSession.forcedCompound = null; // Clear after use
+        aiSession.forcedCompound = null;
     }
 
-    // Step 0: Priority Direct Match (Exactly matches name or ID)
+    // Step 0: Advanced Multi-Field Scan (Name, ID, Esters, AKA)
     if (!identifiedCompound) {
         for (let c of WIKI_DATA) {
-        const cName = c.name.toLowerCase();
-        if (query.includes(cName) || query.includes(c.id.toLowerCase())) {
-            identifiedCompound = c;
-            originalTerm = c.name;
-            break;
-        }
-    }
-}
-
-    // Step 1: Context Awareness (Follow-up handling)
-    if (!identifiedCompound) {
-        const isFollowup = query.match(/\bit\b|\bthat\b|\bthis\b/);
-        const hasIntent = query.match(/dose|dosage|risk|side effect|mechanism|how does|mg|take|toxic|work/);
-        
-        if (isFollowup && hasIntent && aiSession.lastCompound) {
-            identifiedCompound = aiSession.lastCompound;
-            originalTerm = identifiedCompound.name + " (CONTEXTUAL_FOLLOW_UP)";
-        }
-    }
-
-    // Step 2: Alias Resolution (If not already found by context)
-    if (!identifiedCompound) {
-        for (const [alias, full] of Object.entries(COMPOUND_ALIASES)) {
-            if (query.match(new RegExp(`\\b${alias}\\b`))) {
-                identifiedCompound = WIKI_DATA.find(c => c.id.includes(full) || c.name.toLowerCase().includes(full));
-                originalTerm = alias.toUpperCase();
-                break;
-            }
-        }
-    }
-
-    // Step 3: Direct hits
-    if (!identifiedCompound) {
-        for (let c of WIKI_DATA) {
-            if (query.includes(c.name.toLowerCase()) || query.includes(c.id)) {
+            const name = c.name.toLowerCase();
+            const id = c.id.toLowerCase();
+            const esters = (c.esters || '').toLowerCase();
+            const aka = (c.aka || '').toLowerCase();
+            
+            if (query.includes(name) || query.includes(id) || query.includes(esters) || query.includes(aka)) {
                 identifiedCompound = c;
                 originalTerm = c.name;
                 break;
@@ -1491,16 +1485,36 @@ function generateAIResponse(q) {
         }
     }
 
-    // Step 4: Fuzzy Matching
+    // Step 1: Alias Resolution
+    if (!identifiedCompound) {
+        for (const [alias, full] of Object.entries(COMPOUND_ALIASES)) {
+            if (query.match(new RegExp(`\\b${alias}\\b`))) {
+                identifiedCompound = WIKI_DATA.find(c => c.id.includes(full) || c.name.toLowerCase().includes(full) || (c.esters && c.esters.toLowerCase().includes(full)));
+                originalTerm = alias.toUpperCase();
+                break;
+            }
+        }
+    }
+
+    // Step 2: Context Awareness (Follow-up)
+    if (!identifiedCompound) {
+        const isFollowup = query.match(/\bit\b|\bthat\b|\bthis\b/);
+        const hasIntent = query.match(/dose|dosage|risk|side effect|mechanism|how does|mg|take|toxic|work/);
+        if (isFollowup && hasIntent && aiSession.lastCompound) {
+            identifiedCompound = aiSession.lastCompound;
+            originalTerm = identifiedCompound.name + " (CONTEXTUAL)";
+        }
+    }
+
+    // Step 3: Fuzzy / Partial Match
     if (!identifiedCompound) {
         const queryWords = query.split(' ');
         for (let word of queryWords) {
             if (word.length < 4) continue;
             for (let c of WIKI_DATA) {
-                const name = c.name.toLowerCase();
-                if (name.includes(word) || word.includes(name.substring(0, 4))) {
+                if (c.name.toLowerCase().includes(word) || c.id.toLowerCase().includes(word)) {
                     identifiedCompound = c;
-                    originalTerm = word.toUpperCase() + "? (Assuming " + c.name + ")";
+                    originalTerm = word.toUpperCase() + "?";
                     break;
                 }
             }
@@ -1597,14 +1611,18 @@ function generateAIResponse(q) {
         return `${msgHeader}<strong>${c.name}</strong> (${c.type}) is primarily used for: ${c.primaryUses}. <br><br>${c.overview}`;
     }
 
-    // Step 2: General queries
-    if (query.match(/hello|hi|greetings|system/)) return "Greetings. I am the Eclipse Biotech internal assistant. How can I assist your research today?";
-    if (query.match(/who represent|who are you|what are you/)) return "I am a simulated clinical AI (v3.0) embedded within the Eclipse Biotech databanks. I utilizing enhanced 'Cortex' modules for contextual reasoning.";
-    if (query.match(/cycle|stack|recommend/)) return "I am restricted from providing performance-enhancing recommendations or stacking protocols. I can only provide explicitly documented clinical data and physiological risk assessments.";
+    // Step 4: Catch-all / Helpful Failure
+    const common = ["Testosterone", "Trenbolone", "HGH", "Insulin", "Xanax", "Anavar", "Clenbuterol"];
+    const suggestion = common[Math.floor(Math.random() * common.length)];
     
-    // Step 3: Failure
-    const suggestions = ["Trenbolone", "Testosterone", "Anavar", "Clenbuterol", "HGH"];
-    return `I could not identify a specific compound in your query. <br><br><span style="color:var(--muted)">TARGET_IDENTIFICATION_FAILED. Please specify a substance (e.g., "${suggestions[Math.floor(Math.random()*suggestions.length)]}").</span>`;
+    return `
+        <div class="msg-meta">[COGNITIVE_FALLBACK_REACHED]</div>
+        I was unable to identify a specific biochemical entity in your query. Ensure you are using clinical names (e.g., <em>Alprazolam</em>) or common aliases (e.g., <em>Xanax</em>).
+        <br><br>
+        <div class="ai-suggestion">
+            <strong>SUGGESTED_QUERY:</strong> "Tell me about ${suggestion}" or "What are the risks of ${suggestion}?"
+        </div>
+    `;
 }
 
 // Load Article into Main Mount
