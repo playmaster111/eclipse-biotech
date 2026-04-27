@@ -2781,19 +2781,29 @@ function renderFinderStep() {
         const result = calculateFinderResult();
         const item = WIKI_DATA.find(x => x.id === result.id);
         
-        content = `
-            <div class="ai-header pulse">
-                <h2 style="color: #00ffaa;">DIAGNOSIS COMPLETE</h2>
-                <p>Based on your physiological goals and risk tolerance, the following compound is your optimal match:</p>
-            </div>
-            <div class="result-card" style="background: rgba(0,255,170,0.05); border: 2px solid #00ffaa; padding: 30px; border-radius: 8px; margin-top: 30px; cursor: pointer;" onclick="loadArticle('${item.id}')">
-                <div style="font-size: 12px; color: #00ffaa; letter-spacing: 2px; margin-bottom: 10px;">OPTIMAL SELECTION</div>
-                <h1 style="margin: 0; font-size: 32px; color: #fff;">${item.name}</h1>
-                <p style="color: #a1abb8; margin: 15px 0;">${item.primaryUses}</p>
-                <div style="color: #00ffaa; font-weight: bold;">CLICK TO VIEW FULL PROFILE ></div>
-            </div>
-            <button class="cyber-btn" onclick="loadQuickFinderView()" style="margin-top: 30px; width: auto;">RESET_DIAGNOSTIC</button>
-        `;
+        if (!item) {
+            content = `
+                <div class="ai-header">
+                    <h2 style="color: var(--red);">DATA_RETRIEVAL_ERROR</h2>
+                    <p>The diagnostic engine identified <strong>${result.id}</strong>, but the clinical profile is currently locked or missing.</p>
+                </div>
+                <button class="cyber-btn" onclick="loadQuickFinderView()" style="margin-top: 30px; width: auto;">RESET_DIAGNOSTIC</button>
+            `;
+        } else {
+            content = `
+                <div class="ai-header pulse">
+                    <h2 style="color: #00ffaa;">DIAGNOSIS COMPLETE</h2>
+                    <p>Based on your physiological goals and risk tolerance, the following compound is your optimal match:</p>
+                </div>
+                <div class="result-card" style="background: rgba(0,255,170,0.05); border: 2px solid #00ffaa; padding: 30px; border-radius: 8px; margin-top: 30px; cursor: pointer;" onclick="loadArticle('${item.id}')">
+                    <div style="font-size: 12px; color: #00ffaa; letter-spacing: 2px; margin-bottom: 10px;">OPTIMAL SELECTION</div>
+                    <h1 style="margin: 0; font-size: 32px; color: #fff;">${item.name}</h1>
+                    <p style="color: #a1abb8; margin: 15px 0;">${item.primaryUses}</p>
+                    <div style="color: #00ffaa; font-weight: bold;">CLICK TO VIEW FULL PROFILE ></div>
+                </div>
+                <button class="cyber-btn" onclick="loadQuickFinderView()" style="margin-top: 30px; width: auto;">RESET_DIAGNOSTIC</button>
+            `;
+        }
     }
 
     container.innerHTML = content;
@@ -2811,19 +2821,19 @@ function calculateFinderResult() {
     const r = finderData.risk;
 
     if (g === 'muscle') {
-        if (r === 'low') return { id: 'testosterone' };
-        if (r === 'mid') return { id: 'nandrolone' };
-        return { id: 'trenbolone' };
+        if (r === 'low') return { id: 'testosterone_enanthate' };
+        if (r === 'mid') return { id: 'nandrolone_decanoate' };
+        return { id: 'trenbolone_acetate' };
     }
     if (g === 'shred') {
-        if (r === 'low') return { id: 'anavar' };
-        if (r === 'mid') return { id: 'winstrol' };
+        if (r === 'low') return { id: 'oxandrolone' };
+        if (r === 'mid') return { id: 'stanozolol' };
         return { id: 'clenbuterol' };
     }
     if (g === 'mental') {
-        if (r === 'low') return { id: 'nootropics' };
+        if (r === 'low') return { id: 'caffeine' };
         if (r === 'mid') return { id: 'modafinil' };
-        return { id: 'amphetamine' };
+        return { id: 'adderall' };
     }
     if (g === 'relief') {
         if (r === 'low') return { id: 'phenibut' };
@@ -2831,11 +2841,11 @@ function calculateFinderResult() {
         return { id: 'barbiturates' };
     }
     if (g === 'fun') {
-        if (r === 'low') return { id: 'cannabis' };
+        if (r === 'low') return { id: 'hashish' };
         if (r === 'mid') return { id: 'mdma' };
         return { id: 'lsd' };
     }
-    return { id: 'testosterone' };
+    return { id: 'testosterone_enanthate' };
 }
 
 // PCT Clearance Calculator
