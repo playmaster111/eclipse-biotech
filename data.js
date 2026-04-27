@@ -1528,7 +1528,7 @@ var WIKI_DATA = [
         risks: 'Dangerous overdose (coma), lethal interaction with alcohol, physical addiction.'
     },
     {
-        id: 'methaqualone', folder: 'Sedatives', category: 'depressants', type: 'Quinazolinone', name: 'Methaqualone', esters: '(Quaaludes / Ludes / 714)', status: 'discontinued',
+        id: 'methaqualone', folder: 'Sedatives', category: 'depressants', type: 'Quinazolinone', name: 'Methaqualone', esters: '(Quaaludes / Lemmons / Ludes / 714)', status: 'discontinued',
         overview: 'Methaqualone, famously known as Quaaludes, is a potent sedative-hypnotic that became a cultural icon in the 1970s. Originally developed in India in 1951, it was later banned globally due to its extreme potential for abuse and physical dependence.',
         primaryUses: 'Treating insomnia, anxiety, and muscle tension',
         mechanism: 'Acts as a positive allosteric modulator of GABA-A receptors, increasing the brains inhibitory activity and inducing profound physical relaxation and sedation.',
