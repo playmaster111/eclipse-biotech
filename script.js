@@ -1298,7 +1298,9 @@ async function finishAIResponse(query, typingId) {
         if(typingEl) {
             const textEl = typingEl.querySelector('.msg-text');
             if (textEl) textEl.innerHTML = 'DOWNLOADING_RESPONSE<span>.</span><span>.</span><span>.</span>';
-              let responseText = "ERROR: Failed to reach Eclipse Mainframe.";
+        }
+
+        let responseText = "ERROR: Failed to reach Eclipse Mainframe.";
         try {
             // Build context from current session
             const contextName = aiSession.lastCompound ? aiSession.lastCompound.name : 'General Database';
