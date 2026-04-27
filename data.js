@@ -2656,6 +2656,51 @@ var WIKI_DATA = [
         benefits: 'Profoundly eliminates anxiety, prevents seizures, induces muscle relaxation, and helps stop "bad trips" from psychedelics.',
         risks: 'Severe physical dependence, life-threatening withdrawal seizures, anterograde amnesia (blackouts), and lethal respiratory depression when mixed with alcohol or opioids.',
         impact: { brain: 6, heart: 2, liver: 3, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    // --- ADDITIONAL DEPRESSANTS ---
+    {
+        id: 'diazepam', folder: 'Benzodiazepines', category: 'depressants', type: 'GABAergic', name: 'Diazepam', esters: '(Valium)', status: 'active',
+        overview: 'One of the oldest and most famous benzodiazepines. It has an incredibly long half-life and produces significant muscle relaxation compared to other benzos.',
+        primaryUses: 'Anxiety, Muscle Spasms, Alcohol Withdrawal',
+        mechanism: 'Positive allosteric modulator of the GABA-A receptor. Its active metabolites (like desmethyldiazepam) stay in the blood for up to 200 hours.',
+        dosage: '5mg to 10mg (Clinical); 20mg+ (Recreational).',
+        experimental: { b: 'Variable', a: 'High Risk' },
+        benefits: 'Excellent for tapering off shorter-acting benzos or alcohol, profound muscle relaxation, and long-lasting anxiety relief.',
+        risks: 'Lethargy, cognitive blunting, severe physical dependence, lethal respiratory depression when combined with opioids/alcohol.',
+        impact: { brain: 5, heart: 2, liver: 3, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'lorazepam', folder: 'Benzodiazepines', category: 'depressants', type: 'GABAergic', name: 'Lorazepam', esters: '(Ativan)', status: 'active',
+        overview: 'A highly potent, intermediate-acting benzodiazepine widely used in hospitals for acute panic attacks and to chemically sedate aggressive patients.',
+        primaryUses: 'Acute Panic Attacks, Sedation, Seizures',
+        mechanism: 'Enhances GABA at the GABA-A receptor. It is highly lipid-soluble, meaning it hits the brain very fast when administered via IV.',
+        dosage: '0.5mg to 2mg (Clinical).',
+        experimental: { b: 'Variable', a: 'High Risk' },
+        benefits: 'Very rapid onset of action; highly effective at instantly stopping severe panic attacks or acute seizures.',
+        risks: 'Severe amnesia (blackouts), rapid tolerance, physical addiction, respiratory depression.',
+        impact: { brain: 6, heart: 2, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'zolpidem', folder: 'Z-Drugs', category: 'depressants', type: 'Nonbenzodiazepine', name: 'Zolpidem', esters: '(Ambien)', status: 'active',
+        overview: 'A famous "Z-drug" prescribed almost exclusively for insomnia. It acts similarly to benzos but has a very high affinity for the specific receptor subunits that cause sleep and hallucinations.',
+        primaryUses: 'Severe Insomnia',
+        mechanism: 'Selective agonist at the α1 subunit of the GABA-A receptor. This specific targeting is why it causes sleep rather than just anxiety relief.',
+        dosage: '5mg to 10mg (taken immediately before bed).',
+        experimental: { b: 'Variable', a: 'Variable' },
+        benefits: 'Forces rapid sleep onset. Can sometimes "re-awaken" brain function in patients with severe brain damage (paradoxical effect).',
+        risks: '<strong>Sleepwalking/Amnesia.</strong> Users often perform complex tasks (driving, cooking, having conversations) with zero memory of the event. Hallucinations if sleep is resisted.',
+        impact: { brain: 7, heart: 1, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
+    },
+    {
+        id: 'carisoprodol', folder: 'Muscle Relaxants', category: 'depressants', type: 'GABAergic', name: 'Carisoprodol', esters: '(Soma)', status: 'active',
+        overview: 'A powerful centrally acting skeletal muscle relaxant. It is heavily abused recreationally because it metabolizes into meprobamate, a barbiturate-like tranquilizer.',
+        primaryUses: 'Acute musculoskeletal pain/spasms',
+        mechanism: 'Modulates GABA-A receptors, interrupting neuronal communication within the reticular formation and spinal cord. Its metabolite meprobamate causes profound sedation.',
+        dosage: '250mg to 350mg (Clinical).',
+        experimental: { b: 'Variable', a: 'High Risk' },
+        benefits: 'Total muscle relaxation; intense euphoric "jelly-like" body high (the "Soma Coma").',
+        risks: 'Extremely addictive, dangerous withdrawal profile, highly lethal when mixed with alcohol or opioids due to synergistic respiratory depression.',
+        impact: { brain: 6, heart: 3, liver: 4, kidneys: 2, blood: 1, hair: 0, joints: 0 }
     }
 ];
 
