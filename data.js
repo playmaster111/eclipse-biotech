@@ -2644,6 +2644,18 @@ var WIKI_DATA = [
         benefits: 'Profound increases in physical endurance, rapid fat loss without drastic dietary changes, and protection against metabolic decline (insulin resistance).',
         risks: 'Relatively new compound with unknown long-term risks. Potential for hypoglycemia if combined with insulin or severe fasting.',
         impact: { brain: 2, heart: 5, liver: 4, kidneys: 2, blood: 2, hair: 0, joints: 0 }
+    },
+    // --- BENZODIAZEPINES ---
+    {
+        id: 'clonazepam', folder: 'Benzodiazepines', category: 'depressants', type: 'GABAergic', name: 'Clonazepam', esters: '(Klonopin / K-Pins)', status: 'active',
+        overview: 'A highly potent, long-acting benzodiazepine. It is commonly prescribed for panic disorders and seizure prevention, but carries significant recreational abuse potential.',
+        primaryUses: 'Panic attacks, Epilepsy, Severe Anxiety',
+        mechanism: 'Binds to the GABA-A receptor, significantly enhancing the inhibitory effects of GABA, which slows down the central nervous system.',
+        dosage: '0.5mg to 2mg per day (Clinical); 2mg+ (Recreational).',
+        experimental: { b: 'Variable', a: 'High Risk' },
+        benefits: 'Profoundly eliminates anxiety, prevents seizures, induces muscle relaxation, and helps stop "bad trips" from psychedelics.',
+        risks: 'Severe physical dependence, life-threatening withdrawal seizures, anterograde amnesia (blackouts), and lethal respiratory depression when mixed with alcohol or opioids.',
+        impact: { brain: 6, heart: 2, liver: 3, kidneys: 1, blood: 1, hair: 0, joints: 0 }
     }
 ];
 
