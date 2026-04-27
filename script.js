@@ -3015,12 +3015,12 @@ window.calculatePCT = function() {
 }
 
 // --- Nutrition Architect Engine ---
-let nutritionStep = 1;
-let nutritionData = { goal: '', diet: '', activity: '' };
+let nutritionStep = 0; // Starts at 0 for Biometrics
+let nutritionData = { weight: 80, height: 180, age: 25, goal: '', diet: '', activity: '' };
 
 function loadNutritionView() {
-    nutritionStep = 1;
-    nutritionData = { goal: '', diet: '', activity: '' };
+    nutritionStep = 0;
+    nutritionData = { weight: 80, height: 180, age: 25, goal: '', diet: '', activity: '' };
     
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('nutrition-nav-btn')) document.getElementById('nutrition-nav-btn').classList.add('active');
@@ -3038,37 +3038,64 @@ function renderNutritionStep() {
 
     const track = `
         <div class="finder-progress-track">
+            <div class="progress-step ${nutritionStep >= 0 ? 'active' : ''} ${nutritionStep > 0 ? 'completed' : ''}">BIO</div>
             <div class="progress-step ${nutritionStep >= 1 ? 'active' : ''} ${nutritionStep > 1 ? 'completed' : ''}">OBJ</div>
             <div class="progress-step ${nutritionStep >= 2 ? 'active' : ''} ${nutritionStep > 2 ? 'completed' : ''}">TYP</div>
-            <div class="progress-step ${nutritionStep >= 3 ? 'active' : ''} ${nutritionStep > 3 ? 'completed' : ''}">ACT</div>
             <div class="progress-step ${nutritionStep >= 4 ? 'active' : ''}">RES</div>
         </div>
     `;
 
     let content = '';
 
-    if (nutritionStep === 1) {
+    if (nutritionStep === 0) {
+        content = `
+            ${track}
+            <div class="ai-header" style="text-align: center;">
+                <h1 class="glitch-large">BIOMETRIC_INPUT</h1>
+                <p>Provide physical specifications for high-fidelity metabolic modeling.</p>
+            </div>
+            
+            <div class="biometric-grid" style="max-width: 500px; margin: 30px auto;">
+                <div class="bio-input-wrap">
+                    <label>WEIGHT (KG)</label>
+                    <input type="number" id="bio-weight" value="${nutritionData.weight}">
+                </div>
+                <div class="bio-input-wrap">
+                    <label>HEIGHT (CM)</label>
+                    <input type="number" id="bio-height" value="${nutritionData.height}">
+                </div>
+                <div class="bio-input-wrap" style="grid-column: 1 / -1;">
+                    <label>AGE</label>
+                    <input type="number" id="bio-age" value="${nutritionData.age}">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="cyber-btn" onclick="saveBiometrics()">INITIALIZE_CALIBRATION</button>
+            </div>
+        `;
+    } else if (nutritionStep === 1) {
         content = `
             ${track}
             <div class="ai-header" style="text-align: center;">
                 <h1 class="glitch-large">METABOLIC_GOAL</h1>
-                <p>Define the desired physiological shift for this nutritional blueprint.</p>
+                <p>Define the desired physiological shift.</p>
             </div>
             <div class="finder-option-grid">
                 <div class="finder-card" onclick="setNutritionData('goal', 'bulk')">
                     <span class="icon">🥩</span>
                     <h3>LEAN_MASS_BULK</h3>
-                    <p>Aggressive caloric surplus for maximum hypertrophy.</p>
+                    <p>Calculated surplus for maximum tissue accumulation.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('goal', 'cut')">
                     <span class="icon">🔥</span>
                     <h3>FAT_OXIDATION</h3>
-                    <p>Calculated deficit to preserve muscle while stripping fat.</p>
+                    <p>Precise deficit to strip lipid layers while sparing muscle.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('goal', 'recomp')">
                     <span class="icon">⚖️</span>
                     <h3>RECOMPOSITION</h3>
-                    <p>Maintaining weight while shifting body composition ratios.</p>
+                    <p>Optimization for shifting body composition at maintenance.</p>
                 </div>
             </div>
         `;
@@ -3076,29 +3103,29 @@ function renderNutritionStep() {
         content = `
             ${track}
             <div class="ai-header" style="text-align: center;">
-                <h1 class="glitch-large">DIETARY_PREFERENCE</h1>
-                <p>Select the nutritional framework that aligns with your metabolism.</p>
+                <h1 class="glitch-large">DIETARY_FRAMEWORK</h1>
+                <p>Select the nutritional system for this blueprint.</p>
             </div>
             <div class="finder-option-grid">
                 <div class="finder-card" onclick="setNutritionData('diet', 'balanced')">
                     <span class="icon">🥗</span>
-                    <h3>BALANCED_MACROS</h3>
-                    <p>Standard 40/40/20 split. Sustainable and versatile.</p>
+                    <h3>BALANCED_CORE</h3>
+                    <p>Versatile 40/40/20 split. Optimal for most athletes.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('diet', 'keto')">
                     <span class="icon">🥑</span>
                     <h3>KETOGENIC</h3>
-                    <p>Ultra-low carb, high fat. Forced metabolic ketosis.</p>
+                    <p>Forced fat metabolism via carbohydrate restriction.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('diet', 'carnivore')">
                     <span class="icon">🍖</span>
                     <h3>CARNIVORE</h3>
-                    <p>Zero carb, animal-based. Minimal digestive friction.</p>
+                    <p>Zero-carb, animal-only. Minimal systemic inflammation.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('diet', 'vegan')">
                     <span class="icon">🌱</span>
                     <h3>PLANT_BASED</h3>
-                    <p>Zero animal products. High micronutrient density.</p>
+                    <p>Zero animal products. Focused on clean micronutrients.</p>
                 </div>
             </div>
         `;
@@ -3106,24 +3133,24 @@ function renderNutritionStep() {
         content = `
             ${track}
             <div class="ai-header" style="text-align: center;">
-                <h1 class="glitch-large">ACTIVITY_LOAD</h1>
-                <p>Quantify your weekly physiological expenditure.</p>
+                <h1 class="glitch-large">EXPENDITURE_LOAD</h1>
+                <p>Select activity level.</p>
             </div>
             <div class="finder-option-grid">
                 <div class="finder-card" onclick="setNutritionData('activity', 'low')">
                     <span class="icon">🖱️</span>
                     <h3>SEDENTARY</h3>
-                    <p>Desk-based, minimal weekly training sessions.</p>
+                    <p>Minimal movement.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('activity', 'mid')">
                     <span class="icon">🏋️</span>
-                    <h3>ACTIVE</h3>
-                    <p>3-5 high-intensity training sessions per week.</p>
+                    <h3>ACTIVE_RESEARCH</h3>
+                    <p>3-5 sessions/week.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('activity', 'high')">
                     <span class="icon">⚔️</span>
-                    <h3>ELITE_ATHLETE</h3>
-                    <p>Daily double sessions or heavy manual labor.</p>
+                    <h3>ELITE_OPERATOR</h3>
+                    <p>Daily heavy training.</p>
                 </div>
             </div>
         `;
@@ -3133,12 +3160,14 @@ function renderNutritionStep() {
             ${track}
             <div class="diagnosis-result-wrap">
                 <div class="ai-header" style="text-align: center; margin-bottom: 30px;">
-                    <span class="cyber-badge">BLUEPRINT_GENERATED</span>
-                    <h1 class="glitch-large" style="color: #00ffaa;">METABOLIC_ARCHITECT</h1>
+                    <span class="cyber-badge">DEEP_BIOMETRIC_MODEL_V2</span>
+                    <h1 class="glitch-large" style="color: #00ffaa;">NUTRITIONAL_DOSSIER</h1>
                 </div>
 
                 <div class="macro-blueprint">
-                    <div style="font-size: 10px; color: var(--muted); letter-spacing: 2px;">ESTIMATED_TDEE: ${plan.cals} KCAL/DAY</div>
+                    <div style="font-size: 10px; color: var(--muted); letter-spacing: 2px; margin-bottom: 10px;">PERSONALIZED_TARGETS // ${nutritionData.weight}KG | ${nutritionData.age}Y</div>
+                    <div style="font-size: 24px; font-family: 'Orbitron', monospace; color: #fff;">${plan.cals} <span style="font-size: 12px; color: var(--accent);">KCAL / DAY</span></div>
+                    
                     <div class="macro-ring-wrap">
                         <div class="macro-ring">
                             <span class="macro-val">${plan.p}G</span>
@@ -3155,19 +3184,42 @@ function renderNutritionStep() {
                     </div>
                 </div>
 
-                <h3 style="font-family: 'Orbitron', monospace; font-size: 1rem; margin: 40px 0 20px; color: var(--accent);">DAILY_MEAL_STRUCTURE</h3>
-                
                 <div class="nutrition-grid">
-                    ${plan.meals.map(m => `
-                        <div class="meal-plan-card">
-                            <span class="meal-time">${m.time}</span>
-                            <div class="meal-content">${m.desc}</div>
+                    <div class="detail-section">
+                        <h3 style="font-family: 'Orbitron', monospace; font-size: 0.9rem; color: var(--accent); margin-bottom: 15px;">DAILY_MEAL_PLAN</h3>
+                        ${plan.meals.map(m => `
+                            <div class="meal-plan-card">
+                                <span class="meal-time">${m.time}</span>
+                                <div class="meal-content">${m.desc}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3 style="font-family: 'Orbitron', monospace; font-size: 0.9rem; color: #00ffaa; margin-bottom: 15px;">SUPPLEMENT_STACK</h3>
+                        <div class="stack-grid">
+                            ${plan.stack.map(s => `
+                                <div class="stack-card">
+                                    <div class="title">${s.name}</div>
+                                    <div class="desc">${s.dose}</div>
+                                </div>
+                            `).join('')}
                         </div>
-                    `).join('')}
+
+                        <div class="chef-notes">
+                            <strong><i class="fas fa-utensils"></i> CHEF'S_TABLE:</strong><br>
+                            ${plan.notes}
+                        </div>
+                        
+                        <div class="meal-plan-card" style="margin-top: 20px;">
+                            <span class="meal-time">HYDRATION_PROTOCOL</span>
+                            <div class="meal-content">Optimal Water Intake: <strong>${plan.water}L/Day</strong></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
-                    <button class="cyber-btn" onclick="loadNutritionView()" style="width: auto;">GENERATE_NEW_MODEL</button>
+                    <button class="cyber-btn" onclick="loadNutritionView()" style="width: auto;">RESTART_ANALYSIS</button>
                 </div>
             </div>
         `;
@@ -3177,6 +3229,26 @@ function renderNutritionStep() {
     mount.appendChild(wrapper);
 }
 
+window.saveBiometrics = function() {
+    nutritionData.weight = parseFloat(document.getElementById('bio-weight').value) || 80;
+    nutritionData.height = parseFloat(document.getElementById('bio-height').value) || 180;
+    nutritionData.age = parseInt(document.getElementById('bio-age').value) || 25;
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'scanning-overlay';
+    overlay.innerHTML = `
+        <div class="scan-line"></div>
+        <div style="font-family: 'Orbitron', monospace; color: var(--accent); letter-spacing: 5px; margin-top: 20px; animation: blinker 0.5s infinite;">SYNCHRONIZING_BIOMETRICS...</div>
+    `;
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        overlay.remove();
+        nutritionStep = 1;
+        renderNutritionStep();
+    }, 1000);
+}
+
 window.setNutritionData = function(key, val) {
     nutritionData[key] = val;
     
@@ -3184,7 +3256,7 @@ window.setNutritionData = function(key, val) {
     overlay.className = 'scanning-overlay';
     overlay.innerHTML = `
         <div class="scan-line"></div>
-        <div style="font-family: 'Orbitron', monospace; color: var(--accent); letter-spacing: 5px; margin-top: 20px; animation: blinker 0.5s infinite;">PROCESSING_METABOLICS...</div>
+        <div style="font-family: 'Orbitron', monospace; color: var(--accent); letter-spacing: 5px; margin-top: 20px; animation: blinker 0.5s infinite;">CALCULATING_METABOLICS...</div>
     `;
     document.body.appendChild(overlay);
 
@@ -3192,73 +3264,95 @@ window.setNutritionData = function(key, val) {
         overlay.remove();
         nutritionStep++;
         renderNutritionStep();
-    }, 1000);
+    }, 800);
 }
 
 function generateDietPlan() {
-    let baseCals = 2000;
-    if (nutritionData.activity === 'mid') baseCals = 2600;
-    if (nutritionData.activity === 'high') baseCals = 3200;
+    // Mifflin-St Jeor Equation (Male version)
+    const bmr = (10 * nutritionData.weight) + (6.25 * nutritionData.height) - (5 * nutritionData.age) + 5;
+    
+    let multiplier = 1.2;
+    if (nutritionData.activity === 'mid') multiplier = 1.55;
+    if (nutritionData.activity === 'high') multiplier = 1.9;
 
-    if (nutritionData.goal === 'bulk') baseCals += 500;
-    if (nutritionData.goal === 'cut') baseCals -= 500;
+    let tdee = Math.round(bmr * multiplier);
+
+    if (nutritionData.goal === 'bulk') tdee += 400;
+    if (nutritionData.goal === 'cut') tdee -= 500;
 
     let p = 150, c = 200, f = 60;
 
     if (nutritionData.diet === 'keto') {
-        p = Math.round(baseCals * 0.25 / 4);
+        p = Math.round(nutritionData.weight * 2.2); // 2.2g per kg
         c = 30;
-        f = Math.round((baseCals - (p*4) - (c*4)) / 9);
+        f = Math.round((tdee - (p*4) - (c*4)) / 9);
     } else if (nutritionData.diet === 'carnivore') {
-        p = Math.round(baseCals * 0.45 / 4);
+        p = Math.round(tdee * 0.45 / 4);
         c = 0;
-        f = Math.round((baseCals - (p*4)) / 9);
+        f = Math.round((tdee - (p*4)) / 9);
     } else if (nutritionData.diet === 'balanced') {
-        p = Math.round(baseCals * 0.30 / 4);
-        c = Math.round(baseCals * 0.45 / 4);
-        f = Math.round(baseCals * 0.25 / 9);
+        p = Math.round(nutritionData.weight * 2);
+        c = Math.round((tdee * 0.45) / 4);
+        f = Math.round((tdee - (p*4) - (c*4)) / 9);
     } else if (nutritionData.diet === 'vegan') {
-        p = Math.round(baseCals * 0.20 / 4);
-        c = Math.round(baseCals * 0.55 / 4);
-        f = Math.round(baseCals * 0.25 / 9);
+        p = Math.round(nutritionData.weight * 1.6);
+        c = Math.round((tdee * 0.55) / 4);
+        f = Math.round((tdee - (p*4) - (c*4)) / 9);
     }
+
+    const water = (nutritionData.weight * 0.04).toFixed(1);
 
     const meals = [
         { time: '08:00 // MEAL_01', desc: getMealDesc('breakfast') },
         { time: '13:00 // MEAL_02', desc: getMealDesc('lunch') },
-        { time: '16:00 // MEAL_03', desc: getMealDesc('snack') },
-        { time: '20:00 // MEAL_04', desc: getMealDesc('dinner') }
+        { time: '17:00 // PRE_WORKOUT', desc: getMealDesc('snack') },
+        { time: '20:30 // POST_WORKOUT_DINNER', desc: getMealDesc('dinner') }
     ];
 
-    return { cals: baseCals, p, c, f, meals };
+    const stack = [
+        { name: 'Creatine Monohydrate', dose: '5g Daily (Saturation)' },
+        { name: 'Omega-3 Fish Oil', dose: '2000mg (Inflammation)' },
+        { name: 'Vitamin D3 + K2', dose: '5000 IU (Hormonal)' }
+    ];
+
+    if (nutritionData.diet === 'keto') stack.push({ name: 'Electrolyte Complex', dose: 'Sodium/Mag/Potassium' });
+    if (nutritionData.goal === 'bulk') stack.push({ name: 'Beta-Alanine', dose: '3.2g (Muscular Endurance)' });
+
+    const notes = nutritionData.goal === 'bulk' ? 
+        "Prioritize liquid calories if digestion slows down. Season with Sea Salt to maintain vascular volume." :
+        "Drink 500ml of water before every meal to increase satiety. Use vinegar-based dressings to stabilize blood glucose.";
+
+    return { cals: tdee, p, c, f, meals, stack, water, notes };
 }
 
 function getMealDesc(time) {
     const diet = nutritionData.diet;
     if (diet === 'keto') {
-        if (time === 'breakfast') return "4 Whole Eggs scrambled with Butter, 1 Avocado, and Heavy Cream Coffee.";
-        if (time === 'lunch') return "Ribeye Steak or Chicken Thighs with Asparagus sautéed in Olive Oil.";
-        if (time === 'snack') return "Macadamia Nuts (30g) and a chunk of high-fat Hard Cheese.";
-        return "Salmon Fillet with Buttered Spinach and a side of Olives.";
+        if (time === 'breakfast') return "4 Whole Eggs scrambled in Ghee, 100g Smoked Salmon, Black Coffee.";
+        if (time === 'lunch') return "250g Chicken Thighs (with skin), Broccoli with melted Cheddar, Macadamia nuts.";
+        if (time === 'snack') return "Protein Shake with Coconut Milk and 1tbsp MCT Oil.";
+        return "Grass-fed Ribeye (300g), Asparagus in Hollandaise sauce, handful of Pecans.";
     }
     if (diet === 'carnivore') {
-        if (time === 'breakfast') return "6 Large Eggs and 4 strips of thick-cut Bacon.";
-        if (time === 'lunch') return "1lb of Ground Beef (80/20) with salt. No seasoning.";
-        if (time === 'snack') return "Beef Jerky (No sugar) or 2 Hard Boiled Eggs.";
-        return "Large Prime Rib or Lamb Chops. Hydrate with Electrolyte water only.";
+        if (time === 'breakfast') return "5 Eggs, 100g Bacon, 100g Ground Beef patties.";
+        if (time === 'lunch') return "Large T-Bone Steak seasoned only with Sea Salt. 20g Beef Suet.";
+        if (time === 'snack') return "Pork Rinds or 2 slices of Liver (Nutrient density).";
+        return "1lb of Ground Lamb or Ribeye. Hydrate with sparkling mineral water.";
     }
     if (diet === 'vegan') {
-        if (time === 'breakfast') return "Tofu Scramble with Turmeric, Nutritional Yeast, and Sourdough Bread.";
-        if (time === 'lunch') return "Quinoa and Black Bean bowl with Tahini Dressing and Hemp Seeds.";
-        if (time === 'snack') return "Protein Smoothie with Pea Protein, Banana, and Almond Butter.";
-        return "Tempeh Stir-fry with Broccoli, Snap Peas, and Brown Rice.";
+        if (time === 'breakfast') return "Chickpea Flour Omelette with Mushrooms, Spinach, and 1 slice Sourdough.";
+        if (time === 'lunch') return "Lentil Pasta with Nutritional Yeast, Walnut-Pesto, and roasted Zucchini.";
+        if (time === 'snack') return "Hemp Protein Shake with mixed Berries and Soy Milk.";
+        return "Crispy Tempeh, Brown Rice, Avocado, and steamed Broccoli with Lemon.";
     }
     // Balanced
-    if (time === 'breakfast') return "Oatmeal with Blueberries, Whey Protein, and a spoonful of Peanut Butter.";
-    if (time === 'lunch') return "Grilled Chicken Breast, Sweet Potato, and a large Mixed Green Salad.";
-    if (time === 'snack') return "Greek Yogurt with a handful of Walnuts and honey.";
-    return "White Fish or Lean Beef with Jasmine Rice and Roasted Vegetables.";
+    if (time === 'breakfast') return "Cream of Rice with 1 scoop Whey, 50g Blueberries, 20g Almond Butter.";
+    if (time === 'lunch') return "200g Lean Beef Mince, 250g White Rice, side of Kimchi for digestion.";
+    if (time === 'snack') return "Greek Yogurt (0%), 1 Apple, 30g Walnuts.";
+    return "200g Chicken Breast, 150g Sweet Potato, large Asparagus portion, 10g Olive Oil.";
 }
+
+// Lab Verifier / COA View
 
 // Lab Verifier / COA View
 // --- Three.js Hologram Engine ---
