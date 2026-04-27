@@ -3247,6 +3247,13 @@ function loadChangelogView() {
     
     const logs = [
         {
+            ver: 'v4.1.0',
+            date: '2026.04.26',
+            title: 'DATABANK_EXPANSION_&_SEARCH_UPGRADE',
+            desc: 'Upgraded search query logic to parse global aliases (esters/aka). Mass injection of Antidepressants, Longevity Peptides (MOTS-c, NAD+), GABAergics, and Opioids (Codeine, Morphine). Fixed mobile top-bar UI overflow.',
+            tags: ['MAJOR', 'DATA', 'UI']
+        },
+        {
             ver: 'v3.7.5',
             date: '2026.04.22',
             title: 'CONTRIBUTION_PORTAL_ACTIVE',
