@@ -10,51 +10,58 @@ export default async function handler(req) {
     try {
         const { messages, context } = await req.json();
 
-        // Ensure we have an API key configured in Vercel/local env
-        const apiKey = process.env.OPENAI_API_KEY || process.env.GEMINI_API_KEY;
+        // Use Gemini API Key
+        const apiKey = process.env.GEMINI_API_KEY;
         if (!apiKey) {
             return new Response(JSON.stringify({
-                error: 'AI API Key not configured. Please add OPENAI_API_KEY to your Vercel project.'
+                error: 'Gemini API Key not configured. Please add GEMINI_API_KEY to your Vercel project.'
             }), { status: 500, headers: { 'content-type': 'application/json' } });
         }
 
-        // We'll use OpenAI endpoint format by default. If using Gemini or Anthropic, this would change.
-        // For now, assuming OpenAI API compatibility (works for OpenAI, OpenRouter, Groq, etc.)
-        const apiUrl = process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1/chat/completions';
-        const model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+        const model = "gemini-1.5-flash";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
-        const systemMessage = {
-            role: 'system',
-            content: `You are the "Eclipse Biotech Mainframe", an advanced sci-fi AI assistant. 
+        // Convert OpenAI-style messages to Gemini format
+        const systemInstruction = `You are the "Eclipse Biotech Mainframe", an advanced sci-fi AI assistant. 
 You answer pharmacology, chemistry, and biology questions. 
 Keep your tone clinical, precise, and slightly robotic/cyberpunk, but very helpful.
 If the user is viewing a specific compound, they will provide context. 
-Current Context: ${context || 'None'}`
-        };
+Current Context: ${context || 'None'}`;
+
+        const contents = messages.map(m => ({
+            role: m.role === 'assistant' ? 'model' : 'user',
+            parts: [{ text: m.content }]
+        }));
 
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: model,
-                messages: [systemMessage, ...messages],
-                stream: false, // For simplicity in this implementation, we won't stream, but you can enable it
-                max_tokens: 500
+                contents: contents,
+                systemInstruction: {
+                    parts: [{ text: systemInstruction }]
+                },
+                generationConfig: {
+                    maxOutputTokens: 1000,
+                    temperature: 0.7
+                }
             })
         });
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`API returned ${response.status}: ${errorText}`);
+            throw new Error(`Gemini API returned ${response.status}: ${errorText}`);
         }
 
         const data = await response.json();
         
+        // Extract content from Gemini response
+        const message = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received from Gemini.";
+        
         return new Response(JSON.stringify({
-            message: data.choices[0].message.content
+            message: message
         }), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
