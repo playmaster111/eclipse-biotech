@@ -381,7 +381,7 @@ function startSystemBoot() {
         <div class="system-splash">
             <div class="splash-logo">
                 <span class="glitch-logo" data-text="ECLIPSE">ECLIPSE</span>
-                <span class="splash-sub">BIOTECH_CORE_v4.0</span>
+                <span class="splash-sub">BIOTECH_CORE_v4.1.0</span>
             </div>
             <div class="splash-rings">
                 <div class="ring"></div>
@@ -2511,7 +2511,15 @@ window.solvePathology = function() {
         'dry': ['winstrol', 'anavar', 'masteron', 'trenbolone', 'dryness', 'hardening'],
         'hard': ['winstrol', 'masteron', 'muscle hardness', 'hardening'],
         'hardness': ['winstrol', 'masteron', 'muscle hardness'],
-        'energy': ['stimulant', 'focus', 'amphetamine', 'caffeine']
+        'energy': ['stimulant', 'focus', 'amphetamine', 'caffeine'],
+        'sad': ['antidepressants', 'depression', 'fluoxetine', 'sertraline', 'mood'],
+        'depressed': ['antidepressants', 'depression', 'mood'],
+        'longevity': ['longevity', 'anti-aging', 'nad+', 'mots-c'],
+        'aging': ['anti-aging', 'nad+', 'mots-c', 'longevity'],
+        'healing': ['healing', 'tb-500', 'tb4', 'growth factors', 'peptides'],
+        'recovery': ['healing', 'tb-500', 'growth factors'],
+        'pain': ['opioids', 'analgesic', 'morphine', 'codeine', 'oxycodone'],
+        'hurt': ['pain', 'analgesic', 'morphine']
     };
 
     resultGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--accent); padding: 50px;">Running Neural-Pharma Matcher for "${rawInput}"...</div>`;
@@ -3422,7 +3430,7 @@ function startNeuralUplink() {
         { msg: 'BIOS_HANDSHAKE // SECURE_BOOT_VERIFIED', type: '' },
         { msg: 'LOADING_KERNEL: eclipse_core.sys', type: '' },
         { msg: 'MOUNTING_ENCRYPTED_VOLUME: /dev/pharma_idx', type: '' },
-        { msg: 'DECRYPTING_COMPOUND_DATABASE... 2,847 ENTRIES', type: '' },
+        { msg: 'DECRYPTING_COMPOUND_DATABASE... 2,912 ENTRIES', type: '' },
         { msg: 'INITIALIZING_NEURAL_MESH_INTERFACE', type: '' },
         { msg: 'ESTABLISHING_SYNAPTIC_BRIDGE: PORT 8832', type: '' },
         { msg: 'WARNING: ELEVATED_CLEARANCE_REQUIRED', type: 'warning' },
@@ -3436,6 +3444,7 @@ function startNeuralUplink() {
         { msg: 'BINDING_BIOMETRIC_SIGNATURE', type: '' },
         { msg: 'ALL_SUBSYSTEMS_NOMINAL', type: 'success' },
         { msg: 'NEURAL_UPLINK_ESTABLISHED', type: 'success' },
+        { msg: 'DATABANK_EXPANSION: v4.1.0_PATCH_APPLIED', type: 'success' },
     ];
 
     function pushLog() {

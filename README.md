@@ -1,4 +1,4 @@
-# 🔬 Eclipse Biotech Platform v4.0
+# 🔬 Eclipse Biotech Platform v4.1.0
 
 ![Platform Status](https://img.shields.io/badge/System-ONLINE-00f0ff?style=for-the-badge)
 ![Encryption](https://img.shields.io/badge/Security-AES--512-red?style=for-the-badge)
