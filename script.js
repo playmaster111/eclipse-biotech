@@ -1088,6 +1088,14 @@ function renderSidebar(filter = '') {
         synthesisBtn.onclick = () => loadSynthesisView();
         navEl.appendChild(synthesisBtn);
 
+        const nutritionBtn = document.createElement('div');
+        nutritionBtn.className = 'nav-item';
+        nutritionBtn.innerText = '> _NUTRITION_ARCHITECT';
+        nutritionBtn.id = 'nutrition-nav-btn';
+        nutritionBtn.style.color = '#00ffaa'; // Emerald for nutrition
+        nutritionBtn.onclick = () => loadNutritionView();
+        navEl.appendChild(nutritionBtn);
+
         const logBtn = document.createElement('div');
         logBtn.className = 'nav-item';
         logBtn.innerText = '> _SYSTEM_LOGS';
@@ -3004,6 +3012,252 @@ window.calculatePCT = function() {
             <p><strong>Clinical Note:</strong> For long esters like Nandrolone Decanoate, the clearance window is exceptionally wide (60+ days) due to their storage in adipose tissue. Bloodwork is recommended to confirm hormone levels have dropped below 300ng/dL before starting Nolvadex/Clomid.</p>
         </div>
     `;
+}
+
+// --- Nutrition Architect Engine ---
+let nutritionStep = 1;
+let nutritionData = { goal: '', diet: '', activity: '' };
+
+function loadNutritionView() {
+    nutritionStep = 1;
+    nutritionData = { goal: '', diet: '', activity: '' };
+    
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    if(document.getElementById('nutrition-nav-btn')) document.getElementById('nutrition-nav-btn').classList.add('active');
+    document.getElementById('current-category').innerText = "NUTRITION ARCHITECT";
+
+    renderNutritionStep();
+}
+
+function renderNutritionStep() {
+    const mount = document.getElementById('article-mount');
+    mount.innerHTML = '';
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'finder-wrapper';
+
+    const track = `
+        <div class="finder-progress-track">
+            <div class="progress-step ${nutritionStep >= 1 ? 'active' : ''} ${nutritionStep > 1 ? 'completed' : ''}">OBJ</div>
+            <div class="progress-step ${nutritionStep >= 2 ? 'active' : ''} ${nutritionStep > 2 ? 'completed' : ''}">TYP</div>
+            <div class="progress-step ${nutritionStep >= 3 ? 'active' : ''} ${nutritionStep > 3 ? 'completed' : ''}">ACT</div>
+            <div class="progress-step ${nutritionStep >= 4 ? 'active' : ''}">RES</div>
+        </div>
+    `;
+
+    let content = '';
+
+    if (nutritionStep === 1) {
+        content = `
+            ${track}
+            <div class="ai-header" style="text-align: center;">
+                <h1 class="glitch-large">METABOLIC_GOAL</h1>
+                <p>Define the desired physiological shift for this nutritional blueprint.</p>
+            </div>
+            <div class="finder-option-grid">
+                <div class="finder-card" onclick="setNutritionData('goal', 'bulk')">
+                    <span class="icon">🥩</span>
+                    <h3>LEAN_MASS_BULK</h3>
+                    <p>Aggressive caloric surplus for maximum hypertrophy.</p>
+                </div>
+                <div class="finder-card" onclick="setNutritionData('goal', 'cut')">
+                    <span class="icon">🔥</span>
+                    <h3>FAT_OXIDATION</h3>
+                    <p>Calculated deficit to preserve muscle while stripping fat.</p>
+                </div>
+                <div class="finder-card" onclick="setNutritionData('goal', 'recomp')">
+                    <span class="icon">⚖️</span>
+                    <h3>RECOMPOSITION</h3>
+                    <p>Maintaining weight while shifting body composition ratios.</p>
+                </div>
+            </div>
+        `;
+    } else if (nutritionStep === 2) {
+        content = `
+            ${track}
+            <div class="ai-header" style="text-align: center;">
+                <h1 class="glitch-large">DIETARY_PREFERENCE</h1>
+                <p>Select the nutritional framework that aligns with your metabolism.</p>
+            </div>
+            <div class="finder-option-grid">
+                <div class="finder-card" onclick="setNutritionData('diet', 'balanced')">
+                    <span class="icon">🥗</span>
+                    <h3>BALANCED_MACROS</h3>
+                    <p>Standard 40/40/20 split. Sustainable and versatile.</p>
+                </div>
+                <div class="finder-card" onclick="setNutritionData('diet', 'keto')">
+                    <span class="icon">🥑</span>
+                    <h3>KETOGENIC</h3>
+                    <p>Ultra-low carb, high fat. Forced metabolic ketosis.</p>
+                </div>
+                <div class="finder-card" onclick="setNutritionData('diet', 'carnivore')">
+                    <span class="icon">🍖</span>
+                    <h3>CARNIVORE</h3>
+                    <p>Zero carb, animal-based. Minimal digestive friction.</p>
+                </div>
+                <div class="finder-card" onclick="setNutritionData('diet', 'vegan')">
+                    <span class="icon">🌱</span>
+                    <h3>PLANT_BASED</h3>
+                    <p>Zero animal products. High micronutrient density.</p>
+                </div>
+            </div>
+        `;
+    } else if (nutritionStep === 3) {
+        content = `
+            ${track}
+            <div class="ai-header" style="text-align: center;">
+                <h1 class="glitch-large">ACTIVITY_LOAD</h1>
+                <p>Quantify your weekly physiological expenditure.</p>
+            </div>
+            <div class="finder-option-grid">
+                <div class="finder-card" onclick="setNutritionData('activity', 'low')">
+                    <span class="icon">🖱️</span>
+                    <h3>SEDENTARY</h3>
+                    <p>Desk-based, minimal weekly training sessions.</p>
+                </div>
+                <div class="finder-card" onclick="setNutritionData('activity', 'mid')">
+                    <span class="icon">🏋️</span>
+                    <h3>ACTIVE</h3>
+                    <p>3-5 high-intensity training sessions per week.</p>
+                </div>
+                <div class="finder-card" onclick="setNutritionData('activity', 'high')">
+                    <span class="icon">⚔️</span>
+                    <h3>ELITE_ATHLETE</h3>
+                    <p>Daily double sessions or heavy manual labor.</p>
+                </div>
+            </div>
+        `;
+    } else if (nutritionStep === 4) {
+        const plan = generateDietPlan();
+        content = `
+            ${track}
+            <div class="diagnosis-result-wrap">
+                <div class="ai-header" style="text-align: center; margin-bottom: 30px;">
+                    <span class="cyber-badge">BLUEPRINT_GENERATED</span>
+                    <h1 class="glitch-large" style="color: #00ffaa;">METABOLIC_ARCHITECT</h1>
+                </div>
+
+                <div class="macro-blueprint">
+                    <div style="font-size: 10px; color: var(--muted); letter-spacing: 2px;">ESTIMATED_TDEE: ${plan.cals} KCAL/DAY</div>
+                    <div class="macro-ring-wrap">
+                        <div class="macro-ring">
+                            <span class="macro-val">${plan.p}G</span>
+                            <span class="macro-label">PROTEIN</span>
+                        </div>
+                        <div class="macro-ring">
+                            <span class="macro-val">${plan.c}G</span>
+                            <span class="macro-label">CARBS</span>
+                        </div>
+                        <div class="macro-ring">
+                            <span class="macro-val">${plan.f}G</span>
+                            <span class="macro-label">FATS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="font-family: 'Orbitron', monospace; font-size: 1rem; margin: 40px 0 20px; color: var(--accent);">DAILY_MEAL_STRUCTURE</h3>
+                
+                <div class="nutrition-grid">
+                    ${plan.meals.map(m => `
+                        <div class="meal-plan-card">
+                            <span class="meal-time">${m.time}</span>
+                            <div class="meal-content">${m.desc}</div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="cyber-btn" onclick="loadNutritionView()" style="width: auto;">GENERATE_NEW_MODEL</button>
+                </div>
+            </div>
+        `;
+    }
+
+    wrapper.innerHTML = content;
+    mount.appendChild(wrapper);
+}
+
+window.setNutritionData = function(key, val) {
+    nutritionData[key] = val;
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'scanning-overlay';
+    overlay.innerHTML = `
+        <div class="scan-line"></div>
+        <div style="font-family: 'Orbitron', monospace; color: var(--accent); letter-spacing: 5px; margin-top: 20px; animation: blinker 0.5s infinite;">PROCESSING_METABOLICS...</div>
+    `;
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        overlay.remove();
+        nutritionStep++;
+        renderNutritionStep();
+    }, 1000);
+}
+
+function generateDietPlan() {
+    let baseCals = 2000;
+    if (nutritionData.activity === 'mid') baseCals = 2600;
+    if (nutritionData.activity === 'high') baseCals = 3200;
+
+    if (nutritionData.goal === 'bulk') baseCals += 500;
+    if (nutritionData.goal === 'cut') baseCals -= 500;
+
+    let p = 150, c = 200, f = 60;
+
+    if (nutritionData.diet === 'keto') {
+        p = Math.round(baseCals * 0.25 / 4);
+        c = 30;
+        f = Math.round((baseCals - (p*4) - (c*4)) / 9);
+    } else if (nutritionData.diet === 'carnivore') {
+        p = Math.round(baseCals * 0.45 / 4);
+        c = 0;
+        f = Math.round((baseCals - (p*4)) / 9);
+    } else if (nutritionData.diet === 'balanced') {
+        p = Math.round(baseCals * 0.30 / 4);
+        c = Math.round(baseCals * 0.45 / 4);
+        f = Math.round(baseCals * 0.25 / 9);
+    } else if (nutritionData.diet === 'vegan') {
+        p = Math.round(baseCals * 0.20 / 4);
+        c = Math.round(baseCals * 0.55 / 4);
+        f = Math.round(baseCals * 0.25 / 9);
+    }
+
+    const meals = [
+        { time: '08:00 // MEAL_01', desc: getMealDesc('breakfast') },
+        { time: '13:00 // MEAL_02', desc: getMealDesc('lunch') },
+        { time: '16:00 // MEAL_03', desc: getMealDesc('snack') },
+        { time: '20:00 // MEAL_04', desc: getMealDesc('dinner') }
+    ];
+
+    return { cals: baseCals, p, c, f, meals };
+}
+
+function getMealDesc(time) {
+    const diet = nutritionData.diet;
+    if (diet === 'keto') {
+        if (time === 'breakfast') return "4 Whole Eggs scrambled with Butter, 1 Avocado, and Heavy Cream Coffee.";
+        if (time === 'lunch') return "Ribeye Steak or Chicken Thighs with Asparagus sautéed in Olive Oil.";
+        if (time === 'snack') return "Macadamia Nuts (30g) and a chunk of high-fat Hard Cheese.";
+        return "Salmon Fillet with Buttered Spinach and a side of Olives.";
+    }
+    if (diet === 'carnivore') {
+        if (time === 'breakfast') return "6 Large Eggs and 4 strips of thick-cut Bacon.";
+        if (time === 'lunch') return "1lb of Ground Beef (80/20) with salt. No seasoning.";
+        if (time === 'snack') return "Beef Jerky (No sugar) or 2 Hard Boiled Eggs.";
+        return "Large Prime Rib or Lamb Chops. Hydrate with Electrolyte water only.";
+    }
+    if (diet === 'vegan') {
+        if (time === 'breakfast') return "Tofu Scramble with Turmeric, Nutritional Yeast, and Sourdough Bread.";
+        if (time === 'lunch') return "Quinoa and Black Bean bowl with Tahini Dressing and Hemp Seeds.";
+        if (time === 'snack') return "Protein Smoothie with Pea Protein, Banana, and Almond Butter.";
+        return "Tempeh Stir-fry with Broccoli, Snap Peas, and Brown Rice.";
+    }
+    // Balanced
+    if (time === 'breakfast') return "Oatmeal with Blueberries, Whey Protein, and a spoonful of Peanut Butter.";
+    if (time === 'lunch') return "Grilled Chicken Breast, Sweet Potato, and a large Mixed Green Salad.";
+    if (time === 'snack') return "Greek Yogurt with a handful of Walnuts and honey.";
+    return "White Fish or Lean Beef with Jasmine Rice and Roasted Vegetables.";
 }
 
 // Lab Verifier / COA View
