@@ -2632,6 +2632,18 @@ var WIKI_DATA = [
         benefits: 'Rapid localized healing of acute injuries, reduced joint inflammation, increased flexibility, and potential hair regrowth.',
         risks: 'Lethargy, head rush immediately post-injection, theoretical risk of accelerating pre-existing cancer growth due to extreme angiogenesis.',
         impact: { brain: 0, heart: 2, liver: 0, kidneys: 0, blood: 4, hair: 3, joints: 9 }
+    },
+    // --- MITOCHONDRIAL PEPTIDES ---
+    {
+        id: 'mots_c', folder: 'Longevity', category: 'longevity', type: 'Mitochondrial Peptide', name: 'MOTS-c', esters: '(Mitochondrial Derived Peptide)', status: 'active',
+        overview: 'MOTS-c is a unique peptide that is naturally encoded directly within the DNA of mitochondria, rather than the cell nucleus. It acts as an "exercise mimetic," heavily regulating metabolic homeostasis.',
+        primaryUses: 'Obesity, Type 2 Diabetes, Extreme Endurance, Anti-aging',
+        mechanism: 'Activates the AMPK pathway (similar to Metformin or AICAR), which increases glucose uptake in muscle cells and accelerates fatty acid oxidation. It essentially tricks the body into thinking it is constantly exercising.',
+        dosage: '10mg once per week (Subcutaneous Injection).',
+        experimental: { b: '5mg/wk', a: '10mg/wk' },
+        benefits: 'Profound increases in physical endurance, rapid fat loss without drastic dietary changes, and protection against metabolic decline (insulin resistance).',
+        risks: 'Relatively new compound with unknown long-term risks. Potential for hypoglycemia if combined with insulin or severe fasting.',
+        impact: { brain: 2, heart: 5, liver: 4, kidneys: 2, blood: 2, hair: 0, joints: 0 }
     }
 ];
 
