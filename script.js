@@ -1298,9 +1298,7 @@ async function finishAIResponse(query, typingId) {
         if(typingEl) {
             const textEl = typingEl.querySelector('.msg-text');
             if (textEl) textEl.innerHTML = 'DOWNLOADING_RESPONSE<span>.</span><span>.</span><span>.</span>';
-        }
-
-        let responseText = "ERROR: Failed to reach Eclipse Mainframe.";
+              let responseText = "ERROR: Failed to reach Eclipse Mainframe.";
         try {
             // Build context from current session
             const contextName = aiSession.lastCompound ? aiSession.lastCompound.name : 'General Database';
@@ -1308,6 +1306,8 @@ async function finishAIResponse(query, typingId) {
             
             aiSession.history.push({ role: 'user', content: query });
             
+            console.log("ECLIPSE_AI: Sending query...", { query, historyLength: aiSession.history.length });
+
             const res = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -1322,14 +1322,16 @@ async function finishAIResponse(query, typingId) {
                 responseText = data.message;
                 aiSession.history.push({ role: 'assistant', content: responseText });
             } else {
+                console.error("ECLIPSE_AI: API Error", data);
                 responseText = `ERROR: ${data.error || 'Unknown API failure'}`;
+                if (typeof data.error === 'object') responseText = `ERROR: ${JSON.stringify(data.error)}`;
             }
         } catch (fetchErr) {
-            console.error("Fetch Error:", fetchErr);
-            responseText = "ERROR: Network failure. Could not reach /api/chat. Ensure you are running on Vercel or local dev server.";
+            console.error("ECLIPSE_AI: Fetch Error:", fetchErr);
+            responseText = "ERROR: Network failure or timeout. The Eclipse Mainframe might be experiencing heavy load. Please try again in a moment.";
+        } finally {
+            if(typingEl) typingEl.remove();
         }
-
-        if(typingEl) typingEl.remove();
 
         if (history) {
             // Replace newlines with <br> for HTML rendering
