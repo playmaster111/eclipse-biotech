@@ -2745,36 +2745,73 @@ function renderFinderStep() {
     const mount = document.getElementById('article-mount');
     mount.innerHTML = '';
 
-    const container = document.createElement('div');
-    container.className = 'finder-container';
-    container.style = 'max-width: 600px; margin: 40px auto; text-align: center;';
+    const wrapper = document.createElement('div');
+    wrapper.className = 'finder-wrapper';
+
+    // 1. Progress Track
+    const track = `
+        <div class="finder-progress-track">
+            <div class="progress-step ${finderStep >= 1 ? 'active' : ''} ${finderStep > 1 ? 'completed' : ''}">01</div>
+            <div class="progress-step ${finderStep >= 2 ? 'active' : ''} ${finderStep > 2 ? 'completed' : ''}">02</div>
+            <div class="progress-step ${finderStep >= 3 ? 'active' : ''}">03</div>
+        </div>
+    `;
 
     let content = '';
     
     if (finderStep === 1) {
         content = `
-            <div class="ai-header">
-                <h2>STEP 01: DEFINE OBJECTIVE</h2>
-                <p>What is the primary physiological state you wish to achieve?</p>
+            ${track}
+            <div class="ai-header" style="text-align: center;">
+                <h1 class="glitch-large">DIAGNOSTIC_GOAL</h1>
+                <p>Select the primary physiological objective for this simulation.</p>
             </div>
-            <div class="finder-options">
-                <button class="cyber-btn" onclick="setFinderData('goal', 'muscle')">MAXIMUM HYPERTROPHY</button>
-                <button class="cyber-btn" onclick="setFinderData('goal', 'shred')">EXPOSED VASCULARITY / FAT LOSS</button>
-                <button class="cyber-btn" onclick="setFinderData('goal', 'mental')">COGNITIVE ENHANCEMENT / FOCUS</button>
-                <button class="cyber-btn" onclick="setFinderData('goal', 'relief')">ANXIETY RELIEF / SEDATION</button>
-                <button class="cyber-btn" onclick="setFinderData('goal', 'fun')">RECREATIONAL EUPHORIA</button>
+            <div class="finder-option-grid">
+                <div class="finder-card" onclick="setFinderData('goal', 'muscle')">
+                    <span class="icon">🧬</span>
+                    <h3>HYPERTROPHY</h3>
+                    <p>Maximum muscle tissue accumulation and nitrogen retention.</p>
+                </div>
+                <div class="finder-card" onclick="setFinderData('goal', 'shred')">
+                    <span class="icon">🔪</span>
+                    <h3>LEAN_DEFINITION</h3>
+                    <p>Subcutaneous water removal and lipid oxidation protocols.</p>
+                </div>
+                <div class="finder-card" onclick="setFinderData('goal', 'mental')">
+                    <span class="icon">🧠</span>
+                    <h3>NEURAL_DRIVE</h3>
+                    <p>Cognitive enhancement, wakefulness, and synaptic focus.</p>
+                </div>
+                <div class="finder-card" onclick="setFinderData('goal', 'relief')">
+                    <span class="icon">🛡️</span>
+                    <h3>HOMEOSTASIS</h3>
+                    <p>Anxiety relief, CNS suppression, and neural recovery.</p>
+                </div>
             </div>
         `;
     } else if (finderStep === 2) {
         content = `
-            <div class="ai-header">
-                <h2>STEP 02: RISK TOLERANCE</h2>
-                <p>Select your acceptable level of physiological strain.</p>
+            ${track}
+            <div class="ai-header" style="text-align: center;">
+                <h1 class="glitch-large">RISK_TOLERANCE</h1>
+                <p>Define the acceptable toxicity threshold for this protocol.</p>
             </div>
-            <div class="finder-options">
-                <button class="cyber-btn" onclick="setFinderData('risk', 'low')" style="border-color: #00ffaa; color: #00ffaa;">LOW (Harm Reduction Focus)</button>
-                <button class="cyber-btn" onclick="setFinderData('risk', 'mid')" style="border-color: #ff9d00; color: #ff9d00;">MEDIUM (Balanced Efficacy)</button>
-                <button class="cyber-btn" onclick="setFinderData('risk', 'high')" style="border-color: #ff3a5c; color: #ff3a5c;">HIGH (Aggressive / Risk Heavy)</button>
+            <div class="finder-option-grid">
+                <div class="finder-card" onclick="setFinderData('risk', 'low')">
+                    <span class="icon" style="color: #00ffaa;">🟢</span>
+                    <h3 style="color: #00ffaa;">LOW_STRAIN</h3>
+                    <p>Focus on long-term health markers and harm reduction.</p>
+                </div>
+                <div class="finder-card" onclick="setFinderData('risk', 'mid')">
+                    <span class="icon" style="color: #ff9d00;">🟡</span>
+                    <h3 style="color: #ff9d00;">BALANCED</h3>
+                    <p>Standard performance optimization with manageable risks.</p>
+                </div>
+                <div class="finder-card" onclick="setFinderData('risk', 'high')">
+                    <span class="icon" style="color: #ff3a5c;">🔴</span>
+                    <h3 style="color: #ff3a5c;">MAX_EFFICACY</h3>
+                    <p>High physiological load. Aggressive research results required.</p>
+                </div>
             </div>
         `;
     } else if (finderStep === 3) {
@@ -2783,37 +2820,58 @@ function renderFinderStep() {
         
         if (!item) {
             content = `
-                <div class="ai-header">
-                    <h2 style="color: var(--red);">DATA_RETRIEVAL_ERROR</h2>
-                    <p>The diagnostic engine identified <strong>${result.id}</strong>, but the clinical profile is currently locked or missing.</p>
+                ${track}
+                <div class="ai-header" style="text-align: center;">
+                    <h1 class="glitch-large" style="color: var(--red);">DATA_ERROR</h1>
+                    <p>The diagnostic engine encountered a fragment mismatch.</p>
                 </div>
-                <button class="cyber-btn" onclick="loadQuickFinderView()" style="margin-top: 30px; width: auto;">RESET_DIAGNOSTIC</button>
+                <button class="cyber-btn" onclick="loadQuickFinderView()" style="margin-top: 30px;">REBOOT_FINDER</button>
             `;
         } else {
             content = `
-                <div class="ai-header pulse">
-                    <h2 style="color: #00ffaa;">DIAGNOSIS COMPLETE</h2>
-                    <p>Based on your physiological goals and risk tolerance, the following compound is your optimal match:</p>
+                ${track}
+                <div class="diagnosis-result-wrap">
+                    <div class="ai-header" style="text-align: center; margin-bottom: 30px;">
+                        <span class="cyber-badge">ANALYSIS_IDENTIFIED</span>
+                        <h1 class="glitch-large" style="color: #00ffaa;">OPTIMAL_MATCH</h1>
+                    </div>
+                    
+                    <div class="result-card glass-card" style="padding: 40px; text-align: center; border: 1px solid var(--accent); position: relative; cursor: pointer;" onclick="loadArticle('${item.id}')">
+                        <div class="scan-line"></div>
+                        <h2 style="font-family: 'Orbitron', monospace; font-size: 2.5rem; margin-bottom: 15px; color: #fff; text-shadow: 0 0 20px rgba(0,240,255,0.4);">${item.name}</h2>
+                        <p style="color: var(--muted); font-size: 0.9rem; max-width: 400px; margin: 0 auto 25px;">${item.overview.substring(0, 120)}...</p>
+                        <div class="cyber-btn" style="width: auto; padding: 10px 30px; border-color: #00ffaa; color: #00ffaa;">INITIALIZE_FULL_DOSSIER</div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="cyber-btn" onclick="loadQuickFinderView()" style="width: auto; opacity: 0.6;">NEW_SIMULATION</button>
+                    </div>
                 </div>
-                <div class="result-card" style="background: rgba(0,255,170,0.05); border: 2px solid #00ffaa; padding: 30px; border-radius: 8px; margin-top: 30px; cursor: pointer;" onclick="loadArticle('${item.id}')">
-                    <div style="font-size: 12px; color: #00ffaa; letter-spacing: 2px; margin-bottom: 10px;">OPTIMAL SELECTION</div>
-                    <h1 style="margin: 0; font-size: 32px; color: #fff;">${item.name}</h1>
-                    <p style="color: #a1abb8; margin: 15px 0;">${item.primaryUses}</p>
-                    <div style="color: #00ffaa; font-weight: bold;">CLICK TO VIEW FULL PROFILE ></div>
-                </div>
-                <button class="cyber-btn" onclick="loadQuickFinderView()" style="margin-top: 30px; width: auto;">RESET_DIAGNOSTIC</button>
             `;
         }
     }
 
-    container.innerHTML = content;
-    mount.appendChild(container);
+    wrapper.innerHTML = content;
+    mount.appendChild(wrapper);
 }
 
 window.setFinderData = function(key, val) {
     finderData[key] = val;
-    finderStep++;
-    renderFinderStep();
+    
+    // Add scanning overlay for effect
+    const overlay = document.createElement('div');
+    overlay.className = 'scanning-overlay';
+    overlay.innerHTML = `
+        <div class="scan-line"></div>
+        <div style="font-family: 'Orbitron', monospace; color: var(--accent); letter-spacing: 5px; margin-top: 20px; animation: blinker 0.5s infinite;">CALIBRATING_BIOMETRICS...</div>
+    `;
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        overlay.remove();
+        finderStep++;
+        renderFinderStep();
+    }, 1200);
 }
 
 function calculateFinderResult() {
