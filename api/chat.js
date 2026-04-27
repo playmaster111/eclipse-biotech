@@ -21,7 +21,7 @@ export default async function handler(req) {
         // Use Gemini's OpenAI-compatible endpoint
         // This is more reliable as it supports standard OpenAI payload formats
         const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions';
-        const model = 'gemini-2.0-flash';
+        const model = 'gemini-1.5-flash';
 
         const systemMessage = {
             role: 'system',
