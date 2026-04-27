@@ -18,42 +18,31 @@ export default async function handler(req) {
             }), { status: 500, headers: { 'content-type': 'application/json' } });
         }
 
-        const model = "gemini-1.5-flash";
-        const apiUrl = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${apiKey}`;
+        // Use Gemini's OpenAI-compatible endpoint
+        // This is more reliable as it supports standard OpenAI payload formats
+        const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/chat/completions';
+        const model = 'gemini-1.5-flash';
 
-        // Convert OpenAI-style messages to Gemini format
-        const systemPrompt = `You are the "Eclipse Biotech Mainframe", an advanced sci-fi AI assistant. 
+        const systemMessage = {
+            role: 'system',
+            content: `You are the "Eclipse Biotech Mainframe", an advanced sci-fi AI assistant. 
 You answer pharmacology, chemistry, and biology questions. 
 Keep your tone clinical, precise, and slightly robotic/cyberpunk, but very helpful.
 If the user is viewing a specific compound, they will provide context. 
-Current Context: ${context || 'None'}`;
-
-        const contents = messages.map(m => ({
-            role: m.role === 'assistant' ? 'model' : 'user',
-            parts: [{ text: m.content }]
-        }));
-
-        // Prepend system prompt to the first user message for v1 compatibility
-        if (contents.length > 0 && contents[0].role === 'user') {
-            contents[0].parts[0].text = `${systemPrompt}\n\nUSER_QUERY: ${contents[0].parts[0].text}`;
-        } else {
-            contents.unshift({
-                role: 'user',
-                parts: [{ text: systemPrompt }]
-            });
-        }
+Current Context: ${context || 'None'}`
+        };
 
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
             },
             body: JSON.stringify({
-                contents: contents,
-                generationConfig: {
-                    maxOutputTokens: 1000,
-                    temperature: 0.7
-                }
+                model: model,
+                messages: [systemMessage, ...messages],
+                max_tokens: 1000,
+                temperature: 0.7
             })
         });
 
@@ -64,11 +53,8 @@ Current Context: ${context || 'None'}`;
 
         const data = await response.json();
         
-        // Extract content from Gemini response
-        const message = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received from Gemini.";
-        
         return new Response(JSON.stringify({
-            message: message
+            message: data.choices[0].message.content
         }), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
