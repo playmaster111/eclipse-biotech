@@ -1289,59 +1289,18 @@ window.submitAIQuery = function() {
     }
 }
 
-async function finishAIResponse(query, typingId) {
+function finishAIResponse(query, typingId) {
     try {
         const history = document.getElementById('chatHistory');
         const typingEl = document.getElementById(typingId);
-        
-        // Let's keep the typing element but change its text to downloading...
-        if(typingEl) {
-            const textEl = typingEl.querySelector('.msg-text');
-            if (textEl) textEl.innerHTML = 'DOWNLOADING_RESPONSE<span>.</span><span>.</span><span>.</span>';
-        }
+        if(typingEl) typingEl.remove();
 
-        let responseText = "ERROR: Failed to reach Eclipse Mainframe.";
-        try {
-            // Build context from current session
-            const contextName = aiSession.lastCompound ? aiSession.lastCompound.name : 'General Database';
-            const contextDesc = aiSession.lastCompound ? aiSession.lastCompound.shortDesc : 'No specific compound selected.';
-            
-            aiSession.history.push({ role: 'user', content: query });
-            
-            console.log("ECLIPSE_AI: Sending query...", { query, historyLength: aiSession.history.length });
-
-            const res = await fetch('/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    messages: aiSession.history,
-                    context: `Viewing: ${contextName} - ${contextDesc}`
-                })
-            });
-            
-            const data = await res.json();
-            if (res.ok && data.message) {
-                responseText = data.message;
-                aiSession.history.push({ role: 'assistant', content: responseText });
-            } else {
-                console.error("ECLIPSE_AI: API Error", data);
-                responseText = `ERROR: ${data.error || 'Unknown API failure'}`;
-                if (typeof data.error === 'object') responseText = `ERROR: ${JSON.stringify(data.error)}`;
-            }
-        } catch (fetchErr) {
-            console.error("ECLIPSE_AI: Fetch Error:", fetchErr);
-            responseText = "ERROR: Network failure or timeout. The Eclipse Mainframe might be experiencing heavy load. Please try again in a moment.";
-        } finally {
-            if(typingEl) typingEl.remove();
-        }
-
+        const response = generateAIResponse(query);
         if (history) {
-            // Replace newlines with <br> for HTML rendering
-            const formattedResponse = responseText.replace(/\n/g, '<br>');
             history.insertAdjacentHTML('beforeend', `
                 <div class="chat-msg ai">
                     <div class="msg-sender">ECLIPSE_AI</div>
-                    <div class="msg-text">${formattedResponse}</div>
+                    <div class="msg-text">${response}</div>
                     <div class="msg-actions">
                         <button class="action-btn" onclick="copyToClipboard(this)">COPY_REPORT</button>
                         <button class="action-btn" onclick="triggerAIExplain('${aiSession.lastCompound ? aiSession.lastCompound.name : ''}')">DEEP_DIVE</button>
