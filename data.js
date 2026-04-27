@@ -16,7 +16,8 @@ var CATEGORIES = {
     'reference': { name: 'Bloodwork & Health Markers', desc: 'Clinical reference ranges and deep dives into the essential biomarkers impacted by performance enhancing drugs.' },
     'sarms': { name: 'SARMs & PPAR Agonists', desc: 'Selective Androgen Receptor Modulators engineered to target muscle and bone tissue while minimizing prostate and hairline side effects.' },
     'sex-hormones': { name: 'Sex Hormones & Others', desc: 'Steroids primarily involved in reproductive systems, contraceptives, and specialty treatments.' },
-    'antidepressants': { name: 'Antidepressants & SSRIs', desc: 'Medications utilized to treat major depressive disorders, often through the modulation of serotonin, dopamine, and norepinephrine.' }
+    'antidepressants': { name: 'Antidepressants & SSRIs', desc: 'Medications utilized to treat major depressive disorders, often through the modulation of serotonin, dopamine, and norepinephrine.' },
+    'longevity': { name: 'Longevity & Coenzymes', desc: 'Compounds and coenzymes dedicated to cellular repair, mitochondrial efficiency, and reversing biological aging.' }
 };
 window.CATEGORIES = CATEGORIES;
 
@@ -2607,6 +2608,18 @@ var WIKI_DATA = [
         benefits: 'Provides mild to moderate euphoria, strong cough suppression, and pain relief. Much milder than oxycodone or fentanyl.',
         risks: 'Lethal respiratory depression at massive doses, severe constipation, intense histamine release (itching), physical dependence.',
         impact: { brain: 5, heart: 2, liver: 3, kidneys: 1, blood: 1, hair: 0, joints: -4 }
+    },
+    // --- LONGEVITY & COENZYMES ---
+    {
+        id: 'nad_plus', folder: 'Longevity', category: 'longevity', type: 'Coenzyme', name: 'NAD+', esters: '(Nicotinamide Adenine Dinucleotide)', status: 'active',
+        overview: 'NAD+ is a critical coenzyme found in every cell of the body. It plays an essential role in energy metabolism, DNA repair, and cellular aging.',
+        primaryUses: 'Anti-aging, Chronic Fatigue, Addiction Recovery',
+        mechanism: 'Facilitates redox reactions in the mitochondria, acting as an electron transporter. It directly activates sirtuins, which regulate cellular health and longevity.',
+        dosage: '100mg to 500mg IV Drip / Subcutaneous Injection.',
+        experimental: { b: '100mg', a: '500mg+' },
+        benefits: 'Massive boost in cellular energy, profound mental clarity, accelerated recovery from intense training or substance abuse, anti-aging properties.',
+        risks: 'Intense physiological discomfort during IV infusion (chest tightness, stomach cramps, anxiety). Generally very safe.',
+        impact: { brain: 8, heart: 2, liver: 3, kidneys: 1, blood: 1, hair: 0, joints: 2 }
     }
 ];
 
