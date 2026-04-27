@@ -6011,3 +6011,90 @@ body::before { pointer-events: none !important; }
     font-style: italic;
     color: #ffd280;
 }
+
+/* ==========================================
+   MOBILE LAYOUT OPTIMIZATION (DRUG PAGES)
+   ========================================== */
+
+@media (max-width: 768px) {
+    /* Stack the Wiki Grid */
+    .wiki-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .wiki-main-col section {
+        margin-bottom: 30px;
+    }
+
+    /* Adjust oversized mobile headers */
+    .wiki-main-col h2 {
+        font-size: 20px !important;
+        margin-bottom: 12px;
+    }
+
+    .wiki-main-col p {
+        font-size: 14px !important;
+        line-height: 1.6;
+    }
+
+    /* Fix Hologram Overlaps */
+    .hologram-viewport {
+        height: 180px !important;
+    }
+
+    .hologram-data-stream {
+        font-size: 7px !important;
+        right: 10px !important;
+        top: 10px !important;
+        background: rgba(0,0,0,0.4);
+        padding: 5px;
+        border-radius: 4px;
+    }
+
+    /* Sidebar/Data Panel adjustments */
+    .data-panel {
+        position: relative !important;
+        top: 0 !important;
+        margin-top: 20px;
+    }
+
+    .data-panel-header {
+        padding: 12px 15px !important;
+        font-size: 11px !important;
+    }
+
+    .data-box {
+        padding: 12px 15px !important;
+    }
+
+    .data-box-value {
+        font-size: 13px !important;
+    }
+
+    /* Heat Map fixes */
+    .heat-map-panel {
+        margin-top: 20px;
+    }
+
+    /* Breadcrumbs font size */
+    .breadcrumbs {
+        font-size: 9px !important;
+        letter-spacing: 1px !important;
+    }
+}
+
+/* Special fix for very narrow screens */
+@media (max-width: 480px) {
+    .wiki-main-col h1 {
+        font-size: 32px !important;
+    }
+    
+    .article-header {
+        padding: 15px !important;
+    }
+    
+    .badges {
+        gap: 5px;
+    }
+}
