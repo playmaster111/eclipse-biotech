@@ -1224,10 +1224,16 @@ function generateThoughtLog(query) {
         "ANALYZING_KINETIC_TRAJECTORY",
         "CROSS_REFERENCING_TOXICITY_MARKERS",
         "FETCHING_CLINICAL_ASSETS",
-        "SYNTHESIZING_RESPONSE_MATRIX"
+        "SYNTHESIZING_RESPONSE_MATRIX",
+        "EVALUATING_HEURISTIC_PROJECTIONS",
+        "CALIBRATING_INTERACTION_MATRIX",
+        "SIMULATING_METABOLIC_DEGRADATION",
+        "VERIFYING_RECEPTOR_AFFINITY",
+        "ACCESSING_ARCHIVAL_RESEARCH_LOGS"
     ];
-    // Randomize 3-5 steps
-    const count = 3 + Math.floor(Math.random() * 3);
+    // Dynamic selection based on query complexity
+    const complexity = query.length > 30 ? 6 : 4;
+    const count = complexity + Math.floor(Math.random() * 3);
     const shuffled = steps.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
 }
@@ -1256,6 +1262,9 @@ window.submitAIQuery = function() {
         const typingId = 'typing_' + Date.now();
         const thoughtLog = generateThoughtLog(query);
         
+        const chatContainer = document.querySelector('.ai-chat-container');
+        if (chatContainer) chatContainer.classList.add('neural-pulse');
+
         history.insertAdjacentHTML('beforeend', `
             <div class="chat-msg ai thinking" id="${typingId}">
                 <div class="msg-sender">ECLIPSE_AI</div>
@@ -1294,6 +1303,9 @@ function finishAIResponse(query, typingId) {
         const history = document.getElementById('chatHistory');
         const typingEl = document.getElementById(typingId);
         if(typingEl) typingEl.remove();
+
+        const chatContainer = document.querySelector('.ai-chat-container');
+        if (chatContainer) chatContainer.classList.remove('neural-pulse');
 
         const response = generateAIResponse(query);
         if (history) {
@@ -1369,6 +1381,57 @@ function triggerAIExplain(compoundName) {
         }
     }, 200);
 }
+
+function analyzeInteractions(c1, c2) {
+    let risks = [];
+    let synergy = [];
+    
+    // 1. Cardiovascular Impact
+    if (c1.impact.heart >= 7 && c2.impact.heart >= 7) {
+        risks.push("CRITICAL_CARDIOVASCULAR_STRAIN: Both compounds exhibit high cardiac toxicity.");
+    }
+    
+    // 2. Stimulant + AAS (The classic risk)
+    if ((c1.category === 'recreational' && c2.category === 'anabolic') || (c1.category === 'anabolic' && c2.category === 'recreational')) {
+        risks.push("HEURISTIC_WARNING: Stimulant use during high-androgen phases significantly elevates LVH risk.");
+    }
+
+    // 3. Multi-Oral Liver Strain
+    const isOral = (c) => c.dosage.toLowerCase().includes('oral') || c.id.match(/dbol|anavar|winny|sdrol|tbol/);
+    if (isOral(c1) && isOral(c2)) {
+        risks.push("HEPATOTOXIC_ALERT: Simultaneous C17-aa oral administration detected. Severe liver enzyme elevation probable.");
+    }
+
+    // 4. SSRI + MAOI (Lethal)
+    if ((c1.type === 'SSRI' && c2.type === 'MAOI') || (c1.type === 'MAOI' && c2.type === 'SSRI')) {
+        risks.push("LETHAL_INTERACTION: Combination of SSRIs and MAOIs carries a high risk of Serotonin Syndrome.");
+    }
+
+    // 5. Growth Synergy
+    if ((c1.id.includes('somatropin') && c2.id.includes('insulin')) || (c1.id.includes('insulin') && c2.id.includes('somatropin'))) {
+        synergy.push("ANABOLIC_SYNERGY: HGH and Insulin exhibit potent synergistic nutrient partitioning effects.");
+    }
+
+    // 6. Test Base Requirement
+    if (c1.category === 'anabolic' && c2.category === 'anabolic') {
+        if (!c1.id.includes('testosterone') && !c2.id.includes('testosterone')) {
+            risks.push("PHYSIOLOGICAL_CRASH: Dual non-testosterone AAS usage without an androgenic base detected.");
+        }
+    }
+
+    return { risks, synergy };
+}
+
+function generateHeuristicProjection(c) {
+    const impacts = [];
+    if (c.impact.heart > 5) impacts.push("Weeks 2-4: Progressive Left Ventricular strain detected.");
+    if (c.impact.liver > 5) impacts.push("Weeks 1-6: Hepatic enzyme (AST/ALT) elevation trend.");
+    if (c.impact.brain > 5) impacts.push("Phase 1: Significant neurotransmitter receptor downregulation.");
+    if (impacts.length === 0) impacts.push("Phase 1: Gradual homeostatic adjustment with minimal systemic flux.");
+    
+    return impacts.map(i => `<div>> ${i}</div>`).join('');
+}
+
 
 function generateAIResponse(q) {
     let query = q.toLowerCase().replace(/[?.,!]/g, '');
@@ -1446,10 +1509,48 @@ function generateAIResponse(q) {
     }
 
     if (identifiedCompound) {
-        aiSession.lastCompound = identifiedCompound; // Store for next turn
+        aiSession.lastCompound = identifiedCompound;
         const c = identifiedCompound;
         const msgHeader = `<div class="msg-meta">[TARGET: ${originalTerm}]</div>`;
         
+        // --- Multi-Compound Detection (v4.0) ---
+        const secondaryCompound = WIKI_DATA.find(alt => alt.id !== c.id && (query.includes(alt.name.toLowerCase()) || query.includes(alt.id)));
+        
+        if (secondaryCompound) {
+            const analysis = analyzeInteractions(c, secondaryCompound);
+            let report = `<div class="msg-meta">[MATRIX_ANALYSIS: ${c.name} + ${secondaryCompound.name}]</div>`;
+            report += `<div class="ai-report-section">`;
+            report += `<div class="report-header">[HEURISTIC_INTERACTION_REPORT]</div>`;
+            
+            if (analysis.risks.length > 0) {
+                report += `<div class="report-risk-list">`;
+                analysis.risks.forEach(r => report += `<div style="color:var(--red); margin-bottom: 5px;">> ${r}</div>`);
+                report += `</div>`;
+            } else {
+                report += `<p>No critical contraindications identified between identified entities.</p>`;
+            }
+
+            if (analysis.synergy.length > 0) {
+                report += `<div class="report-synergy-list" style="margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px;">`;
+                analysis.synergy.forEach(s => report += `<div style="color:var(--accent)">> ${s}</div>`);
+                report += `</div>`;
+            }
+            
+            report += `</div>`;
+            report += `<div class="ai-suggestion">Interaction matrix finalized. Should I simulate a prolonged metabolic projection for this combination?</div>`;
+            return report;
+        }
+
+        // --- New: Heuristic Projection Trigger ---
+        if (query.includes('project') || query.includes('timeline') || query.includes('weeks')) {
+            const projection = generateHeuristicProjection(c);
+            return `${msgHeader}<div class="ai-report-section">
+                <div class="report-header">[METABOLIC_PROJECTION_MODEL]</div>
+                <div class="projection-log">${projection}</div>
+            </div>
+            <div class="ai-suggestion">Projection model based on heuristic markers. Clinical results may vary.</div>`;
+        }
+
         // --- New: Full Synthesis Deep Dive (ASK_ECLIPSE trigger) ---
         if (query.includes('pharmacological profile') || query.includes('clinical use') || (query.match(/explain|describe|tell me about|analyze/) && query.length > 20)) {
             let report = `${msgHeader}`;
@@ -1473,7 +1574,7 @@ function generateAIResponse(q) {
             report += `<p><strong>Clinical Baseline:</strong> ${c.dosage}<br><strong>Performance Observed:</strong> ${c.experimental.b} — ${c.experimental.a}</p>`;
             report += `</div>`;
             
-            report += `<div class="ai-suggestion">Analysis complete. Would you like to cross-reference this profile with its respective cycle archetypes?</div>`;
+            report += `<div class="ai-suggestion">Analysis complete. Would you like to project these effects over a standard 12-week timeline?</div>`;
             return report;
         }
 

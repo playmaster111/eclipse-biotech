@@ -22,7 +22,6 @@ var CATEGORIES = {
 window.CATEGORIES = CATEGORIES;
 
 var WIKI_DATA = [
-    // --- TESTOSTERONES ---
     {
         id: 'testosterone_suspension', folder: 'Testosterones', category: 'anabolic', type: 'AAS', name: 'Testosterone (No Ester)', esters: '(Suspension)', status: 'active',
         overview: 'Pure, unesterified testosterone suspended in a water or oil base. It is the oldest form of injectable testosterone and acts almost instantaneously upon injection.',
@@ -109,8 +108,6 @@ var WIKI_DATA = [
         impact: { brain: 2, heart: 2, liver: 0, kidneys: 1, blood: 4, hair: 4, joints: -1 },
         cycleExamples: '<strong>European Standard:</strong> Widely used in the EU as a foundational TRT protocol. In performance circles, it is often dosed twice weekly (e.g., 250mg Monday/Thursday) to smooth out the release of the shorter Propionate ester.'
     },
-
-    // --- DHT DERIVATIVES ---
     {
         id: 'oxandrolone', folder: 'DHT Derivatives', category: 'anabolic', type: 'AAS', name: 'Oxandrolone', esters: '(Anavar)', status: 'active',
         overview: 'Oxandrolone is a mild oral AAS synthesized with remarkably low androgenicity. Clinically prescribed to reverse severe weight loss caused by systemic infection, trauma, or surgery.',
@@ -195,8 +192,6 @@ var WIKI_DATA = [
         impact: { brain: 2, heart: 4, liver: 5, kidneys: 1, blood: 4, hair: 3, joints: 6 },
         cycleExamples: '<strong>Gyno Suppression:</strong> Historically utilized in Japan at 10mg weekly to treat benign breast tumors and gynecological disorders.'
     },
-
-    // --- NANDROLONE DERIVATIVES ---
     {
         id: 'nandrolone_decanoate', folder: 'Nandrolone Derivatives', category: 'anabolic', type: 'AAS', name: 'Nandrolone Decanoate', esters: '(Deca-Durabolin)', status: 'active',
         overview: 'Deca-Durabolin is a slow-acting 19-nor anabolic steroid historically used to treat osteoporosis and anemia, highly favored for its joint-lubricating properties.',
@@ -270,8 +265,6 @@ var WIKI_DATA = [
         impact: { brain: 8, heart: 10, liver: 3, kidneys: 7, blood: 8, hair: 9, joints: 0 },
         cycleExamples: '<strong>The Vintage Protocol:</strong> In the 1990s, French athletes were documented using 1 ampoule (76mg) every 3 days to achieve a dry, hard physique.'
     },
-
-    // --- ORAL ANABOLICS ---
     {
         id: 'methandrostenolone', folder: 'Oral Anabolics', category: 'anabolic', type: 'AAS', name: 'Methandrostenolone', esters: '(Dianabol)', status: 'discontinued',
         aka: 'Dbol, The Breakfast of Champions, Pinkies, Arnold\'s Arnold',
@@ -331,8 +324,6 @@ var WIKI_DATA = [
         impact: { brain: 3, heart: 7, liver: 8, kidneys: 4, blood: 6, hair: 5, joints: 0 },
         cycleExamples: '<strong>Historical TRT:</strong> Before the advent of injectable esters, 25mg daily was a standard medical dose for treating male androgen deficiency.'
     },
-
-    // --- OTHER AAS ---
     {
         id: 'boldenone', folder: 'Other AAS', category: 'anabolic', type: 'AAS', name: 'Boldenone', esters: '(Equipoise)', status: 'discontinued',
         overview: 'Equipoise is a veterinary steroid initially created to treat horses. It provides slow, extremely steady gains with high cardiovascular endurance improvements.',
@@ -399,8 +390,6 @@ var WIKI_DATA = [
         impact: { brain: 4, heart: 8, liver: 0, kidneys: 4, blood: 6, hair: 4, joints: 0 },
         cycleExamples: '<strong>The Contraceptive Research:</strong> Documented in clinical trials where 10-20mg daily successfully maintained masculine characteristics while zeroing out sperm count.'
     },
-
-    // --- CORTICOSTEROIDS ---
     {
         id: 'prednisone', folder: 'Glucocorticoids', category: 'corticosteroids', type: 'Glucocorticoid', name: 'Prednisone', esters: '', status: 'active',
         overview: 'Prednisone is a synthetic glucocorticoid mostly used to suppress the immune system and decrease inflammation in conditions such as asthma, COPD, and rheumatologic diseases.',
@@ -494,8 +483,6 @@ var WIKI_DATA = [
         experimental: { b: 'Variable', a: 'Variable' },
         risks: 'Relatively low systemic side effects compared to prednisone, mild bone density loss with prolonged use.',
     },
-
-    // --- PEPTIDES & GROWTH FACTORS ---
     {
         id: 'somatropin', folder: 'Growth Factors', category: 'peptides', type: 'Peptide', name: 'Human Growth Hormone', esters: '(Somatropin)', status: 'active',
         overview: 'Synthetic human growth hormone. Highly prized in clinical settings for treating growth failure in children and severe wasting in HIV/AIDS patients. Extensively used in anti-aging and bodybuilding.',
@@ -568,8 +555,6 @@ var WIKI_DATA = [
         impact: { brain: 2, heart: 3, liver: 1, kidneys: 1, blood: 4, hair: 0, joints: 2 },
         cycleExamples: '<strong>Bulking Addition:</strong> 25mg taken orally prior to bed for 3+ months to elevate basal IGF-1 and provoke immense appetite.'
     },
-
-    // -- Growth Hormone Secretagogues --
     {
         id: 'cjc1295', folder: 'Growth Factors', category: 'peptides', type: 'Peptide', name: 'CJC-1295', esters: '(with DAC)', status: 'experimental',
         overview: 'A long-acting synthetic version of Growth Hormone Releasing Hormone (GHRH). It binds to albumin to drastically increase its half-life to up to 8 days.',
@@ -640,8 +625,6 @@ var WIKI_DATA = [
         risks: 'Very mild; occasional head rush or slight water weight.',
         impact: { brain: 1, heart: 1, liver: 0, kidneys: 0, blood: 2, hair: 0, joints: 1 }
     },
-
-    // -- Fat Loss & Metabolism --
     {
         id: 'hgh_frag', folder: 'Metabolism & Fat Loss', category: 'peptides', type: 'Peptide', name: 'HGH Frag 176-191', esters: '', status: 'experimental',
         overview: 'A highly specialized, isolated fragment of the Human Growth Hormone chain (amino acids 176 to 191) which isolates only the fat-burning properties of HGH.',
@@ -682,17 +665,16 @@ var WIKI_DATA = [
         risks: 'Hypoglycemia, severe injection site pain.',
         impact: { brain: 1, heart: 2, liver: 1, kidneys: 1, blood: 3, hair: 0, joints: 1 }
     },
-
-    // -- Healing & Growth --
     {
-        id: 'tb500', folder: 'Regeneration & Recovery', category: 'peptides', type: 'Peptide', name: 'TB-500', esters: '(Thymosin Beta-4)', status: 'experimental',
-        overview: 'A synthetic version of the naturally occurring healing protein Thymosin Beta-4. Widely used in horse racing and human sports to heal muscular tears.',
-        primaryUses: 'Muscular tear recovery, inflammation reduction',
-        mechanism: 'Upregulates actin, the protein responsible for cellular motility, allowing cells to literally swarm injury sites to create rapid healing grids.',
-        dosage: 'Not medically approved.',
-        experimental: { b: '2mg twice weekly', a: '5mg/wk' },
-        risks: 'Lethargy, suspected minor angiogenesis tumor risks.',
-        impact: { brain: 1, heart: 1, liver: 1, kidneys: 1, blood: 2, hair: 0, joints: 8 }
+        id: 'tb500', folder: 'Growth Factors', category: 'peptides', type: 'Peptide', name: 'TB-500', esters: '(Thymosin Beta-4 / TB4)', status: 'active',
+        overview: 'A synthetic version of the naturally occurring peptide Thymosin Beta-4. It is world-renowned for its ability to dramatically accelerate the healing of muscle, tendon, ligament, and tissue injuries.',
+        primaryUses: 'Severe tissue injury, tendinopathy, surgical recovery',
+        mechanism: 'Upregulates actin, a vital cell-building protein, and promotes angiogenesis (the creation of new blood vessels) directly at the site of injury, accelerating cellular migration to the wound.',
+        dosage: '2mg to 5mg twice weekly (Subcutaneous Injection).',
+        experimental: { b: '2mg/wk', a: '10mg/wk' },
+        benefits: 'Rapid localized healing of acute injuries, reduced joint inflammation, increased flexibility, and potential hair regrowth.',
+        risks: 'Lethargy, head rush immediately post-injection, theoretical risk of accelerating pre-existing cancer growth due to extreme angiogenesis.',
+        impact: { brain: 0, heart: 2, liver: 0, kidneys: 0, blood: 4, hair: 3, joints: 9 }
     },
     {
         id: 'peg_mgf', folder: 'Growth Hormones', category: 'peptides', type: 'Peptide', name: 'PEG-MGF', esters: '(Pegylated MGF)', status: 'experimental',
@@ -714,8 +696,6 @@ var WIKI_DATA = [
         risks: 'Dangerous hypoglycemia, severe organ growth if systematically absorbed.',
         impact: { brain: 1, heart: 3, liver: 2, kidneys: 1, blood: 5, hair: 0, joints: 2 }
     },
-
-    // -- Nootropics --
     {
         id: 'semax', folder: 'Nootropic Peptides', category: 'peptides', type: 'Peptide', name: 'Semax', esters: '', status: 'active',
         overview: 'A Russian-developed neuropeptide derived from ACTH. Extensively prescribed in Eastern Europe as an extreme cognitive enhancer and stroke recovery agent.',
@@ -756,8 +736,6 @@ var WIKI_DATA = [
         risks: 'Lethargy, risk of prion-based diseases (extremely rare/theoretical), large injection volume.',
         impact: { brain: 10, heart: 2, liver: 2, kidneys: 1, blood: 2, hair: 0, joints: 0 }
     },
-
-    // -- Immune & Sexual & Cosmetic --
     {
         id: 'thymosin_a1', folder: 'Immune & Anti-Aging', category: 'peptides', type: 'Peptide', name: 'Thymosin Alpha-1', esters: '', status: 'active',
         overview: 'A peptide naturally produced in the thymus gland. Historically approved in dozens of countries as an ultra-immune booster to fight Hepatitis B and COVID-19.',
@@ -828,7 +806,6 @@ var WIKI_DATA = [
         risks: 'Extremely safe; minor skin irritation on ultra-sensitive individuals.',
         impact: { brain: 0, heart: 0, liver: 0, kidneys: 0, blood: 0, hair: 0, joints: 0 }
     },
-
     {
         id: 'creatine', folder: 'Performance Supplements', category: 'peptides', type: 'Ergogenic Aid', name: 'Creatine Monohydrate', esters: '', status: 'active',
         overview: 'Creatine is the most scientifically validated performance supplement in existence. It is a nitrogenous organic acid that occurs naturally in vertebrates and helps to supply energy to all cells in the body, primarily muscle.',
@@ -854,9 +831,6 @@ var WIKI_DATA = [
         storage: { temp: '15-30°C', light: 'Protect from moisture', shelf: '36-60 Months', notes: 'Creatine is highly stable in powder form but degrades into creatinine if left in liquid solution for long periods.' },
         cycleExamples: '<strong>The Perpetual Base:</strong> 5g daily, taken at any time, year-round. No "loading phase" or "cycling" is strictly required as the muscle reaches saturation within 2-4 weeks of consistent dosing.'
     },
-
-    // --- ANCILLARIES & MEDICATIONS ---
-    // SERMs & PCT
     {
         id: 'tamoxifen', folder: 'SERMs & PCT', category: 'ancillaries', type: 'SERM', name: 'Tamoxifen', esters: '(Nolvadex)', status: 'active',
         overview: 'A Selective Estrogen Receptor Modulator (SERM). Originally developed to treat breast cancer, it is the absolute gold standard for Post Cycle Therapy (PCT) to restart natural testosterone production.',
@@ -905,8 +879,6 @@ var WIKI_DATA = [
         impact: { brain: 1, heart: 3, liver: 3, kidneys: 1, blood: 5, hair: 1, joints: 2 },
         cycleExamples: '<strong>Gyno Reversal:</strong> 60mg daily for 6 weeks, often successful at reducing pubertal or AAS-induced gynecomastia that has already begun to fibrose.'
     },
-
-    // Aromatase Inhibitors
     {
         id: 'anastrozole', folder: 'Aromatase Inhibitors', category: 'ancillaries', type: 'AI', name: 'Anastrozole', esters: '(Arimidex)', status: 'active',
         overview: 'A potent, non-steroidal aromatase inhibitor. It is the most commonly prescribed AI for men on TRT to control estrogen conversion.',
@@ -941,8 +913,6 @@ var WIKI_DATA = [
         risks: 'Guaranteed shattered lipid profiles, unbearable joint pain, destroyed libido, deep depression.',
         impact: { brain: 5, heart: 6, liver: 1, kidneys: 1, blood: 7, hair: 0, joints: 10 }
     },
-
-    // Prolactin & 5AR
     {
         id: 'cabergoline', folder: 'Prolactin & 5AR', category: 'ancillaries', type: 'Dopamine Agonist', name: 'Cabergoline', esters: '(Dostinex)', status: 'active',
         overview: 'A remarkably potent dopamine D2 receptor agonist. Used to treat prolactinomas (pituitary tumors). Necessary for controlling the massive prolactin spikes caused by Trenbolone and Deca.',
@@ -978,18 +948,18 @@ var WIKI_DATA = [
         impact: { brain: 8, heart: 1, liver: 1, kidneys: 0, blood: 1, hair: -15, joints: 0 },
         cycleExamples: '<strong>Nuclear Hair Option:</strong> 0.5mg daily or EOD for those with extreme genetic predisposition to male pattern baldness.'
     },
-
-    // Fat Burners
     {
-        id: 'clenbuterol', folder: 'Fat Burners', category: 'ancillaries', type: 'Beta-2 Agonist', name: 'Clenbuterol', esters: '', status: 'active (ex-US)',
-        overview: 'A famously potent asthma medication utilized primarily outside the US. In bodybuilding, it is the most widespread and effective central nervous system stimulant for fat loss.',
-        primaryUses: 'Asthma/bronchospasm (veterinary or international)',
-        mechanism: 'Directly stimulates Beta-2 receptors in fat and muscle tissue. Raises basal metabolic rate by 10% and massively accelerates the breakdown of triglycerides.',
-        dosage: '20mcg to 40mcg daily.',
-        experimental: { b: '20-40mcg/day', a: '80-120mcg/day' },
-        benefits: 'Intense thermogenesis (fat burning), minor anti-catabolic properties preserving muscle tissue.',
-        risks: 'Severe hand tremors, agonizing muscle cramps (due to taurine depletion), dangerous tachycardia (racing heart).',
-        cycleExamples: '<strong>Cutting Phase:</strong> Tapering up from 20mcg to 80mcg over 2 weeks, then taking 2 weeks off to clear receptor downregulation.'
+        id: 'clenbuterol', folder: 'Metabolics', category: 'recreational', type: 'Beta-2 Agonist', name: 'Clenbuterol', esters: '(Clen)', status: 'active',
+        overview: 'A powerful bronchodilator and thermogenic agent. While used to treat asthma in some countries, it is most famous in bodybuilding for its ability to incinerate fat while preserving lean tissue.',
+        primaryUses: 'Asthma (outside USA), Extreme fat loss',
+        mechanism: 'Stimulates the Beta-2 receptors in the body, which drastically increases core body temperature (thermogenesis) and basal metabolic rate (BMR). It is not a hormone.',
+        dosage: '20mcg to 40mcg per day (Medical).',
+        experimental: { b: '20–60 mcg/day', a: '80–140 mcg/day' },
+        benefits: 'Rapid fat oxidation, slight anti-catabolic effect, improved aerobic capacity.',
+        risks: 'Cardiac hypertrophy (thickening of the heart), extreme tremors, insomnia, taurine depletion.',
+        impact: { brain: 4, heart: 9, liver: 1, kidneys: 3, blood: 5, hair: 0, joints: 0 },
+        aestheticProfile: 'Creates an extremely "ripped" look with thin skin. Enhances muscle separation and reveals hidden vascularity. Often causes visible shaking or "trembling" of the muscles.',
+        physiologicalTargets: 'Beta-2 adrenoceptors located throughout the cardiovascular system and adipose (fat) tissue. Primarily targets the myocardium (heart muscle) at high doses.'
     },
     {
         id: 'albuterol', folder: 'Fat Burners', category: 'ancillaries', type: 'Beta-2 Agonist', name: 'Albuterol', esters: '(Salbutamol)', status: 'active',
@@ -1025,8 +995,6 @@ var WIKI_DATA = [
         impact: { brain: 2, heart: 7, liver: 0, kidneys: 1, blood: 4, hair: 3, joints: 0 },
         cycleExamples: '<strong>Metabolic Support:</strong> 25mcg daily run alongside an anabolic cycle to offset the thyroid suppression often caused by HGH or Trenbolone.'
     },
-
-    // Fertility
     {
         id: 'hcg', folder: 'Fertility', category: 'ancillaries', type: 'Gonadotropin', name: 'Human Chorionic Gonadotropin', esters: '(hCG)', status: 'active',
         overview: 'A hormone extracted from the urine of pregnant women. For males, it is a biological miracle that perfectly mimics Luteinizing Hormone (LH) to preserve testicular function.',
@@ -1050,8 +1018,6 @@ var WIKI_DATA = [
         impact: { brain: 1, heart: 1, liver: 1, kidneys: 1, blood: 4, hair: 0, joints: 1 },
         cycleExamples: '<strong>Fertility Restart:</strong> 75 IU HMG combined with 500 IU HCG three times weekly for 12 weeks to restore sperm count after prolonged steroid use.'
     },
-
-    // --- SARMS & RELATED ---
     {
         id: 'ostarine', folder: 'SARMs', category: 'sarms', type: 'SARM', name: 'Ostarine', esters: '(MK-2866)', status: 'experimental',
         overview: 'One of the most heavily researched Selective Androgen Receptor Modulators (SARMs). It was engineered directly to prevent muscle wasting in cancer and osteoporosis patients.',
@@ -1142,8 +1108,6 @@ var WIKI_DATA = [
         impact: { brain: 5, heart: 1, liver: 1, kidneys: 1, blood: 2, hair: 0, joints: 0 },
         cycleExamples: '<strong>Metabolic Reset:</strong> 20mg injected daily (or split sublingually) to accelerate fat loss during a cutting phase.'
     },
-
-    // --- DESIGNER STEROIDS & PROHORMONES ---
     {
         id: 'superdrol', folder: 'Designer Steroids', category: 'prohormones', type: 'AAS', name: 'Superdrol', esters: '(Methasterone)', status: 'discontinued',
         overview: 'Superdrol is arguably the most powerful oral designer steroid ever created. Originally formulated in the 1950s but never released, it surfaced on the grey market in 2005 disguised as a legal supplement.',
@@ -1203,8 +1167,6 @@ var WIKI_DATA = [
         impact: { brain: 10, heart: 9, liver: 8, kidneys: 6, blood: 9, hair: 9, joints: 0 },
         cycleExamples: '<strong>Oral Recomp:</strong> 30mg daily for 4-6 weeks to rapidly harden the physique before a photoshoot or competition.'
     },
-
-    // --- BLOODWORK & HEALTH MARKERS ---
     {
         id: 'blood_lipids', folder: 'Biomarkers', category: 'reference', type: 'Reference', name: 'Lipid Panel', esters: '(Cholesterol)', status: 'informational',
         overview: 'The primary cardiovascular metric devastated by oral anabolic steroids and AIs. Managing blood lipids is the #1 requirement for long-term health in enhanced athletes.',
@@ -1249,8 +1211,6 @@ var WIKI_DATA = [
         risks: 'If blood turns to sludge, the heart has to work 10x harder to pump it. Leads to extreme left ventricular hypertrophy, strokes, and catastrophic lethargy.',
         cycleExamples: '<strong>Management:</strong> Therapeutic phlebotomy (donating a pint of blood every 8 weeks), daily baby aspirin, massive hydration, and Naringin.'
     },
-
-    // --- RECREATIONAL & STIMULANTS ---
     {
         id: 'modafinil', folder: 'Neuro-Enhancers', category: 'recreational', type: 'Stimulant', name: 'Modafinil', esters: '(Provigil)', status: 'active',
         overview: 'A profoundly powerful "eugeroic" (wakefulness-promoting agent). Originally developed for narcolepsy, it is extensively used off-label by the military, students, and executives to delay sleep.',
@@ -1319,8 +1279,6 @@ var WIKI_DATA = [
         impact: { brain: 5, heart: 8, liver: 6, kidneys: 4, blood: 6, hair: 0, joints: 0 },
         cycleExamples: '<strong>Historical Usage:</strong> Widely sold in New Zealand as "Legal Highs" (A2) in the mid-2000s, often consumed in 100-200mg doses at dance festivals.'
     },
-
-    // --- PSYCHEDELICS & HALLUCINOGENS ---
     {
         id: 'lsd', folder: 'Classic Psychedelics', category: 'psychedelics', type: 'Ergoline', name: 'LSD', esters: '(Acid / Blotter)', status: 'restricted',
         overview: 'Lysergic acid diethylamide is one of the most potent, mood-changing classic psychedelics globally. Discovered by Albert Hofmann in 1938.',
@@ -1475,8 +1433,6 @@ var WIKI_DATA = [
         risks: 'Prolonged ataxia, psychological dependence, seizures.',
         synthesis: 'Produced as an analog of ketamine, where the 2-chloro group on the phenyl ring is replaced by a 3-methoxy group, and the N-methyl group is replaced by an N-ethyl group. This structural modification was specifically designed to increase potency and duration while minimizing bladder irritation.',
     },
-
-    // --- DEPRESSANTS & SEDATIVES ---
     {
         id: 'alcohol', folder: 'Alcohols', category: 'depressants', type: 'CNS Depressant', name: 'Ethanol', esters: '(Alcohol / Booze / Bevvy)', status: 'active',
         overview: 'The most universally accepted and widely abused psychoactive drug in human history. Found in beer, wine, and spirits.',
@@ -1557,8 +1513,6 @@ var WIKI_DATA = [
         benefits: 'Deep sociability, intense music appreciation, long duration.',
         risks: 'Severe physical withdrawal (comparable to Benzos/Opioids), rapid tolerance.'
     },
-
-    // --- OPIOIDS ---
     {
         id: 'acetylfentanyl', folder: 'Synthetic Opioids', category: 'opioids', type: 'Opioid Analgesic', name: 'Acetylfentanyl', esters: '', status: 'restricted',
         overview: 'A designer drug and heavily restricted fentanyl analog. Roughly 15 times more potent than morphine, often illicitly mixed into heroin or pressed pills causing mass overdoses.',
@@ -1569,8 +1523,6 @@ var WIKI_DATA = [
         benefits: 'Absolute pain obliteration.',
         risks: '<strong>Respiratory Depression.</strong> The brain simply forgets to command the lungs to breathe, resulting in rapid fatal hypoxia. Highly addictive.'
     },
-
-    // --- INHALANTS & VOLATILES ---
     {
         id: 'amyl_nitrite', folder: 'Alkyl Nitrites', category: 'inhalants', type: 'Vasodilator', name: 'Amyl Nitrite', esters: '(Poppers / Amyls)', status: 'restricted',
         overview: 'A chemical solvent originally sold in small glass ampoules wrapped in mesh meant to be crushed ("popped") to treat angina (heart pain).',
@@ -1601,9 +1553,6 @@ var WIKI_DATA = [
         benefits: 'None (toxicity-induced hallucination/euphoria).',
         risks: '<strong>Sudden Sniffing Death Syndrome (SSDS)</strong>: Sudden adrenaline spike combined with a sensitized heart causes immediate, irreversible cardiac arrest. Permanent brain damage.'
     },
-
-    // --- CANNABINOIDS ---
-    // --- CANNABIS & CONCENTRATES ---
     {
         id: 'cannabis_indica', folder: 'Cannabis (Indica)', category: 'cannabis', type: 'Cannabinoid', name: 'Cannabis Indica', esters: '(Northern Lights / Granddaddy Purple)', status: 'active',
         overview: 'Strains of cannabis known for their heavy physical sedation and "body high." Typically higher in myrcene content.',
@@ -1678,8 +1627,6 @@ var WIKI_DATA = [
         ingredients: ['Activated THC Distillate', 'MCT Oil / Butter', 'Soy/Sunflower Lecithin', 'Food Matrix (Gummies/Brownies)', 'Potency Stabilizer'],
         experimental: { b: '5mg', a: 'Heroic Dose (100mg+)' }
     },
-
-    // --- NPS & BATH SALTS ---
     {
         id: 'bath_salts', folder: 'Cathinones', category: 'nps', type: 'Synthetic Cathinone', name: 'Bath Salts', esters: '(Mephedrone / Bubble / Bounce)', status: 'restricted',
         aka: 'Cloud Nine, White Lightning, Scarface, Vanilla Sky, Drone',
@@ -1736,8 +1683,6 @@ var WIKI_DATA = [
         impact: { brain: 4, heart: 6, liver: 3, kidneys: 2, blood: 4, hair: 0, joints: 0 },
         cycleExamples: '<strong>Recreational Support:</strong> Historically used at 100mg as a middle-ground stimulant between caffeine and amphetamines.'
     },
-
-    // --- OTHER RECREATIONAL ---
     {
         id: 'tobacco', folder: 'Stimulants', category: 'recreational', type: 'Alkaloid', name: 'Tobacco', esters: '(Baccy / Nicotine)', status: 'active',
         overview: 'One of the most widely used addictive substances in the world. Contains the potent stimulant nicotine.',
@@ -1849,8 +1794,6 @@ var WIKI_DATA = [
         impact: { brain: 6, heart: 6, liver: 4, kidneys: 2, blood: 4, hair: 0, joints: 0 },
         cycleExamples: '<strong>Atypical Recovery:</strong> 12.5mg three times daily for clinical depression, or high-dose illicit usage for acute euphoria.'
     },
-
-    // --- ENTACTOGENS ---
     {
         id: 'mdma', folder: 'Entactogens', category: 'entactogens', type: 'Phenethylamine', name: 'MDMA / MDA', esters: '(Ecstasy / Molly)', status: 'restricted',
         overview: '3,4-Methylenedioxymethamphetamine. Famous for its empathogenic effects and presence in the global rave culture.',
@@ -1863,8 +1806,6 @@ var WIKI_DATA = [
         impact: { brain: 8, heart: 8, liver: 4, kidneys: 4, blood: 6, hair: 0, joints: 0 },
         cycleExamples: '<strong>The Therapeutic Session:</strong> 120mg administered in a controlled setting to facilitate emotional processing of trauma.'
     },
-
-    // --- NPS & RESEARCH CHEMICALS ---
     {
         id: 'nbome', folder: 'Research Chemicals', category: 'nps', type: 'Phenethylamine', name: 'NBOMe Series', esters: '(25I-NBOMe / 25C / N-Bomb)', status: 'restricted',
         overview: 'Highly potent, dangerous derivatives of the 2C-series. Often missold as LSD.',
@@ -1989,8 +1930,6 @@ var WIKI_DATA = [
         impact: { brain: -3, heart: 1, liver: 1, kidneys: 1, blood: 1, hair: 0, joints: 0 },
         cycleExamples: '<strong>The Cognitive Stack:</strong> 800mg Piracetam with 300mg Alpha-GPC (choline source) twice daily for enhanced study performance.'
     },
-
-    // --- BODYBUILDING ELITE ANCILLARIES ---
     {
         id: 'tirzepatide', folder: 'Metabolics', category: 'peptides', type: 'GLP-1/GIP Agonist', name: 'Tirzepatide / Semaglutide', esters: '(Mounjaro / Ozempic / Wegovy)', status: 'active',
         overview: 'The modern "gold standard" for fat loss. Originally for Type 2 Diabetes, these peptides mimic gut hormones to suppress appetite and slow gastric emptying.',
@@ -2198,26 +2137,6 @@ var WIKI_DATA = [
         risks: 'Headaches, facial flushing, vision changes (blue tinting).'
     },
     {
-        id: 'pt141', folder: 'Sexual Health', category: 'peptides', type: 'Peptide', name: 'PT-141 (Bremelanotide)', esters: '(Vyleesi)', status: 'active',
-        overview: 'A unique peptide that treats sexual dysfunction by acting directly in the brain rather than on the vascular system. Often used by those who don\'t respond to Viagra/Cialis.',
-        primaryUses: 'HSDD (Hypoactive Sexual Desire Disorder), ED',
-        mechanism: 'Melanocortin receptor agonist (primarily MC4R), stimulating the neural pathways responsible for sexual arousal.',
-        dosage: '1.75mg (Injection).',
-        experimental: { b: '1.0mg', a: '2.0mg' },
-        benefits: 'Dramatic increase in libido and erectile function without affecting blood pressure significantly.',
-        risks: 'Severe transient nausea, facial flushing, potential for increased blood pressure during use.'
-    },
-    {
-        id: 'cabergoline', folder: 'Prolactin & 5AR', category: 'ancillaries', type: 'Dopamine Agonist', name: 'Cabergoline', esters: '(Dostinex)', status: 'active',
-        overview: 'A potent dopamine agonist primarily used to lower prolactin levels. Extremely popular among users of 19-nor steroids (Tren/Deca) to prevent "Deca Dick".',
-        primaryUses: 'Prolactinoma, High Prolactin',
-        mechanism: 'High-affinity agonist for dopamine D2 receptors, suppressing the pituitary\'s release of prolactin.',
-        dosage: '0.25mg to 0.5mg twice weekly.',
-        experimental: { b: '0.25mg/wk', a: '0.5mg/wk' },
-        benefits: 'Lowers refractory period, restores libido suppressed by prolactin, terminates lactation from high doses of androgens.',
-        risks: 'Cardiac valve strain (at high doses), dizziness, "Cabergoline comedown" (depression).'
-    },
-    {
         id: 'dapoxetine', folder: 'Sexual Optimization', category: 'ancillaries', type: 'SSRI', name: 'Dapoxetine', esters: '(Priligy)', status: 'active',
         overview: 'The first and only compound specifically designed to treat premature ejaculation. It is a short-acting SSRI that increases the time it takes to reach climax.',
         primaryUses: 'Premature Ejaculation (PE)',
@@ -2249,19 +2168,6 @@ var WIKI_DATA = [
         risks: 'Serotonin Syndrome (Lethal if combined with SSRIs), hypertensive crisis, extreme physiological purge (vomiting/diarrhea), severe psychological distress.',
         impact: { brain: 4, heart: 5, liver: 2, kidneys: 1, blood: 3, hair: 0, joints: 0 },
         sensoryImpact: 'Vivid, immersive mythological visions, auditory messages from "nature spirits," and a profound sense of ego death followed by rebirth. Time perception is completely obliterated.'
-    },
-    {
-        id: 'clenbuterol', folder: 'Metabolics', category: 'recreational', type: 'Beta-2 Agonist', name: 'Clenbuterol', esters: '(Clen)', status: 'active',
-        overview: 'A powerful bronchodilator and thermogenic agent. While used to treat asthma in some countries, it is most famous in bodybuilding for its ability to incinerate fat while preserving lean tissue.',
-        primaryUses: 'Asthma (outside USA), Extreme fat loss',
-        mechanism: 'Stimulates the Beta-2 receptors in the body, which drastically increases core body temperature (thermogenesis) and basal metabolic rate (BMR). It is not a hormone.',
-        dosage: '20mcg to 40mcg per day (Medical).',
-        experimental: { b: '20–60 mcg/day', a: '80–140 mcg/day' },
-        benefits: 'Rapid fat oxidation, slight anti-catabolic effect, improved aerobic capacity.',
-        risks: 'Cardiac hypertrophy (thickening of the heart), extreme tremors, insomnia, taurine depletion.',
-        impact: { brain: 4, heart: 9, liver: 1, kidneys: 3, blood: 5, hair: 0, joints: 0 },
-        aestheticProfile: 'Creates an extremely "ripped" look with thin skin. Enhances muscle separation and reveals hidden vascularity. Often causes visible shaking or "trembling" of the muscles.',
-        physiologicalTargets: 'Beta-2 adrenoceptors located throughout the cardiovascular system and adipose (fat) tissue. Primarily targets the myocardium (heart muscle) at high doses.'
     },
     {
         id: 'hgh_somatropin', folder: 'Growth Factors', category: 'peptides', type: 'Hormone', name: 'HGH (Somatropin)', esters: '(Humatrope / Genotropin)', status: 'active',
@@ -2302,202 +2208,6 @@ var WIKI_DATA = [
         aestheticProfile: 'During use, the subject looks "flat," exhausted, and often drenched in yellow sweat. Post-cycle, the fat loss is dramatic, revealing an extremely shredded physique.',
         physiologicalTargets: 'The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely.'
     },
-    // --- ANTIDEPRESSANTS ---
-    {
-        id: 'fluoxetine', folder: 'SSRIs', category: 'antidepressants', type: 'SSRI', name: 'Fluoxetine', esters: '(Prozac)', status: 'active',
-        overview: 'Fluoxetine is one of the oldest and most widely prescribed Selective Serotonin Reuptake Inhibitors (SSRIs). It is famous for its extremely long half-life.',
-        primaryUses: 'Major Depressive Disorder, OCD, Bulimia, Panic Disorder',
-        mechanism: 'Selectively blocks the reuptake of serotonin at the neuronal membrane, enhancing serotonergic function in the CNS. The active metabolite, norfluoxetine, stays in the system for weeks.',
-        dosage: '20mg to 60mg per day.',
-        experimental: { b: 'Variable', a: 'Variable' },
-        benefits: 'Significant mood elevation, reduction in obsessive thoughts, high clinical safety profile.',
-        risks: 'Sexual dysfunction, emotional blunting, insomnia, risk of Serotonin Syndrome if combined with MAOIs.',
-        impact: { brain: 6, heart: 2, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
-    },
-    {
-        id: 'sertraline', folder: 'SSRIs', category: 'antidepressants', type: 'SSRI', name: 'Sertraline', esters: '(Zoloft)', status: 'active',
-        overview: 'Sertraline is a potent SSRI that also exhibits very mild dopamine reuptake inhibition (DRI) properties at high doses.',
-        primaryUses: 'Major Depressive Disorder, PTSD, Social Anxiety Disorder',
-        mechanism: 'Primarily inhibits the serotonin transporter (SERT). Its mild dopaminergic action can make it slightly more stimulating than other SSRIs.',
-        dosage: '50mg to 200mg per day.',
-        experimental: { b: 'Variable', a: 'Variable' },
-        benefits: 'Highly effective for severe anxiety and panic disorders alongside depression.',
-        risks: 'Gastrointestinal distress (common), sexual dysfunction, emotional blunting, weight changes.',
-        impact: { brain: 6, heart: 2, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
-    },
-    {
-        id: 'escitalopram', folder: 'SSRIs', category: 'antidepressants', type: 'SSRI', name: 'Escitalopram', esters: '(Lexapro)', status: 'active',
-        overview: 'Escitalopram is the highly purified S-enantiomer of citalopram. It is often considered the most highly selective SSRI available, meaning fewer off-target side effects.',
-        primaryUses: 'Major Depressive Disorder, Generalized Anxiety Disorder',
-        mechanism: 'Extremely selective and potent inhibition of SERT with virtually zero affinity for other receptors (histamine, dopamine, norepinephrine).',
-        dosage: '10mg to 20mg per day.',
-        experimental: { b: 'Variable', a: 'Variable' },
-        benefits: 'Considered to have the cleanest side-effect profile of the SSRIs; very rapid onset of anxiolytic effects.',
-        risks: 'Lethargy, sexual dysfunction, dose-dependent QT interval prolongation (heart rhythm changes).',
-        impact: { brain: 6, heart: 3, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
-    },
-    {
-        id: 'venlafaxine', folder: 'SNRIs', category: 'antidepressants', type: 'SNRI', name: 'Venlafaxine', esters: '(Effexor)', status: 'active',
-        overview: 'Venlafaxine is a Serotonin-Norepinephrine Reuptake Inhibitor (SNRI). It acts like an SSRI at low doses and increasingly boosts norepinephrine at high doses.',
-        primaryUses: 'Severe Depression, Panic Disorder, Neuropathic Pain',
-        mechanism: 'Inhibits both serotonin and norepinephrine transporters. The norepinephrine boost provides significant energy and focus for severely lethargic depressed patients.',
-        dosage: '75mg to 225mg per day.',
-        experimental: { b: 'Variable', a: 'Variable' },
-        benefits: 'Highly effective for treatment-resistant depression and chronic pain conditions.',
-        risks: 'Severe withdrawal syndrome ("brain zaps"), elevated blood pressure, severe sweating, insomnia.',
-        impact: { brain: 7, heart: 5, liver: 2, kidneys: 1, blood: 1, hair: 0, joints: 0 }
-    },
-    {
-        id: 'duloxetine', folder: 'SNRIs', category: 'antidepressants', type: 'SNRI', name: 'Duloxetine', esters: '(Cymbalta)', status: 'active',
-        overview: 'Duloxetine is a potent SNRI that is heavily prescribed not just for depression, but specifically for somatic (physical) pain associated with depression.',
-        primaryUses: 'Major Depressive Disorder, Fibromyalgia, Chronic Musculoskeletal Pain',
-        mechanism: 'Potent dual reuptake inhibitor of serotonin and norepinephrine. Highly effective at modulating descending pain pathways in the central nervous system.',
-        dosage: '40mg to 60mg per day.',
-        experimental: { b: 'Variable', a: 'Variable' },
-        benefits: 'Simultaneously treats depression and severe physical pain/fibromyalgia.',
-        risks: 'Liver toxicity (especially if combined with alcohol), intense withdrawal syndrome, nausea.',
-        impact: { brain: 7, heart: 4, liver: 4, kidneys: 1, blood: 1, hair: 0, joints: -2 }
-    },
-    {
-        id: 'bupropion', folder: 'Atypicals', category: 'antidepressants', type: 'NDRI', name: 'Bupropion', esters: '(Wellbutrin / Zyban)', status: 'active',
-        overview: 'Bupropion is a unique atypical antidepressant that does not affect serotonin. Instead, it boosts dopamine and norepinephrine, making it highly stimulating.',
-        primaryUses: 'Major Depressive Disorder, Smoking Cessation, ADHD (off-label)',
-        mechanism: 'Norepinephrine-Dopamine Reuptake Inhibitor (NDRI). Structurally related to substituted cathinones (amphetamines).',
-        dosage: '150mg to 300mg per day (Extended Release).',
-        experimental: { b: 'Variable', a: 'Variable' },
-        benefits: 'Increases energy and libido (often used to reverse SSRI-induced sexual dysfunction); highly effective for quitting nicotine.',
-        risks: 'Severe risk of drug-induced seizures at high doses, anxiety escalation, insomnia, weight loss.',
-        impact: { brain: 7, heart: 5, liver: 2, kidneys: 1, blood: 1, hair: 1, joints: 0 }
-    },
-    {
-        id: 'mirtazapine', folder: 'Atypicals', category: 'antidepressants', type: 'TeCA', name: 'Mirtazapine', esters: '(Remeron)', status: 'active',
-        overview: 'Mirtazapine is a tetracyclic antidepressant famously known for causing extreme drowsiness and massive appetite increases.',
-        primaryUses: 'Depression with Severe Insomnia, Cachexia (weight loss)',
-        mechanism: 'Antagonizes central alpha-2 adrenergic auto-receptors (increasing serotonin/norepinephrine release) while heavily antagonizing histamine (H1) receptors (causing extreme sedation).',
-        dosage: '15mg to 45mg per day (taken at night).',
-        experimental: { b: 'Variable', a: 'Variable' },
-        benefits: 'Instant cure for severe insomnia; massive weight gain for underweight patients; virtually zero sexual dysfunction.',
-        risks: 'Severe grogginess ("hangover effect"), extreme rapid weight gain/obesity, lipid disruption.',
-        impact: { brain: 6, heart: 2, liver: 2, kidneys: 1, blood: 2, hair: 0, joints: 0 }
-    },
-    {
-        id: 'amitriptyline', folder: 'Tricyclics', category: 'antidepressants', type: 'TCA', name: 'Amitriptyline', esters: '(Elavil)', status: 'active',
-        overview: 'One of the oldest Tricyclic Antidepressants (TCAs). While highly effective for depression, it is mostly used today in low doses for severe nerve pain and migraines due to its heavy side-effect profile.',
-        primaryUses: 'Neuropathic pain, Migraine prophylaxis, Severe Depression',
-        mechanism: 'Inhibits reuptake of serotonin and norepinephrine, but also heavily antagonizes histamine, muscarinic acetylcholine, and alpha-adrenergic receptors (causing its dirty side-effect profile).',
-        dosage: '10mg to 50mg (Pain) / 75mg to 150mg (Depression).',
-        experimental: { b: 'Variable', a: 'Variable' },
-        benefits: 'Incredible efficacy for neuropathic pain and chronic migraines; profound sedative effects for insomnia.',
-        risks: 'Lethal in overdose (cardiotoxicity), extreme dry mouth, severe constipation, urinary retention, weight gain.',
-        impact: { brain: 8, heart: 7, liver: 3, kidneys: 2, blood: 1, hair: 0, joints: 0 }
-    },
-    {
-        id: 'tranylcypromine', folder: 'MAOIs', category: 'antidepressants', type: 'MAOI', name: 'Tranylcypromine', esters: '(Parnate)', status: 'active',
-        overview: 'An irreversible Monoamine Oxidase Inhibitor (MAOI). It is considered a "last-line" atomic bomb for treatment-resistant depression when all else fails.',
-        primaryUses: 'Treatment-Resistant Major Depressive Disorder',
-        mechanism: 'Irreversibly destroys the MAO enzymes (types A and B) that break down serotonin, dopamine, and norepinephrine in the brain, leading to a massive flood of neurotransmitters.',
-        mechanism: 'Melanocortin receptor agonist (primarily MC4R), stimulating the neural pathways responsible for sexual arousal.',
-        dosage: '1.75mg (Injection).',
-        experimental: { b: '1.0mg', a: '2.0mg' },
-        benefits: 'Dramatic increase in libido and erectile function without affecting blood pressure significantly.',
-        risks: 'Severe transient nausea, facial flushing, potential for increased blood pressure during use.'
-    },
-    {
-        id: 'cabergoline', folder: 'Prolactin & 5AR', category: 'ancillaries', type: 'Dopamine Agonist', name: 'Cabergoline', esters: '(Dostinex)', status: 'active',
-        overview: 'A potent dopamine agonist primarily used to lower prolactin levels. Extremely popular among users of 19-nor steroids (Tren/Deca) to prevent "Deca Dick".',
-        primaryUses: 'Prolactinoma, High Prolactin',
-        mechanism: 'High-affinity agonist for dopamine D2 receptors, suppressing the pituitary\'s release of prolactin.',
-        dosage: '0.25mg to 0.5mg twice weekly.',
-        experimental: { b: '0.25mg/wk', a: '0.5mg/wk' },
-        benefits: 'Lowers refractory period, restores libido suppressed by prolactin, terminates lactation from high doses of androgens.',
-        risks: 'Cardiac valve strain (at high doses), dizziness, "Cabergoline comedown" (depression).'
-    },
-    {
-        id: 'dapoxetine', folder: 'Sexual Optimization', category: 'ancillaries', type: 'SSRI', name: 'Dapoxetine', esters: '(Priligy)', status: 'active',
-        overview: 'The first and only compound specifically designed to treat premature ejaculation. It is a short-acting SSRI that increases the time it takes to reach climax.',
-        primaryUses: 'Premature Ejaculation (PE)',
-        mechanism: 'Selective serotonin reuptake inhibition, increasing the synaptic activity of serotonin which is known to delay ejaculation.',
-        dosage: '30mg to 60mg (1-3 hours before activity).',
-        experimental: { b: '30mg', a: '60mg' },
-        benefits: 'Significantly increases intravaginal ejaculatory latency time (IELT); improves control over ejaculation.',
-        risks: 'Nausea, dizziness, headache, dry mouth.'
-    },
-    {
-        id: 'hashish', folder: 'Cannabis & Concentrates', category: 'cannabis', type: 'Concentrate', name: 'Hashish', esters: '(Resinoid)', status: 'active',
-        overview: 'A potent concentrate derived from the compressed or purified preparations of stalked resin glands, called trichomes, from the cannabis plant.',
-        primaryUses: 'Nausea, chronic pain, insomnia, appetite stimulation.',
-        mechanism: 'Direct agonism of CB1 and CB2 receptors. Because it is a concentrate, THC levels typically exceed standard flower by 3x-10x, leading to profound inhibition of neurotransmitter release (GABA/Glutamate) in the CNS.',
-        dosage: 'Highly variable (10mg to 100mg+ THC equivalent).',
-        experimental: { b: 'Variable', a: 'High tolerance' },
-        benefits: 'Extreme sensory enhancement, pain dissociation, significant anti-emetic properties.',
-        risks: 'Acute anxiety/panic, cognitive lethargy, vulnerability to drug-induced psychosis in predisposed individuals, cannabinoid hyperemesis syndrome (CHS).',
-        impact: { brain: 5, heart: 4, liver: 0, kidneys: 0, blood: 2, hair: 0, joints: 0 }
-    },
-    {
-        id: 'ayahuasca', folder: 'Psychedelics & Hallucinogens', category: 'psychedelics', type: 'Decoction', name: 'Ayahuasca', esters: '(DMT/MAOI)', status: 'active',
-        overview: 'A traditional Amazonian decoction composed of the Banisteriopsis caapi vine and various DMT-containing plants. It induces a long-duration, intense psychedelic experience.',
-        primaryUses: 'Shamanic rituals, treatment-resistant depression (experimental), addiction counseling (experimental).',
-        mechanism: 'The Harmala alkaloids (Harmine/Harmaline) act as reversible Monoamine Oxidase Inhibitors (MAOIs), preventing the breakdown of DMT in the digestive tract and enabling its oral bioavailability to the brain\'s 5-HT2A receptors.',
-        dosage: 'Ritual/Clinical (Standardized at 0.5-1.0 mg/kg DMT).',
-        experimental: { b: 'Not recommended', a: 'Guided session' },
-        benefits: 'Profound spiritual/introspective insights, rapid reduction in depressive symptoms, long-term neuroplasticity.',
-        risks: 'Serotonin Syndrome (Lethal if combined with SSRIs), hypertensive crisis, extreme physiological purge (vomiting/diarrhea), severe psychological distress.',
-        impact: { brain: 4, heart: 5, liver: 2, kidneys: 1, blood: 3, hair: 0, joints: 0 },
-        sensoryImpact: 'Vivid, immersive mythological visions, auditory messages from "nature spirits," and a profound sense of ego death followed by rebirth. Time perception is completely obliterated.'
-    },
-    {
-        id: 'clenbuterol', folder: 'Metabolics', category: 'recreational', type: 'Beta-2 Agonist', name: 'Clenbuterol', esters: '(Clen)', status: 'active',
-        overview: 'A powerful bronchodilator and thermogenic agent. While used to treat asthma in some countries, it is most famous in bodybuilding for its ability to incinerate fat while preserving lean tissue.',
-        primaryUses: 'Asthma (outside USA), Extreme fat loss',
-        mechanism: 'Stimulates the Beta-2 receptors in the body, which drastically increases core body temperature (thermogenesis) and basal metabolic rate (BMR). It is not a hormone.',
-        dosage: '20mcg to 40mcg per day (Medical).',
-        experimental: { b: '20–60 mcg/day', a: '80–140 mcg/day' },
-        benefits: 'Rapid fat oxidation, slight anti-catabolic effect, improved aerobic capacity.',
-        risks: 'Cardiac hypertrophy (thickening of the heart), extreme tremors, insomnia, taurine depletion.',
-        impact: { brain: 4, heart: 9, liver: 1, kidneys: 3, blood: 5, hair: 0, joints: 0 },
-        aestheticProfile: 'Creates an extremely "ripped" look with thin skin. Enhances muscle separation and reveals hidden vascularity. Often causes visible shaking or "trembling" of the muscles.',
-        physiologicalTargets: 'Beta-2 adrenoceptors located throughout the cardiovascular system and adipose (fat) tissue. Primarily targets the myocardium (heart muscle) at high doses.'
-    },
-    {
-        id: 'hgh_somatropin', folder: 'Growth Factors', category: 'peptides', type: 'Hormone', name: 'HGH (Somatropin)', esters: '(Humatrope / Genotropin)', status: 'active',
-        overview: 'Exogenous Human Growth Hormone. A 191-amino acid single-chain polypeptide that is essential for the growth and regeneration of cells.',
-        primaryUses: 'Growth hormone deficiency, muscle wasting (HIV), short stature',
-        mechanism: 'Stimulates the liver to produce IGF-1 (Insulin-like Growth Factor 1). Promotes lipolysis (fat loss) and cellular hyperplasia (creation of new muscle cells).',
-        dosage: '1 IU to 3 IU daily (Medical).',
-        experimental: { b: '2–4 IU/day', a: '6–12 IU/day' },
-        benefits: 'Unmatched fat loss, superior recovery, improved skin/hair quality, and the potential for new muscle fiber creation (Hyperplasia).',
-        risks: 'Insulin resistance, carpal tunnel syndrome, organomegaly (growth of internal organs), potential for accelerated cancer growth.',
-        impact: { brain: -2, heart: 6, liver: 3, kidneys: 2, blood: 4, hair: -5, joints: -10 },
-        aestheticProfile: 'Provides a "youthful" glow to the skin. Causes a distinct look of "fullness" and "roundness" to the muscles. Long-term high doses can lead to "HGH Gut" (distended abdomen).',
-        physiologicalTargets: 'Systemic cellular impact. Targets the liver for IGF-1 conversion and directly affects adipose tissue for fat mobilization.'
-    },
-    {
-        id: 'insulin_humalog', folder: 'Elite Anabolics', category: 'peptides', type: 'Hormone', name: 'Insulin (Fast Acting)', esters: '(Humalog / Novolog)', status: 'active',
-        overview: 'The most anabolic hormone in the human body. Used by elite bodybuilders to drive nutrients into muscle cells at a rate far exceeding physiological norms.',
-        primaryUses: 'Type 1 Diabetes, Extreme Hypertrophy',
-        mechanism: 'Transports glucose, amino acids, and creatine into the muscle cells by activating GLUT4 transporters. Completely shuts down muscle breakdown.',
-        dosage: 'Variable (Medical).',
-        experimental: { b: '2–5 IU (Pre/Post workout)', a: '10–20 IU (Pre/Post workout)' },
-        benefits: 'Instantaneous muscle fullness, rapid recovery, and massive weight gain in record time.',
-        risks: '<strong>Lethal Hypoglycemia.</strong> One incorrect dose or missing a meal can result in immediate coma or death. High risk of visceral fat gain.',
-        impact: { brain: 5, heart: 4, liver: 2, kidneys: 4, blood: 6, hair: 0, joints: 0 },
-        aestheticProfile: 'Creates a "balloon-like" muscle appearance. Muscles look hyper-inflated and dense. Can lead to "spilling over" and losing definition if carbohydrate timing is off.',
-        physiologicalTargets: 'Insulin receptors located on almost every cell in the body, with a heavy focus on skeletal muscle and adipose tissue.'
-    },
-    {
-        id: 'dnp_extreme', folder: 'Metabolics', category: 'recreational', type: 'Uncoupler', name: 'DNP (2,4-Dinitrophenol)', esters: '', status: 'lethal/Restricted',
-        overview: 'A chemical used in munitions and dyes that acts as a mitochondrial uncoupler. It is the most powerful (and dangerous) fat burner in existence.',
-        primaryUses: 'Industrial chemicals, Munitions',
-        mechanism: 'Uncouples oxidative phosphorylation, forcing the body to burn fat for energy at an efficiency rate of near 0%, releasing the excess energy as pure heat.',
-        dosage: 'None (Toxic).',
-        experimental: { b: '100–200 mg/day', a: '400 mg+ (Lethal Risk)' },
-        benefits: 'Fat loss of up to 1lb per day. Does not require exercise or caloric deficit to work.',
-        risks: '<strong>Death by Overheating.</strong> The body literally "cooks" from the inside out. Cataracts, neuropathy, and organ failure.',
-        impact: { brain: 7, heart: 10, liver: 8, kidneys: 9, blood: 8, hair: 0, joints: 0 },
-        aestheticProfile: 'During use, the subject looks "flat," exhausted, and often drenched in yellow sweat. Post-cycle, the fat loss is dramatic, revealing an extremely shredded physique.',
-        physiologicalTargets: 'The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely.'
-    },
-    // --- ANTIDEPRESSANTS ---
     {
         id: 'fluoxetine', folder: 'SSRIs', category: 'antidepressants', type: 'SSRI', name: 'Fluoxetine', esters: '(Prozac)', status: 'active',
         overview: 'Fluoxetine is one of the oldest and most widely prescribed Selective Serotonin Reuptake Inhibitors (SSRIs). It is famous for its extremely long half-life.',
@@ -2597,7 +2307,6 @@ var WIKI_DATA = [
         risks: '<strong>Lethal Dietary Interactions (The "Cheese Effect").</strong> Eating tyramine-rich foods (aged cheese, wine, cured meats) can cause a lethal hypertensive crisis (exploding blood pressure).',
         impact: { brain: 10, heart: 8, liver: 4, kidneys: 2, blood: 2, hair: 0, joints: 0 }
     },
-    // --- OPIOIDS (ADDITIONAL) ---
     {
         id: 'codeine', folder: 'Opioids', category: 'opioids', type: 'Opioid', name: 'Codeine', esters: '(Lean / Sizzurp / Tylenol 3)', status: 'active',
         overview: 'Codeine is a naturally occurring opiate alkaloid found in the opium poppy. It is heavily utilized as a mild painkiller, cough suppressant, and famously in pop culture as the main ingredient in "Lean".',
@@ -2609,7 +2318,6 @@ var WIKI_DATA = [
         risks: 'Lethal respiratory depression at massive doses, severe constipation, intense histamine release (itching), physical dependence.',
         impact: { brain: 5, heart: 2, liver: 3, kidneys: 1, blood: 1, hair: 0, joints: -4 }
     },
-    // --- LONGEVITY & COENZYMES ---
     {
         id: 'nad_plus', folder: 'Longevity', category: 'longevity', type: 'Coenzyme', name: 'NAD+', esters: '(Nicotinamide Adenine Dinucleotide)', status: 'active',
         overview: 'NAD+ is a critical coenzyme found in every cell of the body. It plays an essential role in energy metabolism, DNA repair, and cellular aging.',
@@ -2621,19 +2329,6 @@ var WIKI_DATA = [
         risks: 'Intense physiological discomfort during IV infusion (chest tightness, stomach cramps, anxiety). Generally very safe.',
         impact: { brain: 8, heart: 2, liver: 3, kidneys: 1, blood: 1, hair: 0, joints: 2 }
     },
-    // --- HEALING PEPTIDES ---
-    {
-        id: 'tb500', folder: 'Growth Factors', category: 'peptides', type: 'Peptide', name: 'TB-500', esters: '(Thymosin Beta-4 / TB4)', status: 'active',
-        overview: 'A synthetic version of the naturally occurring peptide Thymosin Beta-4. It is world-renowned for its ability to dramatically accelerate the healing of muscle, tendon, ligament, and tissue injuries.',
-        primaryUses: 'Severe tissue injury, tendinopathy, surgical recovery',
-        mechanism: 'Upregulates actin, a vital cell-building protein, and promotes angiogenesis (the creation of new blood vessels) directly at the site of injury, accelerating cellular migration to the wound.',
-        dosage: '2mg to 5mg twice weekly (Subcutaneous Injection).',
-        experimental: { b: '2mg/wk', a: '10mg/wk' },
-        benefits: 'Rapid localized healing of acute injuries, reduced joint inflammation, increased flexibility, and potential hair regrowth.',
-        risks: 'Lethargy, head rush immediately post-injection, theoretical risk of accelerating pre-existing cancer growth due to extreme angiogenesis.',
-        impact: { brain: 0, heart: 2, liver: 0, kidneys: 0, blood: 4, hair: 3, joints: 9 }
-    },
-    // --- MITOCHONDRIAL PEPTIDES ---
     {
         id: 'mots_c', folder: 'Longevity', category: 'longevity', type: 'Mitochondrial Peptide', name: 'MOTS-c', esters: '(Mitochondrial Derived Peptide)', status: 'active',
         overview: 'MOTS-c is a unique peptide that is naturally encoded directly within the DNA of mitochondria, rather than the cell nucleus. It acts as an "exercise mimetic," heavily regulating metabolic homeostasis.',
@@ -2645,7 +2340,6 @@ var WIKI_DATA = [
         risks: 'Relatively new compound with unknown long-term risks. Potential for hypoglycemia if combined with insulin or severe fasting.',
         impact: { brain: 2, heart: 5, liver: 4, kidneys: 2, blood: 2, hair: 0, joints: 0 }
     },
-    // --- BENZODIAZEPINES ---
     {
         id: 'clonazepam', folder: 'Benzodiazepines', category: 'depressants', type: 'GABAergic', name: 'Clonazepam', esters: '(Klonopin / K-Pins)', status: 'active',
         overview: 'A highly potent, long-acting benzodiazepine. It is commonly prescribed for panic disorders and seizure prevention, but carries significant recreational abuse potential.',
@@ -2657,7 +2351,6 @@ var WIKI_DATA = [
         risks: 'Severe physical dependence, life-threatening withdrawal seizures, anterograde amnesia (blackouts), and lethal respiratory depression when mixed with alcohol or opioids.',
         impact: { brain: 6, heart: 2, liver: 3, kidneys: 1, blood: 1, hair: 0, joints: 0 }
     },
-    // --- ADDITIONAL DEPRESSANTS ---
     {
         id: 'diazepam', folder: 'Benzodiazepines', category: 'depressants', type: 'GABAergic', name: 'Diazepam', esters: '(Valium)', status: 'active',
         overview: 'One of the oldest and most famous benzodiazepines. It has an incredibly long half-life and produces significant muscle relaxation compared to other benzos.',
@@ -2702,7 +2395,6 @@ var WIKI_DATA = [
         risks: 'Extremely addictive, dangerous withdrawal profile, highly lethal when mixed with alcohol or opioids due to synergistic respiratory depression.',
         impact: { brain: 6, heart: 3, liver: 4, kidneys: 2, blood: 1, hair: 0, joints: 0 }
     },
-    // --- ADDITIONAL OPIOIDS ---
     {
         id: 'morphine', folder: 'Opioids', category: 'opioids', type: 'Opiate', name: 'Morphine', esters: '(MS Contin / Roxanol)', status: 'active',
         overview: 'The primary active alkaloid in opium and the gold standard by which all other opioids are measured. Used extensively in palliative care and severe trauma.',
