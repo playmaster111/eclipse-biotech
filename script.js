@@ -372,7 +372,7 @@ function startSystemBoot() {
         <div class="corner-frame bottom-left"></div>
         <div class="corner-frame bottom-right"></div>
         <div class="neural-data-left">NODE_ID: 0x882<br>LATENCY: 12ms<br>ENCRYPTION: AES-512</div>
-        <div class="neural-data-right">BIOTECH_CORE_STABLE<br>TEMP: 32Ãƒâ€šÃ‚Â°C<br>FAN_RPM: 4200</div>
+        <div class="neural-data-right">BIOTECH_CORE_STABLE<br>TEMP: 32°C<br>FAN_RPM: 4200</div>
     `;
     document.body.appendChild(overlay);
 
@@ -901,7 +901,7 @@ window.goHome = function() {
     const mount = document.getElementById('article-mount');
     mount.innerHTML = `
         <div class="empty-state">
-            <div class="glitch-icon">ÃƒÂ¢Ã…Â¡Ã¢â‚¬â€</div>
+            <div class="glitch-icon">⚗</div>
             <h2 class="glitch-small" data-text="${getT('awaiting_input')}">${getT('awaiting_input')}</h2>
             <p style="max-width: 400px; line-height: 1.6;">${getT('welcome_desc')}</p>
         </div>
@@ -971,7 +971,7 @@ function renderSidebar(filter = '') {
                 const navItem = document.createElement('div');
                 navItem.className = 'nav-item' + (isSub ? ' sub-item' : '');
                 const localizedName = item[`name_${currentLang}`] || item.name;
-                navItem.innerText = localizedName + (item.status === 'discontinued' ? ' ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â' : '');
+                navItem.innerText = localizedName + (item.status === 'discontinued' ? ' ⚠️' : '');
                 navItem.dataset.id = item.id;
                 navItem.onclick = () => loadArticle(item.id);
                 
@@ -1353,29 +1353,6 @@ const COMPOUND_ALIASES = {
     'aya': 'ayahuasca'
 };
 
-window.exportDossier = function() {
-    const article = document.querySelector('.wiki-article');
-    if (!article) return;
-    
-    const watermark = document.createElement('div');
-    watermark.className = 'confidential-watermark';
-    watermark.innerText = 'CONFIDENTIAL // ECLIPSE BIOTECH';
-    
-    const footer = document.createElement('div');
-    footer.className = 'dossier-footer';
-    footer.innerHTML = `ECLIPSE_BIOTECH // TERMINAL_v4.1.0 // GEN_DATE: ${new Date().toLocaleString()} // BIO_ID: ${currentUser ? currentUser.username : 'GUEST_REDACTED'}`;
-    
-    article.appendChild(watermark);
-    article.appendChild(footer);
-    
-    window.print();
-    
-    setTimeout(() => {
-        watermark.remove();
-        footer.remove();
-    }, 1000);
-};
-
 function triggerAIExplain(compoundName) {
     // Switch to AI View
     loadAIView();
@@ -1493,7 +1470,7 @@ function generateAIResponse(q) {
             
             report += `<div class="ai-report-section">`;
             report += `<div class="report-header">[DOSAGE_METRICS]</div>`;
-            report += `<p><strong>Clinical Baseline:</strong> ${c.dosage}<br><strong>Performance Observed:</strong> ${c.experimental.b} ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â ${c.experimental.a}</p>`;
+            report += `<p><strong>Clinical Baseline:</strong> ${c.dosage}<br><strong>Performance Observed:</strong> ${c.experimental.b} — ${c.experimental.a}</p>`;
             report += `</div>`;
             
             report += `<div class="ai-suggestion">Analysis complete. Would you like to cross-reference this profile with its respective cycle archetypes?</div>`;
@@ -1603,15 +1580,7 @@ function loadArticle(id) {
             <header class="article-header">
                 <div class="header-main">
                     <h1>${item[`name_${currentLang}`] || item.name}</h1>
-                    <div class="article-actions" style="display: flex; gap: 10px;">
-                    <button id="export-dossier-btn" class="cyber-btn" style="border-color: var(--accent2); color: var(--accent2);" onclick="exportDossier()">
-                        <i class="fas fa-file-export"></i> EXPORT_DOSSIER
-                    </button>
                     <button class="cyber-btn wiki-ai-consult" onclick="triggerAIExplain('${item[`name_${currentLang}`] || item.name}')">
-                </div>
-                    <button id="export-dossier-btn" class="cyber-btn" style="border-color: var(--accent2); color: var(--accent2); margin-left: 10px;" onclick="exportDossier()">
-                        <i class="fas fa-file-export"></i> EXPORT_DOSSIER
-                    </button>
                         <i class="fas fa-brain"></i> ${getT('ask_ai') || 'ASK_ECLIPSE'}
                     </button>
                 </div>
@@ -1814,7 +1783,6 @@ function loadCoachView() {
                     <button id="generate-btn" class="cyber-btn" style="grid-column: 1 / -1; border-color: var(--accent2); color: var(--accent2); margin-top:10px;">GENERATE_PROTOCOL</button>
                     <div style="display: flex; gap: 10px; grid-column: 1 / -1;">
                         <button id="download-protocol-btn" class="cyber-btn" style="flex: 1; border-color: var(--muted); color: var(--muted); margin-top:5px; display: none;" onclick="downloadProtocol()">EXPORT_TXT</button>
-                        <button id="export-protocol-btn" class="cyber-btn" style="flex: 1; border-color: var(--accent2); color: var(--accent2); margin-top:5px; display: none;" onclick="window.print()">EXPORT_DOSSIER</button>
                         <button id="save-protocol-btn" class="cyber-btn" style="flex: 1; border-color: var(--accent); color: var(--accent); margin-top:5px; display: none;" onclick="saveProtocolToVault()">SAVE_TO_VAULT</button>
                     </div>
                 </div>
@@ -1958,7 +1926,7 @@ window.renderCustomStack = function() {
                     <label>WEEKS</label>
                     <input type="number" value="${item.weeks}" onchange="updateStackWeeks('${item.id}', this.value)">
                 </div>
-                <button class="remove-stack-btn" onclick="removeCompoundFromStack('${item.id}')">ÃƒÆ’Ã¢â‚¬â€</button>
+                <button class="remove-stack-btn" onclick="removeCompoundFromStack('${item.id}')">×</button>
             </div>
         </div>
     `).join('');
@@ -2107,7 +2075,7 @@ function generateCycle() {
         }
     }
 
-    let cycleHTML = `<h3>ÃƒÂ°Ã…Â¸Ã…Â½Ã‚Â¯ ${cycleTitle}</h3>`;
+    let cycleHTML = `<h3>🎯 ${cycleTitle}</h3>`;
     if (warning) cycleHTML += warning;
     
     cycleHTML += `<h4>1. Core Endocrine Layout</h4><ul>`;
@@ -2144,7 +2112,6 @@ function generateCycle() {
 
     resultDiv.innerHTML = cycleHTML;
     document.getElementById('download-protocol-btn').style.display = 'block';
-    document.getElementById('export-protocol-btn').style.display = 'block';
     document.getElementById('save-protocol-btn').style.display = 'block';
 }
 
@@ -2362,7 +2329,7 @@ function showSynthesisDetail(id) {
 
             <div class="blueprint-content">
                 <div class="blueprint-graphic">
-                    <div class="bp-molecule-icon">ÃƒÂ¢Ã…Â¡Ã¢â‚¬â€</div>
+                    <div class="bp-molecule-icon">⚗</div>
                     <div class="bp-grid-overlay"></div>
                     <div class="bp-spec-lines">
                         <div class="spec-line" style="top: 20%; left: 10%;">[MOLECULAR_WEIGHT: ${Math.floor(Math.random()*400)+100} g/mol]</div>
@@ -2406,7 +2373,7 @@ function showSynthesisDetail(id) {
                             <div class="storage-content">
                                 <div class="storage-item">
                                     <i class="fas fa-thermometer-half"></i>
-                                    <span>${item.storage.temp || '15-25Ãƒâ€šÃ‚Â°C (Ambient)'}</span>
+                                    <span>${item.storage.temp || '15-25°C (Ambient)'}</span>
                                 </div>
                                 <div class="storage-item">
                                     <i class="fas fa-sun"></i>
@@ -2665,22 +2632,22 @@ function renderFinderStep() {
             </div>
             <div class="finder-option-grid">
                 <div class="finder-card" onclick="setFinderData('goal', 'muscle')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã‚Â§Ã‚Â¬</span>
+                    <span class="icon">🧬</span>
                     <h3>HYPERTROPHY</h3>
                     <p>Maximum muscle tissue accumulation and nitrogen retention.</p>
                 </div>
                 <div class="finder-card" onclick="setFinderData('goal', 'shred')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂÃ‚Âª</span>
+                    <span class="icon">🔪</span>
                     <h3>LEAN_DEFINITION</h3>
                     <p>Subcutaneous water removal and lipid oxidation protocols.</p>
                 </div>
                 <div class="finder-card" onclick="setFinderData('goal', 'mental')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã‚Â§Ã‚Â </span>
+                    <span class="icon">🧠</span>
                     <h3>NEURAL_DRIVE</h3>
                     <p>Cognitive enhancement, wakefulness, and synaptic focus.</p>
                 </div>
                 <div class="finder-card" onclick="setFinderData('goal', 'relief')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂºÃ‚Â¡ÃƒÂ¯Ã‚Â¸Ã‚Â</span>
+                    <span class="icon">🛡️</span>
                     <h3>HOMEOSTASIS</h3>
                     <p>Anxiety relief, CNS suppression, and neural recovery.</p>
                 </div>
@@ -2695,17 +2662,17 @@ function renderFinderStep() {
             </div>
             <div class="finder-option-grid">
                 <div class="finder-card" onclick="setFinderData('risk', 'low')">
-                    <span class="icon" style="color: #00ffaa;">ÃƒÂ°Ã…Â¸Ã…Â¸Ã‚Â¢</span>
+                    <span class="icon" style="color: #00ffaa;">🟢</span>
                     <h3 style="color: #00ffaa;">LOW_STRAIN</h3>
                     <p>Focus on long-term health markers and harm reduction.</p>
                 </div>
                 <div class="finder-card" onclick="setFinderData('risk', 'mid')">
-                    <span class="icon" style="color: #ff9d00;">ÃƒÂ°Ã…Â¸Ã…Â¸Ã‚Â¡</span>
+                    <span class="icon" style="color: #ff9d00;">🟡</span>
                     <h3 style="color: #ff9d00;">BALANCED</h3>
                     <p>Standard performance optimization with manageable risks.</p>
                 </div>
                 <div class="finder-card" onclick="setFinderData('risk', 'high')">
-                    <span class="icon" style="color: #ff3a5c;">ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂÃ‚Â´</span>
+                    <span class="icon" style="color: #ff3a5c;">🔴</span>
                     <h3 style="color: #ff3a5c;">MAX_EFFICACY</h3>
                     <p>High physiological load. Aggressive research results required.</p>
                 </div>
@@ -2980,17 +2947,17 @@ function renderNutritionStep() {
             </div>
             <div class="finder-option-grid">
                 <div class="finder-card" onclick="setNutritionData('goal', 'bulk')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã‚Â¥Ã‚Â©</span>
+                    <span class="icon">🥩</span>
                     <h3>LEAN_MASS_BULK</h3>
                     <p>Calculated surplus for maximum tissue accumulation.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('goal', 'cut')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂÃ‚Â¥</span>
+                    <span class="icon">🔥</span>
                     <h3>FAT_OXIDATION</h3>
                     <p>Precise deficit to strip lipid layers while sparing muscle.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('goal', 'recomp')">
-                    <span class="icon">ÃƒÂ¢Ã…Â¡Ã¢â‚¬â€œÃƒÂ¯Ã‚Â¸Ã‚Â</span>
+                    <span class="icon">⚖️</span>
                     <h3>RECOMPOSITION</h3>
                     <p>Optimization for shifting body composition at maintenance.</p>
                 </div>
@@ -3005,22 +2972,22 @@ function renderNutritionStep() {
             </div>
             <div class="finder-option-grid">
                 <div class="finder-card" onclick="setNutritionData('diet', 'balanced')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã‚Â¥Ã¢â‚¬â€</span>
+                    <span class="icon">🥗</span>
                     <h3>BALANCED_CORE</h3>
                     <p>Versatile 40/40/20 split. Optimal for most athletes.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('diet', 'keto')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã‚Â¥Ã¢â‚¬Ëœ</span>
+                    <span class="icon">🥑</span>
                     <h3>KETOGENIC</h3>
                     <p>Forced fat metabolism via carbohydrate restriction.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('diet', 'carnivore')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã‚ÂÃ¢â‚¬â€œ</span>
+                    <span class="icon">🍖</span>
                     <h3>CARNIVORE</h3>
                     <p>Zero-carb, animal-only. Minimal systemic inflammation.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('diet', 'vegan')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Â±</span>
+                    <span class="icon">🌱</span>
                     <h3>PLANT_BASED</h3>
                     <p>Zero animal products. Focused on clean micronutrients.</p>
                 </div>
@@ -3035,17 +3002,17 @@ function renderNutritionStep() {
             </div>
             <div class="finder-option-grid">
                 <div class="finder-card" onclick="setNutritionData('activity', 'low')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã¢â‚¬â€œÃ‚Â±ÃƒÂ¯Ã‚Â¸Ã‚Â</span>
+                    <span class="icon">🖱️</span>
                     <h3>SEDENTARY</h3>
                     <p>Minimal movement.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('activity', 'mid')">
-                    <span class="icon">ÃƒÂ°Ã…Â¸Ã‚ÂÃ¢â‚¬Â¹ÃƒÂ¯Ã‚Â¸Ã‚Â</span>
+                    <span class="icon">🏋️</span>
                     <h3>ACTIVE_RESEARCH</h3>
                     <p>3-5 sessions/week.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('activity', 'high')">
-                    <span class="icon">ÃƒÂ¢Ã…Â¡Ã¢â‚¬ÂÃƒÂ¯Ã‚Â¸Ã‚Â</span>
+                    <span class="icon">⚔️</span>
                     <h3>ELITE_OPERATOR</h3>
                     <p>Daily heavy training.</p>
                 </div>
@@ -3424,7 +3391,7 @@ window.generateCOA = function() {
                     </tr>
                     <tr>
                         <td>PURITY (ASSAY)</td>
-                        <td>ÃƒÂ¢Ã¢â‚¬Â°Ã‚Â¥ 98.00%</td>
+                        <td>≥ 98.00%</td>
                         <td style="color: #00ff00; font-weight: 700;">${purity}%</td>
                         <td>HPLC-UV</td>
                     </tr>
