@@ -6814,3 +6814,36 @@ body::before { pointer-events: none !important; }
         color: rgba(220, 232, 240, 0.92) !important;
     }
 }
+
+
+
+/* Fix for scuffed article actions */
+.article-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+#export-dossier-btn {
+    white-space: nowrap;
+    min-width: max-content;
+    padding: 0 16px !important;
+}
+
+@media (max-width: 1024px) {
+    .article-actions {
+        width: 100%;
+        flex-direction: row;
+    }
+    #export-dossier-btn, .wiki-ai-consult {
+        flex: 1;
+        font-size: 10px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .article-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
