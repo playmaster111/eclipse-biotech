@@ -1096,6 +1096,22 @@ function renderSidebar(filter = '') {
         nutritionBtn.onclick = () => loadNutritionView();
         navEl.appendChild(nutritionBtn);
 
+        const pctBtn = document.createElement('div');
+        pctBtn.className = 'nav-item';
+        pctBtn.innerText = '> _PCT_CALCULATOR';
+        pctBtn.id = 'pct-nav-btn';
+        pctBtn.style.color = '#ff3a5c'; // Red for PCT
+        pctBtn.onclick = () => loadPCTView();
+        navEl.appendChild(pctBtn);
+
+        const labBtn = document.createElement('div');
+        labBtn.className = 'nav-item';
+        labBtn.innerText = '> _LAB_VERIFIER';
+        labBtn.id = 'lab-nav-btn';
+        labBtn.style.color = '#00ff00'; // Green for lab
+        labBtn.onclick = () => loadLabVerifierView();
+        navEl.appendChild(labBtn);
+
         const logBtn = document.createElement('div');
         logBtn.className = 'nav-item';
         logBtn.innerText = '> _SYSTEM_LOGS';
@@ -1706,13 +1722,7 @@ function loadArticle(id) {
     }, 50);
 }
 
-// Search Listener
-const searchInput = document.getElementById('searchInput');
-if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-        renderSidebar(e.target.value);
-    });
-}
+// Search Listener is handled inside DOMContentLoaded block above - removed duplicate
 
 // -------------------------
 // Initialization
@@ -2400,7 +2410,7 @@ function showSynthesisDetail(id) {
                         </div>
                     </div>
 
-                    <button class="cyber-btn" onclick="showCompoundDetail('${item.id}')" style="border-color: var(--accent); color: var(--accent); margin-top: 30px;">VIEW_FULL_CLINICAL_PROFILE</button>
+                    <button class="cyber-btn" onclick="loadArticle('${item.id}')" style="border-color: var(--accent); color: var(--accent); margin-top: 30px;">VIEW_FULL_CLINICAL_PROFILE</button>
                 </div>
             </div>
         </div>
@@ -2905,6 +2915,7 @@ function renderNutritionStep() {
             <div class="progress-step ${nutritionStep >= 0 ? 'active' : ''} ${nutritionStep > 0 ? 'completed' : ''}">BIO</div>
             <div class="progress-step ${nutritionStep >= 1 ? 'active' : ''} ${nutritionStep > 1 ? 'completed' : ''}">OBJ</div>
             <div class="progress-step ${nutritionStep >= 2 ? 'active' : ''} ${nutritionStep > 2 ? 'completed' : ''}">TYP</div>
+            <div class="progress-step ${nutritionStep >= 3 ? 'active' : ''} ${nutritionStep > 3 ? 'completed' : ''}">ACT</div>
             <div class="progress-step ${nutritionStep >= 4 ? 'active' : ''}">RES</div>
         </div>
     `;
@@ -3216,96 +3227,9 @@ function getMealDesc(time) {
     return "200g Chicken Breast, 150g Sweet Potato, large Asparagus portion, 10g Olive Oil.";
 }
 
-function loadPCTView() {
-    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    if(document.getElementById('pct-nav-btn')) document.getElementById('pct-nav-btn').classList.add('active');
-    document.getElementById('current-category').innerText = "PCT CALCULATOR";
+// loadPCTView is defined earlier at line ~2788 — duplicate removed
 
-    const mount = document.getElementById('article-mount');
-    
-    mount.innerHTML = `
-        <div class="pct-view">
-            <div class="ai-header">
-                <h2><span class="glitch" data-text="CLEARANCE CALCULATOR">CLEARANCE CALCULATOR</span></h2>
-                <p>Calculate metabolic half-life to determine the precise window for HPTA recovery initialization.</p>
-            </div>
-            
-            <div class="generator-form">
-                <div class="form-group" style="grid-column: 1 / -1;">
-                    <label>Select Last Compound Used</label>
-                    <select id="pct-compound" style="background: rgba(0,0,0,0.5); color: #fff; width: 100%; padding: 10px; border: 1px solid var(--border);">
-                        <option value="testosterone_enanthate">Testosterone Enanthate (7.5 days)</option>
-                        <option value="testosterone_cypionate">Testosterone Cypionate (8 days)</option>
-                        <option value="testosterone_propionate">Testosterone Propionate (2 days)</option>
-                        <option value="nandrolone_decanoate">Nandrolone Decanoate / Deca (15 days)</option>
-                        <option value="trenbolone_acetate">Trenbolone Acetate (1 day)</option>
-                        <option value="trenbolone_enanthate">Trenbolone Enanthate (8 days)</option>
-                        <option value="boldenone_undecylenate">Boldenone / Equipoise (15 days)</option>
-                        <option value="primobolan_enanthate">Primobolan Enanthate (10 days)</option>
-                        <option value="masteron_propionate">Masteron Propionate (2 days)</option>
-                        <option value="sustanon_250">Sustanon 250 (15 days)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Last Dose (mg)</label>
-                    <input type="number" id="pct-dose" placeholder="e.g. 250">
-                </div>
-                <div class="form-group">
-                    <label>Date of Last Injection</label>
-                    <input type="date" id="pct-date">
-                </div>
-                <button class="cyber-btn" onclick="calculatePCT()" style="grid-column: 1 / -1; border-color: #ff3a5c; color: #ff3a5c; margin-top:10px;">ANALYZE_CLEARANCE</button>
-            </div>
-
-            <div id="pct-result" class="pct-result-display" style="display: none; margin-top: 30px; padding: 25px; border: 1px solid var(--red); background: rgba(255,58,92,0.05); border-radius: 8px;">
-            </div>
-        </div>
-    `;
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('pct-date').value = today;
-}
-
-window.calculatePCT = function() {
-    const compound = document.getElementById('pct-compound').value;
-    const dose = parseInt(document.getElementById('pct-dose').value);
-    const dateStr = document.getElementById('pct-date').value;
-    const resultDiv = document.getElementById('pct-result');
-
-    if (!dose || !dateStr) {
-        showNotify("Please enter dose and date.");
-        return;
-    }
-
-    const hl = HALF_LIVES[compound];
-    const lastDate = new Date(dateStr);
-    
-    // Recovery usually starts at 4.5 half-lives (95%+ clearance)
-    const daysToClearance = Math.ceil(hl * 4.5);
-    const clearanceDate = new Date(lastDate);
-    clearanceDate.setDate(lastDate.getDate() + daysToClearance);
-
-    // Mid-way point for levels dropping significantly
-    const lowLevelDate = new Date(lastDate);
-    lowLevelDate.setDate(lastDate.getDate() + Math.ceil(hl * 2));
-
-    resultDiv.style.display = 'block';
-    resultDiv.innerHTML = `
-        <h3 style="color: #ff3a5c; border-bottom: 1px solid #ff3a5c; padding-bottom: 10px; margin-bottom: 15px;">CLEARANCE DIAGNOSTIC</h3>
-        <p style="font-size: 16px; margin-bottom: 10px;">Metabolic Half-Life: <span style="color: #fff;">${hl} days</span></p>
-        <p style="font-size: 16px; margin-bottom: 10px;">Last Dose Saturation: <span style="color: #fff;">${dose}mg</span></p>
-        <hr style="border: 0; border-top: 1px solid rgba(255,58,92,0.2); margin: 15px 0;">
-        
-        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 4px; border-left: 4px solid #ff3a5c;">
-            <p style="color: #ff3a5c; font-weight: bold; font-size: 14px; margin-bottom: 5px;">ESTIMATED PCT START DATE:</p>
-            <p style="font-size: 24px; color: #fff; font-family: var(--font-m);">${clearanceDate.toDateString().toUpperCase()}</p>
-            <p style="font-size: 12px; color: var(--muted); margin-top: 5px;">* This date represents ~95% systemic clearance (4.5 half-lives). Initializing SERMs earlier may result in failed pituitary restart.</p>
-        </div>
-
-        <div style="margin-top: 20px; font-size: 13px; line-height: 1.6; color: #a1abb8;">
-            <p><strong>Clinical Note:</strong> For long esters like Nandrolone Decanoate, the clearance window is exceptionally wide (60+ days) due to their storage in adipose tissue. Bloodwork is recommended to confirm hormone levels have dropped below 300ng/dL before starting Nolvadex/Clomid.</p>
-        </div>
-    `;
-}
+// calculatePCT is defined earlier — duplicate removed
 
 // Lab Verifier / COA View
 function loadLabVerifierView() {
