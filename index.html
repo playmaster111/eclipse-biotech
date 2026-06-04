@@ -218,6 +218,48 @@
         </main>
     </div>
 
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav id="mobile-bottom-nav" class="mobile-bottom-nav">
+        <button class="mbn-item active" id="mbn-home" onclick="goHome(); mbnSetActive('mbn-home')">
+            <i class="fas fa-home"></i>
+            <span>HOME</span>
+        </button>
+        <button class="mbn-item" id="mbn-search" onclick="mbnOpenSearch()">
+            <i class="fas fa-search"></i>
+            <span>SEARCH</span>
+        </button>
+        <button class="mbn-item mbn-center-btn" id="mbn-ai" onclick="loadAIView(); mbnSetActive('mbn-ai')">
+            <div class="mbn-center-ring">
+                <i class="fas fa-brain"></i>
+            </div>
+            <span>AI</span>
+        </button>
+        <button class="mbn-item" id="mbn-cycle" onclick="loadCycleView(); mbnSetActive('mbn-cycle')">
+            <i class="fas fa-dna"></i>
+            <span>CYCLE</span>
+        </button>
+        <button class="mbn-item" id="mbn-menu" onclick="document.getElementById('mobile-menu-toggle').click()">
+            <i class="fas fa-bars"></i>
+            <span>MENU</span>
+        </button>
+    </nav>
+
+    <!-- Mobile Search Overlay -->
+    <div id="mobile-search-overlay" class="mobile-search-overlay">
+        <div class="mobile-search-header">
+            <div class="mobile-search-input-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="mobileSearchInput" placeholder="Search database...">
+            </div>
+            <button class="mobile-search-close" onclick="mbnCloseSearch()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="mobile-search-results" class="mobile-search-results">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
     <!-- Contribution Modal -->
     <div id="donation-modal" class="modal-overlay" style="display: none;">
         <div class="modal-window donation-window">

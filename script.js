@@ -4145,3 +4145,74 @@ function initBackToTop() {
     const scrollArea = document.querySelector('.article-scroll-area');
     if (scrollArea) scrollArea.style.scrollBehavior = 'smooth';
 })();
+
+// ==========================================
+// MOBILE BOTTOM NAV LOGIC
+// ==========================================
+window.mbnSetActive = function(activeId) {
+    document.querySelectorAll('.mbn-item').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.getElementById(activeId);
+    if (activeBtn) activeBtn.classList.add('active');
+}
+
+window.mbnOpenSearch = function() {
+    mbnSetActive('mbn-search');
+    const overlay = document.getElementById('mobile-search-overlay');
+    if (overlay) {
+        overlay.classList.add('active');
+        const input = document.getElementById('mobileSearchInput');
+        if (input) {
+            setTimeout(() => input.focus(), 100);
+        }
+    }
+}
+
+window.mbnCloseSearch = function() {
+    const overlay = document.getElementById('mobile-search-overlay');
+    if (overlay) overlay.classList.remove('active');
+    
+    // Reset active state to home if we are on index
+    const category = document.getElementById('current-category');
+    if (category && category.innerText === 'INDEX') {
+        mbnSetActive('mbn-home');
+    }
+}
+
+// Hook up mobile search input to render Sidebar Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileSearchInput = document.getElementById('mobileSearchInput');
+    if (mobileSearchInput) {
+        mobileSearchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const resultsContainer = document.getElementById('mobile-search-results');
+            if (!resultsContainer) return;
+            
+            if (!term) {
+                resultsContainer.innerHTML = '<div style="color: var(--muted); padding: 20px; text-align: center; font-family: var(--font-m); font-size: 12px;">ENTER QUERY TO BEGIN...</div>';
+                return;
+            }
+
+            const results = WIKI_DATA.filter(item => {
+                const searchString = (item.name + " " + (item.aka || "") + " " + item.type + " " + item.category + " " + (item.esters ? item.esters.join(" ") : "")).toLowerCase();
+                return searchString.includes(term);
+            });
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div style="color: var(--red); padding: 20px; text-align: center; font-family: var(--font-m); font-size: 12px;">[!] NO MATCH FOUND IN DATABANK</div>';
+                return;
+            }
+
+            resultsContainer.innerHTML = results.map(item => `
+                <div class="mobile-search-result-item" onclick="mbnCloseSearch(); loadArticle('${item.id}');">
+                    <div class="mobile-search-result-icon">
+                        <i class="fas fa-${item.category === 'anabolic' ? 'dna' : (item.category === 'nootropic' ? 'brain' : (item.category === 'peptides' ? 'syringe' : 'capsules'))}"></i>
+                    </div>
+                    <div>
+                        <div class="mobile-search-result-name">${item.name}</div>
+                        <div class="mobile-search-result-type">${item.type.toUpperCase()}</div>
+                    </div>
+                </div>
+            `).join('');
+        });
+    }
+});

@@ -6814,3 +6814,438 @@ body::before { pointer-events: none !important; }
         color: rgba(220, 232, 240, 0.92) !important;
     }
 }
+
+
+/* ==========================================
+   MOBILE UX OVERHAUL — ECLIPSE v5.3.0
+   ========================================== */
+
+/* ---- Mobile Bottom Navigation Bar ---- */
+.mobile-bottom-nav {
+    display: none; /* hidden on desktop */
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 64px;
+    background: rgba(6, 8, 10, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 240, 255, 0.15);
+    z-index: 3000;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 4px;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.6), 0 -1px 0 rgba(0,240,255,0.08);
+}
+
+.mbn-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    flex: 1;
+    height: 100%;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.35);
+    font-family: var(--font-m);
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+.mbn-item i {
+    font-size: 18px;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mbn-item span {
+    font-size: 7.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.mbn-item.active {
+    color: var(--accent);
+}
+
+.mbn-item.active i {
+    text-shadow: 0 0 12px var(--accent);
+    transform: translateY(-2px);
+}
+
+.mbn-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 20%; right: 20%;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 0 8px var(--accent);
+}
+
+.mbn-item:active i {
+    transform: scale(0.85) translateY(-2px);
+}
+
+/* Center AI button — elevated pill */
+.mbn-center-btn {
+    flex: 1.2;
+    position: relative;
+}
+
+.mbn-center-btn::before { display: none !important; }
+
+.mbn-center-ring {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0,240,255,0.15), rgba(181,255,77,0.08));
+    border: 1.5px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -20px;
+    box-shadow: 0 0 20px rgba(0,240,255,0.25), 0 4px 15px rgba(0,0,0,0.5);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mbn-center-ring i {
+    font-size: 20px;
+    color: var(--accent);
+    filter: drop-shadow(0 0 6px var(--accent));
+}
+
+.mbn-center-btn.active .mbn-center-ring,
+.mbn-center-btn:active .mbn-center-ring {
+    background: var(--accent);
+    box-shadow: 0 0 30px rgba(0,240,255,0.5);
+}
+
+.mbn-center-btn.active .mbn-center-ring i {
+    color: #000;
+    filter: none;
+}
+
+/* ---- Search overlay for mobile ---- */
+.mobile-search-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 4000;
+    background: rgba(6, 8, 10, 0.97);
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    flex-direction: column;
+    gap: 16px;
+    animation: searchSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-search-overlay.active {
+    display: flex;
+}
+
+@keyframes searchSlideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+.mobile-search-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: env(safe-area-inset-top, 20px);
+}
+
+.mobile-search-close {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.mobile-search-input-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 0 14px;
+    box-shadow: 0 0 15px rgba(0,240,255,0.08);
+}
+
+.mobile-search-input-wrap i {
+    color: var(--accent);
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.mobile-search-input-wrap input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: var(--font-m);
+    font-size: 14px;
+    height: 48px;
+}
+
+.mobile-search-results {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: rgba(255,255,255,0.02);
+}
+
+.mobile-search-result-item:active {
+    background: rgba(0,240,255,0.08);
+    border-color: var(--accent);
+}
+
+.mobile-search-result-icon {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    background: rgba(0,240,255,0.08);
+    border: 1px solid rgba(0,240,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.mobile-search-result-name {
+    font-family: var(--font-m);
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.mobile-search-result-type {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+}
+
+
+/* ---- Show bottom nav only on mobile ---- */
+@media (max-width: 768px) {
+    .mobile-bottom-nav { display: flex; }
+
+    /* Push article content above bottom nav */
+    .article-scroll-area {
+        padding-bottom: 80px !important;
+    }
+
+    /* Shrink back-to-top so it doesn't clash with nav */
+    .back-to-top {
+        bottom: 78px !important;
+        right: 14px !important;
+    }
+
+    /* ---- Article layout improvements ---- */
+    .article-layout {
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+
+    .article-main-col {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .article-side-col {
+        width: 100% !important;
+        min-width: 0 !important;
+        border-left: none !important;
+        border-top: 1px solid var(--border) !important;
+        padding-top: 20px !important;
+    }
+
+    /* ---- Hologram ---- */
+    .hologram-viewport,
+    .hologram-container {
+        height: 200px !important;
+        min-height: 180px !important;
+    }
+
+    /* ---- Touch-friendly form elements ---- */
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+        font-size: 16px !important; /* Prevents iOS auto-zoom */
+        min-height: 48px;
+        padding: 12px 14px !important;
+        border-radius: 6px;
+    }
+
+    /* ---- Finder cards — single column on mobile ---- */
+    .finder-option-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .finder-card {
+        padding: 18px !important;
+    }
+
+    /* ---- Generator form ---- */
+    .generator-form {
+        grid-template-columns: 1fr !important;
+    }
+
+    .generator-form .form-group[style*="grid-column"] {
+        grid-column: auto !important;
+    }
+
+    /* ---- Pathology solver grid ---- */
+    .pathology-results-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ---- Vault cards ---- */
+    .vault-card {
+        padding: 16px !important;
+    }
+
+    /* ---- Oracle results grid ---- */
+    .oracle-results-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    /* ---- Macro rings in nutrition ---- */
+    .macro-ring-wrap {
+        gap: 12px !important;
+    }
+
+    .macro-ring {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    /* ---- Stack actions vertically ---- */
+    .detail-section { padding: 16px !important; }
+
+    /* ---- Better swipe sidebar feel ---- */
+    .sidebar {
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    /* ---- Notification positioning ---- */
+    .notification {
+        bottom: 80px !important; /* Above bottom nav */
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        max-width: 92vw !important;
+        text-align: center;
+    }
+
+    /* ---- COA table horizontal scroll ---- */
+    .coa-document {
+        overflow-x: auto !important;
+    }
+
+    .coa-table {
+        min-width: 500px;
+        font-size: 11px !important;
+    }
+
+    /* ---- Synthesis steps ---- */
+    .blueprint-content {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+
+    .blueprint-graphic {
+        width: 100% !important;
+        height: 160px !important;
+    }
+
+    /* ---- Progress track fit ---- */
+    .finder-progress-track {
+        padding: 0 10px !important;
+        gap: 4px !important;
+    }
+
+    .finder-progress-track::before {
+        left: 30px !important;
+        right: 30px !important;
+    }
+
+    .progress-step {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 8px !important;
+    }
+
+    /* ---- diagnosis result card ---- */
+    .result-card.glass-card h2 {
+        font-size: 1.6rem !important;
+    }
+
+    /* ---- Nutrition grid ---- */
+    .nutrition-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ---- PCT view form ---- */
+    .pct-view .generator-form {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ---- Very small phones ---- */
+@media (max-width: 380px) {
+    .mbn-item span { display: none; }
+    .mobile-bottom-nav { height: 56px; }
+    .mbn-center-ring { width: 42px; height: 42px; }
+}
+
+/* ---- Safe area for iPhone notch/home indicator ---- */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .mobile-bottom-nav {
+        height: calc(64px + env(safe-area-inset-bottom));
+    }
+    @media (max-width: 768px) {
+        .article-scroll-area {
+            padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important;
+        }
+    }
+}
+
+/* ---- Swipe hint animation on first load ---- */
+@keyframes swipeHint {
+    0%   { transform: translateX(0); opacity: 0.6; }
+    30%  { transform: translateX(15px); opacity: 1; }
+    60%  { transform: translateX(0); opacity: 0.6; }
+    100% { transform: translateX(0); opacity: 0; }
+}
