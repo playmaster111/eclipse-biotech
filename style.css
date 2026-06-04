@@ -3769,7 +3769,7 @@ input:checked + .slider:before {
         transition: none !important;
     }
     
-    .article-viewer { padding-top: 60px; min-height: 100vh; }    .top-nav-bar {
+    .article-viewer { min-height: 100vh; }    .top-nav-bar {
         position: fixed;
         top: 0; left: 0; width: 100%;
         z-index: 2000;
@@ -5651,7 +5651,7 @@ body {
 body::before { pointer-events: none !important; }
 
 /* Fix: Top nav stacking above article scroll area */
-.top-nav-bar { z-index: 100 !important; position: relative !important; }
+.top-nav-bar { z-index: 2000 !important; position: fixed !important; top: 0; left: 0; width: 100%; }
 .article-scroll-area { z-index: 1; position: relative; }
 
 
@@ -5690,7 +5690,7 @@ body::before { pointer-events: none !important; }
     .bio-scan-orb { width: 60px; height: 60px; margin-bottom: 20px; }
     .orb-core { width: 22px; height: 22px; }
     .orb-scan { width: 60px; height: 60px; }
-    .article-scroll-area { padding: 15px !important; }
+    .article-scroll-area { padding: 64px 15px 15px 15px !important; }
     .article-header { padding: 20px !important; }
     .article-header h1 { font-size: 1.3rem !important; }
     .info-grid { grid-template-columns: 1fr !important; }
@@ -6788,7 +6788,7 @@ body::before { pointer-events: none !important; }
 /* ---- Landscape mobile ---- */
 @media (max-height: 500px) and (orientation: landscape) {
     .top-nav-bar { height: 44px !important; }
-    .article-viewer { padding-top: 44px !important; }
+    
     .article-scroll-area { padding-top: 54px !important; }
     .init-content { transform: scale(0.85) !important; }
     .welcome-card { padding: 24px 20px !important; }
