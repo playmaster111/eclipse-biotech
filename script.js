@@ -4193,7 +4193,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const results = WIKI_DATA.filter(item => {
-                const searchString = (item.name + " " + (item.aka || "") + " " + item.type + " " + item.category + " " + (item.esters ? item.esters.join(" ") : "")).toLowerCase();
+                const estersStr = item.esters ? (Array.isArray(item.esters) ? item.esters.join(" ") : item.esters) : "";
+                const searchString = (item.name + " " + (item.aka || "") + " " + item.type + " " + item.category + " " + estersStr).toLowerCase();
                 return searchString.includes(term);
             });
 
