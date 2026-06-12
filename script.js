@@ -3120,77 +3120,111 @@ function renderNutritionStep() {
         `;
     } else if (nutritionStep === 5) {
         const plan = generateDietPlan();
+        const p_pct = Math.round((plan.p * 4 / plan.cals) * 100);
+        const c_pct = Math.round((plan.c * 4 / plan.cals) * 100);
+        const f_pct = Math.round((plan.f * 9 / plan.cals) * 100);
+        
         content = `
             ${track}
             <div class="diagnosis-result-wrap">
                 <div class="ai-header" style="text-align: center; margin-bottom: 30px;">
                     <span class="cyber-badge">DEEP_BIOMETRIC_MODEL_V2</span>
-                    <h1 class="glitch-large" style="color: #00ffaa;">NUTRITIONAL_DOSSIER</h1>
+                    <h1 class="glitch-large" style="color: #00ffaa; text-shadow: 0 0 15px rgba(0,255,170,0.5);">NUTRITIONAL_DOSSIER</h1>
                 </div>
 
-                <div class="macro-blueprint">
-                    <div style="font-size: 10px; color: var(--muted); letter-spacing: 2px; margin-bottom: 10px;">PERSONALIZED_TARGETS // ${nutritionData.weight}${nutritionData.units === 'metric' ? 'KG' : 'LBS'} | ${nutritionData.age}Y | ${nutritionData.sex.toUpperCase()} ${nutritionData.bf ? '| '+nutritionData.bf+'% BF' : ''}</div>
-                    <div style="font-size: 24px; font-family: 'Orbitron', monospace; color: #fff;">${plan.cals} <span style="font-size: 12px; color: var(--accent);">KCAL / DAY</span></div>
+                <div class="macro-blueprint" style="box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.05);">
+                    <div style="font-size: 10px; color: var(--accent); letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase;">PERSONALIZED_TARGETS // ${nutritionData.weight}${nutritionData.units === 'metric' ? 'KG' : 'LBS'} | ${nutritionData.age}Y | ${nutritionData.sex} ${nutritionData.bf ? '| '+nutritionData.bf+'% BF' : ''}</div>
+                    <div style="font-size: 28px; font-family: 'Orbitron', monospace; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.2);">${plan.cals} <span style="font-size: 12px; color: var(--accent);">KCAL / DAY</span></div>
                     
-                    <div class="macro-ring-wrap">
-                        <div class="macro-ring">
-                            <span class="macro-val">${plan.p}G</span>
-                            <span class="macro-label">PROTEIN</span>
+                    <div class="macro-ring-wrap" style="display: flex; justify-content: space-around; margin-top: 25px;">
+                        <div class="macro-ring" style="position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center;">
+                            <svg viewBox="0 0 100 100" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg);">
+                                <circle cx="50" cy="50" r="40" style="fill: none; stroke: rgba(255,255,255,0.05); stroke-width: 6;"></circle>
+                                <circle cx="50" cy="50" r="40" style="fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 251.2; stroke-dashoffset: ${251.2 - (251.2 * p_pct) / 100}; stroke: #ff3a5c; transition: stroke-dashoffset 1.5s ease-out;"></circle>
+                            </svg>
+                            <div style="position: relative; z-index: 2; text-align: center;">
+                                <span style="font-size: 1.1rem; font-family: 'Orbitron', monospace; display: block; color: #fff;">${plan.p}G</span>
+                                <span style="font-size: 0.55rem; color: var(--muted); letter-spacing: 1px;">PRO (${p_pct}%)</span>
+                            </div>
                         </div>
-                        <div class="macro-ring">
-                            <span class="macro-val">${plan.c}G</span>
-                            <span class="macro-label">CARBS</span>
+                        <div class="macro-ring" style="position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center;">
+                            <svg viewBox="0 0 100 100" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg);">
+                                <circle cx="50" cy="50" r="40" style="fill: none; stroke: rgba(255,255,255,0.05); stroke-width: 6;"></circle>
+                                <circle cx="50" cy="50" r="40" style="fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 251.2; stroke-dashoffset: ${251.2 - (251.2 * c_pct) / 100}; stroke: #00f0ff; transition: stroke-dashoffset 1.5s ease-out;"></circle>
+                            </svg>
+                            <div style="position: relative; z-index: 2; text-align: center;">
+                                <span style="font-size: 1.1rem; font-family: 'Orbitron', monospace; display: block; color: #fff;">${plan.c}G</span>
+                                <span style="font-size: 0.55rem; color: var(--muted); letter-spacing: 1px;">CRB (${c_pct}%)</span>
+                            </div>
                         </div>
-                        <div class="macro-ring">
-                            <span class="macro-val">${plan.f}G</span>
-                            <span class="macro-label">FATS</span>
+                        <div class="macro-ring" style="position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center;">
+                            <svg viewBox="0 0 100 100" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg);">
+                                <circle cx="50" cy="50" r="40" style="fill: none; stroke: rgba(255,255,255,0.05); stroke-width: 6;"></circle>
+                                <circle cx="50" cy="50" r="40" style="fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 251.2; stroke-dashoffset: ${251.2 - (251.2 * f_pct) / 100}; stroke: #ffaa00; transition: stroke-dashoffset 1.5s ease-out;"></circle>
+                            </svg>
+                            <div style="position: relative; z-index: 2; text-align: center;">
+                                <span style="font-size: 1.1rem; font-family: 'Orbitron', monospace; display: block; color: #fff;">${plan.f}G</span>
+                                <span style="font-size: 0.55rem; color: var(--muted); letter-spacing: 1px;">FAT (${f_pct}%)</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="nutrition-grid">
                     <div class="detail-section">
-                        <h3 style="font-family: 'Orbitron', monospace; font-size: 0.9rem; color: var(--accent); margin-bottom: 15px;">DAILY_MEAL_PLAN (${nutritionData.cadence === 'if' ? '16:8 FASTING' : 'STANDARD'})</h3>
+                        <h3 style="font-family: 'Orbitron', monospace; font-size: 0.9rem; color: var(--accent); margin-bottom: 15px; border-bottom: 1px solid rgba(0, 240, 255, 0.2); padding-bottom: 5px;">DAILY_MEAL_PLAN (${nutritionData.cadence === 'if' ? '16:8 FASTING' : 'STANDARD'})</h3>
                         ${plan.meals.map(m => `
-                            <div class="meal-plan-card">
-                                <span class="meal-time">${m.time}</span>
+                            <div class="meal-plan-card cool-card">
+                                <span class="meal-time"><i class="fas fa-clock" style="margin-right: 5px;"></i>${m.time}</span>
                                 <div class="meal-content">${m.desc}</div>
                             </div>
                         `).join('')}
                     </div>
                     
                     <div class="detail-section">
-                        <h3 style="font-family: 'Orbitron', monospace; font-size: 0.9rem; color: #00ffaa; margin-bottom: 15px;">SUPPLEMENT_STACK</h3>
+                        <h3 style="font-family: 'Orbitron', monospace; font-size: 0.9rem; color: #00ffaa; margin-bottom: 15px; border-bottom: 1px solid rgba(0, 255, 170, 0.2); padding-bottom: 5px;">SUPPLEMENT_STACK</h3>
                         <div class="stack-grid">
                             ${plan.stack.map(s => `
-                                <div class="stack-card">
-                                    <div class="title">${s.name}</div>
-                                    <div class="desc">${s.dose}</div>
+                                <div class="stack-card cool-card">
+                                    <div class="title"><i class="fas fa-capsules" style="color: #00ffaa; margin-right: 8px;"></i>${s.name}</div>
+                                    <div class="desc" style="margin-top: 5px; opacity: 0.8;">${s.dose}</div>
                                 </div>
                             `).join('')}
                         </div>
 
-                        <div class="chef-notes">
-                            <strong><i class="fas fa-utensils"></i> CHEF'S_TABLE:</strong><br>
-                            ${plan.notes}
+                        <div class="chef-notes cool-card" style="margin-top: 15px;">
+                            <strong style="color: #ffaa00;"><i class="fas fa-exclamation-triangle"></i> PROTOCOL_NOTES:</strong><br>
+                            <span style="opacity: 0.9;">${plan.notes}</span>
                         </div>
                         
-                        <div class="meal-plan-card" style="margin-top: 20px;">
-                            <span class="meal-time">HYDRATION_PROTOCOL</span>
-                            <div class="meal-content">Optimal Water Intake: <strong>${plan.water}L/Day</strong></div>
+                        <div class="meal-plan-card cool-card" style="margin-top: 15px; border-color: rgba(0, 150, 255, 0.3);">
+                            <span class="meal-time" style="color: #00aaff;"><i class="fas fa-tint"></i> HYDRATION_PROTOCOL</span>
+                            <div class="meal-content">Optimal Water Intake: <strong style="color: #00aaff;">${plan.water}L/Day</strong></div>
                         </div>
                     </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px; display: flex; justify-content: center; gap: 15px;">
-                    <button class="cyber-btn" onclick="loadNutritionView()" style="width: auto;">RESTART_ANALYSIS</button>
-                    <button class="cyber-btn" onclick="saveDietToVault(${plan.cals}, ${plan.p}, ${plan.c}, ${plan.f})" style="width: auto; border-color: #00ffaa; color: #00ffaa;">SAVE_TO_VAULT</button>
+                    <button class="cyber-btn" onclick="loadNutritionView()" style="width: auto;"><i class="fas fa-redo"></i> RESTART</button>
+                    <button class="cyber-btn" onclick="saveDietToVault(${plan.cals}, ${plan.p}, ${plan.c}, ${plan.f})" style="width: auto; border-color: #00ffaa; color: #00ffaa; box-shadow: 0 0 10px rgba(0,255,170,0.2);"><i class="fas fa-save"></i> SAVE_TO_VAULT</button>
                 </div>
             </div>
         `;
     }
 
     wrapper.innerHTML = content;
+    // Animate rings after mounting
+    setTimeout(() => {
+        const rings = document.querySelectorAll('.ring-fg');
+        rings.forEach(r => {
+            const offset = r.style.strokeDashoffset;
+            r.style.strokeDashoffset = '251.2'; // start from empty
+            // force reflow
+            r.getBoundingClientRect();
+            r.style.strokeDashoffset = offset;
+        });
+    }, 50);
+
     mount.appendChild(wrapper);
 }
 
