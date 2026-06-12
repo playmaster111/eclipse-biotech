@@ -738,6 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!sidebar) return;
         sidebar.classList.toggle('collapsed');
         console.log("ECLIPSE_CORE: Sidebar toggled", sidebar.classList.contains('collapsed'));
+        if (window.updateSidebarNavState) window.updateSidebarNavState();
     };
 
     if (mobileToggle) {
@@ -759,6 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileOverlay) {
         mobileOverlay.addEventListener('click', () => {
             if (sidebar) sidebar.classList.add('collapsed');
+            if (window.updateSidebarNavState) window.updateSidebarNavState();
         });
     }
 
@@ -766,6 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sidebarClose) {
         sidebarClose.addEventListener('click', () => {
             if (sidebar) sidebar.classList.add('collapsed');
+            if (window.updateSidebarNavState) window.updateSidebarNavState();
         });
     }
 
@@ -774,6 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault(); // Prevent focus switching
             if (sidebar) {
                 sidebar.classList.toggle('collapsed');
+                if (window.updateSidebarNavState) window.updateSidebarNavState();
             }
         }
     });
@@ -862,10 +866,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isCollapsed) {
             if (deltaX > threshold) {
                 sidebar.classList.remove('collapsed');
+                if (window.updateSidebarNavState) window.updateSidebarNavState();
             }
         } else {
             if (deltaX < -threshold) {
                 sidebar.classList.add('collapsed');
+                if (window.updateSidebarNavState) window.updateSidebarNavState();
             }
         }
     });
@@ -892,6 +898,9 @@ function updateWelcomeScreen() {
 window.goHome = function() {
     window.currentActiveItem = null;
     window.currentDrug = null;
+    
+    if (window.mbnSetActive) window.mbnSetActive('mbn-home');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
     
     // Reset Sidebar
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -1174,6 +1183,9 @@ function signalTransfer() {
 
 // Load AI View
 function loadAIView() {
+    if (window.mbnSetActive) window.mbnSetActive('mbn-ai');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('ai-nav-btn')) document.getElementById('ai-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "ECLIPSE_CORTEX_AI";
@@ -1524,10 +1536,8 @@ function generateAIResponse(q) {
 
 // Load Article into Main Mount
 function loadArticle(id) {
-    const sidebar = document.querySelector('.sidebar');
-    if (window.innerWidth <= 1024 && sidebar) {
-        sidebar.classList.add('collapsed');
-    }
+    if (window.mbnSetActive) window.mbnSetActive('');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
 
     const item = WIKI_DATA.find(x => x.id === id);
     if (!item) return;
@@ -1732,6 +1742,9 @@ let customStack = [];
 
 // Load Cycle Coach View
 function loadCoachView() {
+    if (window.mbnSetActive) window.mbnSetActive('mbn-cycle');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('coach-nav-btn')) document.getElementById('coach-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "AI CYCLE ARCHITECT";
@@ -2167,6 +2180,9 @@ window.saveProtocolToVault = async function() {
 }
 
 function loadVaultView() {
+    if (window.mbnSetActive) window.mbnSetActive('');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('vault-nav-btn')) document.getElementById('vault-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "RESEARCH VAULT";
@@ -2254,6 +2270,9 @@ window.deleteFromVault = async function(id) {
 
 // Synthesis Oracle View
 function loadSynthesisView() {
+    if (window.mbnSetActive) window.mbnSetActive('');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('synthesis-nav-btn')) document.getElementById('synthesis-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "SYNTHESIS ORACLE";
@@ -2418,6 +2437,9 @@ function showSynthesisDetail(id) {
 }
 
 function loadPathologyView() {
+    if (window.mbnSetActive) window.mbnSetActive('');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('pathology-nav-btn')) document.getElementById('pathology-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "PATHOLOGY SOLVER";
@@ -2605,6 +2627,9 @@ let finderStep = 1;
 let finderData = { goal: '', risk: '', exp: '' };
 
 function loadQuickFinderView() {
+    if (window.mbnSetActive) window.mbnSetActive('');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
     finderStep = 1;
     finderData = { goal: '', risk: '', exp: '' };
     
@@ -2796,6 +2821,9 @@ const HALF_LIVES = {
 };
 
 function loadPCTView() {
+    if (window.mbnSetActive) window.mbnSetActive('');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('pct-nav-btn')) document.getElementById('pct-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "PCT CALCULATOR";
@@ -2893,6 +2921,9 @@ let nutritionStep = 0; // Starts at 0 for Biometrics
 let nutritionData = { weight: 80, height: 180, age: 25, goal: '', diet: '', activity: '' };
 
 function loadNutritionView() {
+    if (window.mbnSetActive) window.mbnSetActive('');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
     nutritionStep = 0;
     nutritionData = { weight: 80, height: 180, age: 25, goal: '', diet: '', activity: '' };
     
@@ -3233,6 +3264,9 @@ function getMealDesc(time) {
 
 // Lab Verifier / COA View
 function loadLabVerifierView() {
+    if (window.mbnSetActive) window.mbnSetActive('');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('lab-nav-btn')) document.getElementById('lab-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "LAB VERIFIER";
@@ -3667,6 +3701,9 @@ function updateHeatMap(item) {
 }
 // --- Changelog View ---
 function loadChangelogView() {
+    if (window.mbnSetActive) window.mbnSetActive('');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     const btn = document.getElementById('logs-nav-btn');
     if (btn) btn.classList.add('active');
@@ -4149,11 +4186,42 @@ function initBackToTop() {
 // ==========================================
 // MOBILE BOTTOM NAV LOGIC
 // ==========================================
+window.currentMbnActiveId = 'mbn-home'; // Default home is active
+
 window.mbnSetActive = function(activeId) {
     document.querySelectorAll('.mbn-item').forEach(btn => btn.classList.remove('active'));
     const activeBtn = document.getElementById(activeId);
     if (activeBtn) activeBtn.classList.add('active');
-}
+    
+    // Save the last active tab (excluding MENU) so we can restore it when sidebar closes
+    if (activeId !== 'mbn-menu') {
+        window.currentMbnActiveId = activeId;
+    }
+};
+
+window.restoreMbnActiveState = function() {
+    window.mbnSetActive(window.currentMbnActiveId || '');
+};
+
+window.updateSidebarNavState = function() {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+        const isCollapsed = sidebar.classList.contains('collapsed');
+        if (!isCollapsed && window.innerWidth <= 1024) {
+            window.mbnSetActive('mbn-menu');
+        } else {
+            window.restoreMbnActiveState();
+        }
+    }
+};
+
+window.closeSidebarOnMobile = function() {
+    const sidebar = document.querySelector('.sidebar');
+    if (window.innerWidth <= 1024 && sidebar) {
+        sidebar.classList.add('collapsed');
+        window.updateSidebarNavState();
+    }
+};
 
 window.mbnOpenSearch = function() {
     mbnSetActive('mbn-search');
