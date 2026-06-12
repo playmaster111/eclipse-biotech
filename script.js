@@ -2918,19 +2918,35 @@ window.calculatePCT = function() {
 
 // --- Nutrition Architect Engine ---
 let nutritionStep = 0; // Starts at 0 for Biometrics
-let nutritionData = { weight: 80, height: 180, age: 25, goal: '', diet: '', activity: '' };
+let nutritionData = { units: 'metric', weight: 80, height: 180, age: 25, sex: 'male', bf: '', goal: '', diet: '', cadence: '', activity: '' };
 
 function loadNutritionView() {
     if (window.mbnSetActive) window.mbnSetActive('');
     if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
 
     nutritionStep = 0;
-    nutritionData = { weight: 80, height: 180, age: 25, goal: '', diet: '', activity: '' };
+    nutritionData = { units: 'metric', weight: 80, height: 180, age: 25, sex: 'male', bf: '', goal: '', diet: '', cadence: '', activity: '' };
     
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('nutrition-nav-btn')) document.getElementById('nutrition-nav-btn').classList.add('active');
     document.getElementById('current-category').innerText = "NUTRITION ARCHITECT";
 
+    renderNutritionStep();
+}
+
+window.setNutritionUnits = function(u) {
+    if (nutritionData.units === u) return;
+    
+    // Convert current values
+    if (u === 'imperial' && nutritionData.units === 'metric') {
+        nutritionData.weight = Math.round(nutritionData.weight * 2.20462);
+        nutritionData.height = Math.round(nutritionData.height / 2.54);
+    } else if (u === 'metric' && nutritionData.units === 'imperial') {
+        nutritionData.weight = Math.round(nutritionData.weight / 2.20462);
+        nutritionData.height = Math.round(nutritionData.height * 2.54);
+    }
+    
+    nutritionData.units = u;
     renderNutritionStep();
 }
 
@@ -2946,14 +2962,20 @@ function renderNutritionStep() {
             <div class="progress-step ${nutritionStep >= 0 ? 'active' : ''} ${nutritionStep > 0 ? 'completed' : ''}">BIO</div>
             <div class="progress-step ${nutritionStep >= 1 ? 'active' : ''} ${nutritionStep > 1 ? 'completed' : ''}">OBJ</div>
             <div class="progress-step ${nutritionStep >= 2 ? 'active' : ''} ${nutritionStep > 2 ? 'completed' : ''}">TYP</div>
-            <div class="progress-step ${nutritionStep >= 3 ? 'active' : ''} ${nutritionStep > 3 ? 'completed' : ''}">ACT</div>
-            <div class="progress-step ${nutritionStep >= 4 ? 'active' : ''}">RES</div>
+            <div class="progress-step ${nutritionStep >= 3 ? 'active' : ''} ${nutritionStep > 3 ? 'completed' : ''}">TIM</div>
+            <div class="progress-step ${nutritionStep >= 4 ? 'active' : ''} ${nutritionStep > 4 ? 'completed' : ''}">ACT</div>
+            <div class="progress-step ${nutritionStep >= 5 ? 'active' : ''}">RES</div>
         </div>
     `;
 
     let content = '';
 
     if (nutritionStep === 0) {
+        const wLabel = nutritionData.units === 'metric' ? 'WEIGHT (KG)' : 'WEIGHT (LBS)';
+        const hLabel = nutritionData.units === 'metric' ? 'HEIGHT (CM)' : 'HEIGHT (IN)';
+        const wVal = nutritionData.weight || (nutritionData.units === 'metric' ? 80 : 176);
+        const hVal = nutritionData.height || (nutritionData.units === 'metric' ? 180 : 70);
+        
         content = `
             ${track}
             <div class="ai-header" style="text-align: center;">
@@ -2961,18 +2983,34 @@ function renderNutritionStep() {
                 <p>Provide physical specifications for high-fidelity metabolic modeling.</p>
             </div>
             
-            <div class="biometric-grid" style="max-width: 500px; margin: 30px auto;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button class="cyber-btn ${nutritionData.units === 'metric' ? 'active' : ''}" onclick="setNutritionUnits('metric')" style="width: auto; padding: 5px 15px; margin-right: 10px;">METRIC</button>
+                <button class="cyber-btn ${nutritionData.units === 'imperial' ? 'active' : ''}" onclick="setNutritionUnits('imperial')" style="width: auto; padding: 5px 15px;">IMPERIAL</button>
+            </div>
+            
+            <div class="biometric-grid" style="max-width: 500px; margin: 0 auto 30px auto;">
                 <div class="bio-input-wrap">
-                    <label>WEIGHT (KG)</label>
-                    <input type="number" id="bio-weight" value="${nutritionData.weight}">
+                    <label>${wLabel}</label>
+                    <input type="number" id="bio-weight" value="${wVal}">
                 </div>
                 <div class="bio-input-wrap">
-                    <label>HEIGHT (CM)</label>
-                    <input type="number" id="bio-height" value="${nutritionData.height}">
+                    <label>${hLabel}</label>
+                    <input type="number" id="bio-height" value="${hVal}">
                 </div>
-                <div class="bio-input-wrap" style="grid-column: 1 / -1;">
+                <div class="bio-input-wrap">
                     <label>AGE</label>
                     <input type="number" id="bio-age" value="${nutritionData.age}">
+                </div>
+                <div class="bio-input-wrap">
+                    <label>SEX</label>
+                    <select id="bio-sex" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); color: #fff; font-family: var(--font-m);">
+                        <option value="male" ${nutritionData.sex === 'male' ? 'selected' : ''}>MALE</option>
+                        <option value="female" ${nutritionData.sex === 'female' ? 'selected' : ''}>FEMALE</option>
+                    </select>
+                </div>
+                <div class="bio-input-wrap" style="grid-column: 1 / -1;">
+                    <label>BODY FAT % (OPTIONAL - ENABLES KATCH-MCARDLE)</label>
+                    <input type="number" id="bio-bf" placeholder="e.g. 15" value="${nutritionData.bf || ''}">
                 </div>
             </div>
 
@@ -3039,6 +3077,26 @@ function renderNutritionStep() {
         content = `
             ${track}
             <div class="ai-header" style="text-align: center;">
+                <h1 class="glitch-large">MEAL_CADENCE</h1>
+                <p>Select nutrient timing protocol.</p>
+            </div>
+            <div class="finder-option-grid">
+                <div class="finder-card" onclick="setNutritionData('cadence', 'standard')">
+                    <span class="icon">⏰</span>
+                    <h3>STANDARD (4-5 MEALS)</h3>
+                    <p>Consistent amino acid drip throughout the waking hours.</p>
+                </div>
+                <div class="finder-card" onclick="setNutritionData('cadence', 'if')">
+                    <span class="icon">⏳</span>
+                    <h3>INTERMITTENT FASTING</h3>
+                    <p>16:8 Protocol. Condensed feeding window for enhanced insulin sensitivity.</p>
+                </div>
+            </div>
+        `;
+    } else if (nutritionStep === 4) {
+        content = `
+            ${track}
+            <div class="ai-header" style="text-align: center;">
                 <h1 class="glitch-large">EXPENDITURE_LOAD</h1>
                 <p>Select activity level.</p>
             </div>
@@ -3060,7 +3118,7 @@ function renderNutritionStep() {
                 </div>
             </div>
         `;
-    } else if (nutritionStep === 4) {
+    } else if (nutritionStep === 5) {
         const plan = generateDietPlan();
         content = `
             ${track}
@@ -3071,7 +3129,7 @@ function renderNutritionStep() {
                 </div>
 
                 <div class="macro-blueprint">
-                    <div style="font-size: 10px; color: var(--muted); letter-spacing: 2px; margin-bottom: 10px;">PERSONALIZED_TARGETS // ${nutritionData.weight}KG | ${nutritionData.age}Y</div>
+                    <div style="font-size: 10px; color: var(--muted); letter-spacing: 2px; margin-bottom: 10px;">PERSONALIZED_TARGETS // ${nutritionData.weight}${nutritionData.units === 'metric' ? 'KG' : 'LBS'} | ${nutritionData.age}Y | ${nutritionData.sex.toUpperCase()} ${nutritionData.bf ? '| '+nutritionData.bf+'% BF' : ''}</div>
                     <div style="font-size: 24px; font-family: 'Orbitron', monospace; color: #fff;">${plan.cals} <span style="font-size: 12px; color: var(--accent);">KCAL / DAY</span></div>
                     
                     <div class="macro-ring-wrap">
@@ -3092,7 +3150,7 @@ function renderNutritionStep() {
 
                 <div class="nutrition-grid">
                     <div class="detail-section">
-                        <h3 style="font-family: 'Orbitron', monospace; font-size: 0.9rem; color: var(--accent); margin-bottom: 15px;">DAILY_MEAL_PLAN</h3>
+                        <h3 style="font-family: 'Orbitron', monospace; font-size: 0.9rem; color: var(--accent); margin-bottom: 15px;">DAILY_MEAL_PLAN (${nutritionData.cadence === 'if' ? '16:8 FASTING' : 'STANDARD'})</h3>
                         ${plan.meals.map(m => `
                             <div class="meal-plan-card">
                                 <span class="meal-time">${m.time}</span>
@@ -3124,8 +3182,9 @@ function renderNutritionStep() {
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 40px;">
+                <div style="text-align: center; margin-top: 40px; display: flex; justify-content: center; gap: 15px;">
                     <button class="cyber-btn" onclick="loadNutritionView()" style="width: auto;">RESTART_ANALYSIS</button>
+                    <button class="cyber-btn" onclick="saveDietToVault(${plan.cals}, ${plan.p}, ${plan.c}, ${plan.f})" style="width: auto; border-color: #00ffaa; color: #00ffaa;">SAVE_TO_VAULT</button>
                 </div>
             </div>
         `;
@@ -3136,9 +3195,11 @@ function renderNutritionStep() {
 }
 
 window.saveBiometrics = function() {
-    nutritionData.weight = parseFloat(document.getElementById('bio-weight').value) || 80;
-    nutritionData.height = parseFloat(document.getElementById('bio-height').value) || 180;
+    nutritionData.weight = parseFloat(document.getElementById('bio-weight').value) || (nutritionData.units === 'metric' ? 80 : 176);
+    nutritionData.height = parseFloat(document.getElementById('bio-height').value) || (nutritionData.units === 'metric' ? 180 : 70);
     nutritionData.age = parseInt(document.getElementById('bio-age').value) || 25;
+    nutritionData.sex = document.getElementById('bio-sex').value;
+    nutritionData.bf = document.getElementById('bio-bf').value ? parseFloat(document.getElementById('bio-bf').value) : '';
     
     const overlay = document.createElement('div');
     overlay.className = 'scanning-overlay';
@@ -3174,8 +3235,21 @@ window.setNutritionData = function(key, val) {
 }
 
 function generateDietPlan() {
-    // Mifflin-St Jeor Equation (Male version)
-    const bmr = (10 * nutritionData.weight) + (6.25 * nutritionData.height) - (5 * nutritionData.age) + 5;
+    let weightKg = nutritionData.units === 'metric' ? nutritionData.weight : nutritionData.weight / 2.20462;
+    let heightCm = nutritionData.units === 'metric' ? nutritionData.height : nutritionData.height * 2.54;
+
+    let bmr = 0;
+    
+    if (nutritionData.bf) {
+        const leanMass = weightKg * (1 - (nutritionData.bf / 100));
+        bmr = 370 + (21.6 * leanMass);
+    } else {
+        if (nutritionData.sex === 'male') {
+            bmr = (10 * weightKg) + (6.25 * heightCm) - (5 * nutritionData.age) + 5;
+        } else {
+            bmr = (10 * weightKg) + (6.25 * heightCm) - (5 * nutritionData.age) - 161;
+        }
+    }
     
     let multiplier = 1.2;
     if (nutritionData.activity === 'mid') multiplier = 1.55;
@@ -3189,7 +3263,7 @@ function generateDietPlan() {
     let p = 150, c = 200, f = 60;
 
     if (nutritionData.diet === 'keto') {
-        p = Math.round(nutritionData.weight * 2.2); // 2.2g per kg
+        p = Math.round(weightKg * 2.2);
         c = 30;
         f = Math.round((tdee - (p*4) - (c*4)) / 9);
     } else if (nutritionData.diet === 'carnivore') {
@@ -3197,23 +3271,36 @@ function generateDietPlan() {
         c = 0;
         f = Math.round((tdee - (p*4)) / 9);
     } else if (nutritionData.diet === 'balanced') {
-        p = Math.round(nutritionData.weight * 2);
+        p = Math.round(weightKg * 2);
         c = Math.round((tdee * 0.45) / 4);
         f = Math.round((tdee - (p*4) - (c*4)) / 9);
     } else if (nutritionData.diet === 'vegan') {
-        p = Math.round(nutritionData.weight * 1.6);
+        p = Math.round(weightKg * 1.6);
         c = Math.round((tdee * 0.55) / 4);
         f = Math.round((tdee - (p*4) - (c*4)) / 9);
     }
 
-    const water = (nutritionData.weight * 0.04).toFixed(1);
+    const water = (weightKg * 0.04).toFixed(1);
 
-    const meals = [
-        { time: '08:00 // MEAL_01', desc: getMealDesc('breakfast') },
-        { time: '13:00 // MEAL_02', desc: getMealDesc('lunch') },
-        { time: '17:00 // PRE_WORKOUT', desc: getMealDesc('snack') },
-        { time: '20:30 // POST_WORKOUT_DINNER', desc: getMealDesc('dinner') }
-    ];
+    let mealsCount = nutritionData.cadence === 'if' ? 3 : 4;
+    let proteinPerMeal = Math.round(p / mealsCount);
+    
+    let meals = [];
+    
+    if (nutritionData.cadence === 'if') {
+        meals = [
+            { time: '12:00 // MEAL_01 (FAST_BREAKER)', desc: getMealDesc('breakfast', proteinPerMeal) },
+            { time: '16:00 // MEAL_02 (PRE_WORKOUT)', desc: getMealDesc('lunch', proteinPerMeal) },
+            { time: '20:00 // MEAL_03 (POST_WORKOUT_DINNER)', desc: getMealDesc('dinner', proteinPerMeal) }
+        ];
+    } else {
+        meals = [
+            { time: '08:00 // MEAL_01', desc: getMealDesc('breakfast', proteinPerMeal) },
+            { time: '13:00 // MEAL_02', desc: getMealDesc('lunch', proteinPerMeal) },
+            { time: '17:00 // PRE_WORKOUT', desc: getMealDesc('snack', proteinPerMeal) },
+            { time: '20:30 // POST_WORKOUT_DINNER', desc: getMealDesc('dinner', proteinPerMeal) }
+        ];
+    }
 
     const stack = [
         { name: 'Creatine Monohydrate', dose: '5g Daily (Saturation)' },
@@ -3223,6 +3310,7 @@ function generateDietPlan() {
 
     if (nutritionData.diet === 'keto') stack.push({ name: 'Electrolyte Complex', dose: 'Sodium/Mag/Potassium' });
     if (nutritionData.goal === 'bulk') stack.push({ name: 'Beta-Alanine', dose: '3.2g (Muscular Endurance)' });
+    if (nutritionData.cadence === 'if') stack.push({ name: 'Black Coffee / Green Tea', dose: 'Fasting Window (Autophagy)' });
 
     const notes = nutritionData.goal === 'bulk' ? 
         "Prioritize liquid calories if digestion slows down. Season with Sea Salt to maintain vascular volume." :
@@ -3231,32 +3319,67 @@ function generateDietPlan() {
     return { cals: tdee, p, c, f, meals, stack, water, notes };
 }
 
-function getMealDesc(time) {
+function getMealDesc(time, proteinTarget) {
+    const meatFactor = Math.round(proteinTarget * 3.3);
+    const eggCount = Math.max(2, Math.round(proteinTarget / 6));
+    const wheyScoop = Math.max(1, Math.round(proteinTarget / 25));
+    
     const diet = nutritionData.diet;
     if (diet === 'keto') {
-        if (time === 'breakfast') return "4 Whole Eggs scrambled in Ghee, 100g Smoked Salmon, Black Coffee.";
-        if (time === 'lunch') return "250g Chicken Thighs (with skin), Broccoli with melted Cheddar, Macadamia nuts.";
-        if (time === 'snack') return "Protein Shake with Coconut Milk and 1tbsp MCT Oil.";
-        return "Grass-fed Ribeye (300g), Asparagus in Hollandaise sauce, handful of Pecans.";
+        if (time === 'breakfast') return `${eggCount} Whole Eggs scrambled in Ghee, 100g Smoked Salmon, Black Coffee.`;
+        if (time === 'lunch') return `${meatFactor}g Chicken Thighs (with skin), Broccoli with melted Cheddar, Macadamia nuts.`;
+        if (time === 'snack') return `${wheyScoop} Scoop(s) Isolate with Coconut Milk and 1tbsp MCT Oil.`;
+        return `Grass-fed Ribeye (${meatFactor}g), Asparagus in Hollandaise sauce, handful of Pecans.`;
     }
     if (diet === 'carnivore') {
-        if (time === 'breakfast') return "5 Eggs, 100g Bacon, 100g Ground Beef patties.";
-        if (time === 'lunch') return "Large T-Bone Steak seasoned only with Sea Salt. 20g Beef Suet.";
-        if (time === 'snack') return "Pork Rinds or 2 slices of Liver (Nutrient density).";
-        return "1lb of Ground Lamb or Ribeye. Hydrate with sparkling mineral water.";
+        if (time === 'breakfast') return `${eggCount} Eggs, 100g Bacon, ${Math.round(meatFactor*0.6)}g Ground Beef patties.`;
+        if (time === 'lunch') return `Large T-Bone Steak seasoned only with Sea Salt. 20g Beef Suet.`;
+        if (time === 'snack') return `Pork Rinds or 2 slices of Liver (Nutrient density).`;
+        return `${meatFactor}g of Ground Lamb or Ribeye. Hydrate with sparkling mineral water.`;
     }
     if (diet === 'vegan') {
-        if (time === 'breakfast') return "Chickpea Flour Omelette with Mushrooms, Spinach, and 1 slice Sourdough.";
-        if (time === 'lunch') return "Lentil Pasta with Nutritional Yeast, Walnut-Pesto, and roasted Zucchini.";
-        if (time === 'snack') return "Hemp Protein Shake with mixed Berries and Soy Milk.";
-        return "Crispy Tempeh, Brown Rice, Avocado, and steamed Broccoli with Lemon.";
+        if (time === 'breakfast') return `Chickpea Flour Omelette with Mushrooms, Spinach, and 1 slice Sourdough.`;
+        if (time === 'lunch') return `Lentil Pasta with Nutritional Yeast, Walnut-Pesto, and roasted Zucchini.`;
+        if (time === 'snack') return `${wheyScoop} Scoop(s) Vegan Protein with mixed Berries and Soy Milk.`;
+        return `Crispy Tempeh (${Math.round(meatFactor*0.8)}g), Brown Rice, Avocado, and steamed Broccoli with Lemon.`;
     }
-    // Balanced
-    if (time === 'breakfast') return "Cream of Rice with 1 scoop Whey, 50g Blueberries, 20g Almond Butter.";
-    if (time === 'lunch') return "200g Lean Beef Mince, 250g White Rice, side of Kimchi for digestion.";
-    if (time === 'snack') return "Greek Yogurt (0%), 1 Apple, 30g Walnuts.";
-    return "200g Chicken Breast, 150g Sweet Potato, large Asparagus portion, 10g Olive Oil.";
+    if (time === 'breakfast') return `Cream of Rice with ${wheyScoop} scoop(s) Whey, 50g Blueberries, 20g Almond Butter.`;
+    if (time === 'lunch') return `${meatFactor}g Lean Beef Mince, 250g White Rice, side of Kimchi for digestion.`;
+    if (time === 'snack') return `Greek Yogurt (0%), 1 Apple, 30g Walnuts.`;
+    return `${meatFactor}g Chicken Breast, 150g Sweet Potato, large Asparagus portion, 10g Olive Oil.`;
 }
+
+window.saveDietToVault = function(cals, p, c, f) {
+    if (!currentUser) {
+        alert("PLEASE VALIDATE BIO_ID TO ACCESS RESEARCH VAULT.");
+        document.getElementById('bioIdBtn').click();
+        return;
+    }
+
+    const title = `${nutritionData.goal.toUpperCase()}_PROTOCOL_${nutritionData.diet.toUpperCase()}`;
+    const dietData = {
+        title: title,
+        date: new Date().toISOString(),
+        type: 'diet',
+        cals, p, c, f,
+        goal: nutritionData.goal,
+        cadence: nutritionData.cadence === 'if' ? '16:8 Fasting' : 'Standard'
+    };
+
+    let vault = JSON.parse(localStorage.getItem('eclipse_vault_' + currentUser)) || [];
+    vault.push(dietData);
+    localStorage.setItem('eclipse_vault_' + currentUser, JSON.stringify(vault));
+    
+    const toast = document.createElement('div');
+    toast.className = 'cyber-toast';
+    toast.innerHTML = `<i class="fas fa-check-circle" style="color:#00ffaa"></i> NUTRITION_DOSSIER SAVED TO VAULT`;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.classList.add('hide');
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
+}
+
 
 // loadPCTView is defined earlier at line ~2788 — duplicate removed
 
