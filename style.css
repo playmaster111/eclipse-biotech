@@ -5649,8 +5649,8 @@ body {
 .track-dropdown { z-index: 10001 !important; pointer-events: auto !important; }
 body::before { pointer-events: none !important; }
 
-/* Fix: Top nav stacking above article scroll area */
-.top-nav-bar { z-index: 2000 !important; position: fixed !important; top: 0; left: 0; width: 100%; }
+/* Fix: Top nav stacking above article scroll area, offset by sidebar width on desktop */
+.top-nav-bar { z-index: 2000 !important; position: fixed !important; top: 0; left: 320px; right: 0; width: auto; }
 .article-scroll-area { z-index: 1; position: relative; }
 
 
@@ -6143,6 +6143,8 @@ body::before { pointer-events: none !important; }
         height: 56px !important;
         padding: 0 10px !important;
         gap: 4px !important;
+        left: 0 !important;
+        right: 0 !important;
     }
     .breadcrumbs {
         font-size: 9px !important;
