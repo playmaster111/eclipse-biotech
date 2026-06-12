@@ -3132,35 +3132,35 @@ function renderNutritionStep() {
                     <h1 class="glitch-large" style="color: #00ffaa; text-shadow: 0 0 15px rgba(0,255,170,0.5);">NUTRITIONAL_DOSSIER</h1>
                 </div>
 
-                <div class="macro-blueprint" style="box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.05);">
-                    <div style="font-size: 10px; color: var(--accent); letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase;">PERSONALIZED_TARGETS // ${nutritionData.weight}${nutritionData.units === 'metric' ? 'KG' : 'LBS'} | ${nutritionData.age}Y | ${nutritionData.sex} ${nutritionData.bf ? '| '+nutritionData.bf+'% BF' : ''}</div>
-                    <div style="font-size: 28px; font-family: 'Orbitron', monospace; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.2);">${plan.cals} <span style="font-size: 12px; color: var(--accent);">KCAL / DAY</span></div>
+                <div class="macro-blueprint" style="box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.05); animation: slideUpFade 0.6s ease-out forwards; opacity: 0;">
+                    <div style="font-size: 10px; color: var(--accent); letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; animation: fadeInSimple 0.8s ease-out 0.2s forwards; opacity: 0;">PERSONALIZED_TARGETS // ${nutritionData.weight}${nutritionData.units === 'metric' ? 'KG' : 'LBS'} | ${nutritionData.age}Y | ${nutritionData.sex} ${nutritionData.bf ? '| '+nutritionData.bf+'% BF' : ''}</div>
+                    <div style="font-size: 28px; font-family: 'Orbitron', monospace; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.2); animation: popInBounce 0.6s ease-out 0.4s forwards; opacity: 0;">${plan.cals} <span style="font-size: 12px; color: var(--accent);">KCAL / DAY</span></div>
                     
                     <div class="macro-ring-wrap" style="display: flex; justify-content: space-around; margin-top: 25px;">
-                        <div class="macro-ring" style="position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center;">
+                        <div class="macro-ring" style="position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; animation: popInBounce 0.5s ease-out 0.6s forwards; opacity: 0;">
                             <svg viewBox="0 0 100 100" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg);">
                                 <circle cx="50" cy="50" r="40" style="fill: none; stroke: rgba(255,255,255,0.05); stroke-width: 6;"></circle>
-                                <circle cx="50" cy="50" r="40" style="fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 251.2; stroke-dashoffset: ${251.2 - (251.2 * p_pct) / 100}; stroke: #ff3a5c; transition: stroke-dashoffset 1.5s ease-out;"></circle>
+                                <circle cx="50" cy="50" r="40" style="fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 251.2; stroke-dashoffset: ${251.2 - (251.2 * p_pct) / 100}; stroke: #ff3a5c; transition: stroke-dashoffset 1.5s ease-out 0.8s;"></circle>
                             </svg>
                             <div style="position: relative; z-index: 2; text-align: center;">
                                 <span style="font-size: 1.1rem; font-family: 'Orbitron', monospace; display: block; color: #fff;">${plan.p}G</span>
                                 <span style="font-size: 0.55rem; color: var(--muted); letter-spacing: 1px;">PRO (${p_pct}%)</span>
                             </div>
                         </div>
-                        <div class="macro-ring" style="position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center;">
+                        <div class="macro-ring" style="position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; animation: popInBounce 0.5s ease-out 0.75s forwards; opacity: 0;">
                             <svg viewBox="0 0 100 100" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg);">
                                 <circle cx="50" cy="50" r="40" style="fill: none; stroke: rgba(255,255,255,0.05); stroke-width: 6;"></circle>
-                                <circle cx="50" cy="50" r="40" style="fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 251.2; stroke-dashoffset: ${251.2 - (251.2 * c_pct) / 100}; stroke: #00f0ff; transition: stroke-dashoffset 1.5s ease-out;"></circle>
+                                <circle cx="50" cy="50" r="40" style="fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 251.2; stroke-dashoffset: ${251.2 - (251.2 * c_pct) / 100}; stroke: #00f0ff; transition: stroke-dashoffset 1.5s ease-out 0.95s;"></circle>
                             </svg>
                             <div style="position: relative; z-index: 2; text-align: center;">
                                 <span style="font-size: 1.1rem; font-family: 'Orbitron', monospace; display: block; color: #fff;">${plan.c}G</span>
                                 <span style="font-size: 0.55rem; color: var(--muted); letter-spacing: 1px;">CRB (${c_pct}%)</span>
                             </div>
                         </div>
-                        <div class="macro-ring" style="position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center;">
+                        <div class="macro-ring" style="position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; animation: popInBounce 0.5s ease-out 0.9s forwards; opacity: 0;">
                             <svg viewBox="0 0 100 100" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg);">
                                 <circle cx="50" cy="50" r="40" style="fill: none; stroke: rgba(255,255,255,0.05); stroke-width: 6;"></circle>
-                                <circle cx="50" cy="50" r="40" style="fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 251.2; stroke-dashoffset: ${251.2 - (251.2 * f_pct) / 100}; stroke: #ffaa00; transition: stroke-dashoffset 1.5s ease-out;"></circle>
+                                <circle cx="50" cy="50" r="40" style="fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 251.2; stroke-dashoffset: ${251.2 - (251.2 * f_pct) / 100}; stroke: #ffaa00; transition: stroke-dashoffset 1.5s ease-out 1.1s;"></circle>
                             </svg>
                             <div style="position: relative; z-index: 2; text-align: center;">
                                 <span style="font-size: 1.1rem; font-family: 'Orbitron', monospace; display: block; color: #fff;">${plan.f}G</span>

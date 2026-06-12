@@ -7278,3 +7278,18 @@ body::before { pointer-events: none !important; }
 @keyframes drawRingAnim {
     from { stroke-dashoffset: 251.2; }
 }
+
+/* Diet Planner Animations */
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes popInBounce {
+    0% { opacity: 0; transform: scale(0.8); }
+    70% { transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeInSimple {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
