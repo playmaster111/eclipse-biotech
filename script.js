@@ -4442,3 +4442,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// ==========================================
+// THEME SWITCHER
+// ==========================================
+const THEMES = ['cyberpunk', 'clinical', 'hacker', 'blood'];
+
+window.toggleThemePanel = function() {
+    const panel = document.getElementById('theme-panel');
+    const overlay = document.getElementById('theme-panel-overlay');
+    if (!panel) return;
+    const isOpen = panel.classList.contains('open');
+    if (isOpen) {
+        panel.classList.remove('open');
+        overlay.classList.remove('open');
+    } else {
+        panel.classList.add('open');
+        overlay.classList.add('open');
+        // Mark current active theme
+        const current = document.documentElement.getAttribute('data-theme') || 'cyberpunk';
+        THEMES.forEach(t => {
+            const card = document.getElementById('theme-card-' + t);
+            if (card) card.classList.toggle('active', t === current);
+        });
+    }
+};
+
+window.applyTheme = function(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('eclipse_theme', theme);
+
+    // Update active state
+    THEMES.forEach(t => {
+        const card = document.getElementById('theme-card-' + t);
+        if (card) card.classList.toggle('active', t === theme);
+    });
+
+    // Show toast
+    const labels = { cyberpunk: 'CYBERPUNK', clinical: 'CLINICAL_LAB', hacker: 'HACKER_TERMINAL', blood: 'BLOOD_LAB' };
+    const toast = document.createElement('div');
+    toast.className = 'cyber-toast';
+    toast.innerHTML = `<i class="fas fa-palette" style="color:var(--accent)"></i> THEME: ${labels[theme] || theme.toUpperCase()}`;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.classList.add('hide'); setTimeout(() => toast.remove(), 500); }, 2500);
+};
+
+// Restore saved theme on boot
+(function() {
+    const saved = localStorage.getItem('eclipse_theme');
+    if (saved && THEMES.includes(saved)) {
+        document.documentElement.setAttribute('data-theme', saved);
+    } else {
+        document.documentElement.setAttribute('data-theme', 'cyberpunk');
+    }
+})();
