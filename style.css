@@ -7317,20 +7317,20 @@ html[data-theme="cyberpunk"] {
 }
 
 html[data-theme="clinical"] {
-  --bg:       #f0f4f8;
-  --surface:  #ffffff;
-  --surface2: #e8edf2;
-  --border:   #c8d6e0;
-  --border2:  #a8bccb;
-  --text:     #1a2a38;
-  --muted:    #6a8a9a;
-  --accent:   #0077cc;
-  --accent2:  #00aaaa;
-  --red:      #e8003a;
-  --green:    #008855;
-  --grid-color: rgba(0,119,204,.04);
-  --orb1-color: rgba(0,119,204,.08);
-  --orb2-color: rgba(0,170,170,.06);
+  --bg:       #e8edf3;
+  --surface:  #f5f8fc;
+  --surface2: #dde4ec;
+  --border:   #b0c4d4;
+  --border2:  #7a9bb5;
+  --text:     #0d1a26;
+  --muted:    #3d5a72;
+  --accent:   #005fa3;
+  --accent2:  #007a7a;
+  --red:      #c8001e;
+  --green:    #006b40;
+  --grid-color: rgba(0,95,163,.05);
+  --orb1-color: rgba(0,95,163,.07);
+  --orb2-color: rgba(0,122,122,.05);
 }
 
 html[data-theme="hacker"] {
@@ -7406,6 +7406,156 @@ html[data-theme="clinical"] .top-nav-bar,
 html[data-theme="clinical"] .article-viewer {
   background-color: var(--surface);
   border-color: var(--border);
+}
+
+/* Clinical: nav items */
+html[data-theme="clinical"] .nav-item {
+  color: var(--text) !important;
+}
+html[data-theme="clinical"] .nav-item:hover {
+  background: rgba(0, 95, 163, 0.1) !important;
+  color: var(--accent) !important;
+}
+html[data-theme="clinical"] .nav-item.active {
+  background: rgba(0, 95, 163, 0.15) !important;
+  border-left-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+html[data-theme="clinical"] .nav-category {
+  color: var(--muted) !important;
+}
+
+/* Clinical: article content text */
+html[data-theme="clinical"] .article-scroll-area,
+html[data-theme="clinical"] .article-scroll-area p,
+html[data-theme="clinical"] .article-scroll-area li,
+html[data-theme="clinical"] .article-scroll-area td,
+html[data-theme="clinical"] .article-scroll-area th {
+  color: var(--text) !important;
+}
+
+/* Clinical: section headings */
+html[data-theme="clinical"] .section-title,
+html[data-theme="clinical"] h1, 
+html[data-theme="clinical"] h2,
+html[data-theme="clinical"] h3 {
+  color: var(--text) !important;
+}
+
+/* Clinical: cards & surfaces */
+html[data-theme="clinical"] .detail-card,
+html[data-theme="clinical"] .info-card,
+html[data-theme="clinical"] .stat-card,
+html[data-theme="clinical"] .finder-card,
+html[data-theme="clinical"] .meal-plan-card,
+html[data-theme="clinical"] .stack-card,
+html[data-theme="clinical"] .cool-card,
+html[data-theme="clinical"] .macro-blueprint {
+  background: #e8edf3 !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+html[data-theme="clinical"] .finder-card h3,
+html[data-theme="clinical"] .finder-card p {
+  color: var(--text) !important;
+}
+html[data-theme="clinical"] .finder-card:hover {
+  border-color: var(--accent) !important;
+  background: rgba(0,95,163,0.08) !important;
+}
+
+/* Clinical: badges & tags */
+html[data-theme="clinical"] .cyber-badge {
+  background: rgba(0,95,163,0.12);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Clinical: breadcrumbs & nav text */
+html[data-theme="clinical"] .breadcrumbs,
+html[data-theme="clinical"] .breadcrumbs span,
+html[data-theme="clinical"] #current-category {
+  color: var(--muted) !important;
+}
+
+/* Clinical: muted text */
+html[data-theme="clinical"] .text-muted,
+html[data-theme="clinical"] [style*="color: var(--muted)"],
+html[data-theme="clinical"] .macro-label {
+  color: var(--muted) !important;
+}
+
+/* Clinical: progress steps */
+html[data-theme="clinical"] .progress-step {
+  background: var(--surface2) !important;
+  border-color: var(--border) !important;
+  color: var(--muted) !important;
+}
+html[data-theme="clinical"] .progress-step.active {
+  background: var(--accent) !important;
+  color: #fff !important;
+}
+
+/* Clinical: inputs */
+html[data-theme="clinical"] input,
+html[data-theme="clinical"] select {
+  background: #fff !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+html[data-theme="clinical"] input::placeholder {
+  color: var(--muted) !important;
+}
+
+/* Clinical: top-nav buttons */
+html[data-theme="clinical"] .cyber-btn {
+  border-color: var(--border2) !important;
+  color: var(--text) !important;
+}
+html[data-theme="clinical"] .cyber-btn:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
+/* Clinical: sidebar status */
+html[data-theme="clinical"] .status-wrap {
+  border-color: var(--border) !important;
+  color: var(--muted) !important;
+}
+html[data-theme="clinical"] .status-title,
+html[data-theme="clinical"] .status-source {
+  color: var(--muted) !important;
+}
+
+/* Clinical: search box */
+html[data-theme="clinical"] .search-wrap {
+  background: #fff !important;
+  border-color: var(--border) !important;
+}
+html[data-theme="clinical"] .search-wrap input {
+  color: var(--text) !important;
+}
+
+/* Clinical: make top bar readable */
+html[data-theme="clinical"] .top-nav-bar {
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* Clinical: diagnosis/result wrap */
+html[data-theme="clinical"] .diagnosis-result-wrap {
+  color: var(--text) !important;
+}
+html[data-theme="clinical"] .meal-time {
+  color: var(--accent) !important;
+}
+html[data-theme="clinical"] .meal-content {
+  color: var(--text) !important;
+}
+html[data-theme="clinical"] .chef-notes {
+  background: rgba(0,95,163,0.05) !important;
+  border-color: rgba(0,95,163,0.2) !important;
+  color: var(--text) !important;
 }
 
 /* Hacker scanline green tint */
