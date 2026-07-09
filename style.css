@@ -1529,8 +1529,11 @@ input:checked + .slider:before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
+    position: relative;
+    z-index: 2;
 }
+
 
 .init-logo {
     display: flex;
@@ -1542,29 +1545,51 @@ input:checked + .slider:before {
     font-family: var(--font-m);
     font-size: 11px;
     color: var(--accent);
-    letter-spacing: 4px;
-    opacity: 0.6;
+    letter-spacing: 5px;
+    opacity: 0;
+    animation: initSubReveal 1s ease-out 1.2s forwards;
+    text-transform: uppercase;
 }
+@keyframes initSubReveal {
+    0% { opacity: 0; letter-spacing: 8px; filter: blur(4px); }
+    100% { opacity: 0.6; letter-spacing: 5px; filter: blur(0); }
+}
+
 
 .init-cyber-btn {
     position: relative;
-    padding: 20px 60px;
+    padding: 18px 60px;
     background: transparent;
-    border: 1px solid var(--accent);
+    border: 1px solid rgba(0, 240, 255, 0.5);
     color: var(--accent);
     font-family: var(--font-m);
-    font-size: 14px;
-    letter-spacing: 0.1vw;
+    font-size: 13px;
+    letter-spacing: 0.3em;
     cursor: pointer;
     overflow: hidden;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    animation: initBtnReveal 0.8s ease-out 1.8s forwards;
+    box-shadow: 0 0 20px rgba(0,240,255,0.05), inset 0 0 20px rgba(0,240,255,0.02);
+}
+@keyframes initBtnReveal {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .init-cyber-btn:hover {
-    background: rgba(0, 240, 255, 0.1);
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
-    letter-spacing: 8px;
+    background: rgba(0, 240, 255, 0.08);
+    border-color: var(--accent);
+    box-shadow: 0 0 40px rgba(0, 240, 255, 0.25), 0 0 80px rgba(0,240,255,0.1), inset 0 0 30px rgba(0,240,255,0.05);
+    letter-spacing: 0.5em;
+    color: #fff;
 }
+
+.init-cyber-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 60px rgba(0, 240, 255, 0.4);
+}
+
 
 .btn-glitch-bg {
     position: absolute;
@@ -1597,11 +1622,14 @@ input:checked + .slider:before {
     font-family: var(--font-m);
     font-size: 10px;
     color: var(--muted);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     display: flex;
     align-items: center;
     gap: 10px;
+    opacity: 0;
+    animation: initSubReveal 0.8s ease-out 2.2s forwards;
 }
+
 
 /* Biometric Scanner Overlay */
 .bio-scanner-overlay {
@@ -1914,39 +1942,82 @@ input:checked + .slider:before {
 
 
 .init-overlay.bf3-mode {
-    background: radial-gradient(circle at center, #001214 0%, #000 100%);
+    background: radial-gradient(ellipse at 50% 40%, #001a1f 0%, #000c10 40%, #000 100%);
+    overflow: hidden;
 }
+
+/* Animated depth orbs behind logo */
+.init-overlay.bf3-mode::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,240,255,0.06) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -55%);
+    animation: initOrbPulse 4s ease-in-out infinite;
+    pointer-events: none;
+}
+.init-overlay.bf3-mode::after {
+    content: '';
+    position: absolute;
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,100,255,0.03) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -55%);
+    animation: initOrbPulse 6s ease-in-out infinite reverse;
+    pointer-events: none;
+}
+@keyframes initOrbPulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -55%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -55%) scale(1.15); }
+}
+
 
 .glitch-logo.bf3-logo {
     font-family: var(--font-d);
-    font-size: clamp(20px, 7.5vw, 80px);
-    letter-spacing: 0.1vw;
+    font-size: clamp(22px, 8vw, 90px);
+    letter-spacing: 0.12vw;
     display: flex;
     gap: 0;
     color: #fff;
-    text-shadow: 2px 0 #00f0ff, -2px 0 #fff;
-    animation: bf3Jitter 0.1s infinite;
+    text-shadow: 3px 0 #00f0ff, -3px 0 rgba(255,255,255,0.6), 0 0 40px rgba(0,240,255,0.3);
+    animation: bf3Jitter 0.15s infinite;
     position: relative;
+    opacity: 0;
+    animation: bf3Jitter 0.18s infinite, initLogoReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 
-.logo-w { color: #fff; }
-.logo-c { color: #00f0ff; }
+@keyframes initLogoReveal {
+    0% { opacity: 0; filter: blur(20px) brightness(3); transform: scale(1.08); }
+    40% { opacity: 1; filter: blur(0) brightness(1.2); }
+    100% { opacity: 1; filter: blur(0) brightness(1); transform: scale(1); }
+}
+
+.logo-w { color: #ffffff; text-shadow: 0 0 20px rgba(255,255,255,0.3); }
+.logo-c { 
+    color: #00f0ff; 
+    text-shadow: 0 0 15px rgba(0,240,255,0.8), 0 0 40px rgba(0,240,255,0.4), 0 0 80px rgba(0,240,255,0.15);
+}
 
 .glitch-logo.bf3-logo::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,0.05) 1px, rgba(255,255,255,0.05) 2px);
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.025) 2px, rgba(255,255,255,0.025) 4px);
     pointer-events: none;
 }
 
 @keyframes bf3Jitter {
-    0% { transform: translate(0); }
-    25% { transform: translate(-1px, 1px); text-shadow: 1px 0 #00f0ff, -1px 0 #fff; }
-    50% { transform: translate(1px, -1px); text-shadow: -1px 0 #00f0ff, 1px 0 #fff; }
-    75% { transform: translate(-1px, -1px); }
-    100% { transform: translate(0); }
+    0%   { transform: translate(0, 0); }
+    20%  { transform: translate(-1px, 0.5px); text-shadow: 2px 0 #00f0ff, -2px 0 rgba(255,30,100,0.4); }
+    40%  { transform: translate(1px, -0.5px); text-shadow: -2px 0 #00f0ff, 2px 0 rgba(255,255,255,0.5); }
+    60%  { transform: translate(-0.5px, 1px); }
+    80%  { transform: translate(0.5px, -1px); text-shadow: 1.5px 0 #00f0ff, -1.5px 0 #fff; }
+    100% { transform: translate(0, 0); }
 }
+
 
 /* Violent BF3 Glitch Reveal */
 .glitch-reveal-bf3 {
