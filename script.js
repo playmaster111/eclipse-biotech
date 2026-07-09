@@ -678,12 +678,127 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     attachInitListener();
     
+
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
+        // --- Autocomplete Dropdown ---
+        const CATEGORY_ICONS = {
+            anabolic:    'dna',
+            peptides:    'syringe',
+            nootropic:   'brain',
+            ancillaries: 'capsules',
+            cannabis:    'leaf',
+            depressants: 'moon',
+            stimulants:  'bolt',
+            default:     'flask'
+        };
+
+        let acDropdown = null;
+        let acIndex = -1;
+        let acResults = [];
+
+        function getIcon(item) {
+            return CATEGORY_ICONS[item.category] || CATEGORY_ICONS.default;
+        }
+
+        function buildDropdown(results) {
+            if (acDropdown) acDropdown.remove();
+            if (!results.length) return;
+            acDropdown = document.createElement('div');
+            acDropdown.className = 'search-autocomplete';
+            acIndex = -1;
+
+            results.forEach((item, i) => {
+                const row = document.createElement('div');
+                row.className = 'ac-item';
+                row.dataset.idx = i;
+                const aka = item.aka ? `<span class="ac-aka">${item.aka.split(',')[0].trim()}</span>` : '';
+                row.innerHTML = `
+                    <span class="ac-icon"><i class="fas fa-${getIcon(item)}"></i></span>
+                    <span class="ac-body">
+                        <span class="ac-name">${highlightMatch(item.name, searchInput.value)}</span>
+                        ${aka}
+                    </span>
+                    <span class="ac-badge">${item.type}</span>
+                `;
+                row.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    selectResult(item);
+                });
+                row.addEventListener('mouseover', () => setActive(i));
+                acDropdown.appendChild(row);
+            });
+
+            searchInput.parentElement.appendChild(acDropdown);
+        }
+
+        function highlightMatch(text, query) {
+            if (!query) return text;
+            const idx = text.toLowerCase().indexOf(query.toLowerCase());
+            if (idx === -1) return text;
+            return text.slice(0, idx) +
+                `<mark class="ac-highlight">${text.slice(idx, idx + query.length)}</mark>` +
+                text.slice(idx + query.length);
+        }
+
+        function setActive(i) {
+            acIndex = i;
+            if (!acDropdown) return;
+            acDropdown.querySelectorAll('.ac-item').forEach((el, j) => {
+                el.classList.toggle('active', j === i);
+                if (j === i) el.scrollIntoView({ block: 'nearest' });
+            });
+        }
+
+        function closeDropdown() {
+            if (acDropdown) { acDropdown.remove(); acDropdown = null; }
+            acIndex = -1;
+            acResults = [];
+        }
+
+        function selectResult(item) {
+            searchInput.value = '';
+            renderSidebar('');
+            closeDropdown();
+            loadArticle(item.id);
+        }
+
         searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.trim().toLowerCase();
             renderSidebar(e.target.value);
+
+            if (!term || term.length < 1) { closeDropdown(); return; }
+
+            acResults = WIKI_DATA.filter(item => {
+                const estersStr = item.esters ? (Array.isArray(item.esters) ? item.esters.join(' ') : item.esters) : '';
+                const hay = `${item.name} ${item.aka || ''} ${item.type} ${item.category} ${estersStr}`.toLowerCase();
+                return hay.includes(term);
+            })
+            .sort((a, b) => {
+                // Exact name start = highest priority
+                const aStart = a.name.toLowerCase().startsWith(term);
+                const bStart = b.name.toLowerCase().startsWith(term);
+                if (aStart && !bStart) return -1;
+                if (!aStart && bStart) return 1;
+                return a.name.localeCompare(b.name);
+            })
+            .slice(0, 8);
+
+            buildDropdown(acResults);
         });
+
+        searchInput.addEventListener('keydown', (e) => {
+            if (!acDropdown) return;
+            if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(acIndex + 1, acResults.length - 1)); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(Math.max(acIndex - 1, 0)); }
+            else if (e.key === 'Enter') { e.preventDefault(); if (acIndex >= 0) selectResult(acResults[acIndex]); }
+            else if (e.key === 'Escape') { closeDropdown(); searchInput.blur(); }
+        });
+
+        searchInput.addEventListener('blur', () => setTimeout(closeDropdown, 150));
+        searchInput.addEventListener('focus', (e) => { if (e.target.value.trim()) e.target.dispatchEvent(new Event('input')); });
     }
+
     
     // Custom Dropdown Logic
     const customSelect = document.getElementById('langCustomSelect');
