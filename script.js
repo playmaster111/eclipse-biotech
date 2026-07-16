@@ -1013,24 +1013,187 @@ function updateWelcomeScreen() {
 window.goHome = function() {
     window.currentActiveItem = null;
     window.currentDrug = null;
-    
+
     if (window.mbnSetActive) window.mbnSetActive('mbn-home');
     if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
-    
-    // Reset Sidebar
+
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     document.getElementById('current-category').innerText = getT('index').toUpperCase();
 
-    // Reset Article Mount to Welcome Screen
     const mount = document.getElementById('article-mount');
+
+    // ── Pick 6 featured compounds ──────────────────────────────────────────
+    const FEATURED_IDS = ['testosterone', 'anavar', 'hgh', 'modafinil', 'mk677', 'nandrolone'];
+    const featured = FEATURED_IDS.map(id => WIKI_DATA.find(d => d.id === id)).filter(Boolean);
+    // fallback: pick random if ids not found
+    if (featured.length < 3) {
+        const shuffle = [...WIKI_DATA].sort(() => 0.5 - Math.random()).slice(0, 6);
+        featured.push(...shuffle.slice(0, 6 - featured.length));
+    }
+
+    // ── Recent history ─────────────────────────────────────────────────────
+    let recentIds = [];
+    try { recentIds = JSON.parse(localStorage.getItem('eclipse_history') || '[]'); } catch(e) {}
+    const recent = recentIds.slice(0, 5).map(id => WIKI_DATA.find(d => d.id === id)).filter(Boolean);
+
+    // ── Stats ──────────────────────────────────────────────────────────────
+    const totalCompounds = WIKI_DATA.length;
+    const totalCategories = Object.keys(CATEGORIES).length;
+
+    // ── Category quick tiles ───────────────────────────────────────────────
+    const CAT_ICONS = { anabolic:'dna', peptides:'syringe', nootropic:'brain', ancillaries:'capsules', cannabis:'leaf', depressants:'moon', stimulants:'bolt' };
+    const CAT_COLORS = { anabolic:'#00f0ff', peptides:'#b5ff4d', nootropic:'#ff3a5c', ancillaries:'#ffaa00', cannabis:'#39e58c', depressants:'#bf00ff', stimulants:'#ff6600' };
+
+    const catTiles = Object.entries(CATEGORIES).map(([key, cat]) => {
+        const count = WIKI_DATA.filter(d => d.category === key).length;
+        const icon = CAT_ICONS[key] || 'flask';
+        const color = CAT_COLORS[key] || '#00f0ff';
+        return `
+            <div class="home-cat-tile" onclick="filterHomeCategory('${key}')" style="--cat-color:${color}">
+                <i class="fas fa-${icon}" style="color:${color}"></i>
+                <div class="home-cat-name">${cat.name}</div>
+                <div class="home-cat-count">${count}</div>
+            </div>`;
+    }).join('');
+
+    // ── Carousel cards ─────────────────────────────────────────────────────
+    const carouselCards = featured.map((item, i) => `
+        <div class="home-carousel-card ${i===0?'active':''}" data-idx="${i}" onclick="loadArticle('${item.id}')">
+            <div class="home-carousel-badge">${item.type}</div>
+            <div class="home-carousel-name">${item.name}</div>
+            <div class="home-carousel-desc">${(item.overview||'').slice(0,110)}…</div>
+            <div class="home-carousel-meta">
+                <span><i class="fas fa-tag"></i> ${item.category}</span>
+                <span class="home-carousel-cta">VIEW PROFILE →</span>
+            </div>
+        </div>`).join('');
+
+    const dots = featured.map((_,i) => `<button class="home-carousel-dot ${i===0?'active':''}" data-idx="${i}"></button>`).join('');
+
+    // ── Recent row ─────────────────────────────────────────────────────────
+    const recentHTML = recent.length ? `
+        <section class="home-section">
+            <div class="home-section-header"><i class="fas fa-history"></i> RECENTLY_VIEWED</div>
+            <div class="home-recent-row">
+                ${recent.map(item => `
+                    <div class="home-recent-pill" onclick="loadArticle('${item.id}')">
+                        <i class="fas fa-${CAT_ICONS[item.category]||'flask'}"></i>
+                        ${item.name}
+                    </div>`).join('')}
+            </div>
+        </section>` : '';
+
     mount.innerHTML = `
-        <div class="empty-state">
-            <div class="glitch-icon">⚗</div>
-            <h2 class="glitch-small" data-text="${getT('awaiting_input')}">${getT('awaiting_input')}</h2>
-            <p style="max-width: 400px; line-height: 1.6;">${getT('welcome_desc')}</p>
+        <div class="home-dashboard">
+
+            <!-- Stats bar -->
+            <div class="home-stats-bar">
+                <div class="home-stat">
+                    <span class="home-stat-val" id="hs-compounds">0</span>
+                    <span class="home-stat-label">COMPOUNDS</span>
+                </div>
+                <div class="home-stat-divider"></div>
+                <div class="home-stat">
+                    <span class="home-stat-val" id="hs-cats">0</span>
+                    <span class="home-stat-label">CATEGORIES</span>
+                </div>
+                <div class="home-stat-divider"></div>
+                <div class="home-stat">
+                    <span class="home-stat-val" style="font-size:0.9rem">v5.2</span>
+                    <span class="home-stat-label">DATABANK</span>
+                </div>
+                <div class="home-stat-divider"></div>
+                <div class="home-stat">
+                    <span class="home-stat-val" style="color:#39e58c; font-size:0.8rem">● ONLINE</span>
+                    <span class="home-stat-label">STATUS</span>
+                </div>
+            </div>
+
+            <!-- Featured carousel -->
+            <section class="home-section">
+                <div class="home-section-header"><i class="fas fa-star"></i> FEATURED_COMPOUNDS</div>
+                <div class="home-carousel-wrap">
+                    <div class="home-carousel" id="home-carousel">
+                        ${carouselCards}
+                    </div>
+                    <div class="home-carousel-dots" id="home-dots">${dots}</div>
+                </div>
+            </section>
+
+            <!-- Category tiles -->
+            <section class="home-section">
+                <div class="home-section-header"><i class="fas fa-th"></i> BROWSE_BY_CATEGORY</div>
+                <div class="home-cat-grid">${catTiles}</div>
+            </section>
+
+            <!-- Recent -->
+            ${recentHTML}
+
         </div>
     `;
+
+    // ── Animate stat counters ──────────────────────────────────────────────
+    function animateCount(el, target, duration=1200) {
+        if (!el) return;
+        let start = 0;
+        const step = target / (duration / 16);
+        const timer = setInterval(() => {
+            start = Math.min(start + step, target);
+            el.innerText = Math.floor(start);
+            if (start >= target) clearInterval(timer);
+        }, 16);
+    }
+    setTimeout(() => {
+        animateCount(document.getElementById('hs-compounds'), totalCompounds);
+        animateCount(document.getElementById('hs-cats'), totalCategories);
+    }, 100);
+
+    // ── Carousel auto-cycle ────────────────────────────────────────────────
+    let carouselIdx = 0;
+    const cards = mount.querySelectorAll('.home-carousel-card');
+    const dotBtns = mount.querySelectorAll('.home-carousel-dot');
+
+    function setCarouselSlide(i) {
+        cards.forEach((c,j) => c.classList.toggle('active', j===i));
+        dotBtns.forEach((d,j) => d.classList.toggle('active', j===i));
+        carouselIdx = i;
+    }
+
+    dotBtns.forEach((d,i) => d.addEventListener('click', (e) => { e.stopPropagation(); setCarouselSlide(i); clearInterval(carouselTimer); }));
+
+    const carouselTimer = setInterval(() => {
+        setCarouselSlide((carouselIdx + 1) % cards.length);
+    }, 4000);
+
+    // cleanup on navigation
+    mount.addEventListener('click', () => {}, { once: true });
 };
+
+// Filter home by category — scroll sidebar to that cat
+window.filterHomeCategory = function(catKey) {
+    const navEl = document.getElementById('sidebar-nav');
+    if (!navEl) return;
+    const header = [...navEl.querySelectorAll('.nav-category')]
+        .find(el => el.innerText.toLowerCase().includes(CATEGORIES[catKey]?.name?.toLowerCase() || catKey));
+    if (header) header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // On mobile open the sidebar
+    if (window.innerWidth <= 1024) {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) sidebar.classList.remove('collapsed');
+    }
+};
+
+// Track history for "recently viewed"
+const _origLoadArticle = window.loadArticle;
+window.loadArticle = function(id) {
+    try {
+        let hist = JSON.parse(localStorage.getItem('eclipse_history') || '[]');
+        hist = [id, ...hist.filter(x => x !== id)].slice(0, 10);
+        localStorage.setItem('eclipse_history', JSON.stringify(hist));
+    } catch(e) {}
+    return _origLoadArticle(id);
+};
+
 // -------------------------
 
 // Render Sidebar helper
