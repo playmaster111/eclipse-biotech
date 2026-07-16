@@ -27,7 +27,7 @@ let currentParticleMode = localStorage.getItem('eclipse_particle_mode') || 'neur
 let currentVelocityScale = parseFloat(localStorage.getItem('eclipse_velocity_scale') || '1');
 const CONNECTION_DISTANCE = 150;
 
-const PARTICLE_COUNT = 60;
+const PARTICLE_COUNT = 80;
 let mouse = { x: null, y: null };
 
 window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
@@ -46,18 +46,30 @@ function resize() {
 }
 window.addEventListener('resize', resize); resize();
 
-class Particle {
-    constructor() {
-        this.init();
+function getThemeParticleColor() {
+    const theme = document.documentElement.getAttribute('data-theme') || 'cyberpunk';
+    switch(theme) {
+        case 'hacker':   return { r:0,   g:255, b:65  };
+        case 'blood':    return { r:220, g:20,  b:60  };
+        case 'clinical': return { r:0,   g:120, b:220 };
+        default:         return { r:0,   g:240, b:255 };
     }
+}
+
+class Particle {
+    constructor() { this.init(); }
     init() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 1;
+        // Varied sizes: mostly tiny, occasionally larger
+        this.size = Math.random() < 0.15 ? Math.random() * 2.5 + 2 : Math.random() * 1.2 + 0.4;
+        this.opacity = Math.random() * 0.4 + 0.3;
+        this.opacityDir = Math.random() < 0.5 ? 1 : -1;
+        this.opacitySpeed = Math.random() * 0.004 + 0.001;
         this.resetVelocity();
     }
     resetVelocity() {
-        const baseSpeed = currentParticleMode === 'stars' ? 3 : 1.5;
+        const baseSpeed = currentParticleMode === 'stars' ? 3 : 0.8;
         this.vx = (Math.random() - 0.5) * baseSpeed * currentVelocityScale;
         this.vy = (Math.random() - 0.5) * baseSpeed * currentVelocityScale;
         if (currentParticleMode === 'stars') {
@@ -71,6 +83,10 @@ class Particle {
     }
     update() {
         this.x += this.vx; this.y += this.vy;
+        // Pulse opacity
+        this.opacity += this.opacitySpeed * this.opacityDir;
+        if (this.opacity > 0.75 || this.opacity < 0.1) this.opacityDir *= -1;
+
         if (currentParticleMode === 'neural') {
             if (this.x < 0 || this.x > width) this.vx *= -1;
             if (this.y < 0 || this.y > height) this.vy *= -1;
@@ -83,20 +99,37 @@ class Particle {
         if (mouse.x && mouse.y && currentParticleMode === 'neural') {
             let dx = mouse.x - this.x, dy = mouse.y - this.y;
             let dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 120) { this.x -= dx * 0.02; this.y -= dy * 0.02; }
+            if (dist < 150) { this.x -= dx * 0.025; this.y -= dy * 0.025; }
         }
     }
     draw() {
         if (!ctx) return;
+        const c = getThemeParticleColor();
         ctx.beginPath();
         if (currentParticleMode === 'stars') {
             ctx.moveTo(this.x, this.y);
             ctx.lineTo(this.x - this.vx * 4, this.y - this.vy * 4);
-            ctx.strokeStyle = 'rgba(0, 240, 255, 0.7)';
+            ctx.strokeStyle = `rgba(${c.r},${c.g},${c.b},0.7)`;
+            ctx.lineWidth = this.size * 0.5;
             ctx.stroke();
-        } else {
+        } else if (currentParticleMode === 'snow') {
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = currentParticleMode === 'snow' ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 240, 255, 0.6)';
+            ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+            ctx.fill();
+        } else {
+            // neural mode — glow bloom on larger particles
+            if (this.size > 2) {
+                const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
+                grad.addColorStop(0, `rgba(${c.r},${c.g},${c.b},${this.opacity * 0.8})`);
+                grad.addColorStop(1, `rgba(${c.r},${c.g},${c.b},0)`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+            }
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${c.r},${c.g},${c.b},${this.opacity})`;
             ctx.fill();
         }
     }
@@ -114,6 +147,7 @@ function animateParticles() {
         return;
     }
     ctx.clearRect(0, 0, width, height);
+    const c = getThemeParticleColor();
     for (let i = 0; i < particles.length; i++) {
         particles[i].update(); particles[i].draw();
         if (currentParticleMode === 'neural') {
@@ -121,9 +155,10 @@ function animateParticles() {
                 let dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
                 let distance = Math.sqrt(dx * dx + dy * dy);
                 if (distance < CONNECTION_DISTANCE) {
+                    const alpha = 0.18 * (1 - distance / CONNECTION_DISTANCE);
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(0, 240, 255, ${0.3 * (1 - distance / CONNECTION_DISTANCE)})`;
-                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = `rgba(${c.r},${c.g},${c.b},${alpha})`;
+                    ctx.lineWidth = 0.6;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
                     ctx.stroke();
