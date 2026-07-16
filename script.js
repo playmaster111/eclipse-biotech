@@ -4695,10 +4695,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const CAT_ICONS_M = { anabolic:'dna', peptides:'syringe', nootropic:'brain', ancillaries:'capsules', cannabis:'leaf', depressants:'moon', stimulants:'bolt' };
+
             const results = WIKI_DATA.filter(item => {
                 const estersStr = item.esters ? (Array.isArray(item.esters) ? item.esters.join(" ") : item.esters) : "";
                 const searchString = (item.name + " " + (item.aka || "") + " " + item.type + " " + item.category + " " + estersStr).toLowerCase();
                 return searchString.includes(term);
+            }).sort((a,b) => {
+                const aS = a.name.toLowerCase().startsWith(term);
+                const bS = b.name.toLowerCase().startsWith(term);
+                return (aS === bS) ? a.name.localeCompare(b.name) : aS ? -1 : 1;
             });
 
             if (results.length === 0) {
@@ -4706,15 +4712,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            function hlM(text, q) {
+                if (!q) return text;
+                const i = text.toLowerCase().indexOf(q);
+                if (i === -1) return text;
+                return text.slice(0,i) + `<mark class="ac-highlight">${text.slice(i,i+q.length)}</mark>` + text.slice(i+q.length);
+            }
+
             resultsContainer.innerHTML = results.map(item => `
                 <div class="mobile-search-result-item" onclick="mbnCloseSearch(); loadArticle('${item.id}');">
                     <div class="mobile-search-result-icon">
-                        <i class="fas fa-${item.category === 'anabolic' ? 'dna' : (item.category === 'nootropic' ? 'brain' : (item.category === 'peptides' ? 'syringe' : 'capsules'))}"></i>
+                        <i class="fas fa-${CAT_ICONS_M[item.category] || 'flask'}"></i>
                     </div>
-                    <div>
-                        <div class="mobile-search-result-name">${item.name}</div>
-                        <div class="mobile-search-result-type">${item.type.toUpperCase()}</div>
+                    <div class="mobile-sr-body">
+                        <div class="mobile-search-result-name">${hlM(item.name, term)}</div>
+                        ${item.aka ? `<div class="mobile-sr-aka">${item.aka.split(',')[0].trim()}</div>` : ''}
                     </div>
+                    <div class="mobile-search-result-type">${item.type.toUpperCase()}</div>
                 </div>
             `).join('');
         });

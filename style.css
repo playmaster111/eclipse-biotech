@@ -8400,3 +8400,66 @@ html[data-theme="clinical"] .home-section-header i { color: #005fa3; }
     .home-stat { flex: 1 1 40%; }
     .home-stat-divider { display: none; }
 }
+
+/* ============================================================
+   MOBILE POLISH — search results, carousel, general
+   ============================================================ */
+
+/* Mobile search result layout fix */
+.mobile-search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.mobile-sr-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.mobile-sr-aka {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: var(--font-m);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.05em;
+}
+.mobile-search-result-type {
+    font-family: var(--font-m);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: rgba(0,240,255,0.07);
+    border: 1px solid rgba(0,240,255,0.15);
+    border-radius: 3px;
+    padding: 2px 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+/* Carousel: fix card padding & font on very small screens */
+@media (max-width: 420px) {
+    .home-carousel { height: 220px; }
+    .home-carousel-card { padding: 16px; }
+    .home-carousel-name { font-size: 1.2rem; }
+    .home-carousel-desc { font-size: 11px; }
+    .home-dashboard { padding: 12px 10px 60px; gap: 20px; }
+    .home-cat-tile { padding: 12px 8px; }
+    .home-cat-tile i { font-size: 16px; }
+    .home-cat-count { font-size: 0.9rem; }
+}
+
+/* Autocomplete on mobile: full width, higher z-index above bottom nav */
+@media (max-width: 1024px) {
+    .search-autocomplete {
+        z-index: 3000;
+        left: -8px;
+        right: -8px;
+        border-radius: 0 0 8px 8px;
+    }
+    .ac-item { padding: 12px 14px; }
+}
