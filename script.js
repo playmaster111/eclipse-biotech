@@ -2157,6 +2157,12 @@ function loadCoachView() {
                             <div class="empty-lab-msg">Laboratory tray is empty. Add substances from the databank below.</div>
                         </div>
                         <div id="stack-analysis" class="stack-analysis-panel" style="display:none;"></div>
+                        <div class="pk-chart-container" id="pk-chart-container" style="display:none;">
+                            <div class="pk-chart-title"><i class="fas fa-chart-area"></i> PHARMACOKINETICS SIMULATOR</div>
+                            <div style="position: relative; height: 250px; width: 100%;">
+                                <canvas id="pkChart"></canvas>
+                            </div>
+                        </div>
                     </div>
                     
                     <aside class="lab-picker">
@@ -2427,6 +2433,124 @@ window.validateCustomStack = function() {
             analysis.innerHTML += `<div class="hazard-card status-${w.type}">${w.msg}</div>`;
         });
     }
+
+    if (window.updatePKChart) window.updatePKChart();
+}
+
+let pkChartInstance = null;
+
+window.updatePKChart = function() {
+    const container = document.getElementById('pk-chart-container');
+    const ctxEl = document.getElementById('pkChart');
+    if (!container || !ctxEl) return;
+
+    if (customStack.length === 0) {
+        container.style.display = 'none';
+        return;
+    }
+    container.style.display = 'block';
+
+    const daysTotal = 16 * 7; // 16 weeks max visible
+    const datasets = [];
+    const themeColors = ['#00f0ff', '#ff3a5c', '#00ff41', '#f0a500', '#bb86fc', '#ffff00'];
+
+    customStack.forEach((s, idx) => {
+        const c = WIKI_DATA.find(x => x.id === s.id);
+        const doseMg = parseFloat(s.dosage) || 0;
+        const weeks = parseFloat(s.weeks) || 12;
+        const stopDay = weeks * 7;
+
+        const esters = (Array.isArray(c?.esters) ? c.esters.join(' ') : c?.esters || '').toLowerCase();
+        let halfLife = 1; // default oral/suspension
+        let pinFreq = 1; // daily
+        
+        if (c?.type === 'Oral' || c?.folder?.includes('Oral')) { halfLife = 0.5; pinFreq = 1; }
+        else if (esters.includes('undecanoate')) { halfLife = 30; pinFreq = 7; } 
+        else if (esters.includes('decanoate')) { halfLife = 15; pinFreq = 3.5; } 
+        else if (esters.includes('cypionate') || esters.includes('enanthate')) { halfLife = 7; pinFreq = 3.5; } 
+        else if (esters.includes('phenylpropionate')) { halfLife = 4.5; pinFreq = 2; } 
+        else if (esters.includes('propionate')) { halfLife = 3; pinFreq = 2; }
+        else if (esters.includes('acetate')) { halfLife = 2; pinFreq = 1; }
+
+        const dosePerPin = doseMg / (7 / pinFreq);
+        const k = Math.LN2 / halfLife; 
+        const dataPoints = [];
+
+        let currentBloodMg = 0;
+
+        for (let day = 0; day <= daysTotal; day++) {
+            // Decay previous day's blood levels
+            currentBloodMg = currentBloodMg * Math.exp(-k * 1);
+
+            // Did we pin today?
+            if (day < stopDay && day % pinFreq < 1) {
+                currentBloodMg += dosePerPin;
+            }
+
+            dataPoints.push(currentBloodMg);
+        }
+
+        datasets.push({
+            label: s.name,
+            data: dataPoints,
+            borderColor: themeColors[idx % themeColors.length],
+            backgroundColor: themeColors[idx % themeColors.length] + '20',
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: true,
+            tension: 0.4
+        });
+    });
+
+    const labels = Array.from({length: daysTotal + 1}, (_, i) => i % 7 === 0 ? \`Wk \${i/7}\` : '');
+
+    if (pkChartInstance) {
+        pkChartInstance.destroy();
+    }
+
+    pkChartInstance = new Chart(ctxEl, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            plugins: {
+                legend: {
+                    labels: { color: '#a1abb8', font: { family: 'DM Sans', size: 10 } }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    titleColor: '#00f0ff',
+                    bodyColor: '#fff',
+                    borderColor: 'rgba(0, 240, 255, 0.3)',
+                    borderWidth: 1,
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + ' mg';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: { color: 'rgba(255,255,255,0.05)' },
+                    ticks: { color: '#a1abb8', maxTicksLimit: 17, autoSkip: true }
+                },
+                y: {
+                    grid: { color: 'rgba(255,255,255,0.05)' },
+                    ticks: { color: '#a1abb8' },
+                    title: { display: true, text: 'Active Blood Concentration (mg)', color: '#a1abb8', font: {size: 10} }
+                }
+            }
+        }
+    });
 }
 
 function generateCycle() {
