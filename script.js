@@ -2502,7 +2502,7 @@ window.updatePKChart = function() {
         });
     });
 
-    const labels = Array.from({length: daysTotal + 1}, (_, i) => i % 7 === 0 ? \`Wk \${i/7}\` : '');
+    const labels = Array.from({length: daysTotal + 1}, (_, i) => i % 7 === 0 ? `Wk ${i/7}` : '');
 
     if (pkChartInstance) {
         pkChartInstance.destroy();
