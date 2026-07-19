@@ -2298,6 +2298,64 @@ input:checked + .slider:before {
     margin-bottom: 25px;
 }
 
+/* ── Cycle Builder Metrics Dashboard ── */
+.lab-dashboard {
+    background: rgba(0, 240, 255, 0.03);
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.lab-dash-metrics {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.dash-metric {
+    flex: 1;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+}
+.dm-label {
+    font-family: var(--font-m);
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 5px;
+}
+.dm-val {
+    font-family: var(--font-d);
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 5px currentColor;
+}
+.lab-dash-pct {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 15px;
+}
+.pct-title {
+    font-family: var(--font-m);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.pct-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+.pct-desc span {
+    font-weight: bold;
+}
+
 .stack-card {
     background: var(--surface2);
     border: 1px solid var(--border2);

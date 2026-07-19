@@ -2133,6 +2133,25 @@ function loadCoachView() {
                 <div class="manual-lab-grid">
                     <div class="lab-workspace">
                         <div class="lab-header">ACTIVE_PROTOCOL_STACK</div>
+                        
+                        <div class="lab-dashboard" id="lab-dashboard" style="display:none;">
+                            <div class="lab-dash-metrics">
+                                <div class="dash-metric">
+                                    <div class="dm-label">TOTAL WEEKLY LOAD</div>
+                                    <div class="dm-val" id="dash-total-mg" style="color:var(--accent);">0mg</div>
+                                </div>
+                                <div class="dash-metric">
+                                    <div class="dm-label">HEPATIC STRAIN</div>
+                                    <div class="dm-val" id="dash-hepatic">LOW</div>
+                                </div>
+                                <div class="dash-metric">
+                                    <div class="dm-label">ESTROGENIC LOAD</div>
+                                    <div class="dm-val" id="dash-estro">LOW</div>
+                                </div>
+                            </div>
+                            <div class="lab-dash-pct" id="dash-pct-block"></div>
+                        </div>
+
                         <div id="custom-stack-display" class="custom-stack-display">
                             <!-- Populated dynamically -->
                             <div class="empty-lab-msg">Laboratory tray is empty. Add substances from the databank below.</div>
@@ -2271,15 +2290,102 @@ window.renderCustomStack = function() {
 }
 
 window.validateCustomStack = function() {
+    // Show dashboard
+    const dash = document.getElementById('lab-dashboard');
+    if (dash) dash.style.display = customStack.length > 0 ? 'block' : 'none';
+
+    // Update Analysis
     const analysis = document.getElementById('stack-analysis');
     if (!analysis) return;
+
+    if (customStack.length === 0) {
+        analysis.style.display = 'none';
+        return;
+    }
 
     analysis.style.display = 'block';
     analysis.innerHTML = `<div class="analysis-header"><i class="fas fa-brain"></i> CORTEX_NEURAL_LOGGING</div>`;
 
     const warnings = [];
+    let totalMg = 0;
+    let maxEsterDays = 0;
+    let isSuppressive = false;
+    let hepaticScore = 0;
+    let estroScore = 0;
+
     const ids = customStack.map(s => s.id);
     const compounds = customStack.map(s => WIKI_DATA.find(c => c.id === s.id));
+
+    customStack.forEach(s => {
+        const c = WIKI_DATA.find(x => x.id === s.id);
+        const dose = parseFloat(s.dosage) || 0;
+        totalMg += dose;
+
+        // Simplified logic for half life
+        const esters = (Array.isArray(c?.esters) ? c.esters.join(' ') : c?.esters || '').toLowerCase();
+        let days = 1; // default
+        if (esters.includes('undecanoate')) days = 30;
+        else if (esters.includes('decanoate')) days = 15;
+        else if (esters.includes('cypionate') || esters.includes('enanthate')) days = 7;
+        else if (esters.includes('propionate') || esters.includes('phenylpropionate')) days = 3;
+        else if (esters.includes('acetate')) days = 2;
+        if (days > maxEsterDays) maxEsterDays = days;
+
+        // Suppressive?
+        if (c?.type === 'AAS' || c?.type === 'SARMs' || c?.category === 'anabolic') isSuppressive = true;
+
+        // Hepatic?
+        if (c?.type === 'Oral' || c?.folder?.includes('Oral')) hepaticScore += dose;
+
+        // Estrogenic?
+        if (s.id.includes('testosterone') || s.id === 'sustanon' || s.id === 'dianabol' || s.id === 'trestolone') {
+            estroScore += dose;
+        }
+        if (s.id === 'arimidex' || s.id === 'aromasin' || s.id === 'letrozole') {
+            estroScore -= (dose * 100); // AI reduces estro score
+        }
+    });
+
+    // Update Dashboard Metrics
+    const elTotal = document.getElementById('dash-total-mg');
+    const elHepatic = document.getElementById('dash-hepatic');
+    const elEstro = document.getElementById('dash-estro');
+    const elPct = document.getElementById('dash-pct-block');
+
+    if (elTotal) elTotal.innerText = `${totalMg}mg/wk`;
+
+    if (elHepatic) {
+        if (hepaticScore > 350) { elHepatic.innerText = 'CRITICAL'; elHepatic.style.color = 'var(--red)'; }
+        else if (hepaticScore > 150) { elHepatic.innerText = 'HIGH'; elHepatic.style.color = '#ffaa00'; }
+        else if (hepaticScore > 0) { elHepatic.innerText = 'ELEVATED'; elHepatic.style.color = 'var(--accent)'; }
+        else { elHepatic.innerText = 'LOW'; elHepatic.style.color = '#39e58c'; }
+    }
+
+    if (elEstro) {
+        if (estroScore > 800) { elEstro.innerText = 'HIGH'; elEstro.style.color = 'var(--red)'; }
+        else if (estroScore > 400) { elEstro.innerText = 'MODERATE'; elEstro.style.color = '#ffaa00'; }
+        else if (estroScore > 0) { elEstro.innerText = 'LOW'; elEstro.style.color = 'var(--accent)'; }
+        else { elEstro.innerText = 'CRASHED / NONE'; elEstro.style.color = '#39e58c'; }
+    }
+
+    // Generate Dynamic PCT
+    if (elPct) {
+        if (!isSuppressive) {
+            elPct.innerHTML = `<div class="pct-title"><i class="fas fa-shield-alt"></i> PCT RECOMMENDATION</div><div class="pct-desc">No suppressive compounds detected. PCT is not required.</div>`;
+        } else {
+            let clearanceWait = maxEsterDays * 4; // 4-5 half lives to clear
+            let nolvaDose = totalMg > 1000 ? '40mg/day for 2 weeks, then 20mg/day for 2 weeks' : '20mg/day for 4 weeks';
+            let clomidDose = totalMg > 1000 ? '50mg/day for 4 weeks' : '25mg/day for 4 weeks';
+            
+            elPct.innerHTML = `
+                <div class="pct-title"><i class="fas fa-prescription-bottle-alt"></i> DYNAMIC PCT PROTOCOL</div>
+                <div class="pct-desc">
+                    <div style="margin-bottom:6px;"><strong>Clearance Phase:</strong> Wait <span style="color:var(--accent); font-family:var(--font-d);">${clearanceWait} days</span> after last pin for esters to clear.</div>
+                    <div><strong>SERM Protocol:</strong> Nolvadex at ${nolvaDose} OR Enclomiphene at ${clomidDose}.</div>
+                </div>
+            `;
+        }
+    }
 
     // Warning Logic
     const orals = compounds.filter(c => c.folder?.includes('Oral') || c.type === 'Oral');
@@ -2307,7 +2413,7 @@ window.validateCustomStack = function() {
     }
 
     const testFound = ids.some(id => id.includes('testosterone') || id === 'sustanon');
-    if (!testFound && compounds.length > 0) {
+    if (!testFound && isSuppressive) {
         warnings.push({
             type: 'critical',
             msg: `ENDOCRINE_VOID: No Testosterone base detected. HPTA suppression will result in zero estrogen and high physiological lethargy. A testosterone base is clinically recommended.`
