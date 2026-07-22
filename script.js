@@ -33,6 +33,55 @@ let mouse = { x: null, y: null };
 window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
 window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   BOOKMARKS & FAVORITES VAULT STATE SYSTEM
+   ═══════════════════════════════════════════════════════════════════════════ */
+let bookmarkedCompounds = new Set(JSON.parse(localStorage.getItem('eclipse_bookmarks') || '[]'));
+
+function saveBookmarks() {
+    localStorage.setItem('eclipse_bookmarks', JSON.stringify(Array.from(bookmarkedCompounds)));
+    updateVaultNavBadge();
+}
+
+function toggleBookmark(id, event) {
+    if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+    if (bookmarkedCompounds.has(id)) {
+        bookmarkedCompounds.delete(id);
+    } else {
+        bookmarkedCompounds.add(id);
+    }
+    saveBookmarks();
+
+    document.querySelectorAll(`.bookmark-btn[data-id="${id}"]`).forEach(btn => {
+        const isBookmarked = bookmarkedCompounds.has(id);
+        btn.className = `bookmark-btn ${isBookmarked ? 'active' : ''}`;
+        btn.innerHTML = `<i class="${isBookmarked ? 'fas' : 'far'} fa-star"></i>`;
+        btn.title = isBookmarked ? 'Remove from Vault Bookmarks' : 'Pin to Vault Bookmarks';
+    });
+
+    if (document.getElementById('pinned-substances-grid')) {
+        renderPinnedSubstances();
+    }
+}
+
+function getBookmarkStarHtml(id) {
+    const isBookmarked = bookmarkedCompounds.has(id);
+    return `<button class="bookmark-btn ${isBookmarked ? 'active' : ''}" data-id="${id}" onclick="toggleBookmark('${id}', event)" title="${isBookmarked ? 'Remove from Vault Bookmarks' : 'Pin to Vault Bookmarks'}">
+        <i class="${isBookmarked ? 'fas' : 'far'} fa-star"></i>
+    </button>`;
+}
+
+function updateVaultNavBadge() {
+    const btn = document.getElementById('vault-nav-btn');
+    if (btn) {
+        const count = bookmarkedCompounds.size;
+        btn.innerText = `> _RESEARCH_VAULT${count > 0 ? ` (${count})` : ''}`;
+    }
+}
+
 window.onerror = function(msg, url, lineNo, columnNo, error) {
     console.error("ECLIPSE_CRITICAL_ERROR:", msg, "at", url, ":", lineNo);
     showNotify("SYSTEM_ERROR: " + msg, 10000);
@@ -1393,6 +1442,7 @@ function renderSidebar(filter = '') {
         vaultBtn.style.color = '#00d4ff';
         vaultBtn.onclick = () => loadVaultView();
         navEl.appendChild(vaultBtn);
+        updateVaultNavBadge();
 
         const pathologyBtn = document.createElement('div');
         pathologyBtn.className = 'nav-item';
@@ -1927,9 +1977,12 @@ function loadArticle(id) {
             <header class="article-header">
                 <div class="header-main">
                     <h1>${item[`name_${currentLang}`] || item.name}</h1>
-                    <button class="cyber-btn wiki-ai-consult" onclick="triggerAIExplain('${item[`name_${currentLang}`] || item.name}')">
-                        <i class="fas fa-brain"></i> ${getT('ask_ai') || 'ASK_ECLIPSE'}
-                    </button>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        ${getBookmarkStarHtml(item.id)}
+                        <button class="cyber-btn wiki-ai-consult" onclick="triggerAIExplain('${item[`name_${currentLang}`] || item.name}')">
+                            <i class="fas fa-brain"></i> ${getT('ask_ai') || 'ASK_ECLIPSE'}
+                        </button>
+                    </div>
                 </div>
                 <div class="badges">
                     <span class="badge cat">${getT(item.type.toLowerCase()) || item.type}</span>
@@ -3041,37 +3094,100 @@ function loadVaultView() {
 
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('vault-nav-btn')) document.getElementById('vault-nav-btn').classList.add('active');
-    document.getElementById('current-category').innerText = "RESEARCH VAULT";
+    document.getElementById('current-category').innerText = "RESEARCH_VAULT";
 
     const mount = document.getElementById('article-mount');
-    
-    if (!currentUser) {
-        mount.innerHTML = `
-            <div class="empty-state">
-                <div class="glitch-icon" style="color: var(--red)"><i class="fas fa-lock"></i></div>
-                <h2 class="glitch-small" data-text="ACCESS RESTRICTED" style="color: var(--red)">ACCESS RESTRICTED</h2>
-                <p style="max-width: 400px; line-height: 1.6; margin-bottom: 25px;">The Research Vault requires a verified BIO-ID to decrypt and load personal pharmacological data logs.</p>
-                <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn">ENROLL_BIO_ID_FOR_ACCESS</button>
+
+    mount.innerHTML = `
+        <div class="vault-view">
+            <div class="vault-header">
+                <h2><i class="fas fa-archive"></i> RESEARCH_VAULT // QUICK VAULT & DOSSIER</h2>
+                <p>Personalized hub of starred databank substances, saved protocol stacks, and clinical assessments.</p>
+            </div>
+
+            <!-- Pinned Substances Quick Vault -->
+            <div class="vault-section">
+                <div class="vault-section-title"><i class="fas fa-star" style="color:#ffaa00;"></i> PINNED SUBSTANCES (${bookmarkedCompounds.size})</div>
+                <div id="pinned-substances-grid" class="pinned-grid"></div>
+            </div>
+
+            <!-- Saved Cycles & Dossier -->
+            <div class="vault-section" style="margin-top: 35px;">
+                <div class="vault-section-title"><i class="fas fa-history"></i> SAVED PROTOCOLS & DOSSIERS</div>
+                ${!currentUser ? `
+                    <div class="vault-auth-notice">
+                        <i class="fas fa-lock" style="color: var(--accent2); font-size: 20px;"></i>
+                        <div>Sign in with BIO-ID to synchronize your saved protocol stacks to the cloud.</div>
+                        <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn" style="margin-top:8px; font-size:11px; padding:6px 12px;">ENROLL_BIO_ID</button>
+                    </div>
+                ` : ''}
+                <div id="vault-list" class="vault-list" style="margin-top: 15px;">
+                    <div class="loading-msg">SYNCHRONIZING_WITH_VAULT...</div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    renderPinnedSubstances();
+    if (currentUser) renderVaultItems();
+    else {
+        const listEl = document.getElementById('vault-list');
+        if (listEl) listEl.innerHTML = `<div class="empty-vault-msg"><i class="fas fa-info-circle"></i> Local mode active. Star compounds above to keep them in your browser vault.</div>`;
+    }
+}
+
+function renderPinnedSubstances() {
+    const grid = document.getElementById('pinned-substances-grid');
+    if (!grid) return;
+
+    if (bookmarkedCompounds.size === 0) {
+        grid.innerHTML = `
+            <div class="empty-pinned-msg">
+                <i class="far fa-star" style="font-size: 24px; color: var(--muted); margin-bottom: 10px;"></i>
+                <div>No substances currently pinned to your Quick Vault.</div>
+                <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Click the star icon <i class="far fa-star"></i> on any compound to save it here for instant reference.</div>
             </div>
         `;
         return;
     }
 
-    mount.innerHTML = `
-        <div class="vault-view">
-            <div class="vault-header">
-                <h2><i class="fas fa-database"></i> RESEARCH_VAULT // ${currentUser.username.toUpperCase()}</h2>
-                <p>Personalized dossier of archived protocols, stacks, and clinical assessments.</p>
+    const pinnedItems = Array.from(bookmarkedCompounds).map(id => WIKI_DATA.find(x => x.id === id)).filter(Boolean);
+
+    grid.innerHTML = pinnedItems.map(item => `
+        <div class="pinned-card glass-card">
+            <div class="pinned-card-header">
+                <span class="pinned-badge">${item.type || 'Substance'}</span>
+                <button class="pinned-unpin-btn" onclick="toggleBookmark('${item.id}', event)" title="Remove Bookmark">
+                    <i class="fas fa-star" style="color:#ffaa00;"></i>
+                </button>
             </div>
-            
-            <div id="vault-list" class="vault-list">
-                <div class="loading-msg">SYNCHRONIZING_WITH_VAULT...</div>
+            <h3 class="pinned-title">${item.name}</h3>
+            <div class="pinned-category">${(CATEGORIES[item.category]?.name || item.category || '').toUpperCase()}</div>
+            <p class="pinned-desc">${(item.overview || '').substring(0, 85)}...</p>
+            <div class="pinned-actions">
+                <button class="pinned-act-btn" onclick="loadArticle('${item.id}')"><i class="fas fa-eye"></i> VIEW</button>
+                <button class="pinned-act-btn highlight" onclick="window.addToStackFromVault('${item.id}')"><i class="fas fa-plus"></i> STACK</button>
             </div>
         </div>
-    `;
-
-    renderVaultItems();
+    `).join('');
 }
+
+window.addToStackFromVault = function(id) {
+    const item = WIKI_DATA.find(x => x.id === id);
+    if (!item) return;
+    if (window.customStack && !customStack.some(s => s.id === id)) {
+        customStack.push({
+            id: item.id,
+            name: item.name,
+            dosage: item.folder?.includes('Oral') || item.type === 'Oral' ? 50 : 250,
+            weeks: 12
+        });
+    }
+    loadCoachView();
+    if (window.loadManualLab) window.loadManualLab();
+    if (window.renderCustomStack) window.renderCustomStack();
+    if (window.validateCustomStack) window.validateCustomStack();
+};
 
 async function renderVaultItems() {
     const listEl = document.getElementById('vault-list');
