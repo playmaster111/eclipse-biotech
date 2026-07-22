@@ -8768,18 +8768,32 @@ html[data-theme="clinical"] .home-section-header i { color: #005fa3; }
 /* ═══════════════════════════════════════════════════════════════════════════
    BOOKMARK & QUICK VAULT STYLES
    ═══════════════════════════════════════════════════════════════════════════ */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.header-actions .wiki-ai-consult {
+    margin: 0 !important;
+}
+
 .bookmark-btn {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: var(--muted);
-    font-size: 14px;
-    padding: 8px 12px;
+    font-size: 13px;
+    padding: 0 14px;
+    height: 37px;
+    line-height: 1;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    margin: 0;
+    vertical-align: middle;
 }
 .bookmark-btn:hover {
     border-color: #ffaa00;

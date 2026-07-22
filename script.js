@@ -1977,7 +1977,7 @@ function loadArticle(id) {
             <header class="article-header">
                 <div class="header-main">
                     <h1>${item[`name_${currentLang}`] || item.name}</h1>
-                    <div style="display: flex; gap: 10px; align-items: center;">
+                    <div class="header-actions">
                         ${getBookmarkStarHtml(item.id)}
                         <button class="cyber-btn wiki-ai-consult" onclick="triggerAIExplain('${item[`name_${currentLang}`] || item.name}')">
                             <i class="fas fa-brain"></i> ${getT('ask_ai') || 'ASK_ECLIPSE'}
