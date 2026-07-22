@@ -1378,6 +1378,14 @@ function renderSidebar(filter = '') {
         coachBtn.onclick = () => loadCoachView();
         navEl.appendChild(coachBtn);
 
+        const matrixBtn = document.createElement('div');
+        matrixBtn.className = 'nav-item';
+        matrixBtn.innerText = '> _COMPOUND_MATRIX';
+        matrixBtn.id = 'matrix-nav-btn';
+        matrixBtn.style.color = '#00f0ff'; // Neon Cyan for Comparison Matrix
+        matrixBtn.onclick = () => loadCompareView();
+        navEl.appendChild(matrixBtn);
+
         const vaultBtn = document.createElement('div');
         vaultBtn.className = 'nav-item';
         vaultBtn.innerText = '> _RESEARCH_VAULT';
@@ -2552,6 +2560,311 @@ window.updatePKChart = function() {
         }
     });
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPOUND COMPARISON MATRIX SYSTEM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+const COMPOUND_RATIOS = {
+    'testosterone_enanthate': { anabolic: 100, androgenic: 100, mass: 8, strength: 8, fatLoss: 5, toxicity: 2, estrogen: 7 },
+    'testosterone_cypionate': { anabolic: 100, androgenic: 100, mass: 8, strength: 8, fatLoss: 5, toxicity: 2, estrogen: 7 },
+    'testosterone_propionate': { anabolic: 100, androgenic: 100, mass: 8, strength: 8, fatLoss: 6, toxicity: 2, estrogen: 6 },
+    'testosterone_suspension': { anabolic: 100, androgenic: 100, mass: 9, strength: 9, fatLoss: 5, toxicity: 3, estrogen: 9 },
+    'trenbolone_acetate': { anabolic: 500, androgenic: 500, mass: 10, strength: 10, fatLoss: 9, toxicity: 8, estrogen: 1 },
+    'trenbolone_enanthate': { anabolic: 500, androgenic: 500, mass: 10, strength: 10, fatLoss: 9, toxicity: 8, estrogen: 1 },
+    'nandrolone_decanoate': { anabolic: 125, androgenic: 37, mass: 9, strength: 7, fatLoss: 4, toxicity: 3, estrogen: 4 },
+    'nandrolone_npp': { anabolic: 125, androgenic: 37, mass: 9, strength: 7, fatLoss: 5, toxicity: 3, estrogen: 4 },
+    'oxandrolone': { anabolic: 400, androgenic: 24, mass: 5, strength: 7, fatLoss: 8, toxicity: 5, estrogen: 0 },
+    'stanozolol': { anabolic: 320, androgenic: 30, mass: 6, strength: 9, fatLoss: 8, toxicity: 8, estrogen: 0 },
+    'methandrostenolone': { anabolic: 210, androgenic: 60, mass: 9, strength: 9, fatLoss: 3, toxicity: 7, estrogen: 9 },
+    'oxymetholone': { anabolic: 320, androgenic: 45, mass: 10, strength: 10, fatLoss: 2, toxicity: 10, estrogen: 8 },
+    'drostanolone': { anabolic: 62, androgenic: 25, mass: 4, strength: 6, fatLoss: 9, toxicity: 2, estrogen: 0 },
+    'primobolan': { anabolic: 88, androgenic: 44, mass: 6, strength: 5, fatLoss: 7, toxicity: 2, estrogen: 0 },
+    'boldenone_undecylenate': { anabolic: 100, androgenic: 50, mass: 7, strength: 6, fatLoss: 5, toxicity: 2, estrogen: 3 }
+};
+
+function getCompoundRatios(c) {
+    if (!c) return { anabolic: 100, androgenic: 100, mass: 5, strength: 5, fatLoss: 5, toxicity: 2, estrogen: 5 };
+    
+    const known = COMPOUND_RATIOS[c.id];
+    if (known) return known;
+
+    const imp = c.impact || {};
+    const isOral = c.type === 'Oral' || c.folder?.includes('Oral');
+    
+    return {
+        anabolic: 100 + (imp.blood || 3) * 30,
+        androgenic: 50 + (imp.hair || 3) * 35,
+        mass: Math.min(10, Math.max(1, (imp.blood || 3) + 3)),
+        strength: Math.min(10, Math.max(1, (imp.joints || 3) + (imp.blood || 3))),
+        fatLoss: Math.min(10, Math.max(1, 10 - (imp.heart || 3))),
+        toxicity: isOral ? Math.max(7, imp.liver || 8) : Math.max(2, imp.liver || 2),
+        estrogen: c.id.includes('testosterone') || c.id === 'methandrostenolone' ? 8 : isOral ? 5 : 2
+    };
+}
+
+let compareRadarChartInstance = null;
+
+function renderCompareRadarChart(c1, c2, r1, r2) {
+    const canvas = document.getElementById('compareRadarChartCanvas');
+    if (!canvas) return;
+
+    if (compareRadarChartInstance) {
+        compareRadarChartInstance.destroy();
+    }
+
+    compareRadarChartInstance = new Chart(canvas, {
+        type: 'radar',
+        data: {
+            labels: ['Hypertrophy / Mass', 'Strength Power', 'Lipolysis / Fat Loss', 'Hepatic Strain', 'Estrogen Load'],
+            datasets: [
+                {
+                    label: c1.name,
+                    data: [r1.mass, r1.strength, r1.fatLoss, r1.toxicity, r1.estrogen],
+                    borderColor: '#00f0ff',
+                    backgroundColor: 'rgba(0, 240, 255, 0.2)',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#00f0ff'
+                },
+                {
+                    label: c2.name,
+                    data: [r2.mass, r2.strength, r2.fatLoss, r2.toxicity, r2.estrogen],
+                    borderColor: '#ff3a5c',
+                    backgroundColor: 'rgba(255, 58, 92, 0.2)',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#ff3a5c'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                    pointLabels: {
+                        color: '#a1abb8',
+                        font: { family: 'DM Sans', size: 11, weight: 'bold' }
+                    },
+                    ticks: {
+                        color: 'rgba(255, 255, 255, 0.4)',
+                        backdropColor: 'transparent',
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: { color: '#ffffff', font: { family: 'DM Sans', size: 12 } }
+                }
+            }
+        }
+    });
+}
+
+function generateSynergyAnalysis(c1, c2, r1, r2) {
+    const isBothOrals = (c1.type === 'Oral' || c1.folder?.includes('Oral')) && (c2.type === 'Oral' || c2.folder?.includes('Oral'));
+    const is19NorCollision = (c1.id.includes('trenbolone') || c1.id.includes('nandrolone')) && (c2.id.includes('trenbolone') || c2.id.includes('nandrolone'));
+    const hasTestBase = c1.id.includes('testosterone') || c2.id.includes('testosterone') || c1.id === 'sustanon' || c2.id === 'sustanon';
+
+    let alertHtml = '';
+    if (isBothOrals) {
+        alertHtml = `<div class="synergy-alert alert-critical"><i class="fas fa-exclamation-triangle"></i> <strong>CRITICAL HEPATIC STRAIN:</strong> Both ${c1.name} and ${c2.name} are C17-alpha alkylated orals. Running them together dramatically increases liver enzyme stress (ALT/AST) and lipid degradation. Mandatory TUDCA (500mg-1000mg/day) + NAC recommended.</div>`;
+    } else if (is19NorCollision) {
+        alertHtml = `<div class="synergy-alert alert-warning"><i class="fas fa-radiation"></i> <strong>PROGESTIN COLLISION:</strong> Both compounds are 19-nor derivatives. Stacking them together compounds prolactin elevation risk, severe HPTA shutdown, and potential progesterone-induced side effects. Cabergoline or P-5-P monitoring advised.</div>`;
+    } else if (!hasTestBase && (c1.category === 'anabolic' || c2.category === 'anabolic')) {
+        alertHtml = `<div class="synergy-alert alert-warning"><i class="fas fa-ban"></i> <strong>ENDOCRINE VOID:</strong> Neither compound is a Testosterone base. Running this stack without a physiological testosterone anchor will cause complete zero-estrogen lethargy, libido crash, and mood degradation.</div>`;
+    } else {
+        alertHtml = `<div class="synergy-alert alert-optimal"><i class="fas fa-check-circle"></i> <strong>COMPATIBLE PHARMACOLOGICAL PAIRING:</strong> ${c1.name} + ${c2.name} display distinct receptor affinity profiles. When combined under proper clinical supervision, they provide complementary pathways without direct compound collisions.</div>`;
+    }
+
+    return `
+        ${alertHtml}
+        <div class="synergy-breakdown">
+            <div class="synergy-item">
+                <span class="syn-lbl">Anabolic Multiplier:</span>
+                <span class="syn-val">${Math.round((r1.anabolic + r2.anabolic) / 2)} Total Index</span>
+            </div>
+            <div class="synergy-item">
+                <span class="syn-lbl">Estrogen Synergy:</span>
+                <span class="syn-val">${r1.estrogen > 4 && r2.estrogen > 4 ? 'High Cumulative Aromatization (AI Recommended)' : (r1.estrogen === 0 || r2.estrogen === 0) ? 'Dry / Low Water Retention Protocol' : 'Moderate Aromatization'}</span>
+            </div>
+        </div>
+    `;
+}
+
+window.loadCompareView = function() {
+    if (window.mbnSetActive) window.mbnSetActive('mbn-matrix');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    if (document.getElementById('matrix-nav-btn')) document.getElementById('matrix-nav-btn').classList.add('active');
+    document.getElementById('current-category').innerText = "COMPOUND_COMPARISON_MATRIX";
+
+    const mount = document.getElementById('article-mount');
+    mount.innerHTML = `
+        <div class="compare-view-container">
+            <div class="compare-header">
+                <h1><i class="fas fa-balance-scale"></i> Pharmacological Comparison Matrix</h1>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Select two substances from the databank to run a head-to-head analytical breakdown, side-by-side metric comparison, and Cortex radar overlay.</p>
+            </div>
+
+            <div class="compare-selectors">
+                <div class="comp-select-wrap">
+                    <label><i class="fas fa-flask" style="color:var(--accent);"></i> SUBSTANCE ALPHA</label>
+                    <select id="compare-select-a" class="compare-dropdown" onchange="window.updateComparison()"></select>
+                </div>
+                <div class="comp-vs-badge">VS</div>
+                <div class="comp-select-wrap">
+                    <label><i class="fas fa-vial" style="color:#ff3a5c;"></i> SUBSTANCE BETA</label>
+                    <select id="compare-select-b" class="compare-dropdown" onchange="window.updateComparison()"></select>
+                </div>
+            </div>
+
+            <div id="compare-content-body"></div>
+        </div>
+    `;
+
+    const selectA = document.getElementById('compare-select-a');
+    const selectB = document.getElementById('compare-select-b');
+
+    const sortedCompounds = [...WIKI_DATA].sort((a, b) => a.name.localeCompare(b.name));
+
+    sortedCompounds.forEach(c => {
+        const optA = document.createElement('option');
+        optA.value = c.id;
+        optA.innerText = `${c.name} (${c.type || 'Substance'})`;
+        selectA.appendChild(optA);
+
+        const optB = document.createElement('option');
+        optB.value = c.id;
+        optB.innerText = `${c.name} (${c.type || 'Substance'})`;
+        selectB.appendChild(optB);
+    });
+
+    const defaultA = sortedCompounds.find(c => c.id.includes('testosterone_enanthate')) ? 'testosterone_enanthate' : sortedCompounds[0]?.id;
+    const defaultB = sortedCompounds.find(c => c.id.includes('nandrolone_decanoate')) ? 'nandrolone_decanoate' : sortedCompounds[1]?.id;
+
+    if (selectA) selectA.value = defaultA;
+    if (selectB) selectB.value = defaultB;
+
+    window.updateComparison();
+};
+
+window.updateComparison = function() {
+    const idA = document.getElementById('compare-select-a')?.value;
+    const idB = document.getElementById('compare-select-b')?.value;
+
+    if (!idA || !idB) return;
+
+    const c1 = WIKI_DATA.find(x => x.id === idA);
+    const c2 = WIKI_DATA.find(x => x.id === idB);
+
+    if (!c1 || !c2) return;
+
+    const body = document.getElementById('compare-content-body');
+    if (!body) return;
+
+    const ratiosA = getCompoundRatios(c1);
+    const ratiosB = getCompoundRatios(c2);
+
+    const catNameA = (CATEGORIES[c1.category]?.name || c1.category || 'N/A').toUpperCase();
+    const catNameB = (CATEGORIES[c2.category]?.name || c2.category || 'N/A').toUpperCase();
+
+    body.innerHTML = `
+        <div class="compare-grid">
+            <!-- Left Card -->
+            <div class="compare-card compare-card-left">
+                <div class="comp-card-badge">${c1.type || 'Substance'}</div>
+                <h2 style="color:var(--accent); margin-bottom: 5px;">${c1.name}</h2>
+                <div class="comp-esters">${c1.esters || 'Unesterified'}</div>
+                <p class="comp-overview">${c1.overview || ''}</p>
+
+                <div class="comp-stats-table">
+                    <div class="comp-row">
+                        <span class="comp-lbl">Category</span>
+                        <span class="comp-val">${catNameA}</span>
+                    </div>
+                    <div class="comp-row">
+                        <span class="comp-lbl">Anabolic Rating</span>
+                        <span class="comp-val" style="color:var(--accent); font-weight:bold;">${ratiosA.anabolic}</span>
+                    </div>
+                    <div class="comp-row">
+                        <span class="comp-lbl">Androgenic Rating</span>
+                        <span class="comp-val" style="color:var(--accent2); font-weight:bold;">${ratiosA.androgenic}</span>
+                    </div>
+                    <div class="comp-row">
+                        <span class="comp-lbl">Estrogenic Activity</span>
+                        <span class="comp-val">${ratiosA.estrogen > 4 ? '<span style="color:var(--red);">HIGH / AROMATIZING</span>' : ratiosA.estrogen > 0 ? '<span style="color:#ffaa00;">MODERATE</span>' : '<span style="color:#00ffaa;">NONE / AI EFFECT</span>'}</span>
+                    </div>
+                    <div class="comp-row">
+                        <span class="comp-lbl">Hepatic Strain</span>
+                        <span class="comp-val">${c1.type === 'Oral' || c1.folder?.includes('Oral') ? '<span style="color:var(--red);">HIGH (C17-aa)</span>' : '<span style="color:#00ffaa;">LOW / NONE</span>'}</span>
+                    </div>
+                    <div class="comp-row">
+                        <span class="comp-lbl">Dosage Range</span>
+                        <span class="comp-val">${c1.dosage || 'See clinical guide'}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Card -->
+            <div class="compare-card compare-card-right">
+                <div class="comp-card-badge" style="background: rgba(255, 58, 92, 0.1); color: #ff3a5c; border-color: rgba(255, 58, 92, 0.3);">${c2.type || 'Substance'}</div>
+                <h2 style="color:#ff3a5c; margin-bottom: 5px;">${c2.name}</h2>
+                <div class="comp-esters">${c2.esters || 'Unesterified'}</div>
+                <p class="comp-overview">${c2.overview || ''}</p>
+
+                <div class="comp-stats-table">
+                    <div class="comp-row">
+                        <span class="comp-lbl">Category</span>
+                        <span class="comp-val">${catNameB}</span>
+                    </div>
+                    <div class="comp-row">
+                        <span class="comp-lbl">Anabolic Rating</span>
+                        <span class="comp-val" style="color:#ff3a5c; font-weight:bold;">${ratiosB.anabolic}</span>
+                    </div>
+                    <div class="comp-row">
+                        <span class="comp-lbl">Androgenic Rating</span>
+                        <span class="comp-val" style="color:#ffaa00; font-weight:bold;">${ratiosB.androgenic}</span>
+                    </div>
+                    <div class="comp-row">
+                        <span class="comp-lbl">Estrogenic Activity</span>
+                        <span class="comp-val">${ratiosB.estrogen > 4 ? '<span style="color:var(--red);">HIGH / AROMATIZING</span>' : ratiosB.estrogen > 0 ? '<span style="color:#ffaa00;">MODERATE</span>' : '<span style="color:#00ffaa;">NONE / AI EFFECT</span>'}</span>
+                    </div>
+                    <div class="comp-row">
+                        <span class="comp-lbl">Hepatic Strain</span>
+                        <span class="comp-val">${c2.type === 'Oral' || c2.folder?.includes('Oral') ? '<span style="color:var(--red);">HIGH (C17-aa)</span>' : '<span style="color:#00ffaa;">LOW / NONE</span>'}</span>
+                    </div>
+                    <div class="comp-row">
+                        <span class="comp-lbl">Dosage Range</span>
+                        <span class="comp-val">${c2.dosage || 'See clinical guide'}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Radar Overlay Section -->
+        <div class="compare-radar-section">
+            <div class="comp-section-title"><i class="fas fa-spider"></i> CORTEX RADAR MATRIX OVERLAY</div>
+            <div style="position: relative; height: 320px; width: 100%; margin-top: 15px;">
+                <canvas id="compareRadarChartCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Interaction / Synergy Analysis -->
+        <div class="compare-synergy-section">
+            <div class="comp-section-title"><i class="fas fa-brain"></i> STACK COLLISION & SYNERGY DIAGNOSTIC</div>
+            <div class="synergy-card">
+                ${generateSynergyAnalysis(c1, c2, ratiosA, ratiosB)}
+            </div>
+        </div>
+    `;
+
+    renderCompareRadarChart(c1, c2, ratiosA, ratiosB);
+};
 
 function generateCycle() {
     const age = parseInt(document.getElementById('gen-age').value);
