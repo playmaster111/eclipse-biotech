@@ -3888,20 +3888,20 @@ window.calculatePCT = function() {
     `;
 }
 
-// --- Nutrition Architect Engine ---
+// --- Pharmacological Diet & Macro Optimizer Engine ---
 let nutritionStep = 0; // Starts at 0 for Biometrics
-let nutritionData = { units: 'metric', weight: 80, height: 180, age: 25, sex: 'male', bf: '', goal: '', diet: '', cadence: '', activity: '' };
+let nutritionData = { units: 'metric', weight: 80, height: 180, age: 25, sex: 'male', bf: '', goal: '', diet: '', cadence: '', activity: '', anabolicTier: 'auto' };
 
 function loadNutritionView() {
     if (window.mbnSetActive) window.mbnSetActive('');
     if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
 
     nutritionStep = 0;
-    nutritionData = { units: 'metric', weight: 80, height: 180, age: 25, sex: 'male', bf: '', goal: '', diet: '', cadence: '', activity: '' };
+    nutritionData = { units: 'metric', weight: 80, height: 180, age: 25, sex: 'male', bf: '', goal: '', diet: '', cadence: '', activity: '', anabolicTier: 'auto' };
     
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     if(document.getElementById('nutrition-nav-btn')) document.getElementById('nutrition-nav-btn').classList.add('active');
-    document.getElementById('current-category').innerText = "NUTRITION ARCHITECT";
+    document.getElementById('current-category').innerText = "DIET_MACRO_OPTIMIZER";
 
     renderNutritionStep();
 }
@@ -3951,8 +3951,8 @@ function renderNutritionStep() {
         content = `
             ${track}
             <div class="ai-header" style="text-align: center;">
-                <h1 class="glitch-large">BIOMETRIC_INPUT</h1>
-                <p>Provide physical specifications for high-fidelity metabolic modeling.</p>
+                <h1 class="glitch-large">BIOMETRIC_&_STACK_INPUT</h1>
+                <p>Provide physical specifications and performance stack context for precision metabolic modeling.</p>
             </div>
             
             <div style="text-align: center; margin-bottom: 20px;">
@@ -3960,7 +3960,7 @@ function renderNutritionStep() {
                 <button class="cyber-btn ${nutritionData.units === 'imperial' ? 'active' : ''}" onclick="setNutritionUnits('imperial')" style="width: auto; padding: 5px 15px;">IMPERIAL</button>
             </div>
             
-            <div class="biometric-grid" style="max-width: 500px; margin: 0 auto 30px auto;">
+            <div class="biometric-grid" style="max-width: 520px; margin: 0 auto 30px auto;">
                 <div class="bio-input-wrap">
                     <label>${wLabel}</label>
                     <input type="number" id="bio-weight" value="${wVal}">
@@ -3983,6 +3983,16 @@ function renderNutritionStep() {
                 <div class="bio-input-wrap" style="grid-column: 1 / -1;">
                     <label>BODY FAT % (OPTIONAL - ENABLES KATCH-MCARDLE)</label>
                     <input type="number" id="bio-bf" placeholder="e.g. 15" value="${nutritionData.bf || ''}">
+                </div>
+                <div class="bio-input-wrap" style="grid-column: 1 / -1;">
+                    <label style="color: var(--accent);">ANABOLIC STACK CONTEXT (MPS MULTIPLIER)</label>
+                    <select id="bio-anabolic-tier" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.6); border: 1px solid var(--accent); color: var(--accent); font-family: var(--font-m); font-size: 12px; border-radius: 4px;">
+                        <option value="auto" ${(nutritionData.anabolicTier || 'auto') === 'auto' ? 'selected' : ''}>⚡ AUTO-DETECT ACTIVE CYCLE STACK</option>
+                        <option value="natty" ${nutritionData.anabolicTier === 'natty' ? 'selected' : ''}>🌿 NATURAL / PHYSIOLOGICAL (1.0x MPS Base)</option>
+                        <option value="cruise" ${nutritionData.anabolicTier === 'cruise' ? 'selected' : ''}>💉 ENHANCED // TRT / CRUISE (1.15x MPS)</option>
+                        <option value="moderate" ${nutritionData.anabolicTier === 'moderate' ? 'selected' : ''}>🚀 ENHANCED // MODERATE AAS CYCLE (1.35x MPS)</option>
+                        <option value="heavy" ${nutritionData.anabolicTier === 'heavy' ? 'selected' : ''}>🔥 ENHANCED // HEAVY AAS & ORAL STRAIN (1.6x MPS)</option>
+                    </select>
                 </div>
             </div>
 
@@ -4026,7 +4036,7 @@ function renderNutritionStep() {
                 <div class="finder-card" onclick="setNutritionData('diet', 'balanced')">
                     <span class="icon">🥗</span>
                     <h3>BALANCED_CORE</h3>
-                    <p>Versatile 40/40/20 split. Optimal for most athletes.</p>
+                    <p>Versatile high-performance split. Optimal for most athletes.</p>
                 </div>
                 <div class="finder-card" onclick="setNutritionData('diet', 'keto')">
                     <span class="icon">🥑</span>
@@ -4100,12 +4110,15 @@ function renderNutritionStep() {
             ${track}
             <div class="diagnosis-result-wrap">
                 <div class="ai-header" style="text-align: center; margin-bottom: 30px;">
-                    <span class="cyber-badge">DEEP_BIOMETRIC_MODEL_V2</span>
+                    <span class="cyber-badge" style="border-color: #00ffaa; color: #00ffaa;">PHARMACOLOGICAL_NUTRITION_MODEL_V3</span>
                     <h1 class="glitch-large" style="color: #00ffaa; text-shadow: 0 0 15px rgba(0,255,170,0.5);">NUTRITIONAL_DOSSIER</h1>
+                    <div style="font-family: var(--font-m); font-size: 11px; color: var(--accent2); margin-top: 6px;">
+                        ANABOLIC MPS FACTOR: <span style="font-family: var(--font-d); color: #fff;">${plan.mpsBadgeText}</span> ${plan.activeStackName ? `<span style="color:var(--accent);">[${plan.activeStackName}]</span>` : ''}
+                    </div>
                 </div>
 
                 <div class="macro-blueprint" style="box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.05); animation: slideUpFade 0.6s ease-out forwards; opacity: 0;">
-                    <div style="font-size: 10px; color: var(--accent); letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; animation: fadeInSimple 0.8s ease-out 0.2s forwards; opacity: 0;">PERSONALIZED_TARGETS // ${nutritionData.weight}${nutritionData.units === 'metric' ? 'KG' : 'LBS'} | ${nutritionData.age}Y | ${nutritionData.sex} ${nutritionData.bf ? '| '+nutritionData.bf+'% BF' : ''}</div>
+                    <div style="font-size: 10px; color: var(--accent); letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; animation: fadeInSimple 0.8s ease-out 0.2s forwards; opacity: 0;">PERSONALIZED_TARGETS // ${nutritionData.weight}${nutritionData.units === 'metric' ? 'KG' : 'LBS'} | ${nutritionData.age}Y | ${nutritionData.sex.toUpperCase()} ${nutritionData.bf ? '| '+nutritionData.bf+'% BF' : ''}</div>
                     <div style="font-size: 28px; font-family: 'Orbitron', monospace; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.2); animation: popInBounce 0.6s ease-out 0.4s forwards; opacity: 0;">${plan.cals} <span style="font-size: 12px; color: var(--accent);">KCAL / DAY</span></div>
                     
                     <div class="macro-ring-wrap" style="display: flex; justify-content: space-around; margin-top: 25px;">
@@ -4154,7 +4167,7 @@ function renderNutritionStep() {
                     </div>
                     
                     <div class="detail-section">
-                        <h3 style="font-family: 'Orbitron', monospace; font-size: 0.9rem; color: #00ffaa; margin-bottom: 15px; border-bottom: 1px solid rgba(0, 255, 170, 0.2); padding-bottom: 5px;">SUPPLEMENT_STACK</h3>
+                        <h3 style="font-family: 'Orbitron', monospace; font-size: 0.9rem; color: #00ffaa; margin-bottom: 15px; border-bottom: 1px solid rgba(0, 255, 170, 0.2); padding-bottom: 5px;">SUPPLEMENT_&_ORGAN_STACK</h3>
                         <div class="stack-grid">
                             ${plan.stack.map(s => `
                                 <div class="stack-card cool-card">
@@ -4164,14 +4177,26 @@ function renderNutritionStep() {
                             `).join('')}
                         </div>
 
-                        <div class="chef-notes cool-card" style="margin-top: 15px;">
-                            <strong style="color: #ffaa00;"><i class="fas fa-exclamation-triangle"></i> PROTOCOL_NOTES:</strong><br>
-                            <span style="opacity: 0.9;">${plan.notes}</span>
+                        <!-- Intra-Workout Protocol Card -->
+                        <div class="meal-plan-card cool-card" style="margin-top: 15px; border-color: rgba(0, 240, 255, 0.3);">
+                            <span class="meal-time" style="color: #00f0ff;"><i class="fas fa-bolt"></i> INTRA_WORKOUT_PROTOCOL</span>
+                            <div class="meal-content">${plan.intraCarbs}</div>
                         </div>
-                        
+
+                        <!-- Hydration & Electrolytes Card -->
                         <div class="meal-plan-card cool-card" style="margin-top: 15px; border-color: rgba(0, 150, 255, 0.3);">
-                            <span class="meal-time" style="color: #00aaff;"><i class="fas fa-tint"></i> HYDRATION_PROTOCOL</span>
-                            <div class="meal-content">Optimal Water Intake: <strong style="color: #00aaff;">${plan.water}L/Day</strong></div>
+                            <span class="meal-time" style="color: #00aaff;"><i class="fas fa-tint"></i> HYDRATION_&_ELECTROLYTE_TARGETS</span>
+                            <div class="meal-content" style="font-size:12px; line-height:1.6;">
+                                Water Intake: <strong style="color: #00aaff;">${plan.water}L / Day</strong><br>
+                                Sodium (Na): <strong style="color: #fff;">${plan.sodiumMg}</strong><br>
+                                Potassium (K): <strong style="color: #fff;">${plan.potassiumMg}</strong><br>
+                                Magnesium (Mg): <strong style="color: #fff;">${plan.magnesiumMg}</strong>
+                            </div>
+                        </div>
+
+                        <div class="chef-notes cool-card" style="margin-top: 15px;">
+                            <strong style="color: #ffaa00;"><i class="fas fa-exclamation-triangle"></i> ANABOLIC_PARTITIONING_NOTES:</strong><br>
+                            <span style="opacity: 0.9;">${plan.notes}</span>
                         </div>
                     </div>
                 </div>
@@ -4206,6 +4231,7 @@ window.saveBiometrics = function() {
     nutritionData.age = parseInt(document.getElementById('bio-age').value) || 25;
     nutritionData.sex = document.getElementById('bio-sex').value;
     nutritionData.bf = document.getElementById('bio-bf').value ? parseFloat(document.getElementById('bio-bf').value) : '';
+    nutritionData.anabolicTier = document.getElementById('bio-anabolic-tier') ? document.getElementById('bio-anabolic-tier').value : 'auto';
     
     const overlay = document.createElement('div');
     overlay.className = 'scanning-overlay';
@@ -4244,8 +4270,37 @@ function generateDietPlan() {
     let weightKg = nutritionData.units === 'metric' ? nutritionData.weight : nutritionData.weight / 2.20462;
     let heightCm = nutritionData.units === 'metric' ? nutritionData.height : nutritionData.height * 2.54;
 
+    // Detect Anabolic Tier
+    let tier = nutritionData.anabolicTier || 'auto';
+    let activeStackName = '';
+    let isOralInStack = false;
+
+    if (tier === 'auto') {
+        if (window.customStack && window.customStack.length > 0) {
+            const count = customStack.length;
+            const hasOrals = customStack.some(s => {
+                const c = WIKI_DATA.find(x => x.id === s.id);
+                return c?.type === 'Oral' || c?.folder?.includes('Oral');
+            });
+            isOralInStack = hasOrals;
+            const totalMg = customStack.reduce((sum, s) => sum + (parseFloat(s.dosage) || 0), 0);
+
+            if (totalMg > 1000 || (count >= 3 && hasOrals)) {
+                tier = 'heavy';
+            } else if (totalMg > 300 || count >= 2) {
+                tier = 'moderate';
+            } else {
+                tier = 'cruise';
+            }
+            activeStackName = `${count} COMPOUND(S) [${totalMg}MG/WK]`;
+        } else {
+            tier = 'natty';
+            activeStackName = 'NATURAL / PHYSIOLOGICAL';
+        }
+    }
+
+    // BMR Calculation
     let bmr = 0;
-    
     if (nutritionData.bf) {
         const leanMass = weightKg * (1 - (nutritionData.bf / 100));
         bmr = 370 + (21.6 * leanMass);
@@ -4263,30 +4318,54 @@ function generateDietPlan() {
 
     let tdee = Math.round(bmr * multiplier);
 
-    if (nutritionData.goal === 'bulk') tdee += 400;
-    if (nutritionData.goal === 'cut') tdee -= 500;
+    if (nutritionData.goal === 'bulk') tdee += 450;
+    if (nutritionData.goal === 'cut') tdee -= 550;
 
-    let p = 150, c = 200, f = 60;
+    // Protein Factor based on Anabolic Tier & MPS Multiplier
+    let proteinFactor = 2.0; // g/kg
+    let mpsBadgeText = '1.0x PHYSIOLOGICAL';
 
-    if (nutritionData.diet === 'keto') {
-        p = Math.round(weightKg * 2.2);
-        c = 30;
-        f = Math.round((tdee - (p*4) - (c*4)) / 9);
-    } else if (nutritionData.diet === 'carnivore') {
-        p = Math.round(tdee * 0.45 / 4);
-        c = 0;
-        f = Math.round((tdee - (p*4)) / 9);
-    } else if (nutritionData.diet === 'balanced') {
-        p = Math.round(weightKg * 2);
-        c = Math.round((tdee * 0.45) / 4);
-        f = Math.round((tdee - (p*4) - (c*4)) / 9);
-    } else if (nutritionData.diet === 'vegan') {
-        p = Math.round(weightKg * 1.6);
-        c = Math.round((tdee * 0.55) / 4);
-        f = Math.round((tdee - (p*4) - (c*4)) / 9);
+    if (tier === 'cruise') {
+        proteinFactor = 2.3;
+        mpsBadgeText = '1.15x ENHANCED (TRT/CRUISE)';
+    } else if (tier === 'moderate') {
+        proteinFactor = 2.8;
+        mpsBadgeText = '1.35x ANABOLIC (HIGH NITROGEN)';
+    } else if (tier === 'heavy') {
+        proteinFactor = 3.4;
+        mpsBadgeText = '1.60x HYPER-ANABOLIC (MAX NITROGEN)';
     }
 
-    const water = (weightKg * 0.04).toFixed(1);
+    let p = Math.round(weightKg * proteinFactor);
+    let c = 200, f = 60;
+
+    if (nutritionData.diet === 'keto') {
+        p = Math.round(weightKg * (proteinFactor * 1.05));
+        c = 30;
+        f = Math.round((tdee - (p * 4) - (c * 4)) / 9);
+    } else if (nutritionData.diet === 'carnivore') {
+        p = Math.round(tdee * 0.48 / 4);
+        c = 0;
+        f = Math.round((tdee - (p * 4)) / 9);
+    } else if (nutritionData.diet === 'balanced') {
+        c = Math.round((tdee * 0.42) / 4);
+        f = Math.round((tdee - (p * 4) - (c * 4)) / 9);
+    } else if (nutritionData.diet === 'vegan') {
+        p = Math.round(weightKg * (proteinFactor * 0.9));
+        c = Math.round((tdee * 0.55) / 4);
+        f = Math.round((tdee - (p * 4) - (c * 4)) / 9);
+    }
+
+    // Hydration & Electrolytes
+    let waterFactor = tier === 'heavy' || tier === 'moderate' ? 0.055 : 0.042;
+    const water = Math.max(3.5, weightKg * waterFactor).toFixed(1);
+
+    const sodiumMg = tier === 'heavy' ? '4500mg - 5500mg' : tier === 'moderate' ? '4000mg - 4800mg' : '3000mg - 3800mg';
+    const potassiumMg = tier === 'heavy' ? '4000mg - 4800mg' : '3500mg - 4000mg';
+    const magnesiumMg = tier === 'heavy' ? '500mg' : '400mg';
+
+    // Intra-Workout Protocol
+    let intraCarbs = tier === 'heavy' || tier === 'moderate' ? (nutritionData.goal === 'bulk' ? '45g-60g HBCD Dextrin + 10g EAAs + 500mg Sodium' : '25g HBCD Dextrin + 10g EAAs + 500mg Sodium') : '10g EAA + Electrolytes';
 
     let mealsCount = nutritionData.cadence === 'if' ? 3 : 4;
     let proteinPerMeal = Math.round(p / mealsCount);
@@ -4309,20 +4388,25 @@ function generateDietPlan() {
     }
 
     const stack = [
-        { name: 'Creatine Monohydrate', dose: '5g Daily (Saturation)' },
-        { name: 'Omega-3 Fish Oil', dose: '2000mg (Inflammation)' },
-        { name: 'Vitamin D3 + K2', dose: '5000 IU (Hormonal)' }
+        { name: 'Creatine Monohydrate', dose: '5g Daily (Intracellular Hydration)' },
+        { name: 'Omega-3 Fish Oil', dose: '3000mg (Lipid & Vascular Support)' },
+        { name: 'Vitamin D3 + K2', dose: '5000 IU (Hormonal Regulation)' }
     ];
 
-    if (nutritionData.diet === 'keto') stack.push({ name: 'Electrolyte Complex', dose: 'Sodium/Mag/Potassium' });
-    if (nutritionData.goal === 'bulk') stack.push({ name: 'Beta-Alanine', dose: '3.2g (Muscular Endurance)' });
+    if (isOralInStack || tier === 'heavy') {
+        stack.push({ name: 'TUDCA + NAC Shield', dose: '500mg TUDCA + 1200mg NAC (Hepatic Protection)' });
+        stack.push({ name: 'Citrus Bergamot', dose: '1000mg Daily (HDL/LDL Lipid Repair)' });
+    }
+
+    if (nutritionData.diet === 'keto') stack.push({ name: 'Electrolyte Complex', dose: 'Sodium / Potassium / Magnesium' });
+    if (nutritionData.goal === 'bulk') stack.push({ name: 'Beta-Alanine', dose: '3.2g (Buffering & Endurance)' });
     if (nutritionData.cadence === 'if') stack.push({ name: 'Black Coffee / Green Tea', dose: 'Fasting Window (Autophagy)' });
 
-    const notes = nutritionData.goal === 'bulk' ? 
-        "Prioritize liquid calories if digestion slows down. Season with Sea Salt to maintain vascular volume." :
+    const notes = tier === 'heavy' || tier === 'moderate' ? 
+        "Anabolic MPS multiplier active: Protein intake is elevated to match increased androgen receptor density and muscle protein synthesis rate. Maintain strict intra-workout hydration to prevent cramping and renal strain." : 
         "Drink 500ml of water before every meal to increase satiety. Use vinegar-based dressings to stabilize blood glucose.";
 
-    return { cals: tdee, p, c, f, meals, stack, water, notes };
+    return { cals: tdee, p, c, f, meals, stack, water, sodiumMg, potassiumMg, magnesiumMg, intraCarbs, mpsBadgeText, tier, activeStackName, notes };
 }
 
 function getMealDesc(time, proteinTarget) {
@@ -4362,13 +4446,14 @@ window.saveDietToVault = function(cals, p, c, f) {
         return;
     }
 
-    const title = `${nutritionData.goal.toUpperCase()}_PROTOCOL_${nutritionData.diet.toUpperCase()}`;
+    const title = `${nutritionData.goal.toUpperCase()}_OPTIMIZER_${nutritionData.diet.toUpperCase()}`;
     const dietData = {
         title: title,
         date: new Date().toISOString(),
         type: 'diet',
         cals, p, c, f,
         goal: nutritionData.goal,
+        anabolicTier: nutritionData.anabolicTier || 'auto',
         cadence: nutritionData.cadence === 'if' ? '16:8 Fasting' : 'Standard'
     };
 
@@ -4376,14 +4461,17 @@ window.saveDietToVault = function(cals, p, c, f) {
     vault.push(dietData);
     localStorage.setItem('eclipse_vault_' + currentUser, JSON.stringify(vault));
     
-    const toast = document.createElement('div');
-    toast.className = 'cyber-toast';
-    toast.innerHTML = `<i class="fas fa-check-circle" style="color:#00ffaa"></i> NUTRITION_DOSSIER SAVED TO VAULT`;
-    document.body.appendChild(toast);
-    setTimeout(() => {
-        toast.classList.add('hide');
-        setTimeout(() => toast.remove(), 500);
-    }, 3000);
+    if (window.showNotify) showNotify("DIET_PROTOCOL_SAVED: Saved to Research Vault.");
+    else {
+        const toast = document.createElement('div');
+        toast.className = 'cyber-toast';
+        toast.innerHTML = `<i class="fas fa-check-circle" style="color:#00ffaa"></i> NUTRITION_DOSSIER SAVED TO VAULT`;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.classList.add('hide');
+            setTimeout(() => toast.remove(), 500);
+        }, 2500);
+    }
 }
 
 
