@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=5.2.2">
     <link rel="stylesheet" href="chat.css?v=1.0.1">
+    <link rel="stylesheet" href="fx.css?v=1.0.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -175,13 +176,51 @@
                         <audio id="clickSound" src="click.wav" preload="auto"></audio>
                     </div>
 
-                    <div class="lang-custom-select" id="langCustomSelect">
-                        <div class="lang-selected" id="langSelectedValue">EN</div>
-                        <div class="lang-options">
-                            <div class="lang-option active" data-value="en">EN</div>
-                            <div class="lang-option" data-value="de">DE</div>
-                            <div class="lang-option" data-value="es">ES</div>
-                            <div class="lang-option" data-value="it">IT</div>
+                    <div class="lang-custom-select" id="langCustomSelect" title="Select Databank Language">
+                        <div class="lang-selected-btn">
+                            <i class="fas fa-globe lang-globe-icon"></i>
+                            <span class="lang-code" id="langSelectedValue">EN</span>
+                            <i class="fas fa-chevron-down lang-chevron"></i>
+                        </div>
+                        <div class="lang-options-dropdown" id="langOptionsDropdown">
+                            <div class="lang-dropdown-header">
+                                <span class="lang-dd-title"><i class="fas fa-language"></i> LOCALE_PROTOCOL</span>
+                                <span class="lang-dd-badge">NEURAL</span>
+                            </div>
+                            <div class="lang-options-list">
+                                <div class="lang-option-card active" data-value="en">
+                                    <span class="lang-opt-flag">🇺🇸</span>
+                                    <div class="lang-opt-meta">
+                                        <div class="lang-opt-name">English</div>
+                                        <div class="lang-opt-sub">System Native (100%)</div>
+                                    </div>
+                                    <div class="lang-opt-check"><i class="fas fa-check"></i></div>
+                                </div>
+                                <div class="lang-option-card" data-value="de">
+                                    <span class="lang-opt-flag">🇩🇪</span>
+                                    <div class="lang-opt-meta">
+                                        <div class="lang-opt-name">Deutsch</div>
+                                        <div class="lang-opt-sub">German Localization</div>
+                                    </div>
+                                    <div class="lang-opt-check"><i class="fas fa-check"></i></div>
+                                </div>
+                                <div class="lang-option-card" data-value="es">
+                                    <span class="lang-opt-flag">🇪🇸</span>
+                                    <div class="lang-opt-meta">
+                                        <div class="lang-opt-name">Español</div>
+                                        <div class="lang-opt-sub">Spanish Localization</div>
+                                    </div>
+                                    <div class="lang-opt-check"><i class="fas fa-check"></i></div>
+                                </div>
+                                <div class="lang-option-card" data-value="it">
+                                    <span class="lang-opt-flag">🇮🇹</span>
+                                    <div class="lang-opt-meta">
+                                        <div class="lang-opt-name">Italiano</div>
+                                        <div class="lang-opt-sub">Italian Localization</div>
+                                    </div>
+                                    <div class="lang-opt-check"><i class="fas fa-check"></i></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -390,6 +429,13 @@
                     <input type="range" id="particleSpeed" min="0.1" max="5" step="0.1" value="1" oninput="updateParticleSpeed()">
                 </div>
                 <div class="setting-item">
+                    <span>RESONANCE_FX [AUDIO_REACTIVE]</span>
+                    <label class="switch">
+                        <input type="checkbox" id="fxToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
                     <span>SCANLINE_OVERLAY</span>
                     <label class="switch">
                         <input type="checkbox" id="toggleScanlines" checked onchange="updateVisuals()">
@@ -408,6 +454,7 @@
     <script src="data.js?v=5.2.2" defer></script>
     <script src="script.js?v=5.2.2" defer></script>
     <script src="cursor.js?v=5.2.2" defer></script>
+    <script src="fx.js?v=1.0.0" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer crossorigin="anonymous"></script>
     
     <!-- Google Translate API -->

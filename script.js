@@ -910,17 +910,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
-    // Custom Dropdown Logic
+    // Luxury Language Dropdown Logic
     const customSelect = document.getElementById('langCustomSelect');
     const selectedValue = document.getElementById('langSelectedValue');
-    const options = document.querySelectorAll('.lang-option');
+    const options = document.querySelectorAll('.lang-option, .lang-option-card');
 
     if (customSelect && selectedValue) {
         selectedValue.innerText = currentLang.toUpperCase();
         
-        // Mark active
+        // Mark initial active option
         options.forEach(opt => {
             if (opt.dataset.value === currentLang) opt.classList.add('active');
+            else opt.classList.remove('active');
         });
 
         customSelect.addEventListener('click', (e) => {
@@ -929,7 +930,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         options.forEach(opt => {
-            opt.addEventListener('click', () => {
+            opt.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const val = opt.dataset.value;
                 currentLang = val;
                 localStorage.setItem('eclipse_lang', currentLang);
@@ -938,6 +940,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 options.forEach(o => o.classList.remove('active'));
                 opt.classList.add('active');
                 
+                if (window.playClickSound) window.playClickSound();
+
                 updateUIStrings();
                 const searchInput = document.getElementById('searchInput');
                 renderSidebar(searchInput ? searchInput.value : '');
@@ -950,8 +954,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Close on outside click
-        document.addEventListener('click', () => {
-            customSelect.classList.remove('active');
+        document.addEventListener('click', (e) => {
+            if (!customSelect.contains(e.target)) {
+                customSelect.classList.remove('active');
+            }
         });
     }
 

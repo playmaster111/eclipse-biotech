@@ -674,22 +674,22 @@ html[data-theme="clinical"] .ac-item { border-bottom-color: rgba(0,0,0,0.06); }
     z-index: 100;
 }
 
+/* ============================================================
+   LUXURY LANGUAGE SELECTOR
+   ============================================================ */
+
 .lang-custom-select {
     position: relative;
-    width: 60px;
-    min-width: 60px;
+    height: 36px;
     background: rgba(0, 240, 255, 0.04);
     border: 1px solid rgba(0, 240, 255, 0.25);
     border-radius: 6px;
-    font-family: var(--font-m);
-    font-size: 11px;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     user-select: none;
-    height: 36px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
+    box-sizing: border-box;
 }
 
 .lang-custom-select:hover {
@@ -699,73 +699,177 @@ html[data-theme="clinical"] .ac-item { border-bottom-color: rgba(0,0,0,0.06); }
     transform: translateY(-1px);
 }
 
-.lang-selected {
-    padding: 0 8px;
+.lang-selected-btn {
+    padding: 0 10px;
     height: 100%;
-    width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 6px;
     color: var(--accent);
-    letter-spacing: 1px;
     font-family: var(--font-m);
     font-size: 11px;
+    letter-spacing: 1px;
+    white-space: nowrap;
 }
 
-.lang-selected::after {
-    content: '▼';
-    font-size: 7px;
-    margin-left: 5px;
-    opacity: 0.6;
-    transition: transform 0.25s;
+.lang-globe-icon {
+    font-size: 12px;
+    color: var(--accent);
+    transition: transform 0.4s ease;
 }
 
-.lang-custom-select.active .lang-selected::after {
+.lang-custom-select:hover .lang-globe-icon {
+    transform: rotate(30deg);
+}
+
+.lang-code {
+    font-weight: 700;
+}
+
+.lang-chevron {
+    font-size: 8px;
+    opacity: 0.7;
+    transition: transform 0.25s ease;
+    margin-left: 2px;
+}
+
+.lang-custom-select.active .lang-chevron {
     transform: rotate(180deg);
 }
 
-.lang-options {
+/* Luxury Dropdown Container */
+.lang-options-dropdown {
     position: absolute;
     top: calc(100% + 8px);
-    left: 0;
     right: 0;
-    background: rgba(13, 16, 20, 0.95);
-    backdrop-filter: blur(15px);
-    border: 1px solid var(--border);
-    border-radius: 4px;
+    width: 250px;
+    background: rgba(6, 8, 10, 0.96);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
     overflow: hidden;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform: translateY(-10px) scale(0.97);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.15);
+    z-index: 2500;
 }
 
-.lang-custom-select.active .lang-options {
+.lang-custom-select.active .lang-options-dropdown {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
-.lang-option {
-    padding: 10px;
-    text-align: center;
+/* Header */
+.lang-dropdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 240, 255, 0.04);
+}
+
+.lang-dd-title {
+    font-family: var(--font-m);
+    font-size: 9px;
+    letter-spacing: 1.5px;
     color: var(--muted);
-    transition: all 0.2s;
-    border-bottom: 1px solid rgba(255,255,255,0.02);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.lang-option:last-child { border-bottom: none; }
+.lang-dd-badge {
+    font-family: var(--font-m);
+    font-size: 8px;
+    color: var(--accent);
+    background: rgba(0, 240, 255, 0.12);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+}
 
-.lang-option:hover {
-    background: rgba(0, 240, 255, 0.1);
+/* Options List */
+.lang-options-list {
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lang-option-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lang-option-card:hover {
+    background: rgba(0, 240, 255, 0.08);
+    border-color: rgba(0, 240, 255, 0.2);
+    transform: translateX(3px);
+}
+
+.lang-opt-flag {
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+}
+
+.lang-opt-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.lang-opt-name {
+    font-family: var(--font-m);
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.lang-opt-sub {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: var(--font-m);
+    margin-top: 1px;
+}
+
+.lang-opt-check {
+    font-size: 11px;
+    color: transparent;
+    transition: all 0.2s ease;
+}
+
+.lang-option-card.active {
+    background: rgba(0, 240, 255, 0.12);
+    border-color: rgba(0, 240, 255, 0.4);
+}
+
+.lang-option-card.active .lang-opt-name {
     color: var(--accent);
 }
 
-.lang-option.active {
-    color: var(--accent);
-    background: rgba(0, 240, 255, 0.05);
-    font-weight: bold;
+.lang-option-card.active .lang-opt-check {
+    color: #00ffaa;
+    text-shadow: 0 0 8px rgba(0, 255, 170, 0.6);
 }
 .breadcrumbs .divider { color: var(--border2); margin: 0 8px; }
 #current-category { color: var(--accent); }
@@ -9527,4 +9631,71 @@ html[data-theme="blood"] .bw-sex-toggle button.active {
     color: #ff1a40 !important;
     box-shadow: inset 0 -2px 0 #ff1a40 !important;
 }
+
+/* Theme overrides for Luxury Language Selector */
+html[data-theme="clinical"] .lang-options-dropdown {
+    background: #ffffff !important;
+    border-color: #005fa3 !important;
+    box-shadow: 0 10px 30px rgba(0, 95, 163, 0.15);
+}
+html[data-theme="clinical"] .lang-dropdown-header {
+    background: #f0f4f8 !important;
+    border-bottom-color: #b0c4d4 !important;
+}
+html[data-theme="clinical"] .lang-dd-title { color: #0d1a26 !important; }
+html[data-theme="clinical"] .lang-opt-name { color: #0d1a26 !important; }
+html[data-theme="clinical"] .lang-opt-sub { color: #3d5a72 !important; }
+html[data-theme="clinical"] .lang-option-card:hover {
+    background: rgba(0, 95, 163, 0.08) !important;
+    border-color: rgba(0, 95, 163, 0.2) !important;
+}
+html[data-theme="clinical"] .lang-option-card.active {
+    background: rgba(0, 95, 163, 0.12) !important;
+    border-color: #005fa3 !important;
+}
+html[data-theme="clinical"] .lang-option-card.active .lang-opt-name { color: #005fa3 !important; }
+html[data-theme="clinical"] .lang-option-card.active .lang-opt-check { color: #006b40 !important; }
+
+html[data-theme="hacker"] .lang-options-dropdown {
+    background: rgba(2, 13, 5, 0.98) !important;
+    border-color: #00ff66 !important;
+    box-shadow: 0 0 25px rgba(0, 255, 102, 0.2);
+}
+html[data-theme="hacker"] .lang-dropdown-header {
+    background: rgba(0, 255, 102, 0.05) !important;
+    border-bottom-color: rgba(0, 255, 102, 0.2) !important;
+}
+html[data-theme="hacker"] .lang-dd-title { color: #00ff66 !important; }
+html[data-theme="hacker"] .lang-opt-name { color: #00ff66 !important; }
+html[data-theme="hacker"] .lang-opt-sub { color: rgba(0, 255, 102, 0.6) !important; }
+html[data-theme="hacker"] .lang-option-card:hover {
+    background: rgba(0, 255, 102, 0.1) !important;
+    border-color: rgba(0, 255, 102, 0.3) !important;
+}
+html[data-theme="hacker"] .lang-option-card.active {
+    background: rgba(0, 255, 102, 0.15) !important;
+    border-color: #00ff66 !important;
+}
+
+html[data-theme="blood"] .lang-options-dropdown {
+    background: rgba(18, 2, 5, 0.98) !important;
+    border-color: #ff1a40 !important;
+    box-shadow: 0 0 25px rgba(255, 26, 64, 0.25);
+}
+html[data-theme="blood"] .lang-dropdown-header {
+    background: rgba(255, 26, 64, 0.05) !important;
+    border-bottom-color: rgba(255, 26, 64, 0.2) !important;
+}
+html[data-theme="blood"] .lang-dd-title { color: #ff3a5c !important; }
+html[data-theme="blood"] .lang-opt-name { color: #fff !important; }
+html[data-theme="blood"] .lang-opt-sub { color: #ff8090 !important; }
+html[data-theme="blood"] .lang-option-card:hover {
+    background: rgba(255, 26, 64, 0.1) !important;
+    border-color: rgba(255, 26, 64, 0.3) !important;
+}
+html[data-theme="blood"] .lang-option-card.active {
+    background: rgba(255, 26, 64, 0.18) !important;
+    border-color: #ff1a40 !important;
+}
+
 
