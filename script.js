@@ -557,10 +557,13 @@ let currentUser = JSON.parse(localStorage.getItem('eclipse_user')) || null;
 
 function updateBioIdUI() {
     const btnText = document.getElementById('bioIdText');
+    const bioIdBtn = document.getElementById('bioIdBtn');
     if (currentUser) {
-        btnText.innerText = `OPERATOR: ${currentUser.username.toUpperCase()}`;
+        if (btnText) btnText.innerText = `OPERATOR: ${currentUser.username.toUpperCase()}`;
+        if (bioIdBtn) bioIdBtn.classList.add('authenticated');
     } else {
-        btnText.innerText = 'ENROLL_BIO_ID';
+        if (btnText) btnText.innerText = 'ENROLL_BIO_ID';
+        if (bioIdBtn) bioIdBtn.classList.remove('authenticated');
     }
 }
 
