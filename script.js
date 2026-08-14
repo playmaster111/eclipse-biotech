@@ -355,6 +355,25 @@ if (volumeSlider) {
 }
 document.addEventListener('click', initAudio);
 document.addEventListener('keydown', initAudio);
+
+window.playClickSound = function() {
+    try {
+        const audio = document.getElementById('clickSound');
+        if (audio) {
+            audio.currentTime = 0;
+            audio.volume = 0.25;
+            audio.play().catch(() => {});
+        }
+    } catch(e) {}
+};
+
+// Tactical audio feedback for interactive controls
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.cyber-btn, .nav-item, .theme-card, .audio-btn, .progress-step, .bookmark-btn, .mobile-nav-btn')) {
+        window.playClickSound();
+    }
+});
+
 // --- Localization Logic ---
 let currentLang = localStorage.getItem('eclipse_lang') || 'en';
 
@@ -875,7 +894,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!acDropdown) return;
             if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(acIndex + 1, acResults.length - 1)); }
             else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(Math.max(acIndex - 1, 0)); }
-            else if (e.key === 'Enter') { e.preventDefault(); if (acIndex >= 0) selectResult(acResults[acIndex]); }
+            else if (e.key === 'Enter') { 
+                e.preventDefault(); 
+                if (acIndex >= 0 && acResults[acIndex]) selectResult(acResults[acIndex]); 
+                else if (acResults && acResults.length > 0) selectResult(acResults[0]);
+            }
             else if (e.key === 'Escape') { closeDropdown(); searchInput.blur(); }
         });
 
@@ -948,13 +971,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Tab') {
-            e.preventDefault();
-            toggleSidebar();
-        }
-    });
-
     const mobileOverlay = document.getElementById('mobile-sidebar-overlay');
     if (mobileOverlay) {
         mobileOverlay.addEventListener('click', () => {
@@ -971,11 +987,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Consolidated Global Keyboard Shortcuts
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Tab') {
-            e.preventDefault(); // Prevent focus switching
+        const isInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable;
+
+        // Tab: Toggle Sidebar
+        if (e.key === 'Tab' && !isInput) {
+            e.preventDefault();
             if (sidebar) {
                 sidebar.classList.toggle('collapsed');
+                if (window.updateSidebarNavState) window.updateSidebarNavState();
+            }
+        }
+
+        // "/" or Ctrl+K / Cmd+K: Focus Search Bar
+        if (((e.key === '/' && !isInput) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'))) {
+            e.preventDefault();
+            if (window.innerWidth <= 768 && typeof window.mbnOpenSearch === 'function') {
+                window.mbnOpenSearch();
+            } else {
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    if (sidebar && sidebar.classList.contains('collapsed')) {
+                        sidebar.classList.remove('collapsed');
+                        if (window.updateSidebarNavState) window.updateSidebarNavState();
+                    }
+                    searchInput.focus();
+                    searchInput.select();
+                }
+            }
+        }
+
+        // Escape: Dismiss active overlays, search, theme panel, and modals
+        if (e.key === 'Escape') {
+            // Close theme panel
+            const themePanel = document.getElementById('theme-panel');
+            const themeOverlay = document.getElementById('theme-panel-overlay');
+            if (themePanel && themePanel.classList.contains('open')) {
+                themePanel.classList.remove('open');
+                if (themeOverlay) themeOverlay.classList.remove('open');
+            }
+
+            // Close mobile search
+            if (typeof window.mbnCloseSearch === 'function') {
+                window.mbnCloseSearch();
+            }
+
+            // Close autocomplete dropdown
+            const acDropdown = document.querySelector('.ac-dropdown');
+            if (acDropdown) acDropdown.style.display = 'none';
+
+            // Collapse mobile sidebar if open
+            if (window.innerWidth <= 768 && sidebar && !sidebar.classList.contains('collapsed')) {
+                sidebar.classList.add('collapsed');
                 if (window.updateSidebarNavState) window.updateSidebarNavState();
             }
         }
