@@ -1452,6 +1452,14 @@ function renderSidebar(filter = '') {
         pathologyBtn.onclick = () => loadPathologyView();
         navEl.appendChild(pathologyBtn);
 
+        const bloodworkBtn = document.createElement('div');
+        bloodworkBtn.className = 'nav-item';
+        bloodworkBtn.innerText = '> _BLOODWORK_LAB';
+        bloodworkBtn.id = 'bloodwork-nav-btn';
+        bloodworkBtn.style.color = '#ff3a5c';
+        bloodworkBtn.onclick = () => loadBloodworkView();
+        navEl.appendChild(bloodworkBtn);
+
         const finderBtn = document.createElement('div');
         finderBtn.className = 'nav-item';
         finderBtn.innerText = '> _QUICK_FINDER';
@@ -3407,6 +3415,552 @@ function showSynthesisDetail(id) {
         </div>
     `;
 }
+
+// ==========================================
+// INTERACTIVE BLOODWORK LAB ANALYZER
+// ==========================================
+let bwSex = 'male';
+
+const BW_MARKERS = [
+    { id: 'alt',   name: 'ALT',              unit: 'U/L',    panel: 'liver',         icon: 'fa-disease',       placeholder: '25' },
+    { id: 'ast',   name: 'AST',              unit: 'U/L',    panel: 'liver',         icon: 'fa-disease',       placeholder: '22' },
+    { id: 'tt',    name: 'Total Testosterone',unit: 'ng/dL',  panel: 'hormonal',      icon: 'fa-mars',          placeholder: '650' },
+    { id: 'ft',    name: 'Free Testosterone', unit: 'pg/mL',  panel: 'hormonal',      icon: 'fa-mars',          placeholder: '18' },
+    { id: 'e2',    name: 'Estradiol (E2)',    unit: 'pg/mL',  panel: 'hormonal',      icon: 'fa-venus-mars',    placeholder: '28' },
+    { id: 'prl',   name: 'Prolactin',         unit: 'ng/mL',  panel: 'hormonal',      icon: 'fa-brain',         placeholder: '10' },
+    { id: 'hct',   name: 'Hematocrit',        unit: '%',      panel: 'hematological', icon: 'fa-tint',          placeholder: '45' },
+    { id: 'hdl',   name: 'HDL Cholesterol',   unit: 'mg/dL',  panel: 'hematological', icon: 'fa-heartbeat',     placeholder: '55' },
+    { id: 'ldl',   name: 'LDL Cholesterol',   unit: 'mg/dL',  panel: 'hematological', icon: 'fa-heartbeat',     placeholder: '95' },
+    { id: 'trig',  name: 'Triglycerides',     unit: 'mg/dL',  panel: 'hematological', icon: 'fa-vial',          placeholder: '90' },
+    { id: 'egfr',  name: 'eGFR',              unit: 'mL/min', panel: 'renal',         icon: 'fa-kidneys',       placeholder: '100' },
+    { id: 'crea',  name: 'Creatinine',        unit: 'mg/dL',  panel: 'renal',         icon: 'fa-flask',         placeholder: '0.9' }
+];
+
+function getBwRanges(sex) {
+    const m = sex === 'male';
+    return {
+        alt:  { optimal: [0, 25],    normal: [25, 40],  elevated: [40, 80],  criticalAbove: 80,  direction: 'up' },
+        ast:  { optimal: [0, 25],    normal: [25, 40],  elevated: [40, 80],  criticalAbove: 80,  direction: 'up' },
+        tt:   { optimal: m ? [500,900] : [15,70], normal: m ? [300,500] : [10,15], elevated: m ? [0,300] : [0,10], criticalBelow: m ? 200 : 5, direction: 'down' },
+        ft:   { optimal: m ? [15,25] : [1,5],  normal: m ? [9,15] : [0.5,1], elevated: m ? [0,9] : [0,0.5], criticalBelow: m ? 5 : 0.2, direction: 'down' },
+        e2:   { optimal: m ? [20,35] : [30,400], normal: m ? [35,50] : [400,500], elevated: m ? [50,80] : [500,700], criticalAbove: m ? 80 : 700, direction: 'up' },
+        prl:  { optimal: [2, 15],    normal: [15, 25],  elevated: [25, 50],  criticalAbove: 50,  direction: 'up' },
+        hct:  { optimal: m ? [40,48] : [36,44], normal: m ? [48,52] : [44,48], elevated: m ? [52,55] : [48,52], criticalAbove: m ? 55 : 52, direction: 'up' },
+        hdl:  { optimal: [55, 200],  normal: [40, 55],  elevated: [30, 40],  criticalBelow: 30, direction: 'down' },
+        ldl:  { optimal: [0, 100],   normal: [100, 130], elevated: [130, 160], criticalAbove: 160, direction: 'up' },
+        trig: { optimal: [0, 100],   normal: [100, 150], elevated: [150, 200], criticalAbove: 200, direction: 'up' },
+        egfr: { optimal: [90, 200],  normal: [60, 90],  elevated: [30, 60],  criticalBelow: 30, direction: 'down' },
+        crea: { optimal: [0.5, 1.2], normal: [1.2, 1.5], elevated: [1.5, 2.0], criticalAbove: 2.0, direction: 'up' }
+    };
+}
+
+function classifyMarker(val, range) {
+    if (isNaN(val) || val === '') return { tier: 'empty', label: '—' };
+    val = parseFloat(val);
+    if (range.direction === 'up') {
+        if (val >= range.optimal[0] && val <= range.optimal[1]) return { tier: 'optimal', label: 'OPTIMAL' };
+        if (val >= range.normal[0] && val <= range.normal[1]) return { tier: 'normal', label: 'NORMAL' };
+        if (val >= range.elevated[0] && val <= range.elevated[1]) return { tier: 'elevated', label: 'ELEVATED' };
+        if (val > (range.criticalAbove || Infinity)) return { tier: 'critical', label: 'CRITICAL' };
+        return { tier: 'optimal', label: 'OPTIMAL' };
+    } else {
+        if (val >= range.optimal[0] && val <= range.optimal[1]) return { tier: 'optimal', label: 'OPTIMAL' };
+        if (val >= range.normal[0] && val < range.optimal[0]) return { tier: 'normal', label: 'NORMAL' };
+        if (val >= range.elevated[0] && val < range.normal[0]) return { tier: 'elevated', label: 'LOW' };
+        if (val < (range.criticalBelow || -Infinity)) return { tier: 'critical', label: 'CRITICAL' };
+        return { tier: 'optimal', label: 'OPTIMAL' };
+    }
+}
+
+function loadBloodworkView() {
+    if (window.mbnSetActive) window.mbnSetActive('');
+    if (window.closeSidebarOnMobile) window.closeSidebarOnMobile();
+
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    if(document.getElementById('bloodwork-nav-btn')) document.getElementById('bloodwork-nav-btn').classList.add('active');
+    document.getElementById('current-category').innerText = "BLOODWORK_LAB";
+
+    const mount = document.getElementById('article-mount');
+
+    if (!currentUser) {
+        mount.innerHTML = `
+            <div class="empty-state">
+                <div class="glitch-icon" style="color: var(--red)"><i class="fas fa-vials"></i></div>
+                <h2 class="glitch-small" data-text="CLINICAL_LOCKOUT" style="color: var(--red)">CLINICAL_LOCKOUT</h2>
+                <p style="max-width: 400px; line-height: 1.6; margin-bottom: 25px;">The Bloodwork Lab module processes sensitive clinical biomarker data. BIO-ID authentication is required for pathological cross-referencing.</p>
+                <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn">AUTHENTICATE_TO_ANALYZE</button>
+            </div>
+        `;
+        return;
+    }
+
+    const panels = { liver: 'HEPATIC PANEL', hormonal: 'HORMONAL PANEL', hematological: 'HEMATOLOGICAL PANEL', renal: 'RENAL PANEL' };
+    const panelIcons = { liver: 'fa-disease', hormonal: 'fa-dna', hematological: 'fa-tint', renal: 'fa-flask' };
+    let currentPanel = '';
+    let markersHtml = '';
+
+    BW_MARKERS.forEach(m => {
+        if (m.panel !== currentPanel) {
+            currentPanel = m.panel;
+            markersHtml += `<div class="bw-panel-header ${m.panel}"><i class="fas ${panelIcons[m.panel]}"></i>${panels[m.panel]}</div>`;
+        }
+        const ranges = getBwRanges(bwSex);
+        const r = ranges[m.id];
+        const refStr = r.direction === 'up'
+            ? `Optimal: ${r.optimal[0]}-${r.optimal[1]}`
+            : `Optimal: ${r.optimal[0]}-${r.optimal[1]}`;
+        markersHtml += `
+            <div class="bw-marker-card">
+                <label>${m.name}</label>
+                <div class="bw-input-row">
+                    <input type="number" id="bw-${m.id}" placeholder="${m.placeholder}" step="any">
+                    <span class="bw-unit">${m.unit}</span>
+                </div>
+                <div class="bw-ref-hint">${refStr} ${m.unit}</div>
+            </div>
+        `;
+    });
+
+    mount.innerHTML = `
+        <div class="bloodwork-view">
+            <div class="ai-header">
+                <h2><span class="glitch" data-text="BLOODWORK_LAB">BLOODWORK_LAB</span></h2>
+                <p>Input your lab panel values to receive instant clinical risk assessment, biomarker visualization, and pharmacological intervention protocols.</p>
+            </div>
+
+            <div class="bw-sex-toggle">
+                <button id="bw-sex-male" class="${bwSex === 'male' ? 'active' : ''}" onclick="window.setBwSex('male')">♂ MALE</button>
+                <button id="bw-sex-female" class="${bwSex === 'female' ? 'active' : ''}" onclick="window.setBwSex('female')">♀ FEMALE</button>
+            </div>
+
+            <div class="bloodwork-grid">
+                ${markersHtml}
+            </div>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button class="cyber-btn" onclick="analyzeBloodwork()" style="width: 260px; border-color: #ff3a5c; color: #ff3a5c; font-size: 13px; padding: 14px 20px;">
+                    <i class="fas fa-microscope"></i>&nbsp; ANALYZE_PATHOLOGY
+                </button>
+            </div>
+
+            <div id="bw-results"></div>
+        </div>
+    `;
+}
+
+window.setBwSex = function(s) {
+    bwSex = s;
+    // Just toggle buttons, don't rebuild the whole view
+    const mBtn = document.getElementById('bw-sex-male');
+    const fBtn = document.getElementById('bw-sex-female');
+    if (mBtn) mBtn.className = s === 'male' ? 'active' : '';
+    if (fBtn) fBtn.className = s === 'female' ? 'active' : '';
+};
+
+window.analyzeBloodwork = function() {
+    const ranges = getBwRanges(bwSex);
+    const results = [];
+    let totalScore = 0;
+    let filledCount = 0;
+
+    BW_MARKERS.forEach(m => {
+        const input = document.getElementById('bw-' + m.id);
+        const val = input ? input.value.trim() : '';
+        const range = ranges[m.id];
+        const classification = classifyMarker(val, range);
+
+        if (classification.tier !== 'empty') {
+            filledCount++;
+            const tierScore = { optimal: 100, normal: 75, elevated: 40, critical: 10 };
+            totalScore += tierScore[classification.tier] || 0;
+        }
+
+        results.push({
+            ...m,
+            value: val,
+            range: range,
+            classification: classification
+        });
+    });
+
+    if (filledCount === 0) {
+        if (window.showNotify) showNotify("INPUT_ERROR: Enter at least one biomarker value.");
+        return;
+    }
+
+    const avgScore = Math.round(totalScore / filledCount);
+    const resultsDiv = document.getElementById('bw-results');
+
+    // Determine overall tier
+    let overallTier = 'optimal';
+    let overallLabel = 'ALL SYSTEMS NOMINAL';
+    if (avgScore < 85) { overallTier = 'normal'; overallLabel = 'WITHIN PARAMETERS'; }
+    if (avgScore < 60) { overallTier = 'elevated'; overallLabel = 'ATTENTION REQUIRED'; }
+    if (avgScore < 35) { overallTier = 'critical'; overallLabel = 'CRITICAL DEVIATION'; }
+
+    // Build result cards
+    const filledResults = results.filter(r => r.classification.tier !== 'empty');
+    let cardsHtml = filledResults.map(r => {
+        const t = r.classification.tier;
+        const icons = { optimal: 'fa-check-circle', normal: 'fa-info-circle', elevated: 'fa-exclamation-triangle', critical: 'fa-radiation-alt' };
+        const refStr = r.range.direction === 'up'
+            ? `Ref: ${r.range.optimal[0]}-${r.range.optimal[1]} ${r.unit}`
+            : `Ref: ${r.range.optimal[0]}-${r.range.optimal[1]} ${r.unit}`;
+        return `
+            <div class="bw-result-card">
+                <div class="bw-rc-icon ${t}"><i class="fas ${icons[t]}"></i></div>
+                <div class="bw-rc-body">
+                    <div class="bw-rc-name">${r.name}</div>
+                    <div class="bw-rc-value ${t}">${r.value} <span style="font-size: 12px; opacity: 0.6;">${r.unit}</span></div>
+                    <div class="bw-rc-range">${refStr} — <span class="bw-risk-badge ${t}">${r.classification.label}</span></div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    // Build interventions
+    const interventions = generateBloodworkReport(results);
+    let interventionsHtml = interventions.map(i => `
+        <div class="bw-intervention-card ${i.severity}">
+            <h5><i class="fas ${i.icon}"></i> ${i.title}</h5>
+            <p>${i.text}</p>
+        </div>
+    `).join('');
+
+    // Stack context
+    let stackCtx = '';
+    if (typeof customStack !== 'undefined' && customStack.length > 0) {
+        const names = customStack.map(c => c.name || c.compound).join(', ');
+        stackCtx = `<div class="bw-intervention-card info"><h5><i class="fas fa-layer-group"></i> ACTIVE CYCLE CONTEXT</h5><p>Cross-referencing results against your active stack: <strong>${names}</strong>. Markers flagged may correlate with compound-specific side effect profiles.</p></div>`;
+    }
+
+    resultsDiv.innerHTML = `
+        <div class="bw-results-panel">
+            <div class="bw-summary-header">
+                <div class="bw-summary-score tier-${overallTier}">
+                    <div class="score-value">${avgScore}</div>
+                    <div class="score-label">HEALTH</div>
+                </div>
+                <div class="bw-summary-info">
+                    <h3 style="color: ${overallTier === 'optimal' ? '#00ffaa' : overallTier === 'normal' ? '#00f0ff' : overallTier === 'elevated' ? '#ff9d00' : '#ff3a5c'};">${overallLabel}</h3>
+                    <p>${filledCount} biomarker${filledCount > 1 ? 's' : ''} analyzed. ${filledResults.filter(r => r.classification.tier === 'critical').length > 0 ? 'Critical deviations detected — immediate clinical review recommended.' : filledResults.filter(r => r.classification.tier === 'elevated').length > 0 ? 'Elevated markers detected — monitor and consider intervention protocols below.' : 'All submitted markers within acceptable physiological parameters.'}</p>
+                </div>
+            </div>
+
+            <div class="bw-results-grid">
+                ${cardsHtml}
+            </div>
+
+            <div class="bw-chart-container">
+                <h4><i class="fas fa-chart-bar" style="color: var(--accent); margin-right: 8px;"></i>BIOMARKER DEVIATION MAP</h4>
+                <canvas id="bw-chart"></canvas>
+            </div>
+
+            ${stackCtx}
+
+            <div class="bw-interventions">
+                <div class="bw-panel-header" style="margin-top: 0;"><i class="fas fa-notes-medical"></i>INTERVENTION PROTOCOLS</div>
+                ${interventionsHtml.length > 0 ? interventionsHtml : '<div class="bw-intervention-card success"><h5><i class="fas fa-shield-alt"></i> NO INTERVENTIONS REQUIRED</h5><p>All submitted biomarkers are within optimal or acceptable reference ranges. Continue current protocol and retest in 8-12 weeks.</p></div>'}
+            </div>
+
+            <div style="text-align: center; margin-top: 15px;">
+                <button class="cyber-btn" onclick="saveBloodworkToVault()" style="border-color: #00ffaa; color: #00ffaa;">
+                    <i class="fas fa-save"></i>&nbsp; SAVE_TO_VAULT
+                </button>
+            </div>
+        </div>
+    `;
+
+    // Render chart
+    setTimeout(() => renderBloodworkChart(filledResults), 100);
+};
+
+function renderBloodworkChart(results) {
+    const canvas = document.getElementById('bw-chart');
+    if (!canvas) return;
+
+    const labels = results.map(r => r.name);
+    const values = results.map(r => parseFloat(r.value));
+    const ranges = getBwRanges(bwSex);
+
+    // Normalize each value as % of optimal midpoint
+    const normalizedValues = results.map(r => {
+        const range = ranges[r.id];
+        const optMid = (range.optimal[0] + range.optimal[1]) / 2;
+        return optMid > 0 ? Math.round((parseFloat(r.value) / optMid) * 100) : 0;
+    });
+
+    const tierColors = results.map(r => {
+        const t = r.classification.tier;
+        if (t === 'optimal') return 'rgba(0, 255, 170, 0.7)';
+        if (t === 'normal') return 'rgba(0, 240, 255, 0.7)';
+        if (t === 'elevated') return 'rgba(255, 157, 0, 0.7)';
+        return 'rgba(255, 58, 92, 0.8)';
+    });
+
+    const borderColors = results.map(r => {
+        const t = r.classification.tier;
+        if (t === 'optimal') return '#00ffaa';
+        if (t === 'normal') return '#00f0ff';
+        if (t === 'elevated') return '#ff9d00';
+        return '#ff3a5c';
+    });
+
+    if (window._bwChart) window._bwChart.destroy();
+    window._bwChart = new Chart(canvas, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '% of Optimal Midpoint',
+                data: normalizedValues,
+                backgroundColor: tierColors,
+                borderColor: borderColors,
+                borderWidth: 1,
+                borderRadius: 3,
+                barPercentage: 0.6
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(ctx) {
+                            const r = results[ctx.dataIndex];
+                            return `${r.value} ${r.unit} (${r.classification.label})`;
+                        }
+                    },
+                    backgroundColor: 'rgba(6,8,10,0.95)',
+                    titleColor: '#fff',
+                    bodyColor: '#a1abb8',
+                    borderColor: 'rgba(255,255,255,0.1)',
+                    borderWidth: 1
+                }
+            },
+            scales: {
+                x: {
+                    grid: { color: 'rgba(255,255,255,0.04)' },
+                    ticks: { color: '#555', font: { family: 'JetBrains Mono, monospace', size: 10 } },
+                    title: { display: true, text: '% OF OPTIMAL MIDPOINT', color: '#555', font: { family: 'JetBrains Mono, monospace', size: 9 } }
+                },
+                y: {
+                    grid: { display: false },
+                    ticks: { color: '#888', font: { family: 'JetBrains Mono, monospace', size: 10 } }
+                }
+            },
+            annotation: {
+                annotations: {
+                    optimalLine: {
+                        type: 'line',
+                        xMin: 100,
+                        xMax: 100,
+                        borderColor: 'rgba(0, 255, 170, 0.3)',
+                        borderWidth: 1,
+                        borderDash: [4, 4]
+                    }
+                }
+            }
+        }
+    });
+}
+
+function generateBloodworkReport(results) {
+    const interventions = [];
+    const r = {};
+    results.forEach(item => { r[item.id] = item; });
+
+    // Hepatic analysis
+    if (r.alt && r.alt.classification.tier === 'elevated' || r.ast && r.ast.classification.tier === 'elevated') {
+        interventions.push({
+            severity: 'warn',
+            icon: 'fa-exclamation-triangle',
+            title: 'HEPATIC STRAIN DETECTED',
+            text: 'Elevated liver transaminases indicate hepatocellular stress. If running C17-alpha alkylated orals (Dianabol, Anavar, Winstrol, Anadrol), consider: <strong>TUDCA 500mg/day + NAC 1200mg/day</strong>. Reduce oral dose or discontinue if ALT/AST exceed 3x upper limit. Retest in 4 weeks.'
+        });
+    }
+    if (r.alt && r.alt.classification.tier === 'critical' || r.ast && r.ast.classification.tier === 'critical') {
+        interventions.push({
+            severity: 'danger',
+            icon: 'fa-radiation-alt',
+            title: 'SEVERE HEPATOTOXICITY WARNING',
+            text: 'ALT/AST values indicate significant liver damage. <strong>Immediately discontinue all hepatotoxic compounds.</strong> Begin emergency protocol: TUDCA 1000mg/day, NAC 2400mg/day, Milk Thistle 600mg/day. Seek medical evaluation within 48 hours. Monitor for jaundice, dark urine, or right upper quadrant pain.'
+        });
+    }
+
+    // Estradiol
+    if (r.e2 && r.e2.classification.tier === 'elevated') {
+        interventions.push({
+            severity: 'warn',
+            icon: 'fa-venus-mars',
+            title: 'ELEVATED ESTRADIOL — AROMATASE ACTIVITY',
+            text: 'Elevated E2 suggests excessive aromatization of testosterone to estradiol. Consider: <strong>Anastrozole 0.25-0.5mg EOD</strong> or <strong>Aromasin (Exemestane) 12.5mg EOD</strong>. Monitor for estrogen crash symptoms (joint pain, mood swings, low libido). Retest E2 in 2-3 weeks after dose adjustment.'
+        });
+    }
+    if (r.e2 && r.e2.classification.tier === 'critical') {
+        interventions.push({
+            severity: 'danger',
+            icon: 'fa-venus-mars',
+            title: 'CRITICAL ESTRADIOL — GYNECOMASTIA RISK',
+            text: 'E2 is critically elevated. High risk of gynecomastia, water retention, and mood disturbance. <strong>Aromasin 25mg EOD for 7 days</strong>, then reduce to 12.5mg EOD. If gyno symptoms present, add <strong>Raloxifene 60mg/day</strong> or <strong>Nolvadex 20mg/day</strong>. Urgent bloodwork retest in 10 days.'
+        });
+    }
+
+    // Hematocrit
+    if (r.hct && r.hct.classification.tier === 'elevated') {
+        interventions.push({
+            severity: 'warn',
+            icon: 'fa-tint',
+            title: 'ELEVATED HEMATOCRIT — POLYCYTHEMIA RISK',
+            text: 'Elevated HCT increases blood viscosity and cardiovascular risk. Consider: <strong>Therapeutic phlebotomy (blood donation)</strong>, <strong>Naringin 500mg/day</strong> (natural HCT reducer), increase daily water intake to 5L+, and add <strong>Baby Aspirin 81mg/day</strong> for antiplatelet protection. Common with high-dose Testosterone, EQ, and Tren.'
+        });
+    }
+    if (r.hct && r.hct.classification.tier === 'critical') {
+        interventions.push({
+            severity: 'danger',
+            icon: 'fa-tint',
+            title: 'CRITICAL HEMATOCRIT — STROKE/CLOT RISK',
+            text: '<strong>HCT above 55% significantly increases risk of stroke, DVT, and pulmonary embolism.</strong> Immediate therapeutic phlebotomy recommended (500mL). Reduce testosterone dose by 30-50%. Add Naringin 1000mg/day. Hydrate aggressively. Consult a hematologist if HCT remains above 54% after intervention.'
+        });
+    }
+
+    // HDL
+    if (r.hdl && r.hdl.classification.tier === 'elevated') {
+        interventions.push({
+            severity: 'warn',
+            icon: 'fa-heartbeat',
+            title: 'LOW HDL — CARDIOVASCULAR RISK',
+            text: 'Suppressed HDL is common with oral AAS and Trenbolone. Protocol: <strong>Citrus Bergamot 1000mg/day</strong>, <strong>Omega-3 Fish Oil 4g/day</strong>, <strong>Cardarine (GW-501516) 10mg/day</strong> for lipid restoration. Increase cardiovascular exercise to 150+ min/week. Avoid saturated fat excess.'
+        });
+    }
+    if (r.hdl && r.hdl.classification.tier === 'critical') {
+        interventions.push({
+            severity: 'danger',
+            icon: 'fa-heartbeat',
+            title: 'CRITICALLY LOW HDL — ATHEROGENIC RISK',
+            text: 'HDL below 30 mg/dL represents severe cardiovascular risk. <strong>Discontinue oral AAS immediately.</strong> Begin aggressive lipid recovery: Citrus Bergamot 1500mg/day, Niacin 500mg/day (flush form), Omega-3 4g/day. Add 200+ min/week LISS cardio. Retest lipids in 6 weeks.'
+        });
+    }
+
+    // LDL
+    if (r.ldl && r.ldl.classification.tier === 'elevated') {
+        interventions.push({
+            severity: 'warn',
+            icon: 'fa-heartbeat',
+            title: 'ELEVATED LDL — LIPID MANAGEMENT',
+            text: 'Elevated LDL increases atherogenic plaque risk. Consider: <strong>Citrus Bergamot 1000mg/day</strong>, reduce dietary saturated fat, increase soluble fiber (oats, psyllium husk 10g/day). If persistent, discuss statin therapy with physician.'
+        });
+    }
+
+    // Triglycerides
+    if (r.trig && r.trig.classification.tier === 'elevated') {
+        interventions.push({
+            severity: 'warn',
+            icon: 'fa-vial',
+            title: 'ELEVATED TRIGLYCERIDES',
+            text: 'High triglycerides often correlate with insulin resistance and excess simple carbohydrate intake. Reduce sugar/refined carbs, add <strong>Omega-3 Fish Oil 3-4g/day</strong>, and increase fasted cardio. Avoid alcohol. If on a bulk, consider transitioning to a cleaner caloric surplus.'
+        });
+    }
+
+    // Prolactin
+    if (r.prl && r.prl.classification.tier === 'elevated') {
+        interventions.push({
+            severity: 'warn',
+            icon: 'fa-brain',
+            title: 'ELEVATED PROLACTIN — DOPAMINE SUPPRESSION',
+            text: 'Elevated prolactin is common with 19-nor compounds (Nandrolone, Trenbolone). Consider: <strong>P5P (Pyridoxal-5-Phosphate) 100-200mg/day</strong> as first-line, or <strong>Cabergoline 0.25mg 2x/week</strong> for moderate-severe elevation. Vitamin E 400 IU/day may also help. Monitor for sexual dysfunction and galactorrhea.'
+        });
+    }
+    if (r.prl && r.prl.classification.tier === 'critical') {
+        interventions.push({
+            severity: 'danger',
+            icon: 'fa-brain',
+            title: 'CRITICAL PROLACTIN — PROLACTINOMA SCREENING',
+            text: 'Prolactin above 50 ng/mL requires medical evaluation to rule out prolactinoma (pituitary adenoma). <strong>Cabergoline 0.5mg 2x/week</strong>. If not on 19-nor compounds, MRI of the pituitary is recommended. Discontinue Trenbolone/Deca if applicable.'
+        });
+    }
+
+    // Testosterone
+    if (r.tt && r.tt.classification.tier === 'elevated') {
+        interventions.push({
+            severity: 'warn',
+            icon: 'fa-mars',
+            title: 'LOW TESTOSTERONE',
+            text: bwSex === 'male' ? 'Total testosterone below 300 ng/dL indicates hypogonadism. If natural, consult an endocrinologist for TRT evaluation. Optimize: sleep 7-9h, zinc 30mg/day, Vitamin D3 5000 IU/day, reduce body fat below 20%, minimize alcohol and stress.' : 'Low testosterone may affect libido, energy, and bone density. Consult an endocrinologist for evaluation.'
+        });
+    }
+
+    // Renal
+    if (r.egfr && r.egfr.classification.tier === 'elevated') {
+        interventions.push({
+            severity: 'warn',
+            icon: 'fa-flask',
+            title: 'REDUCED eGFR — RENAL STRESS',
+            text: 'eGFR between 30-60 indicates moderate kidney function impairment. Increase hydration to 4-5L/day, reduce NSAID use, moderate protein intake if excessively high (>3g/kg). Avoid nephrotoxic compounds. Retest in 4-6 weeks.'
+        });
+    }
+    if (r.crea && r.crea.classification.tier === 'elevated') {
+        interventions.push({
+            severity: 'warn',
+            icon: 'fa-flask',
+            title: 'ELEVATED CREATININE',
+            text: 'Elevated creatinine may indicate renal stress OR high muscle mass / creatine supplementation (false positive). If supplementing creatine, discontinue for 7 days and retest. If still elevated, reduce protein intake and consult nephrologist. Maintain hydration above 4L/day.'
+        });
+    }
+
+    return interventions;
+}
+
+window.saveBloodworkToVault = function() {
+    if (!currentUser) {
+        alert("PLEASE VALIDATE BIO_ID TO ACCESS RESEARCH VAULT.");
+        document.getElementById('bioIdBtn').click();
+        return;
+    }
+
+    const snapshot = { markers: {} };
+    BW_MARKERS.forEach(m => {
+        const input = document.getElementById('bw-' + m.id);
+        if (input && input.value.trim()) {
+            snapshot.markers[m.id] = { value: parseFloat(input.value), unit: m.unit, name: m.name };
+        }
+    });
+
+    if (Object.keys(snapshot.markers).length === 0) {
+        if (window.showNotify) showNotify("No biomarker data to save.");
+        return;
+    }
+
+    const entry = {
+        title: 'BLOODWORK_PANEL_' + new Date().toISOString().slice(0,10).replace(/-/g,''),
+        date: new Date().toISOString(),
+        type: 'bloodwork',
+        sex: bwSex,
+        ...snapshot
+    };
+
+    const key = 'eclipse_bloodwork_' + currentUser;
+    let history = JSON.parse(localStorage.getItem(key)) || [];
+    history.push(entry);
+    localStorage.setItem(key, JSON.stringify(history));
+
+    // Also save to main vault
+    let vault = JSON.parse(localStorage.getItem('eclipse_vault_' + currentUser)) || [];
+    vault.push(entry);
+    localStorage.setItem('eclipse_vault_' + currentUser, JSON.stringify(vault));
+
+    if (window.showNotify) showNotify("BLOODWORK_SNAPSHOT saved to Research Vault.");
+    else {
+        const toast = document.createElement('div');
+        toast.className = 'cyber-toast';
+        toast.innerHTML = '<i class="fas fa-check-circle" style="color:#00ffaa"></i> BLOODWORK_SNAPSHOT SAVED TO VAULT';
+        document.body.appendChild(toast);
+        setTimeout(() => { toast.classList.add('hide'); setTimeout(() => toast.remove(), 500); }, 2500);
+    }
+};
 
 function loadPathologyView() {
     if (window.mbnSetActive) window.mbnSetActive('');
