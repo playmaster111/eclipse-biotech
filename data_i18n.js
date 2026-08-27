@@ -154,5 +154,86 @@ window.DRUG_I18N = {
         "de": { "overview": "Langsam wirkender 19-nor-AAS, bekannt für Gelenkschmierung.", "primaryUses": "Anämie, Osteoporose.", "mechanism": "Bindet stark an Progesteronrezeptoren. Geringe Aromatisierung.", "risks": "Deca-Dick (Libidoverlust), HPTA-Abschaltung.", "benefits": "Gelenkschmerzlinderung, massiver Masseaufbau.", "experimental": { "b": "200mg wöchentlich", "a": "600mg+ wöchentlich" } },
         "es": { "overview": "AAS de tipo 19-nor de acción lenta, conocido por lubricar las articulaciones.", "primaryUses": "Anemia, osteoporosis.", "mechanism": "Se une fuertemente a receptores de progesterona. Baja aromatización.", "risks": "Deca Dick (pérdida de libido), cierre del HPTA.", "benefits": "Alivio del dolor articular, ganancia de masa masiva.", "experimental": { "b": "200mg semanal", "a": "600mg+ semanal" } },
         "it": { "overview": "AAS di tipo 19-nor a lenta azione, noto per la lubrificazione articolare.", "primaryUses": "Anemia, osteoporosi.", "mechanism": "Si lega fortemente ai recettori del progesterone. Bassa aromatizzazione.", "risks": "Deca Dick (perdita di libido), spegnimento HPTA.", "benefits": "Sollievo dal dolore articolare, guadagno di massa massiccio.", "experimental": { "b": "200mg a settimana", "a": "600mg+ a settimana" } }
+    },
+    "dnp": {
+        "de": {
+            "name": "2,4-Dinitrophenol (DNP)",
+            "overview": "DNP ist eine extrem gefährliche Industriechemikalie, die in den 1930er Jahren kurzzeitig als Diätmittel verwendet wurde, bis Menschen buchstäblich von innen heraus gekocht wurden.",
+            "primaryUses": "Keine menschliche Anwendung (industrieller Farbstoff, Sprengstoffherstellung).",
+            "mechanism": "Entkoppelt die oxidative Phosphorylierung in den Mitochondrien. Energie aus Nahrung wird als reine, glühende Hitze verschwendet, anstatt ATP zu produzieren.",
+            "dosage": "Tödlich.",
+            "experimental": { "b": "Nicht empfohlen", "a": "200mg bis 400mg täglich" },
+            "benefits": "Verbrennt massive Mengen an reinem Körperfett mit unübertroffener Geschwindigkeit (bis zu 0,5 kg reines Fett pro Tag).",
+            "risks": "Tod. Schwere Dehydrierung, Katarakte, Gelbfärbung der Körperflüssigkeiten. Es gibt kein biologisches Gegenmittel bei einer DNP-Überdosierung."
+        },
+        "es": {
+            "name": "2,4-Dinitrofenol (DNP)",
+            "overview": "El DNP es una sustancia química industrial altamente peligrosa que se utilizó brevemente como píldora dietética en la década de 1930 hasta que los usuarios empezaron a cocinarse literalmente por dentro.",
+            "primaryUses": "Ningún uso humano (tinte industrial, fabricación de explosivos).",
+            "mechanism": "Desacopla la fosforilación oxidativa en las mitocondrias. La energía de los alimentos se disipa como calor abrasador en lugar de generar ATP.",
+            "dosage": "Letal.",
+            "experimental": { "b": "No recomendado", "a": "200mg a 400mg diario" },
+            "benefits": "Quema cantidades masivas de grasa corporal a un ritmo matemáticamente inigualable (hasta 0,5 kg por día de grasa pura).",
+            "risks": "Muerte. Deshidratación severa, cataratas, coloración amarillenta de fluidos corporales. No existe antídoto biológico para una sobredosis de DNP."
+        },
+        "it": {
+            "name": "2,4-Dinitrofenolo (DNP)",
+            "overview": "Il DNP è una sostanza chimica industriale altamente pericolosa, utilizzata brevemente come pillola dimagrante negli anni '30 fino a quando le persone iniziarono letteralmente a cuocersi dall'interno.",
+            "primaryUses": "Nessun uso umano (colorante industriale, produzione di esplosivi).",
+            "mechanism": "Disaccoppia la fosforilazione ossidativa nei mitocondri. L'energia del cibo viene dissipata come calore ardente anziché produrre ATP.",
+            "dosage": "Letale.",
+            "experimental": { "b": "Non raccomandato", "a": "200mg a 400mg al giorno" },
+            "benefits": "Brucia enormi quantità di grasso corporeo a una velocità matematicamente ineguagliata (fino a 0,5 kg di grasso puro al giorno).",
+            "risks": "Morte. Grave disidratazione, cataratta, ingiallimento dei fluidi corporei. Non esiste alcun antidoto biologico per un sovradosaggio di DNP."
+        }
+    },
+    "t3_cytomel": {
+        "de": {
+            "name": "Liothyronin (T3 / Cytomel)",
+            "overview": "Synthetisches Schilddrüsenhormon. Bestimmt die grundlegende Stoffwechselgeschwindigkeit des gesamten Körpers.",
+            "primaryUses": "Hypothyreose, Schilddrüsenunterfunktion.",
+            "mechanism": "Ersetzt oder ergänzt die natürliche T3-Produktion und erhöht den Grundumsatz sowie den zellulären Sauerstoffverbrauch drastisch.",
+            "dosage": "25mcg täglich.",
+            "benefits": "Schnelle Fettverbrennung, verhindert Stoffwechselverlangsamung bei extremen Diäten, beseitigt Gehirnnebel.",
+            "risks": "Stark katabol (baut Muskelgewebe ab ohne Schutz durch AAS), Herzrasen, Unterdrückung der Schilddrüse."
+        },
+        "es": {
+            "name": "Liotironina (T3 / Cytomel)",
+            "overview": "Hormona tiroidea sintética. Dicta la velocidad metabólica basal de todo el cuerpo humano.",
+            "primaryUses": "Hipotiroidismo.",
+            "mechanism": "Reemplaza o suplementa la producción natural de T3, elevando el metabolismo basal y el consumo de oxígeno celular.",
+            "dosage": "25mcg diario.",
+            "benefits": "Quema rápida de grasa, previene la desaceleración metabólica en dietas severas, aclara la niebla mental.",
+            "risks": "Altamente catabólico (quema masa muscular si no se usan AAS protectores), palpitaciones, supresión tiroidea."
+        },
+        "it": {
+            "name": "Liotironina (T3 / Cytomel)",
+            "overview": "Ormone tiroideo sintetico. Determina la velocità metabolica basale dell'intero organismo.",
+            "primaryUses": "Ipotiroidismo.",
+            "mechanism": "Sostituisce o integra la produzione naturale di T3, elevando fortemente il metabolismo basale e il consumo cellulare di ossigeno.",
+            "dosage": "25mcg al giorno.",
+            "benefits": "Brucia rapidamente i grassi, previene il rallentamento metabolico durante diete severe, elimina la nebbia mentale.",
+            "risks": "Fortemente catabolico (brucia tessuto muscolare senza adeguata protezione con AAS), palpitazioni, soppressione tiroidea."
+        }
+    },
+    "oxymetholone": {
+        "de": { "overview": "Bekannt als Anadrol. Eines der stärksten oralen Masse-Steroide.", "benefits": "Extremer Kraftzuwachs, massive Glykogenfüllung, rasante Massesteigerung.", "risks": "Schwere Hepatotoxizität, extremer Bluthochdruck, Östrogen-Nebenwirkungen." },
+        "es": { "overview": "Conocido como Anadrol. Uno de los esteroides orales más potentes para ganar masa.", "benefits": "Aumento extremo de fuerza, llenado masivo de glucógeno, rápida ganancia de peso.", "risks": "Hepatotoxicidad severa, presión arterial muy alta, efectos estrogénicos." },
+        "it": { "overview": "Noto come Anadrol. Uno degli steroidi orali più potenti per la massa muscolare.", "benefits": "Incremento estremo di forza, volumizzazione massiccia di glicogeno, rapido aumento di peso.", "risks": "Grave epatotossicità, forte aumento della pressione sanguigna, effetti estrogenici." }
+    },
+    "stanozolol": {
+        "de": { "overview": "Winstrol. DHT-Derivat für maximale Härte und Vaskularität.", "benefits": "Trockene Muskelmasse, senkt SHBG drastisch, steigert freies Testosteron.", "risks": "Austrocknung der Gelenke (Gelenkschmerzen), schwere Lipidverschlechterung, Leberschäden." },
+        "es": { "overview": "Winstrol. Derivado de DHT para máxima dureza y vascularidad.", "benefits": "Masa muscular magra y seca, reduce drásticamente SHBG, aumenta testosterona libre.", "risks": "Dolor y sequedad articular, daño en perfil lipídico, hepatotoxicidad." },
+        "it": { "overview": "Winstrol. Derivato del DHT per la massima definizione e vascolarizzazione.", "benefits": "Massa muscolare asciutta e definita, riduce drasticamente l'SHBG, aumenta il testosterone libero.", "risks": "Secchezza e dolori articolari, alterazione severa dei lipidi, tossicità epatica." }
+    },
+    "cardarine": {
+        "de": { "overview": "PPAR-Delta-Agonist zur radikalen Steigerung von Ausdauer und Fettverbrennung.", "benefits": "Enorme Steigerung der kardiovaskulären Ausdauer, verbessert HDL-Cholesterin.", "risks": "Potenzielle Kanzerogenität in Nagetierstudien bei hohen Dosen." },
+        "es": { "overview": "Agonista de PPAR-delta para aumentar radicalmente la resistencia y la quema de grasa.", "benefits": "Aumento masivo de la resistencia cardiovascular, mejora del colesterol HDL.", "risks": "Posible carcinogenicidad observada en estudios con roedores a dosis elevadas." },
+        "it": { "overview": "Agonista PPAR-delta per aumentare radicalmente la resistenza aerobica e l'ossidazione dei grassi.", "benefits": "Enorme aumento della resistenza cardiovascolare, miglioramento del colesterolo HDL.", "risks": "Potenziale cancerogenicità evidenziata in studi su roditori a dosaggi elevati." }
+    },
+    "bpc157": {
+        "de": { "overview": "Synthetisches Peptid aus dem Magensaft für beschleunigte Gewebeheilung.", "benefits": "Beschleunigt die Heilung von Sehnen, Bändern, Muskeln und Darmschleimhaut.", "risks": "Minimal; gelegentlich Rötung an der Injektionsstelle." },
+        "es": { "overview": "Péptido derivado de jugo gástrico para acelerar la reparación de tejidos.", "benefits": "Reparación acelerada de tendones, ligamentos, tejido muscular y mucosa gástrica.", "risks": "Mínimos; ocasional irritación en el sitio de inyección." },
+        "it": { "overview": "Peptide derivato dal succo gastrico per accelerare la guarigione dei tessuti.", "benefits": "Guarigione accelerata di tendini, legamenti, muscoli e mucosa intestinale.", "risks": "Minimi; occasionale arrossamento nel punto di iniezione." }
     }
 };

@@ -4557,45 +4557,34 @@ input:checked + .slider:before {
     font-family: var(--font-m);
 }
 
-/* Hide Google Translate Bar & Tooltips */
+/* Stealth Google Translate Integration */
 body {
     top: 0 !important;
+    position: static !important;
 }
-/* Aggressively Hide Google Translate UI while keeping Engine Active */
+
 .goog-te-banner-frame,
 .goog-te-banner,
-.skiptranslate,
 #goog-gt-tt,
 .goog-te-balloon-frame,
 .goog-te-menu-frame,
 iframe.goog-te-banner-frame,
-.goog-te-gadget-icon {
+.goog-te-gadget-icon,
+.goog-logo-link {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
 }
 
-body {
-    top: 0 !important;
-    position: static !important;
-}
-
 .goog-text-highlight {
     background: transparent !important;
     box-shadow: none !important;
 }
-#google_translate_element {
-    display: none !important;
-}
-.goog-logo-link {
-    display: none !important;
-}
+
 .goog-te-gadget {
     color: transparent !important;
-}
-.goog-te-gadget span {
-    display: none !important;
+    font-size: 0 !important;
 }
 
 /* Folder Aesthetics & Animations */

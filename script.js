@@ -412,15 +412,39 @@ function updateUIStrings() {
     if (selectedValue) selectedValue.innerText = currentLang.toUpperCase();
 }
 
-// --- Google Translate Bridge ---
+// --- Google Translate Bridge & Synchronization ---
+function setGoogleTranslateCookie(langCode) {
+    try {
+        const val = (langCode === 'en' || !langCode) ? '' : `/en/${langCode}`;
+        document.cookie = `googtrans=${val}; path=/;`;
+        const host = window.location.hostname;
+        if (host) {
+            document.cookie = `googtrans=${val}; domain=.${host}; path=/;`;
+            document.cookie = `googtrans=${val}; domain=${host}; path=/;`;
+        }
+    } catch(e) {}
+}
+
 function triggerGoogleTranslate(langCode) {
+    setGoogleTranslateCookie(langCode);
     const googleCombo = document.querySelector('.goog-te-combo');
     if (googleCombo) {
-        googleCombo.value = langCode;
-        googleCombo.dispatchEvent(new Event('change'));
+        if (googleCombo.value !== langCode) {
+            googleCombo.value = langCode;
+            googleCombo.dispatchEvent(new Event('change'));
+        }
     } else {
-        // If it's not loaded yet, try again in a moment
-        setTimeout(() => triggerGoogleTranslate(langCode), 500);
+        // If combo is not ready yet, retry gracefully
+        setTimeout(() => triggerGoogleTranslate(langCode), 400);
+    }
+}
+
+function syncPageTranslation() {
+    if (currentLang && currentLang !== 'en') {
+        setGoogleTranslateCookie(currentLang);
+        setTimeout(() => {
+            triggerGoogleTranslate(currentLang);
+        }, 120);
     }
 }
 
@@ -431,7 +455,6 @@ function mergeTranslations() {
     function deepMerge(target, source, lang) {
         Object.keys(source).forEach(field => {
             if (typeof source[field] === 'object' && source[field] !== null && !Array.isArray(source[field])) {
-                // If it's an object (like experimental), we store it as field_lang
                 target[`${field}_${lang}`] = source[field];
             } else {
                 target[`${field}_${lang}`] = source[field];
@@ -2180,11 +2203,12 @@ function loadArticle(id) {
     mount.innerHTML = HTML;
     mount.scrollTo(0, 0);
 
-    // Initialize 3D Mesh
+    // Initialize 3D Mesh & Sync Translations
     setTimeout(() => {
         initHologram(holoType);
         updateHeatMap(item);
-    }, 50);
+        if (typeof syncPageTranslation === 'function') syncPageTranslation();
+    }, 60);
 }
 
 // Search Listener is handled inside DOMContentLoaded block above - removed duplicate
