@@ -969,7 +969,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const searchInput = document.getElementById('searchInput');
                 renderSidebar(searchInput ? searchInput.value : '');
                 
-                // Trigger Google Translate
+                // Immediately re-render active article in new language
+                if (window.currentActiveItem && typeof loadArticle === 'function') {
+                    loadArticle(window.currentActiveItem);
+                } else if (window.currentDrug && window.currentDrug.id && typeof loadArticle === 'function') {
+                    loadArticle(window.currentDrug.id);
+                }
+                
+                // Trigger Google Translate background sync
                 triggerGoogleTranslate(val);
                 
                 customSelect.classList.remove('active');
