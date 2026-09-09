@@ -441,10 +441,19 @@ function triggerGoogleTranslate(langCode) {
 
 function syncPageTranslation() {
     if (currentLang && currentLang !== 'en') {
-        setGoogleTranslateCookie(currentLang);
-        setTimeout(() => {
-            triggerGoogleTranslate(currentLang);
-        }, 120);
+        const googleCombo = document.querySelector('.goog-te-combo');
+        if (googleCombo) {
+            // Force GT to re-scan: briefly reset to English, then re-apply target
+            googleCombo.value = 'en';
+            googleCombo.dispatchEvent(new Event('change'));
+            setTimeout(() => {
+                googleCombo.value = currentLang;
+                googleCombo.dispatchEvent(new Event('change'));
+            }, 150);
+        } else {
+            setGoogleTranslateCookie(currentLang);
+            setTimeout(() => triggerGoogleTranslate(currentLang), 500);
+        }
     }
 }
 
@@ -2210,12 +2219,16 @@ function loadArticle(id) {
     mount.innerHTML = HTML;
     mount.scrollTo(0, 0);
 
-    // Initialize 3D Mesh & Sync Translations
+    // Initialize 3D Mesh
     setTimeout(() => {
         initHologram(holoType);
         updateHeatMap(item);
-        if (typeof syncPageTranslation === 'function') syncPageTranslation();
     }, 60);
+
+    // Sync Google Translate after DOM is settled
+    setTimeout(() => {
+        if (typeof syncPageTranslation === 'function') syncPageTranslation();
+    }, 300);
 }
 
 // Search Listener is handled inside DOMContentLoaded block above - removed duplicate
