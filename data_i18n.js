@@ -965,7 +965,9 @@ window.DRUG_I18N = {
       "primaryUses": "Ipogonadismo maschile, TRT",
       "dosage": "Da 100mg a 200mg IM ogni 7-10 giorni.",
       "benefits": "Aumento consistente di forza e densità muscolare, libido elevata, ottimizzazione del senso di benessere generale.",
-      "risks": "Conversione in DHT ed estradiolo, ginecomastia, ritenzione idrica se non controllata."
+      "risks": "Conversione in DHT ed estradiolo, ginecomastia, ritenzione idrica se non controllata.",
+      "aestheticProfile": "Praticamente identico a Enanthate. Fornisce un potente look \"maschile\" con una maggiore definizione della mascella e rotondità muscolare.",
+      "physiologicalTargets": "Crescita muscolare sistemica; particolarmente efficace nell'aumentare le dimensioni dei muscoli pettorali superiori e dei cingoli scapolari."
     },
     "de": {
       "name": "Testosteron Cypionat",
@@ -974,7 +976,9 @@ window.DRUG_I18N = {
       "primaryUses": "Männlicher Hypogonadismus, TRT",
       "dosage": "100mg bis 200mg i.m. alle 7-10 Tage.",
       "benefits": "Solider Muskel- und Kraftaufbau, gesteigerte Libido und Vitalität, verbesserte Regeneration.",
-      "risks": "Aromatisierung, Östrogennebenwirkungen, Wassereinlagerungen, HPTA-Unterdrückung."
+      "risks": "Aromatisierung, Östrogennebenwirkungen, Wassereinlagerungen, HPTA-Unterdrückung.",
+      "aestheticProfile": "Praktisch identisch mit Enanthate. Bietet einen kraftvollen \"maskulinen\" Look mit erhöhter Kieferdefinition und Muskelrundheit.",
+      "physiologicalTargets": "Systemisches Muskelwachstum; besonders wirksam bei der Vergrößerung der oberen Brust- und Schultergürtelmuskulatur."
     },
     "es": {
       "name": "Cipionato de Testosterona",
@@ -983,7 +987,9 @@ window.DRUG_I18N = {
       "primaryUses": "Hipogonadismo masculino, TRT",
       "dosage": "100mg a 200mg IM cada 7-10 días.",
       "benefits": "Incremento sostenido de fuerza y masa magra, bienestar general, aumento marcado de libido.",
-      "risks": "Conversión a estrógenos y DHT, retención de agua, supresión del eje HPTA."
+      "risks": "Conversión a estrógenos y DHT, retención de agua, supresión del eje HPTA.",
+      "aestheticProfile": "Prácticamente idéntico al enantato. Proporciona un aspecto \"masculino\" potente con una mayor definición de la línea de la mandíbula y redondez muscular.",
+      "physiologicalTargets": "Crecimiento muscular sistémico; particularmente eficaz para aumentar el tamaño de los músculos pectorales superiores y de la cintura escapular."
     }
   },
   "testosterone_propionate": {
@@ -994,7 +1000,9 @@ window.DRUG_I18N = {
       "primaryUses": "Deficit di androgeni, protocolli di definizione",
       "dosage": "25mg a 50mg IM a giorni alterni (clinica).",
       "benefits": "Massa muscolare asciutta senza gonfiore idrico, rapida comparsa dei risultati, rapida eliminazione in caso di interruzione.",
-      "risks": "Iniezioni frequenti, dolore post-iniezione (PIP), fluttuazioni ormonali se non somministrato regolarmente."
+      "risks": "Iniezioni frequenti, dolore post-iniezione (PIP), fluttuazioni ormonali se non somministrato regolarmente.",
+      "aestheticProfile": "Utilizzato spesso nelle fasi di “taglio”. Fornisce un aspetto più asciutto rispetto agli esteri più lunghi a causa della minore ritenzione idrica cumulativa. Dona un aspetto molto “duro” e vascolare.",
+      "physiologicalTargets": "Saturazione AR immediata. Ottimo per mantenere la pienezza durante una dieta ipocalorica."
     },
     "de": {
       "name": "Testosteron Propionat",
@@ -1003,7 +1011,9 @@ window.DRUG_I18N = {
       "primaryUses": "Androgenmangel, Definitionsphasen",
       "dosage": "25mg bis 50mg i.m. jeden zweiten Tag.",
       "benefits": "Trockener Muskelaufbau, sofortige Kraftsteigerung, schnelle Regulierung bei Nebenwirkungen.",
-      "risks": "Häufige Injektionen, Schmerzen an der Injektionsstelle (PIP), Hormonschwankungen."
+      "risks": "Häufige Injektionen, Schmerzen an der Injektionsstelle (PIP), Hormonschwankungen.",
+      "aestheticProfile": "Wird häufig in „Schneide“ -Phasen verwendet. Bietet ein trockeneres Aussehen als längere Ester aufgrund der geringeren kumulativen Wasserretention. Erbringt ein sehr „hartes“ und vaskuläres Erscheinungsbild.",
+      "physiologicalTargets": "Sofortige AR-Sättigung. Hervorragend geeignet für die Aufrechterhaltung der Fülle während einer kalorienreduzierten Diät."
     },
     "es": {
       "name": "Propionato de Testosterona",
@@ -1012,7 +1022,9 @@ window.DRUG_I18N = {
       "primaryUses": "Déficit androgénico, fases de definición",
       "dosage": "25mg a 50mg IM en días alternos.",
       "benefits": "Masa muscular limpia y definida, rápida acción, rápida eliminación del sistema si se detiene.",
-      "risks": "Inyecciones constantes, molestia en el punto de punción (PIP), variaciones en niveles hormonales."
+      "risks": "Inyecciones constantes, molestia en el punto de punción (PIP), variaciones en niveles hormonales.",
+      "aestheticProfile": "A menudo se utiliza en las fases de \"corte\". Proporciona un aspecto más seco que los ésteres más largos debido a una menor retención de agua acumulada. Produce un aspecto muy “duro” y vascular.",
+      "physiologicalTargets": "Saturación inmediata de AR. Excelente para mantener la saciedad con una dieta restringida en calorías."
     }
   },
   "drostanolone": {
@@ -1023,7 +1035,9 @@ window.DRUG_I18N = {
       "primaryUses": "Trattamento del cancro al seno (storico), rifinitura pre-gara",
       "dosage": "100mg IM tre volte a settimana (storico).",
       "benefits": "Fisico estremamente duro, asciutto e denso; modesto effetto anti-estrogenico; densità muscolare granitica.",
-      "risks": "Perdita di capelli in soggetti geneticamente predisposti, ipertrofia prostatica, dislipidemia."
+      "risks": "Perdita di capelli in soggetti geneticamente predisposti, ipertrofia prostatica, dislipidemia.",
+      "aestheticProfile": "Agente “Lucidante”, esalta la granulosità e i dettagli muscolari. Agisce come un lieve anti-estrogeno, dando al corpo un aspetto di \"pietra levigata\".",
+      "physiologicalTargets": "I recettori degli androgeni nella pelle e nei follicoli piliferi sono altamente sensibili a questo composto. Favorisce l'indurimento estremo della massa muscolare esistente."
     },
     "de": {
       "name": "Drostanolon (Masteron)",
@@ -1032,7 +1046,9 @@ window.DRUG_I18N = {
       "primaryUses": "Brustkrebstherapie (historisch), Wettkampfvorbereitung",
       "dosage": "100mg i.m. dreimal pro Woche (historisch).",
       "benefits": "Extrem harte, dichte Muskeloptik; harntreibender Effekt unter der Haut; erhöht die Aggressivität im Training.",
-      "risks": "Haarausfall bei entsprechender Veranlagung, Prostatavergrößerung, Verschlechterung der Blutfettwerte."
+      "risks": "Haarausfall bei entsprechender Veranlagung, Prostatavergrößerung, Verschlechterung der Blutfettwerte.",
+      "aestheticProfile": "Das Mittel \"Polieren\". Verbessert die Körnigkeit und Detailgenauigkeit der Muskeln. Wirkt als mildes Antiöstrogen und verleiht dem Körper einen \"polierten Stein\" -Look.",
+      "physiologicalTargets": "Androgenrezeptoren in Haut und Haarfollikeln reagieren sehr empfindlich auf diese Verbindung. Fördert eine extreme Verhärtung der vorhandenen Muskelmasse."
     },
     "es": {
       "name": "Drostanolona (Masteron)",
@@ -1041,7 +1057,9 @@ window.DRUG_I18N = {
       "primaryUses": "Cáncer de mama (histórico), acondicionamiento precompetición",
       "dosage": "100mg IM tres veces por semana.",
       "benefits": "Dureza muscular granítica, eliminación de agua extracelular, efecto anti-estrogénico sinérgico.",
-      "risks": "Alopecia androgénica acelerada en propensos, aumento de próstata, alteración del colesterol HDL."
+      "risks": "Alopecia androgénica acelerada en propensos, aumento de próstata, alteración del colesterol HDL.",
+      "aestheticProfile": "El agente “Pulidor”. Potencia la granulosidad muscular y el detalle. Actúa como un antiestrógeno suave, dando al físico un aspecto de \"piedra pulida\".",
+      "physiologicalTargets": "Los receptores de andrógenos en la piel y los folículos pilosos son muy sensibles a este compuesto. Promueve el endurecimiento extremo de la masa muscular existente."
     }
   },
   "methenolone": {
@@ -1052,7 +1070,9 @@ window.DRUG_I18N = {
       "primaryUses": "Deperimento muscolare, recupero da malnutrizione grave",
       "dosage": "100-200mg IM a settimana (clinico).",
       "benefits": "Guadagni muscolari puliti, stabili e permanenti; mantenimento impeccabile della massa magra in dieta ipocalorica; eccezionale profilo di sicurezza.",
-      "risks": "Lieve soppressione gonadica, caduta dei capelli in individui sensibili al DHT."
+      "risks": "Lieve soppressione gonadica, caduta dei capelli in individui sensibili al DHT.",
+      "aestheticProfile": "Considerato lo steroide più “estetico”. Fornisce un guadagno di massa muscolare magra molto lento e di alta qualità che rimane post-ciclo. La pelle appare sottile e “cartacea” mentre i muscoli appaiono densi e atletici.",
+      "physiologicalTargets": "Si rivolge principalmente al tessuto muscolare scheletrico AR. Noto per la sua capacità di preservare la massa muscolare anche in caso di deficit calorici estremi (livelli di fame)."
     },
     "de": {
       "name": "Methenolon (Primobolan)",
@@ -1061,7 +1081,9 @@ window.DRUG_I18N = {
       "primaryUses": "Muskelschwund, Gewichtsverlust, Palliativmedizin",
       "dosage": "100-200mg i.m. pro Woche (medizinisch).",
       "benefits": "Hochwertiger, trockener Muskelaufbau; perfekter Muskelschutz bei Diäten; minimales Nebenwirkungsprofil.",
-      "risks": "Leichte HPTA-Unterdrückung, Haarausfall bei genetischer Veranlagung."
+      "risks": "Leichte HPTA-Unterdrückung, Haarausfall bei genetischer Veranlagung.",
+      "aestheticProfile": "Gilt als das \"ästhetischste\" Steroid. Bietet einen sehr langsamen, qualitativ hochwertigen Muskelaufbau, der auch nach dem Zyklus erhalten bleibt. Die Haut sieht dünn und \"papierartig\" aus, während die Muskeln dicht und athletisch wirken.",
+      "physiologicalTargets": "Zielt in erster Linie auf das Skelettmuskelgewebe AR ab. Bekannt für seine Fähigkeit, Muskelmasse auch bei extremen Kaloriendefiziten (Hungerzuständen) zu erhalten."
     },
     "es": {
       "name": "Metenolona (Primobolan)",
@@ -1070,7 +1092,9 @@ window.DRUG_I18N = {
       "primaryUses": "Caquexia, sarcopenia, recuperación postoperatoria",
       "dosage": "100-200mg IM por semana.",
       "benefits": "Masa muscular magra de gran calidad que se mantiene tras el ciclo; preservación muscular perfecta en déficit; perfil de seguridad inigualable.",
-      "risks": "Supresión hormonal moderada, posible caída de cabello en propensos."
+      "risks": "Supresión hormonal moderada, posible caída de cabello en propensos.",
+      "aestheticProfile": "Considerado el esteroide más “estético”. Proporciona una ganancia muy lenta y de alta calidad de músculo magro que permanece después del ciclo. La piel se ve delgada y \"similar al papel\", mientras que los músculos parecen densos y atléticos.",
+      "physiologicalTargets": "Se dirige principalmente al tejido muscular esquelético AR. Conocido por su capacidad para preservar la masa muscular incluso en déficits calóricos extremos (niveles de inanición)."
     }
   },
   "mesterolone": {
@@ -1081,7 +1105,8 @@ window.DRUG_I18N = {
       "primaryUses": "Carenza androgenica, infertilità maschile",
       "dosage": "Da 25mg a 100mg al giorno.",
       "benefits": "Aumenta drasticamente il testosterone libero legando la SHBG; dona una finitura asciutta e granulare ai muscoli; stimola libido e umore.",
-      "risks": "Iperplasia prostatica, perdita di capelli in soggetti predisposti."
+      "risks": "Iperplasia prostatica, perdita di capelli in soggetti predisposti.",
+      "cycleExamples": "<strong>The Finisher:</strong> spesso aggiunto alle ultime 4 settimane di un ciclo di preparazione al concorso a 50 mg al giorno per migliorare la durezza muscolare e mitigare gli effetti di schiacciamento della libido del basso grasso corporeo."
     },
     "de": {
       "name": "Mesterolon (Proviron)",
@@ -1090,7 +1115,8 @@ window.DRUG_I18N = {
       "primaryUses": "Androgensubstitution, männliche Unfruchtbarkeit",
       "dosage": "25mg bis 100mg täglich.",
       "benefits": "Erhöht freies Testosteron deutlich durch SHBG-Bindung; verbessert Muskelhärte; starker Libido- und Stimmungsboost.",
-      "risks": "Prostatabeschwerden, androgenbedingter Haarausfall."
+      "risks": "Prostatabeschwerden, androgenbedingter Haarausfall.",
+      "cycleExamples": "<strong>Der Finisher:</strong> Wird oft zu den letzten 4 Wochen eines Wettkampfvorbereitungszyklus mit 50 mg täglich hinzugefügt, um die Muskelhärte zu verbessern und die libido-zerkleinernden Effekte von niedrigem Körperfett zu mildern."
     },
     "es": {
       "name": "Mesterolona (Proviron)",
@@ -1099,7 +1125,8 @@ window.DRUG_I18N = {
       "primaryUses": "Terapia androgénica, infertilidad masculina",
       "dosage": "25mg a 100mg diarios.",
       "benefits": "Aumenta el testosterone libre al unirse a la SHBG; confiere densidad y firmeza muscular; potencia notablemente la libido.",
-      "risks": "Agrandamiento de próstata, pérdida de cabello en personas sensibles."
+      "risks": "Agrandamiento de próstata, pérdida de cabello en personas sensibles.",
+      "cycleExamples": "<strong>The Finisher:</strong> a menudo se añade a las últimas 4 semanas de un ciclo de preparación de concurso con 50 mg diarios para mejorar la dureza muscular y mitigar los efectos de aplastamiento de la libido de la baja grasa corporal."
     }
   },
   "turinabol": {
@@ -1110,7 +1137,8 @@ window.DRUG_I18N = {
       "primaryUses": "Storico: Doping atletico, incremento di potenza",
       "dosage": "Da 10mg a 40mg al giorno.",
       "benefits": "Guadagni costanti di forza e massa pulita senza il gonfiore tipico del Dianabol; netto miglioramento del recupero e della resistenza atletica.",
-      "risks": "Alterazione sfavorevole dei lipidi (HDL basso), soppressione dell'HPTA, epatotossicità moderata."
+      "risks": "Alterazione sfavorevole dei lipidi (HDL basso), soppressione dell'HPTA, epatotossicità moderata.",
+      "cycleExamples": "<strong>Il protocollo \"Blue Heart\":</strong> storicamente utilizzato a 20-40 mg al giorno da velocisti e nuotatori olimpici per aumentare il rapporto peso-potenza."
     },
     "de": {
       "name": "Oral Turinabol",
@@ -1119,7 +1147,8 @@ window.DRUG_I18N = {
       "primaryUses": "Historisch: Leistungssteigerung im Sport",
       "dosage": "10mg bis 40mg täglich.",
       "benefits": "Sauberer Kraft- und Massezuwachs ohne Blähbauch oder Wasseransammlung; massive Steigerung der Ausdauer.",
-      "risks": "Starke Belastung der Blutfettwerte, HPTA-Unterdrückung, Leberbelastung."
+      "risks": "Starke Belastung der Blutfettwerte, HPTA-Unterdrückung, Leberbelastung.",
+      "cycleExamples": "<strong>Das \"Blue Heart\" -Protokoll:</strong> Historisch bei 20-40 mg täglich von olympischen Sprintern und Schwimmern verwendet, um das Leistungsgewicht zu erhöhen."
     },
     "es": {
       "name": "Turinabol Oral",
@@ -1128,7 +1157,8 @@ window.DRUG_I18N = {
       "primaryUses": "Históricamente: Rendimiento deportivo olímpico",
       "dosage": "10mg a 40mg diarios.",
       "benefits": "Ganancias limpias de fuerza y masa sin hinchazón ni agua; incremento sustancial en velocidad y potencia.",
-      "risks": "Deterioro marcado del perfil lipídico, supresión del eje gonadal, toxicidad hepática moderada."
+      "risks": "Deterioro marcado del perfil lipídico, supresión del eje gonadal, toxicidad hepática moderada.",
+      "cycleExamples": "<strong>El Protocolo \"Corazón Azul\":</strong> Históricamente utilizado en dosis de 20-40 mg diarios por velocistas y nadadores olímpicos para aumentar la relación potencia-peso."
     }
   },
   "trestolone": {
@@ -1139,7 +1169,8 @@ window.DRUG_I18N = {
       "primaryUses": "Ricerca su contraccezione maschile, anabolizzante estremo",
       "dosage": "Sperimentale (microdosaggi in mg).",
       "benefits": "Uno dei più potenti anabolizzanti mai sintetizzati; crea un blocco fisiologico totale della spermatogenesi mantenendo i caratteri maschili.",
-      "risks": "Tasso di aromatizzazione elevatissimo con rapida ginecomastia, letargia intensa, arresto spermatogenico completo."
+      "risks": "Tasso di aromatizzazione elevatissimo con rapida ginecomastia, letargia intensa, arresto spermatogenico completo.",
+      "cycleExamples": "<strong>La ricerca contraccettiva:</strong> documentata in studi clinici in cui 10-20 mg al giorno hanno mantenuto con successo le caratteristiche maschili azzerando il numero di spermatozoi."
     },
     "de": {
       "name": "Trestolon (MENT)",
@@ -1148,7 +1179,8 @@ window.DRUG_I18N = {
       "primaryUses": "Forschung zur männlichen Kontrazeption",
       "dosage": "Experimentell (sehr geringe mg-Dosierungen).",
       "benefits": "Enormer Muskel- und Kraftaufbau; schaltet die körpereigene Spermienproduktion vollständig ab.",
-      "risks": "Extreme Aromatisierungsrate (erfordert starke Aromatasehemmer), Müdigkeit, vollständige Infertilität während der Einnahme."
+      "risks": "Extreme Aromatisierungsrate (erfordert starke Aromatasehemmer), Müdigkeit, vollständige Infertilität während der Einnahme.",
+      "cycleExamples": "<strong>Die Verhütungsforschung:</strong> Dokumentiert in klinischen Studien, in denen 10-20 mg täglich erfolgreich männliche Eigenschaften beibehielten, während die Spermienzahl ausgeglichen wurde."
     },
     "es": {
       "name": "Trestolona (MENT)",
@@ -1157,7 +1189,8 @@ window.DRUG_I18N = {
       "primaryUses": "Investigación en anticoncepción masculina",
       "dosage": "Experimental (microdosis en mg).",
       "benefits": "El constructor de masa más potente sintetizado; induce azoospermia completa mientras suple las funciones androgénicas.",
-      "risks": "Tasa de aromatización extrema (precisa inhibidores potentes), letargo severo, infertilidad transitoria."
+      "risks": "Tasa de aromatización extrema (precisa inhibidores potentes), letargo severo, infertilidad transitoria.",
+      "cycleExamples": "<strong>La investigación anticonceptiva:</strong> documentada en ensayos clínicos en los que 10-20 mg diarios mantuvieron con éxito las características masculinas mientras reducían a cero el recuento de espermatozoides."
     }
   },
   "tamoxifen": {
@@ -1168,7 +1201,8 @@ window.DRUG_I18N = {
       "primaryUses": "Trattamento del cancro al seno, ginecomastia maschile, protocolli PCT",
       "dosage": "Da 10mg a 20mg al giorno (PCT).",
       "benefits": "Riavvia la produzione endogena di testosterone stimolando le gonadotropine; arresta completamente l'ingrossamento del tessuto ghiandolare mammario.",
-      "risks": "Lieve affaticamento epatico, rara tossicità oculare ad alti dosaggi, modesta riduzione dell'IGF-1 circolante."
+      "risks": "Lieve affaticamento epatico, rara tossicità oculare ad alti dosaggi, modesta riduzione dell'IGF-1 circolante.",
+      "cycleExamples": "<strong>PCT standard:</strong> 20 mg ogni giorno per 4-6 settimane immediatamente dopo la clearance degli androgeni esogeni."
     },
     "de": {
       "name": "Tamoxifen (Nolvadex)",
@@ -1177,7 +1211,8 @@ window.DRUG_I18N = {
       "primaryUses": "Brustkrebsbehandlung, Gynäkomastie-Prävention, PCT",
       "dosage": "10mg bis 20mg täglich (PCT).",
       "benefits": "Reaktiviert die körpereigene Testosteronproduktion nach einer Kur; stoppt effektiv das Wachstum von Drüsengewebe in der Brust.",
-      "risks": "Leichte Leberbelastung, seltene Sehstörungen, leichte Reduktion von freiem IGF-1."
+      "risks": "Leichte Leberbelastung, seltene Sehstörungen, leichte Reduktion von freiem IGF-1.",
+      "cycleExamples": "<strong>Standard PCT:</strong> 20 mg täglich für 4 bis 6 Wochen unmittelbar nach der Clearance von exogenen Androgenen."
     },
     "es": {
       "name": "Tamoxifeno (Nolvadex)",
@@ -1186,7 +1221,8 @@ window.DRUG_I18N = {
       "primaryUses": "Cáncer de mama, ginecomastia masculina, PCT",
       "dosage": "10mg a 20mg diarios (PCT).",
       "benefits": "Restaura la producción natural de testosterona; detiene con rapidez el desarrollo de tejido glandular en el pecho.",
-      "risks": "Leve sobrecarga hepática, toxicidad ocular infrecuente a dosis altas, reducción ligera de IGF-1."
+      "risks": "Leve sobrecarga hepática, toxicidad ocular infrecuente a dosis altas, reducción ligera de IGF-1.",
+      "cycleExamples": "<strong>PCT estándar:</strong> 20 mg todos los días durante 4 a 6 semanas inmediatamente después del aclaramiento de andrógenos exógenos."
     }
   },
   "anastrozole": {
@@ -1197,7 +1233,8 @@ window.DRUG_I18N = {
       "primaryUses": "Carcinoma mammario, controllo dell'estradiolo in TRT/cicli",
       "dosage": "0.25mg a 0.5mg due volte a settimana (TRT).",
       "benefits": "Elimina rapidamente la ritenzione idrica, previene ginecomastia, acne ed eccessiva labilità emotiva.",
-      "risks": "Rischio di abbattere eccessivamente l'estradiolo a zero, provocando dolori articolari intensi, calo totale della libido e letargia."
+      "risks": "Rischio di abbattere eccessivamente l'estradiolo a zero, provocando dolori articolari intensi, calo totale della libido e letargia.",
+      "cycleExamples": "<strong>Gestione del ciclo:</strong> 0,5 mg assunti la mattina dopo ogni iniezione di testosterone per mantenere stabili i livelli di E2."
     },
     "de": {
       "name": "Anastrozol (Arimidex)",
@@ -1206,7 +1243,8 @@ window.DRUG_I18N = {
       "primaryUses": "Brustkrebs, Östrogenmanagement bei TRT und Kuren",
       "dosage": "0,25mg bis 0,5mg zweimal wöchentlich (TRT).",
       "benefits": "Schnelle Beseitigung von Wasseransammlungen, zuverlässiger Schutz vor Gynäkomastie und östrogenbedingter Akne.",
-      "risks": "Gefahr eines zu starken Östrogenabsturzes ('Crashed E2') mit starken Gelenkschmerzen, Libidoverlust und Erschöpfung."
+      "risks": "Gefahr eines zu starken Östrogenabsturzes ('Crashed E2') mit starken Gelenkschmerzen, Libidoverlust und Erschöpfung.",
+      "cycleExamples": "<strong>Zyklusmanagement:</strong> 0,5 mg am Morgen nach jeder Testosteroninjektion, um einen stabilen E2-Spiegel aufrechtzuerhalten."
     },
     "es": {
       "name": "Anastrozol (Arimidex)",
@@ -1215,7 +1253,8 @@ window.DRUG_I18N = {
       "primaryUses": "Cáncer de mama, control estrogénico en TRT",
       "dosage": "0.25mg a 0.5mg dos veces por semana.",
       "benefits": "Reduce de inmediato la retención de agua, previene la ginecomastia y la inestabilidad anímica.",
-      "risks": "Riesgo de colapsar el estrógeno a cero, ocasionando dolores articulares agudos, anorgasmia y letargo."
+      "risks": "Riesgo de colapsar el estrógeno a cero, ocasionando dolores articulares agudos, anorgasmia y letargo.",
+      "cycleExamples": "<strong>Gestión del ciclo:</strong> 0,5 mg tomados la mañana después de cada inyección de testosterona para mantener estables los niveles de E2."
     }
   },
   "ostarine": {
@@ -1226,7 +1265,8 @@ window.DRUG_I18N = {
       "primaryUses": "Deperimento muscolare, riparazione articolare e ossea",
       "dosage": "Non approvato per uso clinico umano.",
       "benefits": "Mantenimento eccellente della massa magra in deficit calorico marcato, accelerazione della riparazione dei tendini.",
-      "risks": "Soppressione lieve ma misurabile del testosterone endogeno, riduzione del colesterolo HDL."
+      "risks": "Soppressione lieve ma misurabile del testosterone endogeno, riduzione del colesterolo HDL.",
+      "cycleExamples": "<strong>Cutting Protocol:</strong> 20mg daily for 8 weeks during a strict caloric deficit to retain lean tissue."
     },
     "de": {
       "name": "Ostarine (MK-2866)",
@@ -1235,7 +1275,8 @@ window.DRUG_I18N = {
       "primaryUses": "Muskelschwund, Osteoporose",
       "dosage": "Klinisch nicht offiziell zugelassen.",
       "benefits": "Hervorragender Schutz der Muskelmasse in strengen Diätphasen, spürbare Verbesserung der Sehnen- und Gelenkregeneration.",
-      "risks": "Leichte, aber messbare Unterdrückung des körpereigenen Testosterons, Absinken des HDL-Cholesterins."
+      "risks": "Leichte, aber messbare Unterdrückung des körpereigenen Testosterons, Absinken des HDL-Cholesterins.",
+      "cycleExamples": "<strong>Cutting Protocol:</strong> 20mg daily for 8 weeks during a strict caloric deficit to retain lean tissue."
     },
     "es": {
       "name": "Ostarina (MK-2866)",
@@ -1244,7 +1285,8 @@ window.DRUG_I18N = {
       "primaryUses": "Caquexia, osteoporosis, recuperación tendinosa",
       "dosage": "Sin aprobación clínica formal.",
       "benefits": "Preservación sobresaliente del músculo en restricción calórica severa, mejora marcada en regeneración de tendones.",
-      "risks": "Supresión androgénica leve pero documentada, descenso del colesterol HDL."
+      "risks": "Supresión androgénica leve pero documentada, descenso del colesterol HDL.",
+      "cycleExamples": "<strong>Cutting Protocol:</strong> 20mg daily for 8 weeks during a strict caloric deficit to retain lean tissue."
     }
   },
   "ligandrol": {
@@ -1255,7 +1297,8 @@ window.DRUG_I18N = {
       "primaryUses": "Cachessia grave, debolezza muscolare senile",
       "dosage": "Non approvato per uso clinico umano.",
       "benefits": "Incrementi significativi di forza e volume muscolare, massiccia volumizzazione cellulare e ritenzione di glicogeno.",
-      "risks": "Soppressione dell'asse HPTA pronunciata a dosaggi elevati (richiede PCT), transitoria ritenzione idrica."
+      "risks": "Soppressione dell'asse HPTA pronunciata a dosaggi elevati (richiede PCT), transitoria ritenzione idrica.",
+      "cycleExamples": "<strong>Bulking Protocol:</strong> 5mg to 10mg daily for 8 weeks alongside a caloric surplus."
     },
     "de": {
       "name": "Ligandrol (LGD-4033)",
@@ -1264,7 +1307,8 @@ window.DRUG_I18N = {
       "primaryUses": "Schwere Kachexie, Muskelschwund",
       "dosage": "Nicht medizinisch zugelassen.",
       "benefits": "Deutliche Zunahme an Muskelmasse und Maximalkraft, hervorragende Glykogenspeicherung.",
-      "risks": "Spürbare Unterdrückung der körpereigenen Hormonachse (erfordert PCT), leichte Wasserretention."
+      "risks": "Spürbare Unterdrückung der körpereigenen Hormonachse (erfordert PCT), leichte Wasserretention.",
+      "cycleExamples": "<strong>Bulking Protocol:</strong> 5mg to 10mg daily for 8 weeks alongside a caloric surplus."
     },
     "es": {
       "name": "Ligandrol (LGD-4033)",
@@ -1273,7 +1317,8 @@ window.DRUG_I18N = {
       "primaryUses": "Caquexia severa, fragilidad muscular",
       "dosage": "Sin aprobación médica formal.",
       "benefits": "Aumento notable en volumen y fuerza muscular neta, gran retención de glucógeno intracelular.",
-      "risks": "Supresión hormonal significativa del eje HPTA a dosis medias/altas, retención hídrica temporal."
+      "risks": "Supresión hormonal significativa del eje HPTA a dosis medias/altas, retención hídrica temporal.",
+      "cycleExamples": "<strong>Bulking Protocol:</strong> 5mg to 10mg daily for 8 weeks alongside a caloric surplus."
     }
   },
   "rad140": {
@@ -1284,7 +1329,8 @@ window.DRUG_I18N = {
       "primaryUses": "Ricerca su cancro al seno, atrofia muscolare",
       "dosage": "Non approvato clinicamente.",
       "benefits": "Incrementi eccezionali di forza massimale, elevata vascolarizzazione, zero ritenzione idrica, spinta neurale nell'allenamento.",
-      "risks": "Marcata soppressione del testosterone naturale, perdita di capelli in soggetti sensibili, affaticamento degli enzimi epatici."
+      "risks": "Marcata soppressione del testosterone naturale, perdita di capelli in soggetti sensibili, affaticamento degli enzimi epatici.",
+      "cycleExamples": "<strong>Recomp Protocol:</strong> 15mg daily for 8 weeks to strip fat while retaining brutal strength."
     },
     "de": {
       "name": "Testolone (RAD-140)",
@@ -1293,7 +1339,8 @@ window.DRUG_I18N = {
       "primaryUses": "Forschung zu Brustkrebs und Muskelschwund",
       "dosage": "Medizinisch nicht zugelassen.",
       "benefits": "Enorme Kraftsteigerung, ausgeprägte Vaskularität, absolut keine Wassereinlagerung, gesteigerte Trainingsaggressivität.",
-      "risks": "Starke Unterdrückung des körpereigenen Testosterons, möglicher Haarausfall, Belastung der Leberwerte."
+      "risks": "Starke Unterdrückung des körpereigenen Testosterons, möglicher Haarausfall, Belastung der Leberwerte.",
+      "cycleExamples": "<strong>Recomp Protocol:</strong> 15mg daily for 8 weeks to strip fat while retaining brutal strength."
     },
     "es": {
       "name": "Testolona (RAD-140)",
@@ -1302,7 +1349,8 @@ window.DRUG_I18N = {
       "primaryUses": "Investigación en cáncer de mama y atrofia muscular",
       "dosage": "Sin autorización médica formal.",
       "benefits": "Incrementos extremos de fuerza, notable densidad vascular, cero retención de agua, aumento del impulso neural.",
-      "risks": "Fuerte supresión del eje hormonal, caída de pelo en susceptibles, elevación moderada de enzimas hepáticas."
+      "risks": "Fuerte supresión del eje hormonal, caída de pelo en susceptibles, elevación moderada de enzimas hepáticas.",
+      "cycleExamples": "<strong>Recomp Protocol:</strong> 15mg daily for 8 weeks to strip fat while retaining brutal strength."
     }
   },
   "semaglutide": {
@@ -1342,7 +1390,8 @@ window.DRUG_I18N = {
       "primaryUses": "Diabete di tipo 2, obesità clinica",
       "dosage": "2.5mg a 15mg sottocute una volta a settimana.",
       "benefits": "Perdita di peso superiore a qualsiasi agente precedente (fino al 20%+ del peso corporeo totale), profonda regolazione metabolica.",
-      "risks": "Nausea, disturbi gastrointestinali, disidratazione."
+      "risks": "Nausea, disturbi gastrointestinali, disidratazione.",
+      "synthesis": "A highly advanced synthetic peptide produced via automated solid-phase peptide synthesis (SPPS)."
     },
     "de": {
       "name": "Tirzepatid (Mounjaro / Zepbound)",
@@ -1351,7 +1400,8 @@ window.DRUG_I18N = {
       "primaryUses": "Typ-2-Diabetes, starkes Übergewicht",
       "dosage": "2,5mg bis 15mg subkutan einmal wöchentlich.",
       "benefits": "Herausragende Fettabnahme (bis zu über 20% des Körpergewichts), vollständige Eliminierung von Heißhunger.",
-      "risks": "Magen-Darm-Probleme, Übelkeit, Völlegefühl."
+      "risks": "Magen-Darm-Probleme, Übelkeit, Völlegefühl.",
+      "synthesis": "A highly advanced synthetic peptide produced via automated solid-phase peptide synthesis (SPPS)."
     },
     "es": {
       "name": "Tirzepatida (Mounjaro / Zepbound)",
@@ -1360,7 +1410,8 @@ window.DRUG_I18N = {
       "primaryUses": "Diabetes tipo 2, manejo del sobrepeso severo",
       "dosage": "2.5mg a 15mg subcutáneo semanalmente.",
       "benefits": "Reducción de peso sin precedentes (superior al 20% del peso corporal), control glucémico absoluto.",
-      "risks": "Náuseas iniciales, dispepsia, deshidratación leve."
+      "risks": "Náuseas iniciales, dispepsia, deshidratación leve.",
+      "synthesis": "A highly advanced synthetic peptide produced via automated solid-phase peptide synthesis (SPPS)."
     }
   },
   "testosterone_undecanoate": {
@@ -1371,7 +1422,8 @@ window.DRUG_I18N = {
       "primaryUses": "TRT a lungo termine con visite cliniche minime",
       "dosage": "IM: 1000mg ogni 10-14 settimane. Orale: 120-160mg al giorno.",
       "benefits": "Mantiene livelli fisiologici ultra-stabili per mesi; comoda somministrazione con profilo di sicurezza elevato.",
-      "risks": "Aromatizzazione, lieve stress epatico (orale), curve di assorbimento variabili."
+      "risks": "Aromatizzazione, lieve stress epatico (orale), curve di assorbimento variabili.",
+      "cycleExamples": "<strong>The Vacationer:</strong> Utilizzato principalmente da viaggiatori che non possono trasportare provviste; 1000 mg di Nebido iniettato una volta ogni 12 settimane fornisce una base androgenica stabile, anche se a basse prestazioni."
     },
     "de": {
       "name": "Testosteron Undecanoat (Nebido)",
@@ -1380,7 +1432,8 @@ window.DRUG_I18N = {
       "primaryUses": "Langzeit-TRT mit minimalen Arztbesuchen",
       "dosage": "i.m.: 1000mg alle 10 bis 14 Wochen. Oral: 120-160mg täglich.",
       "benefits": "Hält über Monate hinweg ultrastabile physiologische Spiegel aufrecht; bequeme Verabreichung.",
-      "risks": "Aromatisierung, leichte Leberbelastung (oral), schwankende Resorptionskurven."
+      "risks": "Aromatisierung, leichte Leberbelastung (oral), schwankende Resorptionskurven.",
+      "cycleExamples": "<strong>Der Urlauber:</strong> Wird hauptsächlich von Reisenden verwendet, die keine Vorräte tragen können. 1000 mg Nebido, das einmal alle 12 Wochen injiziert wird, bietet eine stabile, wenn auch leistungsschwache, androgene Basis."
     },
     "es": {
       "name": "Undecanoato de Testosterona (Nebido)",
@@ -1389,7 +1442,8 @@ window.DRUG_I18N = {
       "primaryUses": "TRT a largo plazo con mínimo número de inyecciones",
       "dosage": "IM: 1000mg cada 10 a 14 semanas. Oral: 120-160mg diarios.",
       "benefits": "Mantiene niveles hormonales estables durante meses; dosificación sumamente cómoda.",
-      "risks": "Aromatización a estrógenos, leve estrés hepático (oral), variabilidad en absorción."
+      "risks": "Aromatización a estrógenos, leve estrés hepático (oral), variabilidad en absorción.",
+      "cycleExamples": "<strong>The Vacationer:</strong> utilizado principalmente por viajeros que no pueden transportar suministros; 1000 mg de Nebido inyectados una vez cada 12 semanas proporcionan una base androgénica estable, aunque de bajo rendimiento."
     }
   },
   "trenbolone_enanthate": {
@@ -1400,7 +1454,8 @@ window.DRUG_I18N = {
       "primaryUses": "Nessuna approvazione medica (uso atletico illecito)",
       "dosage": "Non prescritto clinicamente.",
       "benefits": "Produce la ricomposizione corporea più marcata conosciuta dalla scienza: perdita radicale di grasso con aumento notevole di massa magra; richiede iniezioni meno frequenti rispetto all'acetato.",
-      "risks": "Insonnia, forte sovraccarico cardiovascolare, intensa alterazione dell'umore e ansia."
+      "risks": "Insonnia, forte sovraccarico cardiovascolare, intensa alterazione dell'umore e ansia.",
+      "cycleExamples": "<strong>The Advanced Recomp:</strong> un protocollo ad alta fedeltà spesso documentato nella ricerca sotterranea prevede 400 mg di Tren Enanthate e 500 mg di Test Enanthate settimanalmente per 12 settimane."
     },
     "de": {
       "name": "Trenbolon Enanthat",
@@ -1409,7 +1464,8 @@ window.DRUG_I18N = {
       "primaryUses": "Keine medizinische Zulassung",
       "dosage": "Nicht medizinisch verordnet.",
       "benefits": "Extremste Körperrekomposition; radikaler Fettverlust bei gleichzeitigem Aufbau magerer Muskelmasse; seltenere Injektionen nötig.",
-      "risks": "Schlaflosigkeit, schwere kardiovaskuläre Belastung, aggressive Stimmungsschwankungen."
+      "risks": "Schlaflosigkeit, schwere kardiovaskuläre Belastung, aggressive Stimmungsschwankungen.",
+      "cycleExamples": "<strong>The Advanced Recomp:</strong> Ein High-Fidelity-Protokoll, das in der Untergrundforschung oft dokumentiert wird, umfasst 400 mg Tren Enanthate und 500 mg Test Enanthate wöchentlich für 12 Wochen."
     },
     "es": {
       "name": "Enantato de Trembolona",
@@ -1418,7 +1474,8 @@ window.DRUG_I18N = {
       "primaryUses": "Ninguna indicación médica aprobada",
       "dosage": "Sin uso médico formal.",
       "benefits": "Produce una recomposición corporal extrema; quema drástica de grasa con ganancias limpias notables; menor frecuencia de inyecciones.",
-      "risks": "Insomnio severo, sobrecarga cardiovascular aguda, alteraciones del estado anímico."
+      "risks": "Insomnio severo, sobrecarga cardiovascular aguda, alteraciones del estado anímico.",
+      "cycleExamples": "<strong>La recomendación avanzada:</strong> Un protocolo de alta fidelidad a menudo documentado en la investigación subterránea involucra 400 mg de Tren Enanthate y 500 mg de Test Enanthate semanalmente durante 12 semanas."
     }
   },
   "trenbolone_parabolan": {
@@ -1429,7 +1486,8 @@ window.DRUG_I18N = {
       "primaryUses": "Storico: Malnutrizione, cachessia grave",
       "dosage": "76mg IM ogni 14 giorni (storico clinico).",
       "benefits": "L'unico trenbolone human-grade mai sintetizzato; storicamente celebrato per la purezza impeccabile e la curva di rilascio stabile.",
-      "risks": "Ginecomastia da progesterone, blocco totale dell'asse HPTA."
+      "risks": "Ginecomastia da progesterone, blocco totale dell'asse HPTA.",
+      "cycleExamples": "<strong>Il protocollo dell'annata:</strong> negli anni '90, gli atleti francesi sono stati documentati utilizzando 1 fiala (76 mg) ogni 3 giorni per ottenere un fisico asciutto e duro."
     },
     "de": {
       "name": "Trenbolon Hexahydrobenzylcarbonat (Parabolan)",
@@ -1438,7 +1496,8 @@ window.DRUG_I18N = {
       "primaryUses": "Historisch: Mangelernährung, Kachexie",
       "dosage": "76mg i.m. alle 14 Tage (historisch).",
       "benefits": "Einziges echtes Human-Grade-Trenbolon; legendär für außergewöhnliche Reinheit und gleichmäßige Freisetzung.",
-      "risks": "Progesteronbedingte Gynäkomastie, vollständige HPTA-Abschaltung."
+      "risks": "Progesteronbedingte Gynäkomastie, vollständige HPTA-Abschaltung.",
+      "cycleExamples": "<strong>Das Vintage-Protokoll:</strong> In den 1990er Jahren wurden französische Athleten mit 1 Ampulle (76 mg) alle 3 Tage dokumentiert, um einen trockenen, harten Körperbau zu erreichen."
     },
     "es": {
       "name": "Hexahidrobencilcarbonato de Trembolona (Parabolan)",
@@ -1447,7 +1506,8 @@ window.DRUG_I18N = {
       "primaryUses": "Histórico: Desnutrición, caquexia",
       "dosage": "76mg IM cada 14 días (histórico).",
       "benefits": "La única trembolona de grado farmacéutico humano jamás sintetizada; pureza y curva de liberación legendarias.",
-      "risks": "Ginecomastia mediada por progesterona, parada completa del eje hormonal."
+      "risks": "Ginecomastia mediada por progesterona, parada completa del eje hormonal.",
+      "cycleExamples": "<strong>El Protocolo Vintage:</strong> En la década de 1990, se documentó que los atletas franceses usaban 1 ampolla (76 mg) cada 3 días para lograr un físico seco y duro."
     }
   },
   "fluoxymesterone": {
@@ -1458,7 +1518,8 @@ window.DRUG_I18N = {
       "primaryUses": "Ipogonadismo maschile (raro), pubertà ritardata",
       "dosage": "Da 2mg a 10mg al giorno.",
       "benefits": "L'androgeno orale più potente per la forza massimale pura; incrementa drasticamente aggressività competitiva e determinazione; zero conversione in estrogeni.",
-      "risks": "Epatotossicità severa, aggressività marcata ('Roid Rage'), alterazione drastica del profilo lipidico."
+      "risks": "Epatotossicità severa, aggressività marcata ('Roid Rage'), alterazione drastica del profilo lipidico.",
+      "cycleExamples": "<strong>The Meet Prep:</strong> 10 mg assunti 60 minuti prima di una sessione di sollevamento pesante per massimizzare la produzione e l'aggressività del SNC."
     },
     "de": {
       "name": "Fluoxymesteron (Halotestin)",
@@ -1467,7 +1528,8 @@ window.DRUG_I18N = {
       "primaryUses": "Hypogonadismus (selten), verzögerte Pubertät",
       "dosage": "2mg bis 10mg täglich.",
       "benefits": "Stärkstes orales Androgen für reine Maximalkraft; starker Anstieg von Fokus und Wettkampfaggression; keine Östrogenbildung.",
-      "risks": "Extreme Lebertoxizität, Reizbarkeit und Aggressivität, massive HDL-Senkung."
+      "risks": "Extreme Lebertoxizität, Reizbarkeit und Aggressivität, massive HDL-Senkung.",
+      "cycleExamples": "<strong>Die Meet Prep:</strong> 10 mg werden 60 Minuten vor einer schweren Hebesitzung eingenommen, um die ZNS-Leistung und Aggression zu maximieren."
     },
     "es": {
       "name": "Fluoximesterona (Halotestin)",
@@ -1475,7 +1537,8 @@ window.DRUG_I18N = {
       "mechanism": "Posee flúor en C-9 e hidroxilo en C-11. Se une con fuerza colosal al receptor androgénico confiriendo ganancias puras de fuerza sin retención de agua ni aumento de peso.",
       "primaryUses": "Hipogonadismo masculino (raro), pubertad tardía",
       "benefits": "El andrógeno oral más potente para la fuerza bruta; aumenta drásticamente la agresión y la motivación antes de la competición; cero efectos secundarios estrogénicos.",
-      "risks": "Toxicidad hepática extrema, agresión aguda (“Roid Rage”), devastación lipídica."
+      "risks": "Toxicidad hepática extrema, agresión aguda (“Roid Rage”), devastación lipídica.",
+      "cycleExamples": "<strong>The Meet Prep:</strong> 10 mg tomados 60 minutos antes de una sesión de levantamiento de pesas para maximizar la producción y la agresión del SNC."
     }
   },
   "exemestane": {
@@ -1515,7 +1578,8 @@ window.DRUG_I18N = {
       "primaryUses": "Iperprolattinemia, adenomi ipofisari, prevenzione della ginecomastia da prolattina",
       "dosage": "0.25mg a 0.5mg due volte a settimana.",
       "benefits": "Elimina istantaneamente la disfunzione erettile e la galattorrea causate da prolattina alta; riduce drasticamente il periodo refrattario sessuale.",
-      "risks": "Ipotensione ortostatica, vertigini, rischio di fibrosi delle valvole cardiache con uso cronico ad altissimi dosaggi."
+      "risks": "Ipotensione ortostatica, vertigini, rischio di fibrosi delle valvole cardiache con uso cronico ad altissimi dosaggi.",
+      "cycleExamples": "<strong>19-Nor Support:</strong> 0,25mg assunti due volte a settimana rigorosamente durante l'esecuzione di nandrolone pesante o trenbolone."
     },
     "de": {
       "name": "Cabergolin (Dostinex)",
@@ -1524,7 +1588,8 @@ window.DRUG_I18N = {
       "primaryUses": "Hyperprolaktinämie, Prolaktin-Gynäkomastie",
       "dosage": "0,25mg bis 0,5mg zweimal wöchentlich.",
       "benefits": "Verhindert prolaktinbedingte Potenzstörungen ('Deca Dick'); verkürzt die sexuelle Refraktärzeit spürbar.",
-      "risks": "Schwindel, niedriger Blutdruck, Übelkeit bei Ersteinnahme."
+      "risks": "Schwindel, niedriger Blutdruck, Übelkeit bei Ersteinnahme.",
+      "cycleExamples": "<strong>19-Nor Support:</strong> 0,25mg zweimal wöchentlich streng während des Laufens von schwerem Nandrolon oder Trenbolon."
     },
     "es": {
       "name": "Cabergolina (Dostinex)",
@@ -1533,7 +1598,8 @@ window.DRUG_I18N = {
       "primaryUses": "Hiperprolactinemia, galactorrea, prevención de ginecomastia por prolactina",
       "dosage": "0.25mg a 0.5mg dos veces por semana.",
       "benefits": "Resuelve la disfunción eréctil por prolactina alta; reduce notablemente el período refractario post-eyaculatorio.",
-      "risks": "Mareos, hipotensión, náuseas transitorias."
+      "risks": "Mareos, hipotensión, náuseas transitorias.",
+      "cycleExamples": "<strong>19-Nor Support:</strong> 0.25mg tomados dos veces por semana estrictamente mientras se ejecuta nandrolona o trembolona pesada."
     }
   },
   "finasteride": {
@@ -1544,7 +1610,8 @@ window.DRUG_I18N = {
       "primaryUses": "Alopecia androgenetica, iperplasia prostatica benigna",
       "dosage": "1mg al giorno per i capelli; 5mg per la prostata.",
       "benefits": "Arresta la caduta dei capelli e favorisce la ricrescita; riduce le dimensioni della prostata.",
-      "risks": "Calo della libido, disfunzione erettile in una percentuale ridotta di soggetti, ginecomastia da lieve aumento di estradiolo libero."
+      "risks": "Calo della libido, disfunzione erettile in una percentuale ridotta di soggetti, ginecomastia da lieve aumento di estradiolo libero.",
+      "cycleExamples": "<strong>Conservazione dei capelli:</strong> 1 mg al giorno, iniziato 2 settimane prima di un ciclo, per mantenere la densità follicolare durante l'utilizzo di composti androgeni."
     },
     "de": {
       "name": "Finasterid (Propecia / Proscar)",
@@ -1553,7 +1620,8 @@ window.DRUG_I18N = {
       "primaryUses": "Androgenetische Alopezie, Prostatahyperplasie",
       "dosage": "1mg täglich (Haarausfall); 5mg täglich (Prostata).",
       "benefits": "Stoppt den Haarverlust effektiv; schützt die Prostata vor androgenem Wachstum.",
-      "risks": "Möglicher Libidoverlust, Erektionsstörungen bei empfindlichen Personen, leichte Erhöhung des Östradiols."
+      "risks": "Möglicher Libidoverlust, Erektionsstörungen bei empfindlichen Personen, leichte Erhöhung des Östradiols.",
+      "cycleExamples": "<strong>Haarerhaltung:</strong> 1 mg täglich, begonnen 2 Wochen vor einem Zyklus, um die Follikeldichte unter Verwendung androgener Verbindungen aufrechtzuerhalten."
     },
     "es": {
       "name": "Finasterida (Propecia / Proscar)",
@@ -1562,7 +1630,8 @@ window.DRUG_I18N = {
       "primaryUses": "Alopecia androgénica, hipertrofia prostática benigna",
       "dosage": "1mg diario para cabello; 5mg para próstata.",
       "benefits": "Frena la caída capilar en la gran mayoría de usuarios; desinflama la próstata.",
-      "risks": "Disminución de libido en un porcentaje bajo de pacientes, disfunción eréctil transitoria."
+      "risks": "Disminución de libido en un porcentaje bajo de pacientes, disfunción eréctil transitoria.",
+      "cycleExamples": "<strong>Preservación del cabello:</strong> 1 mg al día, iniciado 2 semanas antes de un ciclo, para mantener la densidad folicular mientras se utilizan compuestos androgénicos."
     }
   },
   "mk677": {
@@ -1573,7 +1642,8 @@ window.DRUG_I18N = {
       "primaryUses": "Deficit di GH, sarcopenia, stimolazione dell'appetito",
       "dosage": "Da 10mg a 25mg al giorno prima di dormire.",
       "benefits": "Incremento significativo di IGF-1 e GH; appetito famelico; miglioramento profondo del sonno REM e recupero articolare.",
-      "risks": "Aumento della glicemia a digiuno e resistenza all'insulina, ritenzione idrica transitoria, letargia diurna."
+      "risks": "Aumento della glicemia a digiuno e resistenza all'insulina, ritenzione idrica transitoria, letargia diurna.",
+      "cycleExamples": "<strong>Aggiunta di carica:</strong> 25 mg assunti per via orale prima di coricarsi per più di 3 mesi per elevare l'IGF-1 basale e provocare un appetito immenso."
     },
     "de": {
       "name": "Ibutamoren (MK-677)",
@@ -1582,7 +1652,8 @@ window.DRUG_I18N = {
       "primaryUses": "GH-Mangel, Muskelschwund, Appetitlosigkeit",
       "dosage": "10mg bis 25mg täglich vor dem Schlafen.",
       "benefits": "Massiver IGF-1-Anstieg, spürbar verbesserte Schlafqualität (Tiefschlaf), schnelleres Haar- und Nagelwachstum, starker Appetit.",
-      "risks": "Insulinresistenz bei langfristiger Einnahme, Wasserretention, Müdigkeit."
+      "risks": "Insulinresistenz bei langfristiger Einnahme, Wasserretention, Müdigkeit.",
+      "cycleExamples": "<strong>Füllstoffzusatz:</strong> 25 mg oral vor dem Schlafengehen für mehr als 3 Monate eingenommen, um den basalen IGF-1 zu erhöhen und einen immensen Appetit zu provozieren."
     },
     "es": {
       "name": "Ibutamoren (MK-677)",
@@ -1591,49 +1662,59 @@ window.DRUG_I18N = {
       "primaryUses": "Déficit de GH, sarcopenia, estimulación del apetito",
       "dosage": "10mg a 25mg diarios.",
       "benefits": "Elevación duradera de IGF-1; aumento voraz del apetito; mejora radical del sueño profundo y regeneración articular.",
-      "risks": "Resistencia a la insulina con uso crónico sin control de carbohidratos, retención de líquidos."
+      "risks": "Resistencia a la insulina con uso crónico sin control de carbohidratos, retención de líquidos.",
+      "cycleExamples": "<strong>Adición de volumen:</strong> 25 mg por vía oral antes de acostarse durante más de 3 meses para elevar el IGF-1 basal y provocar un apetito inmenso."
     }
   },
   "dht": {
     "es": {
       "benefits": "Proporciona directamente las señales androgénicas más potentes para el desarrollo masculino; eficaz para tratar la ginecomastia y mejorar la dureza sin retención de agua.",
-      "risks": "Agrandamiento de la próstata, calvicie acelerada de patrón masculino."
+      "risks": "Agrandamiento de la próstata, calvicie acelerada de patrón masculino.",
+      "cycleExamples": "<strong>Tratamiento local:</strong> Históricamente utilizado tópicamente en el pecho (Andractim) para combatir directamente la ginecomastia puberal antagonizando el estrógeno a nivel del receptor."
     },
     "it": {
       "benefits": "Fornisce direttamente i segnali androgeni più potenti per lo sviluppo maschile; efficace per il trattamento del gyno e per migliorare la durezza senza ritenzione idrica.",
-      "risks": "Ingrossamento della prostata, calvizie maschile accelerata."
+      "risks": "Ingrossamento della prostata, calvizie maschile accelerata.",
+      "cycleExamples": "<strong>Trattamento locale:</strong> storicamente utilizzato per via topica sul torace (Andractim) per combattere direttamente la ginecomastia puberale antagonizzando gli estrogeni a livello dei recettori."
     },
     "de": {
       "benefits": "Bietet direkt die stärksten androgenen Signale für die männliche Entwicklung; wirksam zur Behandlung von Gynäkomastie und zur Verbesserung der Härte ohne Wassereinlagerungen.",
-      "risks": "Prostatavergrößerung, beschleunigte Glatzenbildung bei Männern."
+      "risks": "Prostatavergrößerung, beschleunigte Glatzenbildung bei Männern.",
+      "cycleExamples": "<strong>Lokale Behandlung:</strong> Wird in der Vergangenheit topisch auf der Brust (Andractim) angewendet, um die pubertäre Gynäkomastie direkt zu bekämpfen, indem Östrogen auf Rezeptorebene antagonisiert wird."
     }
   },
   "epitiostanol": {
     "es": {
       "benefits": "Fuertemente antiestrogénico; útil para mitigar el ginecoma y al mismo tiempo proporcionar un estímulo anabólico leve.",
-      "risks": "Letargo, dolor articular (por estrógeno bajo), toxicidad hepática."
+      "risks": "Letargo, dolor articular (por estrógeno bajo), toxicidad hepática.",
+      "cycleExamples": "<strong>Supresión ginecológica:</strong> utilizada históricamente en Japón con 10 mg semanales para tratar tumores benignos de mama y trastornos ginecológicos."
     },
     "it": {
       "benefits": "Fortemente anti-estrogenico; utile per mitigare il gyno e allo stesso tempo fornire un lieve stimolo anabolico.",
-      "risks": "Letargia, dolori articolari (dovuti a bassi livelli di estrogeni), tossicità epatica."
+      "risks": "Letargia, dolori articolari (dovuti a bassi livelli di estrogeni), tossicità epatica.",
+      "cycleExamples": "<strong>Gino soppressione:</strong> Storicamente utilizzato in Giappone a 10 mg a settimana per il trattamento di tumori benigni al seno e disturbi ginecologici."
     },
     "de": {
       "benefits": "Stark anti-östrogen; nützlich zur Milderung von Gynäkomastie bei gleichzeitiger Bereitstellung eines milden anabolen Stimulus.",
-      "risks": "Lethargie, Gelenkschmerzen (aufgrund von niedrigem Östrogen), Lebertoxizität."
+      "risks": "Lethargie, Gelenkschmerzen (aufgrund von niedrigem Östrogen), Lebertoxizität.",
+      "cycleExamples": "<strong>Gyno-Suppression:</strong> Wird in Japan traditionell mit 10 mg wöchentlich zur Behandlung von gutartigen Brusttumoren und gynäkologischen Erkrankungen eingesetzt."
     }
   },
   "methyltestosterone": {
     "es": {
       "benefits": "Impulso de testosterona oral de acción rápida; históricamente efectivo para tratar la pubertad tardía y el cáncer de mama femenino avanzado.",
-      "risks": "Estrés hepático profundo, retención masiva de agua, ginecomastia."
+      "risks": "Estrés hepático profundo, retención masiva de agua, ginecomastia.",
+      "cycleExamples": "<strong>TRT histórica:</strong> Antes de la llegada de los ésteres inyectables, 25 mg diarios era una dosis médica estándar para tratar la deficiencia de andrógenos masculinos."
     },
     "it": {
       "benefits": "Boost di testosterone orale ad azione rapida; storicamente efficace per il trattamento della pubertà ritardata e del carcinoma mammario femminile avanzato.",
-      "risks": "Profondo stress epatico, massiccia ritenzione idrica, ginecomastia."
+      "risks": "Profondo stress epatico, massiccia ritenzione idrica, ginecomastia.",
+      "cycleExamples": "<strong>TRT storica:</strong> prima dell'avvento degli esteri iniettabili, 25 mg al giorno era una dose medica standard per il trattamento della carenza di androgeni maschili."
     },
     "de": {
       "benefits": "Schnell wirkender oraler Testosteronschub; historisch wirksam bei der Behandlung von verzögerter Pubertät und fortgeschrittenem weiblichem Brustkrebs.",
-      "risks": "Starker Leberstress, massive Wassereinlagerungen, Gynäkomastie."
+      "risks": "Starker Leberstress, massive Wassereinlagerungen, Gynäkomastie.",
+      "cycleExamples": "<strong>Historische TRT:</strong> Vor dem Aufkommen von injizierbaren Estern war 25 mg täglich eine medizinische Standarddosis zur Behandlung von männlichem Androgenmangel."
     }
   },
   "clostebol": {
@@ -1650,29 +1731,35 @@ window.DRUG_I18N = {
   "danazol": {
     "es": {
       "benefits": "Únicamente eficaz para detener el dolor severo de la endometriosis y el sangrado abundante; se puede usar en hombres para reducir la SHBG, aunque rara vez se usa para este propósito.",
-      "risks": "Profundización de la voz en mujeres, acné, retención de líquidos."
+      "risks": "Profundización de la voz en mujeres, acné, retención de líquidos.",
+      "cycleExamples": "<strong>Protocolo clínico:</strong> 400 mg diarios durante 6 meses es el régimen médico estándar documentado para el tratamiento de la endometriosis."
     },
     "it": {
       "benefits": "Unicamente efficace nell'arrestare il dolore da endometriosi grave e il sanguinamento pesante; può essere utilizzato nei maschi per ridurre la SHBG, sebbene raramente utilizzato per questo scopo.",
-      "risks": "Approfondimento della voce nelle femmine, acne, ritenzione idrica."
+      "risks": "Approfondimento della voce nelle femmine, acne, ritenzione idrica.",
+      "cycleExamples": "<strong>Protocollo clinico:</strong> 400 mg al giorno per 6 mesi è il regime medico standard documentato per il trattamento dell'endometriosi."
     },
     "de": {
       "benefits": "Einzigartig wirksam bei der Beendigung schwerer Endometriose-Schmerzen und schwerer Blutungen; kann bei Männern verwendet werden, um SHBG zu senken, wenn auch selten zu diesem Zweck.",
-      "risks": "Vertiefung der Stimme bei Frauen, Akne, Flüssigkeitsretention."
+      "risks": "Vertiefung der Stimme bei Frauen, Akne, Flüssigkeitsretention.",
+      "cycleExamples": "<strong>Klinisches Protokoll:</strong> 400 mg täglich für 6 Monate ist das standardmäßig dokumentierte medizinische Regime zur Behandlung von Endometriose."
     }
   },
   "mestanolone": {
     "es": {
       "benefits": "Proporciona un impulso inmediato en el impulso y la concentración del sistema nervioso; útil para alcanzar la fuerza máxima antes de un evento atlético.",
-      "risks": "Estrés hepático severo, hipertrofia prostática."
+      "risks": "Estrés hepático severo, hipertrofia prostática.",
+      "cycleExamples": "<strong>El Pre-Drive:</strong> Históricamente utilizado a 20 mg diarios por atletas de potencia para mejorar la \"explosividad\" durante las sesiones de entrenamiento."
     },
     "it": {
       "benefits": "Fornisce una spinta immediata alla spinta e alla concentrazione del sistema nervoso; utile per raggiungere il picco di forza prima di un evento sportivo.",
-      "risks": "Grave stress epatico, ipertrofia prostatica."
+      "risks": "Grave stress epatico, ipertrofia prostatica.",
+      "cycleExamples": "<strong>Il Pre-Drive:</strong> Storicamente utilizzato a 20mg al giorno dagli atleti di potenza per migliorare l '\"esplosività\" durante le sessioni di allenamento."
     },
     "de": {
       "benefits": "Bietet eine sofortige Steigerung des Antriebs und der Konzentration des Nervensystems; nützlich für maximale Kraft vor einer sportlichen Veranstaltung.",
-      "risks": "Starker Leberstress, Prostatahypertrophie."
+      "risks": "Starker Leberstress, Prostatahypertrophie.",
+      "cycleExamples": "<strong>Der Pre-Drive:</strong> Traditionell mit 20 mg täglich von Leistungssportlern verwendet, um die \"Explosivität\" während des Trainings zu verbessern."
     }
   },
   "norbolethone": {
@@ -1689,15 +1776,18 @@ window.DRUG_I18N = {
   "prednisone": {
     "es": {
       "benefits": "Detiene rápidamente los brotes autoinmunes agudos y las reacciones alérgicas potencialmente mortales; eficaz en el tratamiento de la hiedra venenosa grave o el rechazo de trasplantes de órganos.",
-      "risks": "Hiperglucemia, osteoporosis, cambios de humor, aumento de peso."
+      "risks": "Hiperglucemia, osteoporosis, cambios de humor, aumento de peso.",
+      "cycleExamples": "<strong>The Flare Blast:</strong> una dosis diaria estándar de 60 mg durante 5 días, seguida de una disminución lenta durante 14 días, a menudo se usa para tratar el asma aguda o la inflamación de las articulaciones."
     },
     "it": {
       "benefits": "Arresta rapidamente le riacutizzazioni autoimmuni acute e le reazioni allergiche pericolose per la vita; efficace nella gestione dell'edera velenosa grave o del rigetto del trapianto di organi.",
-      "risks": "Iperglicemia, osteoporosi, sbalzi d'umore, aumento di peso."
+      "risks": "Iperglicemia, osteoporosi, sbalzi d'umore, aumento di peso.",
+      "cycleExamples": "<strong>The Flare Blast:</strong> Una dose giornaliera standard di 60 mg per 5 giorni, seguita da una lenta riduzione nell'arco di 14 giorni, viene spesso utilizzata per trattare l'asma acuta o l'infiammazione articolare."
     },
     "de": {
       "benefits": "Stoppt schnell akute Autoimmunfackeln und lebensbedrohliche allergische Reaktionen; wirksam bei der Behandlung von schwerer Giftefeu- oder Organtransplantatabstoßung.",
-      "risks": "Hyperglykämie, Osteoporose, Stimmungsschwankungen, Gewichtszunahme."
+      "risks": "Hyperglykämie, Osteoporose, Stimmungsschwankungen, Gewichtszunahme.",
+      "cycleExamples": "<strong>The Flare Blast:</strong> Eine Standard-Tagesdosis von 60 mg über 5 Tage, gefolgt von einer langsamen Verjüngung über 14 Tage, wird häufig zur Behandlung von akutem Asthma oder Gelenkentzündungen verwendet."
     }
   },
   "prednisolone": {
@@ -1802,43 +1892,55 @@ window.DRUG_I18N = {
   "somatropin": {
     "es": {
       "benefits": "Pérdida acelerada de grasa, cicatrización sistémica de tejidos, hiperplasia (creación de nuevas células musculares), mejora de la arquitectura del sueño.",
-      "risks": "Resistencia a la insulina, síndrome del túnel carpiano, organomegalia (órganos agrandados)."
+      "risks": "Resistencia a la insulina, síndrome del túnel carpiano, organomegalia (órganos agrandados).",
+      "cycleExamples": "<strong>Antienvejecimiento a largo plazo:</strong> 2 UI inyectadas por vía subcutánea todas las mañanas al despertar, ejecutadas continuamente durante más de 6 meses.",
+      "synthesis": "Fabricado mediante tecnología de ADN recombinante (ADNr)."
     },
     "it": {
       "benefits": "Perdita di grasso accelerata, guarigione sistemica dei tessuti, iperplasia (creazione di nuove cellule muscolari), miglioramento dell'architettura del sonno.",
-      "risks": "Insulino-resistenza, sindrome del tunnel carpale, organomegalia (ingrossamento degli organi)."
+      "risks": "Insulino-resistenza, sindrome del tunnel carpale, organomegalia (ingrossamento degli organi).",
+      "cycleExamples": "<strong>Anti-invecchiamento a lungo termine:</strong> 2 UI iniettate per via sottocutanea ogni mattina al risveglio, eseguite ininterrottamente per oltre 6 mesi.",
+      "synthesis": "Prodotto tramite la tecnologia del DNA ricombinante (rDNA)."
     },
     "de": {
       "benefits": "Beschleunigter Fettabbau, systemische Gewebeheilung, Hyperplasie (neue Muskelzellbildung), verbesserte Schlafarchitektur.",
-      "risks": "Insulinresistenz, Karpaltunnelsyndrom, Organomegalie (vergrößerte Organe)."
+      "risks": "Insulinresistenz, Karpaltunnelsyndrom, Organomegalie (vergrößerte Organe).",
+      "cycleExamples": "<strong>Langzeit-Anti-Aging:</strong> 2 I.E., jeden Morgen nach dem Aufwachen subkutan injiziert, kontinuierlich für 6+ Monate laufen lassen.",
+      "synthesis": "Hergestellt über rekombinante DNA-Technologie (rDNA)."
     }
   },
   "igf1_lr3": {
     "es": {
       "benefits": "Partición de nutrientes, bombeo localizado, hiperplasia.",
-      "risks": "Hipoglucemia, riesgo inmenso de exacerbar tumores/cánceres no detectados."
+      "risks": "Hipoglucemia, riesgo inmenso de exacerbar tumores/cánceres no detectados.",
+      "cycleExamples": "<strong>Posentrenamiento localizado:</strong> 40 mcg inyectados bilateralmente en el grupo muscular entrenado inmediatamente después del entrenamiento durante 4 semanas."
     },
     "it": {
       "benefits": "Ripartizione dei nutrienti, pompaggio localizzato, iperplasia.",
-      "risks": "Ipoglicemia, immenso rischio di esacerbare tumori/cancri non rilevati."
+      "risks": "Ipoglicemia, immenso rischio di esacerbare tumori/cancri non rilevati.",
+      "cycleExamples": "<strong>Post-allenamento localizzato:</strong> 40 mcg iniettati bilateralmente nel gruppo muscolare allenato immediatamente dopo l'allenamento per 4 settimane."
     },
     "de": {
       "benefits": "Nährstoffpartitionierung, lokalisiertes Pumpen, Hyperplasie.",
-      "risks": "Hypoglykämie, immenses Risiko, unentdeckte Tumore/Krebsarten zu verschlimmern."
+      "risks": "Hypoglykämie, immenses Risiko, unentdeckte Tumore/Krebsarten zu verschlimmern.",
+      "cycleExamples": "<strong>Lokalisiert nach dem Training:</strong> 40 mcg werden 4 Wochen lang beidseitig in die trainierte Muskelgruppe injiziert."
     }
   },
   "insulin": {
     "es": {
       "benefits": "Increíble almacenamiento de glucógeno que causa una hinchazón masiva de los tejidos; extremadamente sinérgico con HGH y AAS.",
-      "risks": "<strong>Hipoglucemia letal. La</strong> sobredosis aguda puede causar coma extremadamente rápido y la muerte."
+      "risks": "<strong>Hipoglucemia letal. La</strong> sobredosis aguda puede causar coma extremadamente rápido y la muerte.",
+      "cycleExamples": "<strong>Protocolo de aumento de volumen:</strong> 5 UI de Humalog inyectadas instantáneamente después del entrenamiento, seguidas en 5 minutos por 60 g de dextrosa y suero de leche. <strong>Alto riesgo de muerte.</strong>"
     },
     "it": {
       "benefits": "Incredibile accumulo di glicogeno che causa un massiccio gonfiore dei tessuti; estremamente sinergico con HGH e AAS.",
-      "risks": "<strong>Ipoglicemia letale.</strong> Il sovradosaggio acuto può causare coma estremamente rapido e morte."
+      "risks": "<strong>Ipoglicemia letale.</strong> Il sovradosaggio acuto può causare coma estremamente rapido e morte.",
+      "cycleExamples": "<strong>Protocollo di carica:</strong> 5 UI di Humalog iniettate immediatamente dopo l'allenamento, seguite entro 5 minuti da 60 g di destrosio e siero di latte. <strong>Alto rischio di morte.</strong>"
     },
     "de": {
       "benefits": "Unglaubliche Glykogenspeicherung, die zu massiven Gewebeschwellungen führt; äußerst synergistisch mit HGH und AAS.",
-      "risks": "<strong>Tödliche Hypoglykämie.</strong> Eine akute Überdosierung kann zu einem extrem schnellen Koma und zum Tod führen."
+      "risks": "<strong>Tödliche Hypoglykämie.</strong> Eine akute Überdosierung kann zu einem extrem schnellen Koma und zum Tod führen.",
+      "cycleExamples": "<strong>Bulking-Protokoll:</strong> 5 I.E. Humalog wurde sofort nach dem Training injiziert, gefolgt von 60 g Dextrose und Molke innerhalb von 5 Minuten. <strong>Hohes Sterberisiko.</strong>"
     }
   },
   "cjc1295": {
@@ -2122,57 +2224,78 @@ window.DRUG_I18N = {
   "creatine": {
     "es": {
       "benefits": "Aumentos significativos en la potencia explosiva, resistencia muscular mejorada, plenitud muscular mejorada y posibles mejoras cognitivas a través del amortiguamiento de la energía cerebral.",
-      "risks": "Angustia gastrointestinal leve si no se disuelve completamente, aumento de peso temporal (agua), tensión renal teórica solo en individuos con patología renal preexistente."
+      "risks": "Angustia gastrointestinal leve si no se disuelve completamente, aumento de peso temporal (agua), tensión renal teórica solo en individuos con patología renal preexistente.",
+      "cycleExamples": "<strong>La Base Perpetua:</strong> 5 g diarios, tomada en cualquier momento, durante todo el año. No se requiere estrictamente ninguna \"fase de carga\" o \"ciclo\" ya que el músculo alcanza la saturación dentro de las 2-4 semanas de dosificación constante.",
+      "synthesis": "Síntesis industrial mediante la reacción de sarcosina y cianamida.",
+      "aestheticProfile": "Proporciona un aspecto \"más completo\" a los músculos debido al aumento de agua intracelular. A diferencia del AAS, no causa \"hinchazón\" subcutánea ni edema facial.",
+      "physiologicalTargets": "Principalmente las fibras musculares de tipo II (contracción rápida) y el hipocampo en el cerebro."
     },
     "it": {
       "benefits": "Aumenti significativi della potenza esplosiva, migliore resistenza muscolare, maggiore pienezza muscolare e potenziali miglioramenti cognitivi tramite il tamponamento dell'energia cerebrale.",
-      "risks": "Lieve sofferenza gastrointestinale se non completamente disciolta, temporaneo aumento di peso (acqua), ceppo renale teorico solo in soggetti con patologia renale preesistente."
+      "risks": "Lieve sofferenza gastrointestinale se non completamente disciolta, temporaneo aumento di peso (acqua), ceppo renale teorico solo in soggetti con patologia renale preesistente.",
+      "cycleExamples": "<strong>The Perpetual Base:</strong> 5g al giorno, assunto in qualsiasi momento, tutto l'anno. Non è strettamente richiesta alcuna \"fase di carico\" o \"ciclo\" in quanto il muscolo raggiunge la saturazione entro 2-4 settimane dal dosaggio costante.",
+      "synthesis": "Sintesi industriale attraverso la reazione di sarcosina e cianammide.",
+      "aestheticProfile": "Fornisce un aspetto \"più pieno\" ai muscoli a causa dell'aumento dell'acqua intracellulare. A differenza dell'AAS, non provoca \"gonfiore\" sottocutaneo o edema facciale.",
+      "physiologicalTargets": "Principalmente fibre muscolari di tipo II (Fast-Twitch) e l'ippocampo nel cervello."
     },
     "de": {
       "benefits": "Signifikante Erhöhungen der Sprengkraft, verbesserte Muskelausdauer, verbesserte Muskelfülle und potenzielle kognitive Verbesserungen durch Gehirn-Energiepufferung.",
-      "risks": "Leichte Magen-Darm-Beschwerden, wenn nicht vollständig gelöst, vorübergehende Gewichtszunahme (Wasser), theoretische Nierenbelastung nur bei Personen mit vorbestehender Nierenpathologie."
+      "risks": "Leichte Magen-Darm-Beschwerden, wenn nicht vollständig gelöst, vorübergehende Gewichtszunahme (Wasser), theoretische Nierenbelastung nur bei Personen mit vorbestehender Nierenpathologie.",
+      "cycleExamples": "<strong>Die ewige Basis:</strong> 5 g täglich, zu jeder Zeit, das ganze Jahr über. Es ist keine \"Ladephase\" oder \"Zyklen\" unbedingt erforderlich, da der Muskel innerhalb von 2-4 Wochen nach konsistenter Dosierung die Sättigung erreicht.",
+      "synthesis": "Industrielle Synthese über die Reaktion von Sarcosin und Cyanamid.",
+      "aestheticProfile": "Bietet ein \"volleres\" Aussehen der Muskeln aufgrund des erhöhten intrazellulären Wassers. Im Gegensatz zu AAS verursacht es keine subkutane \"Blähungen\" oder Gesichtsödeme.",
+      "physiologicalTargets": "Vor allem Muskelfasern vom Typ II (Fast-Twitch) und der Hippocampus im Gehirn."
     }
   },
   "clomiphene": {
     "es": {
       "benefits": "Estimulación masiva de LH/FSH, reinicio muy rápido del eje testicular.",
-      "risks": "Inestabilidad emocional (\"llanto\"), flotadores/trazadores visuales permanentes en caso de sobredosis."
+      "risks": "Inestabilidad emocional (\"llanto\"), flotadores/trazadores visuales permanentes en caso de sobredosis.",
+      "cycleExamples": "<strong>PCT pesado:</strong> 50 mg de Clomid combinados con 20 mg de Nolvadex al día durante 4 semanas después de ciclos de 19-nor muy supresores."
     },
     "it": {
       "benefits": "Massiccia stimolazione di LH/FSH, ripresa molto rapida dell'asse testicolare.",
-      "risks": "Instabilità emotiva (\"pianto\"), fluttuanti/traccianti visivi permanenti in caso di sovradosaggio."
+      "risks": "Instabilità emotiva (\"pianto\"), fluttuanti/traccianti visivi permanenti in caso di sovradosaggio.",
+      "cycleExamples": "<strong>PCT pesante:</strong> 50 mg di Clomid combinato con 20 mg di Nolvadex al giorno per 4 settimane dopo cicli 19-nor fortemente soppressivi."
     },
     "de": {
       "benefits": "Massive Stimulation von LH/FSH, sehr schneller Neustart der Hodenachse.",
-      "risks": "Emotionale Instabilität („Weepiness“), permanente visuelle Floater/Tracer bei Überdosierung."
+      "risks": "Emotionale Instabilität („Weepiness“), permanente visuelle Floater/Tracer bei Überdosierung.",
+      "cycleExamples": "<strong>Schwere PCT:</strong> 50 mg Clomid in Kombination mit 20 mg Nolvadex täglich für 4 Wochen nach stark unterdrückenden 19-Nor-Zyklen."
     }
   },
   "enclomiphene": {
     "es": {
       "benefits": "Duplica o triplica los niveles naturales de testosterona con prácticamente cero efectos secundarios emocionales; mantiene el volumen testicular mejor que cualquier otro SERM.",
-      "risks": "Reducción leve de IGF-1, caro/difícil de obtener."
+      "risks": "Reducción leve de IGF-1, caro/difícil de obtener.",
+      "cycleExamples": "<strong>Monoterapia:</strong> 12,5 mg diarios utilizados para tratar el hipogonadismo secundario sin necesidad de inyecciones de TRT de por vida."
     },
     "it": {
       "benefits": "Raddoppia o triplica i livelli naturali di testosterone con effetti collaterali emotivi praticamente nulli; mantiene il volume testicolare meglio di qualsiasi altro SERM.",
-      "risks": "Lieve riduzione di IGF-1, costoso/difficile da reperire."
+      "risks": "Lieve riduzione di IGF-1, costoso/difficile da reperire.",
+      "cycleExamples": "<strong>Monoterapia:</strong> 12,5 mg al giorno usati per trattare l'ipogonadismo secondario senza la necessità di iniezioni di TRT per tutta la vita."
     },
     "de": {
       "benefits": "Verdoppelt oder verdreifacht den natürlichen Testosteronspiegel mit praktisch null emotionalen Nebenwirkungen; hält das Hodenvolumen besser aufrecht als jedes andere SERM.",
-      "risks": "Leichte Reduktion von IGF-1, teuer/schwer zu beschaffen."
+      "risks": "Leichte Reduktion von IGF-1, teuer/schwer zu beschaffen.",
+      "cycleExamples": "<strong>Monotherapie:</strong> 12,5 mg täglich zur Behandlung von sekundärem Hypogonadismus ohne lebenslange TRT-Injektionen."
     }
   },
   "raloxifene": {
     "es": {
       "benefits": "Capaz de reducir físicamente las glándulas de ginecomastia endurecidas existentes mejor que cualquier otro compuesto; aumenta la densidad mineral ósea.",
-      "risks": "Mayor riesgo de trombosis venosa profunda (coágulos de sangre), calambres en las piernas."
+      "risks": "Mayor riesgo de trombosis venosa profunda (coágulos de sangre), calambres en las piernas.",
+      "cycleExamples": "<strong>Reversión ginecológica:</strong> 60 mg diarios durante 6 semanas, a menudo con éxito en la reducción de la ginecomastia puberal o inducida por AAS que ya ha comenzado a fibrosa."
     },
     "it": {
       "benefits": "Capace di ridurre fisicamente le ghiandole ginecomastia indurite esistenti meglio di qualsiasi altro composto; aumenta la densità minerale ossea.",
-      "risks": "Aumento del rischio di trombosi venosa profonda (coaguli di sangue), crampi alle gambe."
+      "risks": "Aumento del rischio di trombosi venosa profonda (coaguli di sangue), crampi alle gambe.",
+      "cycleExamples": "<strong>Inversione di Gyno:</strong> 60 mg al giorno per 6 settimane, spesso riuscendo a ridurre la ginecomastia puberale o indotta da AAS che ha già iniziato a fibrosare."
     },
     "de": {
       "benefits": "In der Lage, bestehende, gehärtete Gynäkomastie-Drüsen besser als jede andere Verbindung physisch zu schrumpfen; erhöht die Knochenmineraldichte.",
-      "risks": "Erhöhtes Risiko für tiefe Venenthrombosen (Blutgerinnsel), Beinkrämpfe."
+      "risks": "Erhöhtes Risiko für tiefe Venenthrombosen (Blutgerinnsel), Beinkrämpfe.",
+      "cycleExamples": "<strong>Gyno Reversal:</strong> 60 mg täglich für 6 Wochen, oft erfolgreich bei der Verringerung der pubertären oder AAS-induzierten Gynäkomastie, die bereits begonnen hat, Fibrose zu entwickeln."
     }
   },
   "letrozole": {
@@ -2192,85 +2315,103 @@ window.DRUG_I18N = {
   "dutasteride": {
     "es": {
       "benefits": "Máxima protección absoluta contra la pérdida de cabello; resultados del cuero cabelludo muy superiores en comparación con la finasterida; eliminó casi todo el acné relacionado con la DHT.",
-      "risks": "Riesgo extremo de disfunción sexual, alteración completa de la producción de neuroesteroides (ALLOP), persistencia prolongada de los efectos secundarios debido a la vida media."
+      "risks": "Riesgo extremo de disfunción sexual, alteración completa de la producción de neuroesteroides (ALLOP), persistencia prolongada de los efectos secundarios debido a la vida media.",
+      "cycleExamples": "<strong>Opción de cabello nuclear:</strong> 0,5 mg diarios o EOD para aquellos con predisposición genética extrema a la calvicie de patrón masculino."
     },
     "it": {
       "benefits": "Massima protezione assoluta contro la caduta dei capelli; risultati del cuoio capelluto di gran lunga superiori rispetto a Finasteride; ha spazzato via quasi tutta l'acne correlata al DHT.",
-      "risks": "Rischio estremo di disfunzione sessuale, alterazione completa della produzione di neurosteroidi (ALLOP), lunga persistenza degli effetti collaterali a causa dell'emivita."
+      "risks": "Rischio estremo di disfunzione sessuale, alterazione completa della produzione di neurosteroidi (ALLOP), lunga persistenza degli effetti collaterali a causa dell'emivita.",
+      "cycleExamples": "<strong>Opzione capelli nucleari:</strong> 0,5 mg al giorno o EOD per quelli con estrema predisposizione genetica alla calvizie maschile."
     },
     "de": {
       "benefits": "Absoluter maximaler Schutz vor Haarausfall; weit überlegene Ergebnisse für die Kopfhaut im Vergleich zu Finasterid; fast alle DHT-bedingten Akne ausgelöscht.",
-      "risks": "Extremes Risiko für sexuelle Dysfunktion, vollständige Veränderung der Neurosteroidproduktion (ALLOP), langanhaltende Nebenwirkung aufgrund der Halbwertszeit."
+      "risks": "Extremes Risiko für sexuelle Dysfunktion, vollständige Veränderung der Neurosteroidproduktion (ALLOP), langanhaltende Nebenwirkung aufgrund der Halbwertszeit.",
+      "cycleExamples": "<strong>Option für nukleares Haar:</strong> 0,5 mg täglich oder EOD für diejenigen mit extremer genetischer Veranlagung für Haarausfall bei Männern."
     }
   },
   "albuterol": {
     "es": {
       "benefits": "Excelente quema de grasa dirigida alrededor de los entrenamientos, permite el sueño real por la noche a diferencia del Clenbuterol; perfil mucho más seguro para el corazón.",
-      "risks": "Ritmo cardíaco rápido, sudoración, temblores leves."
+      "risks": "Ritmo cardíaco rápido, sudoración, temblores leves.",
+      "cycleExamples": "<strong>The Safe Cut:</strong> 4mg taken 45 minutes before fasted cardio to maximize fatty acid mobilization."
     },
     "it": {
       "benefits": "Eccellente brucia grassi mirato intorno agli allenamenti, consente un sonno reale durante la notte a differenza del clenbuterolo; profilo molto più sicuro per il cuore.",
-      "risks": "Battito cardiaco accelerato, sudorazione, lievi tremori."
+      "risks": "Battito cardiaco accelerato, sudorazione, lievi tremori.",
+      "cycleExamples": "<strong>The Safe Cut:</strong> 4mg taken 45 minutes before fasted cardio to maximize fatty acid mobilization."
     },
     "de": {
       "benefits": "Ausgezeichnete gezielte Fettverbrennung rund um Workouts, ermöglicht tatsächlichen Schlaf in der Nacht im Gegensatz zu Clenbuterol; viel sicherer Profil für das Herz.",
-      "risks": "Schneller Herzschlag, Schwitzen, leichtes Zittern."
+      "risks": "Schneller Herzschlag, Schwitzen, leichtes Zittern.",
+      "cycleExamples": "<strong>Der sichere Schnitt:</strong> 4 mg werden 45 Minuten vor dem nüchternen Cardio genommen, um die Fettsäuremobilisierung zu maximieren."
     }
   },
   "hcg": {
     "es": {
       "benefits": "Previene la atrofia testicular (\"encogimiento\") durante el ciclo, mantiene la fertilidad, hace que la PCT sea significativamente más fácil/más corta.",
-      "risks": "Puede aumentar drásticamente la aromatización, lo que conduce a un alto nivel de estrógeno y a la desensibilización de las células de Leydig si se abusa mucho de ellas."
+      "risks": "Puede aumentar drásticamente la aromatización, lo que conduce a un alto nivel de estrógeno y a la desensibilización de las células de Leydig si se abusa mucho de ellas.",
+      "cycleExamples": "<strong>Cycle Support:</strong> 250 IU pinned subcutaneously every other day throughout the entire duration of an AAS cycle to keep testes online."
     },
     "it": {
       "benefits": "Previene l'atrofia testicolare (\"restringimento\") durante il ciclo, mantiene la fertilità, rende la PCT significativamente più facile/più breve.",
-      "risks": "Può aumentare drasticamente l'aromatizzazione portando ad alti livelli di estrogeni, desensibilizzazione delle cellule di Leydig se pesantemente abusate."
+      "risks": "Può aumentare drasticamente l'aromatizzazione portando ad alti livelli di estrogeni, desensibilizzazione delle cellule di Leydig se pesantemente abusate.",
+      "cycleExamples": "<strong>Cycle Support:</strong> 250 IU pinned subcutaneously every other day throughout the entire duration of an AAS cycle to keep testes online."
     },
     "de": {
       "benefits": "Verhindert Hodenatrophie („Schrumpfung“) während des Zyklus, erhält die Fruchtbarkeit, macht PCT deutlich leichter/kürzer.",
-      "risks": "Kann die Aromatisierung drastisch ankurbeln, was zu einem hohen Östrogenspiegel und einer Desensibilisierung der Leydig-Zellen führt, wenn sie stark missbraucht werden."
+      "risks": "Kann die Aromatisierung drastisch ankurbeln, was zu einem hohen Östrogenspiegel und einer Desensibilisierung der Leydig-Zellen führt, wenn sie stark missbraucht werden.",
+      "cycleExamples": "<strong>Cycle Support:</strong> 250 IU pinned subcutaneously every other day throughout the entire duration of an AAS cycle to keep testes online."
     }
   },
   "hmg": {
     "es": {
       "benefits": "La herramienta definitiva para garantizar que un hombre permanezca completamente fértil y produzca espermatozoides activamente mientras explota el equipo; restaura el volumen testicular natural incluso después de años de apagado.",
-      "risks": "Astronómicamente caro."
+      "risks": "Astronómicamente caro.",
+      "cycleExamples": "<strong>Fertility Restart:</strong> 75 IU HMG combined with 500 IU HCG three times weekly for 12 weeks to restore sperm count after prolonged steroid use."
     },
     "it": {
       "benefits": "L'ultimo strumento per garantire che un maschio rimanga completamente fertile e produca attivamente sperma durante la sabbiatura; ripristina il volume testicolare naturale anche dopo anni di arresto.",
-      "risks": "Astronomicamente costoso."
+      "risks": "Astronomicamente costoso.",
+      "cycleExamples": "<strong>Fertility Restart:</strong> 75 IU HMG combined with 500 IU HCG three times weekly for 12 weeks to restore sperm count after prolonged steroid use."
     },
     "de": {
       "benefits": "Das ultimative Werkzeug, um sicherzustellen, dass ein Mann vollständig fruchtbar bleibt und aktiv Spermien produziert, während er Ausrüstung sprengt; stellt das natürliche Hodenvolumen auch nach Jahren des Stillstands wieder her.",
-      "risks": "Astronomisch teuer."
+      "risks": "Astronomisch teuer.",
+      "cycleExamples": "<strong>Fertility Restart:</strong> 75 IU HMG combined with 500 IU HCG three times weekly for 12 weeks to restore sperm count after prolonged steroid use."
     }
   },
   "yk11": {
     "es": {
       "benefits": "Ganancias rápidas y explosivas en tamaño y fuerza que teóricamente pueden romper los límites genéticos naturales; produce un aspecto muscular duro, seco y \"plástico\".",
-      "risks": "Dolor articular (de tendones secos), supresión severa de testosterona, toxicidad hepática potencial (es esteroide), consecuencias a largo plazo completamente desconocidas."
+      "risks": "Dolor articular (de tendones secos), supresión severa de testosterona, toxicidad hepática potencial (es esteroide), consecuencias a largo plazo completamente desconocidas.",
+      "cycleExamples": "<strong>The Genetic Breaker:</strong> 10mg daily for 8 weeks, usually stacked with a testosterone base to mitigate the severe suppression of the HPTA."
     },
     "it": {
       "benefits": "Guadagni rapidi ed esplosivi di dimensioni e forza che possono teoricamente violare i limiti genetici naturali; produce un aspetto muscolare duro, asciutto e \"plastico\".",
-      "risks": "Dolore articolare (da tendini secchi), grave soppressione del testosterone, potenziale tossicità epatica (è steroidea), conseguenze a lungo termine completamente sconosciute."
+      "risks": "Dolore articolare (da tendini secchi), grave soppressione del testosterone, potenziale tossicità epatica (è steroidea), conseguenze a lungo termine completamente sconosciute.",
+      "cycleExamples": "<strong>The Genetic Breaker:</strong> 10mg daily for 8 weeks, usually stacked with a testosterone base to mitigate the severe suppression of the HPTA."
     },
     "de": {
       "benefits": "Schnelle, explosive Zuwächse an Größe und Festigkeit, die theoretisch natürliche genetische Grenzen überschreiten können; erzeugt einen harten, trockenen, \"plastischen\" Muskel-Look.",
-      "risks": "Gelenkschmerzen (durch trockene Sehnen), starke Testosteronsuppression, mögliche Lebertoxizität (steroidale), völlig unbekannte Langzeitfolgen."
+      "risks": "Gelenkschmerzen (durch trockene Sehnen), starke Testosteronsuppression, mögliche Lebertoxizität (steroidale), völlig unbekannte Langzeitfolgen.",
+      "cycleExamples": "<strong>The Genetic Breaker:</strong> 10mg daily for 8 weeks, usually stacked with a testosterone base to mitigate the severe suppression of the HPTA."
     }
   },
   "s23": {
     "es": {
       "benefits": "Dureza muscular profunda, secado extremo del agua subcutánea.",
-      "risks": "<strong>Apagado total de HPTA</strong> (no supresión, apagado verdadero), requiere una base de testosterona o causará letargo severo y cero estrógenos."
+      "risks": "<strong>Apagado total de HPTA</strong> (no supresión, apagado verdadero), requiere una base de testosterona o causará letargo severo y cero estrógenos.",
+      "cycleExamples": "<strong>Pre-Contest:</strong> 20mg a day stacked onto a Testosterone base during the final 4 weeks of competition prep."
     },
     "it": {
       "benefits": "Profonda durezza muscolare, estrema secchezza dall'acqua sottocutanea.",
-      "risks": "<strong>Spegnimento totale HPTA</strong> (non soppressione, vero spegnimento), richiede una base di testosterone o causerà grave letargia e zero estrogeni."
+      "risks": "<strong>Spegnimento totale HPTA</strong> (non soppressione, vero spegnimento), richiede una base di testosterone o causerà grave letargia e zero estrogeni.",
+      "cycleExamples": "<strong>Pre-Contest:</strong> 20mg a day stacked onto a Testosterone base during the final 4 weeks of competition prep."
     },
     "de": {
       "benefits": "Tiefe Muskelhärte, extremes Austrocknen von subkutanem Wasser.",
-      "risks": "<strong>Totale HPTA-Abschaltung</strong> (keine Unterdrückung, echte Abschaltung), erfordert eine Testosteronbasis oder verursacht schwere Lethargie und kein Östrogen."
+      "risks": "<strong>Totale HPTA-Abschaltung</strong> (keine Unterdrückung, echte Abschaltung), erfordert eine Testosteronbasis oder verursacht schwere Lethargie und kein Östrogen.",
+      "cycleExamples": "<strong>Pre-Contest:</strong> 20mg a day stacked onto a Testosterone base during the final 4 weeks of competition prep."
     }
   },
   "andarine": {
@@ -2290,351 +2431,432 @@ window.DRUG_I18N = {
   "stenabolic": {
     "es": {
       "benefits": "Aumento masivo de la resistencia, pérdida de grasa pesada; ayuda a normalizar los patrones de sueño en los trabajadores por turnos; actúa como \"ejercicio en una píldora\".",
-      "risks": "Insomnio, alteración del ritmo circadiano. Biodisponibilidad oral extremadamente pobre (requiere dosificación o inyección sublingual)."
+      "risks": "Insomnio, alteración del ritmo circadiano. Biodisponibilidad oral extremadamente pobre (requiere dosificación o inyección sublingual).",
+      "cycleExamples": "<strong>Metabolic Reset:</strong> 20mg injected daily (or split sublingually) to accelerate fat loss during a cutting phase."
     },
     "it": {
       "benefits": "Massiccia spinta di resistenza, perdita di grasso pesante; aiuta a normalizzare i modelli di sonno nei lavoratori a turni; agisce come \"esercizio in una pillola\".",
-      "risks": "Insonnia, alterazione del ritmo circadiano. Biodisponibilità orale estremamente scarsa (richiede dosaggio o iniezione sublinguale)."
+      "risks": "Insonnia, alterazione del ritmo circadiano. Biodisponibilità orale estremamente scarsa (richiede dosaggio o iniezione sublinguale).",
+      "cycleExamples": "<strong>Metabolic Reset:</strong> 20mg injected daily (or split sublingually) to accelerate fat loss during a cutting phase."
     },
     "de": {
       "benefits": "Massiver Ausdauer-Boost, starker Fettabbau; hilft, Schlafmuster bei Schichtarbeitern zu normalisieren; wirkt als \"Übung in einer Pille\".",
-      "risks": "Schlaflosigkeit, Störung des zirkadianen Rhythmus. Äußerst schlechte orale Bioverfügbarkeit (erfordert sublinguale Dosierung oder Injektion)."
+      "risks": "Schlaflosigkeit, Störung des zirkadianen Rhythmus. Äußerst schlechte orale Bioverfügbarkeit (erfordert sublinguale Dosierung oder Injektion).",
+      "cycleExamples": "<strong>Metabolic Reset:</strong> 20mg injected daily (or split sublingually) to accelerate fat loss during a cutting phase."
     }
   },
   "superdrol": {
     "es": {
       "benefits": "Ganancias de fuerza ridículamente rápidas, supercompensación de glucógeno que resulta en un aspecto duro y muy bombeado sin ninguna retención de agua estrogénica.",
-      "risks": "Toxicidad hepática masiva y sin precedentes (hepatotoxicidad). Letargo tan severo que los usuarios a menudo no pueden permanecer despiertos (\"letargo de Superdrol\"), lípidos rotos."
+      "risks": "Toxicidad hepática masiva y sin precedentes (hepatotoxicidad). Letargo tan severo que los usuarios a menudo no pueden permanecer despiertos (\"letargo de Superdrol\"), lípidos rotos.",
+      "cycleExamples": "<strong>The 3-Week Blast:</strong> 20mg daily for exactly 21 days as a kickstart. Going beyond 3-4 weeks mathematically guarantees severe liver strain."
     },
     "it": {
       "benefits": "Guadagni di forza ridicolmente veloci, supercompensazione del glicogeno con conseguente aspetto pesantemente pompato e duro senza ritenzione idrica estrogenica.",
-      "risks": "Tossicità epatica massiccia e senza precedenti (epatotossicità). Letargia utenti così gravi spesso non possono rimanere svegli (\"Superdrol letargia\"), lipidi frantumati."
+      "risks": "Tossicità epatica massiccia e senza precedenti (epatotossicità). Letargia utenti così gravi spesso non possono rimanere svegli (\"Superdrol letargia\"), lipidi frantumati.",
+      "cycleExamples": "<strong>The 3-Week Blast:</strong> 20mg daily for exactly 21 days as a kickstart. Going beyond 3-4 weeks mathematically guarantees severe liver strain."
     },
     "de": {
       "benefits": "Lächerlich schnelle Kraftzuwächse, Glykogen-Superkompensation, die zu einem stark gepumpten, harten Aussehen ohne östrogene Wassereinlagerungen führt.",
-      "risks": "Massive, beispiellose Lebertoxizität (Hepatotoxizität). Lethargie so starke Anwender können oft nicht wach bleiben („Superdrol-Lethargie“), zersplitterte Lipide."
+      "risks": "Massive, beispiellose Lebertoxizität (Hepatotoxizität). Lethargie so starke Anwender können oft nicht wach bleiben („Superdrol-Lethargie“), zersplitterte Lipide.",
+      "cycleExamples": "<strong>The 3-Week Blast:</strong> 20mg daily for exactly 21 days as a kickstart. Going beyond 3-4 weeks mathematically guarantees severe liver strain."
     }
   },
   "epistane": {
     "es": {
       "benefits": "Endurecimiento muscular extremo, apoyo agudo a la pérdida de grasa, prevención/reducción de la ginecomastia durante el ciclo; da una estética seca y granulada.",
-      "risks": "Deshidratación articular severa (dolor en las articulaciones/tendones), toxicidad hepática, bombas en las pantorrillas tan severas que pueden inhibir la marcha."
+      "risks": "Deshidratación articular severa (dolor en las articulaciones/tendones), toxicidad hepática, bombas en las pantorrillas tan severas que pueden inhibir la marcha.",
+      "cycleExamples": "<strong>The Gyno Killer:</strong> Historically added to cycles at 30mg daily to counteract estrogenic bloating and nipple sensitivity."
     },
     "it": {
       "benefits": "Indurimento muscolare estremo, supporto per la perdita di grasso acuta, prevenzione/riduzione della ginecomastia durante il ciclo; dona un'estetica secca e granulosa.",
-      "risks": "Grave disidratazione articolare (articolazioni/tendini doloranti), tossicità epatica, pompe del polpaccio così gravi da poter inibire la deambulazione."
+      "risks": "Grave disidratazione articolare (articolazioni/tendini doloranti), tossicità epatica, pompe del polpaccio così gravi da poter inibire la deambulazione.",
+      "cycleExamples": "<strong>The Gyno Killer:</strong> Historically added to cycles at 30mg daily to counteract estrogenic bloating and nipple sensitivity."
     },
     "de": {
       "benefits": "Extreme Muskelverhärtung, Unterstützung des akuten Fettabbaus, Vorbeugung/Reduzierung von Gynäkomastie während des Zyklus; verleiht eine trockene, körnige Ästhetik.",
-      "risks": "Schwere Gelenkdehydratation (schmerzende Gelenke/Sehnen), Lebertoxizität, Wadenpumpen so stark, dass sie das Gehen hemmen können."
+      "risks": "Schwere Gelenkdehydratation (schmerzende Gelenke/Sehnen), Lebertoxizität, Wadenpumpen so stark, dass sie das Gehen hemmen können.",
+      "cycleExamples": "<strong>The Gyno Killer:</strong> Historically added to cycles at 30mg daily to counteract estrogenic bloating and nipple sensitivity."
     }
   },
   "halodrol": {
     "es": {
       "benefits": "Ganancias secas lentas y mantenibles; aumento masivo de la fuerza central y la visibilidad abdominal; excelente para principiantes debido a su alta tolerabilidad.",
-      "risks": "Tensión hepática leve, ligera supresión."
+      "risks": "Tensión hepática leve, ligera supresión.",
+      "cycleExamples": "<strong>First Cycle:</strong> 50mg daily for 6 weeks, resulting in moderate but completely retainable gains post-cycle."
     },
     "it": {
       "benefits": "Guadagni a secco lenti e manutenibili; massiccia spinta alla forza del core e alla visibilità addominale; eccellente per i principianti grazie all'elevata tollerabilità.",
-      "risks": "Lieve affaticamento epatico, lieve soppressione."
+      "risks": "Lieve affaticamento epatico, lieve soppressione.",
+      "cycleExamples": "<strong>First Cycle:</strong> 50mg daily for 6 weeks, resulting in moderate but completely retainable gains post-cycle."
     },
     "de": {
       "benefits": "Langsame, wartbare Trockengewinne; massive Steigerung der Rumpfkraft und der Bauchsicht; aufgrund der hohen Verträglichkeit hervorragend für Anfänger geeignet.",
-      "risks": "Leichte Leberbelastung, leichte Unterdrückung."
+      "risks": "Leichte Leberbelastung, leichte Unterdrückung.",
+      "cycleExamples": "<strong>First Cycle:</strong> 50mg daily for 6 weeks, resulting in moderate but completely retainable gains post-cycle."
     }
   },
   "msten": {
     "es": {
       "benefits": "Tamaño y fuerza masivos que reflejan Superdrol pero con menos letargo intracelular; acción increíblemente rápida (resultados visibles en 7 días).",
-      "risks": "Hepatotoxicidad muy alta, destrucción rápida de lípidos, apagado severo de HPTA."
+      "risks": "Hepatotoxicidad muy alta, destrucción rápida de lípidos, apagado severo de HPTA.",
+      "cycleExamples": "<strong>The Mass Kickstart:</strong> 10mg daily for the first 4 weeks of a bulking cycle to ignite immediate growth."
     },
     "it": {
       "benefits": "Dimensioni e forza enormi che rispecchiano Superdrol ma con meno letargia intracellulare; azione incredibilmente rapida (risultati visibili entro 7 giorni).",
-      "risks": "Epatotossicità molto elevata, rapida distruzione lipidica, grave arresto dell'HPTA."
+      "risks": "Epatotossicità molto elevata, rapida distruzione lipidica, grave arresto dell'HPTA.",
+      "cycleExamples": "<strong>The Mass Kickstart:</strong> 10mg daily for the first 4 weeks of a bulking cycle to ignite immediate growth."
     },
     "de": {
       "benefits": "Massive Größe und Stärke spiegeln Superdrol wider, aber mit weniger intrazellulärer Lethargie; unglaublich schnell wirkend (sichtbare Ergebnisse innerhalb von 7 Tagen).",
-      "risks": "Sehr hohe Hepatotoxizität, schnelle Lipidzerstörung, schwere HPTA-Abschaltung."
+      "risks": "Sehr hohe Hepatotoxizität, schnelle Lipidzerstörung, schwere HPTA-Abschaltung.",
+      "cycleExamples": "<strong>The Mass Kickstart:</strong> 10mg daily for the first 4 weeks of a bulking cycle to ignite immediate growth."
     }
   },
   "trenavar": {
     "es": {
       "benefits": "Produce la vascularización cruda, la agresión y la pérdida de grasa de la trembolona inyectable a través de una cápsula oral; partición extrema de nutrientes.",
-      "risks": "Presión arterial alta, acidez estomacal severa, sudores nocturnos intensos, impuestos hepáticos brutales."
+      "risks": "Presión arterial alta, acidez estomacal severa, sudores nocturnos intensos, impuestos hepáticos brutales.",
+      "cycleExamples": "<strong>Oral Recomp:</strong> 30mg daily for 4-6 weeks to rapidly harden the physique before a photoshoot or competition."
     },
     "it": {
       "benefits": "Rende la vascolarizzazione grezza, l'aggressività e la perdita di grasso di Trenbolone iniettabile tramite una capsula orale; ripartizione dei nutrienti estrema.",
-      "risks": "Pressione alta, forte bruciore di stomaco, sudorazione notturna intensa, tassazione brutale del fegato."
+      "risks": "Pressione alta, forte bruciore di stomaco, sudorazione notturna intensa, tassazione brutale del fegato.",
+      "cycleExamples": "<strong>Oral Recomp:</strong> 30mg daily for 4-6 weeks to rapidly harden the physique before a photoshoot or competition."
     },
     "de": {
       "benefits": "Ergibt die rohe Vaskularität, Aggression und den Fettabbau von injizierbarem Trenbolon über eine orale Kapsel; extreme Nährstoffverteilung.",
-      "risks": "Bluthochdruck, starkes Sodbrennen, intensives Nachtschweiß, brutale Leberbesteuerung."
+      "risks": "Bluthochdruck, starkes Sodbrennen, intensives Nachtschweiß, brutale Leberbesteuerung.",
+      "cycleExamples": "<strong>Oral Recomp:</strong> 30mg daily for 4-6 weeks to rapidly harden the physique before a photoshoot or competition."
     }
   },
   "blood_lipids": {
     "es": {
       "benefits": "Mantener lípidos saludables previene por completo la aterosclerosis (acumulación de placa en las arterias) y los riesgos de accidente cerebrovascular/ataque cardíaco a largo plazo.",
-      "risks": "Trenbolone, Superdrol y Winstrol son famosos por triturar el HDL en un solo dígito en 2 semanas."
+      "risks": "Trenbolone, Superdrol y Winstrol son famosos por triturar el HDL en un solo dígito en 2 semanas.",
+      "cycleExamples": "<strong>Management:</strong> 4g Omega-3 Fish Oil, 10mg Citrus Bergamot, 500mg Niacin, and massive amounts of steady-state cardio (LISS) daily to protect lipids on cycle."
     },
     "it": {
       "benefits": "Il mantenimento di lipidi sani previene completamente l'aterosclerosi (accumulo di placca nelle arterie) e i rischi di ictus/infarto a lungo termine.",
-      "risks": "Trenbolone, Superdrol e Winstrol sono noti per schiacciare l'HDL nelle singole cifre entro 2 settimane."
+      "risks": "Trenbolone, Superdrol e Winstrol sono noti per schiacciare l'HDL nelle singole cifre entro 2 settimane.",
+      "cycleExamples": "<strong>Management:</strong> 4g Omega-3 Fish Oil, 10mg Citrus Bergamot, 500mg Niacin, and massive amounts of steady-state cardio (LISS) daily to protect lipids on cycle."
     },
     "de": {
       "benefits": "Die Aufrechterhaltung gesunder Lipide verhindert vollständig Atherosklerose (Plaqueaufbau in Arterien) und langfristige Schlaganfall-/Herzinfarktrisiken.",
-      "risks": "Trenbolon, Superdrol und Winstrol sind berüchtigt dafür, HDL innerhalb von 2 Wochen im einstelligen Bereich zu zerkleinern."
+      "risks": "Trenbolon, Superdrol und Winstrol sind berüchtigt dafür, HDL innerhalb von 2 Wochen im einstelligen Bereich zu zerkleinern.",
+      "cycleExamples": "<strong>Management:</strong> 4g Omega-3 Fish Oil, 10mg Citrus Bergamot, 500mg Niacin, and massive amounts of steady-state cardio (LISS) daily to protect lipids on cycle."
     }
   },
   "blood_liver": {
     "es": {
       "benefits": "Mantener estas enzimas bajas asegura que el hígado pueda eliminar las toxinas por completo y prevenir la colestasis (bloqueo de los conductos biliares/ictericia).",
-      "risks": "Los valores altos durante largos períodos equivalen a ictericia, lesiones hepáticas y eventual cirrosis."
+      "risks": "Los valores altos durante largos períodos equivalen a ictericia, lesiones hepáticas y eventual cirrosis.",
+      "cycleExamples": "<strong>Management:</strong> 1200mg NAC (N-Acetyl Cysteine), 500mg TUDCA (Tauroursodeoxycholic acid), and Milk Thistle."
     },
     "it": {
       "benefits": "Mantenere bassi questi enzimi garantisce che il fegato possa eliminare efficacemente le tossine e prevenire la colestasi (blocco del dotto biliare/ittero).",
-      "risks": "Valori elevati per lunghi periodi equivalgono a ittero, lesioni epatiche ed eventuale cirrosi."
+      "risks": "Valori elevati per lunghi periodi equivalgono a ittero, lesioni epatiche ed eventuale cirrosi.",
+      "cycleExamples": "<strong>Management:</strong> 1200mg NAC (N-Acetyl Cysteine), 500mg TUDCA (Tauroursodeoxycholic acid), and Milk Thistle."
     },
     "de": {
       "benefits": "Wenn diese Enzyme niedrig gehalten werden, kann die Leber Giftstoffe effektiv vollständig beseitigen und Cholestase (Gallengangsblockade/Gelbsucht) verhindern.",
-      "risks": "Hohe Werte über lange Zeiträume entsprechen Gelbsucht, Leberläsionen und eventueller Zirrhose."
+      "risks": "Hohe Werte über lange Zeiträume entsprechen Gelbsucht, Leberläsionen und eventueller Zirrhose.",
+      "cycleExamples": "<strong>Management:</strong> 1200mg NAC (N-Acetyl Cysteine), 500mg TUDCA (Tauroursodeoxycholic acid), and Milk Thistle."
     }
   },
   "blood_kidneys": {
     "es": {
       "benefits": "La protección de los riñones evita la diálisis y garantiza que la dinámica de fluidos permanezca estable sin provocar edema (acumulación grave de líquidos en las piernas).",
-      "risks": "Ignorar la presión arterial alta en el ciclo es la causa #1 de destrucción renal irreversible."
+      "risks": "Ignorar la presión arterial alta en el ciclo es la causa #1 de destrucción renal irreversible.",
+      "cycleExamples": "<strong>Management:</strong> Massive water consumption (2+ gallons), strict BP control via ARBs (Telmisartan) or ACE inhibitors."
     },
     "it": {
       "benefits": "Proteggere i reni previene la dialisi e garantisce che la fluidodinamica rimanga stabile senza edema da vaiolatura (grave accumulo di liquidi nelle gambe).",
-      "risks": "Ignorare l'ipertensione durante il ciclo è la prima causa di distruzione irreversibile dei reni."
+      "risks": "Ignorare l'ipertensione durante il ciclo è la prima causa di distruzione irreversibile dei reni.",
+      "cycleExamples": "<strong>Management:</strong> Massive water consumption (2+ gallons), strict BP control via ARBs (Telmisartan) or ACE inhibitors."
     },
     "de": {
       "benefits": "Der Schutz der Nieren beugt der Dialyse vor und sorgt dafür, dass die Flüssigkeitsdynamik stabil bleibt, ohne dass es zu Ödemen kommt (starke Flüssigkeitsansammlung in den Beinen).",
-      "risks": "Das Ignorieren von Bluthochdruck während des Zyklus ist die Hauptursache für die irreversible Nierenzerstörung."
+      "risks": "Das Ignorieren von Bluthochdruck während des Zyklus ist die Hauptursache für die irreversible Nierenzerstörung.",
+      "cycleExamples": "<strong>Management:</strong> Massive water consumption (2+ gallons), strict BP control via ARBs (Telmisartan) or ACE inhibitors."
     }
   },
   "blood_hematocrit": {
     "es": {
       "benefits": "Los glóbulos rojos más altos mejoran enormemente el transporte de oxígeno y la resistencia cardiovascular (de ahí la razón por la que Equipoise se siente tan bien para la resistencia).",
-      "risks": "Si la sangre se convierte en lodo, el corazón tiene que trabajar 10 veces más para bombearlo. Conduce a hipertrofia ventricular izquierda extrema, accidentes cerebrovasculares y letargo catastrófico."
+      "risks": "Si la sangre se convierte en lodo, el corazón tiene que trabajar 10 veces más para bombearlo. Conduce a hipertrofia ventricular izquierda extrema, accidentes cerebrovasculares y letargo catastrófico.",
+      "cycleExamples": "<strong>Management:</strong> Therapeutic phlebotomy (donating a pint of blood every 8 weeks), daily baby aspirin, massive hydration, and Naringin."
     },
     "it": {
       "benefits": "Un eritrocito più elevato migliora notevolmente il trasporto di ossigeno e la resistenza cardiovascolare (ecco perché Equipoise si sente così bene per la resistenza).",
-      "risks": "Se il sangue si trasforma in fango, il cuore deve lavorare 10 volte di più per pomparlo. Porta a ipertrofia ventricolare estrema sinistra, ictus e letargia catastrofica."
+      "risks": "Se il sangue si trasforma in fango, il cuore deve lavorare 10 volte di più per pomparlo. Porta a ipertrofia ventricolare estrema sinistra, ictus e letargia catastrofica.",
+      "cycleExamples": "<strong>Management:</strong> Therapeutic phlebotomy (donating a pint of blood every 8 weeks), daily baby aspirin, massive hydration, and Naringin."
     },
     "de": {
       "benefits": "Höhere Erythrozyten verbessern massiv den Sauerstofftransport und die kardiovaskuläre Ausdauer (daher fühlt sich Equipoise so gut für die Ausdauer an).",
-      "risks": "Wenn Blut zu Schlamm wird, muss das Herz 10x härter arbeiten, um es zu pumpen. Führt zu extremer linksventrikulärer Hypertrophie, Schlaganfällen und katastrophaler Lethargie."
+      "risks": "Wenn Blut zu Schlamm wird, muss das Herz 10x härter arbeiten, um es zu pumpen. Führt zu extremer linksventrikulärer Hypertrophie, Schlaganfällen und katastrophaler Lethargie.",
+      "cycleExamples": "<strong>Management:</strong> Therapeutic phlebotomy (donating a pint of blood every 8 weeks), daily baby aspirin, massive hydration, and Naringin."
     }
   },
   "modafinil": {
     "es": {
       "benefits": "Despertar extremo e implacable sin la estimulación física periférica nerviosa o el choque severo de las anfetaminas.",
-      "risks": "Dolores de cabeza, apetito suprimido, erupción cutánea grave rara (síndrome de Stevens-Johnson), deuda de sueño grave a largo plazo."
+      "risks": "Dolores de cabeza, apetito suprimido, erupción cutánea grave rara (síndrome de Stevens-Johnson), deuda de sueño grave a largo plazo.",
+      "cycleExamples": "<strong>Pre-Workout / Focus:</strong> 100mg taken orally immediately upon waking to enforce 14-16 hours of absolute mental clarity."
     },
     "it": {
       "benefits": "Sveglia estrema e implacabile senza la stimolazione fisica periferica nervosa o il grave incidente delle anfetamine.",
-      "risks": "Mal di testa, appetito soppresso, raro rash grave (sindrome di Stevens-Johnson), grave debito di sonno a lungo termine."
+      "risks": "Mal di testa, appetito soppresso, raro rash grave (sindrome di Stevens-Johnson), grave debito di sonno a lungo termine.",
+      "cycleExamples": "<strong>Pre-Workout / Focus:</strong> 100mg taken orally immediately upon waking to enforce 14-16 hours of absolute mental clarity."
     },
     "de": {
       "benefits": "Extreme, unerbittliche Wachheit ohne die nervöse periphere körperliche Stimulation oder den schweren Absturz von Amphetaminen.",
-      "risks": "Kopfschmerzen, Appetitlosigkeit, seltener schwerer Hautausschlag (Stevens-Johnson-Syndrom), schwere langfristige Schlafverschuldung."
+      "risks": "Kopfschmerzen, Appetitlosigkeit, seltener schwerer Hautausschlag (Stevens-Johnson-Syndrom), schwere langfristige Schlafverschuldung.",
+      "cycleExamples": "<strong>Pre-Workout / Focus:</strong> 100mg taken orally immediately upon waking to enforce 14-16 hours of absolute mental clarity."
     }
   },
   "adderall": {
     "es": {
       "benefits": "Euforia intensa, enfoque similar al láser, supresión masiva de la fatiga física, fuerte aumento temporal de la fuerza en el gimnasio.",
-      "risks": "Neurotoxicidad severa a dosis altas, agotamiento suprarrenal absoluto, terrible \"choque\" que resulta en letargo profundo y depresión, vector de adicción extremadamente rápido."
+      "risks": "Neurotoxicidad severa a dosis altas, agotamiento suprarrenal absoluto, terrible \"choque\" que resulta en letargo profundo y depresión, vector de adicción extremadamente rápido.",
+      "cycleExamples": "<strong>Max Effort:</strong> 20mg Instant Release taken 45 minutes prior to a massive training session for extreme neurological drive."
     },
     "it": {
       "benefits": "Euforia intensa, messa a fuoco simile a un laser, massiccia soppressione dell'affaticamento fisico, forte aumento temporaneo della forza in palestra.",
-      "risks": "Grave neurotossicità a dosi elevate, burnout surrenale assoluto, terribile \"crash\" con conseguente letargia profonda e depressione, vettore di dipendenza estremamente veloce."
+      "risks": "Grave neurotossicità a dosi elevate, burnout surrenale assoluto, terribile \"crash\" con conseguente letargia profonda e depressione, vettore di dipendenza estremamente veloce.",
+      "cycleExamples": "<strong>Max Effort:</strong> 20mg Instant Release taken 45 minutes prior to a massive training session for extreme neurological drive."
     },
     "de": {
       "benefits": "Intensive Euphorie, laserähnliche Fokussierung, massive Unterdrückung körperlicher Ermüdung, starke temporäre Kraftsteigerung im Fitnessstudio.",
-      "risks": "Schwere Neurotoxizität bei hohen Dosen, absoluter Nebennieren-Burnout, schrecklicher \"Crash\", der zu tiefer Lethargie und Depression führt, extrem schneller Suchtvektor."
+      "risks": "Schwere Neurotoxizität bei hohen Dosen, absoluter Nebennieren-Burnout, schrecklicher \"Crash\", der zu tiefer Lethargie und Depression führt, extrem schneller Suchtvektor.",
+      "cycleExamples": "<strong>Max Effort:</strong> 20mg Instant Release taken 45 minutes prior to a massive training session for extreme neurological drive."
     }
   },
   "caffeine": {
     "es": {
       "benefits": "Barato, legal, reduce drásticamente la tasa de esfuerzo percibido (RPE) y moviliza los ácidos grasos como combustible.",
-      "risks": "Fatiga suprarrenal severa con uso diario excesivo, ansiedad extrema, taquicardia severa."
+      "risks": "Fatiga suprarrenal severa con uso diario excesivo, ansiedad extrema, taquicardia severa.",
+      "cycleExamples": "<strong>Pre-Workout:</strong> 400mg taken with L-Citrulline 30m prior to training."
     },
     "it": {
       "benefits": "Economico, legale, riduce drasticamente il tasso di sforzo percepito (RPE) e mobilita gli acidi grassi per il carburante.",
-      "risks": "Grave affaticamento surrenale con uso quotidiano eccessivo, ansia estrema, grave tachicardia."
+      "risks": "Grave affaticamento surrenale con uso quotidiano eccessivo, ansia estrema, grave tachicardia.",
+      "cycleExamples": "<strong>Pre-Workout:</strong> 400mg taken with L-Citrulline 30m prior to training."
     },
     "de": {
       "benefits": "Billig, legal, senkt dramatisch die Rate der wahrgenommenen Anstrengung (RPE) und mobilisiert Fettsäuren als Treibstoff.",
-      "risks": "Schwere Nebennierenermüdung bei übermäßiger täglicher Anwendung, extreme Angstzustände, schwere Tachykardie."
+      "risks": "Schwere Nebennierenermüdung bei übermäßiger täglicher Anwendung, extreme Angstzustände, schwere Tachykardie.",
+      "cycleExamples": "<strong>Pre-Workout:</strong> 400mg taken with L-Citrulline 30m prior to training."
     }
   },
   "ephedrine": {
     "es": {
       "benefits": "Mata el apetito por completo, aumenta masivamente la TMB (tasa metabólica basal).",
-      "risks": "Accidente cerebrovascular, presión arterial extrema, deshidratación severa."
+      "risks": "Accidente cerebrovascular, presión arterial extrema, deshidratación severa.",
+      "cycleExamples": "<strong>The ECA Stack:</strong> 25mg Ephedrine + 200mg Caffeine + 81mg Baby Aspirin taken 2-3 times per day for absolute appetite annihilation."
     },
     "it": {
       "benefits": "Uccide completamente l'appetito, aumenta massicciamente il BMR (Basal Metabolic Rate).",
-      "risks": "Ictus, pressione arteriosa estrema, grave disidratazione."
+      "risks": "Ictus, pressione arteriosa estrema, grave disidratazione.",
+      "cycleExamples": "<strong>The ECA Stack:</strong> 25mg Ephedrine + 200mg Caffeine + 81mg Baby Aspirin taken 2-3 times per day for absolute appetite annihilation."
     },
     "de": {
       "benefits": "Tötet den Appetit vollständig, erhöht massiv die BMR (Basal Metabolic Rate).",
-      "risks": "Schlaganfall, extremer Blutdruck, starke Austrocknung."
+      "risks": "Schlaganfall, extremer Blutdruck, starke Austrocknung.",
+      "cycleExamples": "<strong>The ECA Stack:</strong> 25mg Ephedrine + 200mg Caffeine + 81mg Baby Aspirin taken 2-3 times per day for absolute appetite annihilation."
     }
   },
   "amphetamine_sulfate": {
     "es": {
       "benefits": "Resistencia masiva, euforia, hiperenfoque; permite un trabajo físico prolongado o un rendimiento atlético bajo fatiga extrema.",
-      "risks": "Tensión cardiovascular severa, paranoia, apretamiento fuerte de la mandíbula (bruxismo)."
+      "risks": "Tensión cardiovascular severa, paranoia, apretamiento fuerte de la mandíbula (bruxismo).",
+      "cycleExamples": "<strong>The \"Billy\" Run:</strong> Historically used by long-haul drivers or soldiers to maintain peak alertness for up to 48 hours without rest."
     },
     "it": {
       "benefits": "Massiccia resistenza, euforia, iper-focalizzazione; consente un lavoro fisico prolungato o prestazioni atletiche in condizioni di estrema fatica.",
-      "risks": "Grave sforzo cardiovascolare, paranoia, pesante serraggio della mascella (bruxismo)."
+      "risks": "Grave sforzo cardiovascolare, paranoia, pesante serraggio della mascella (bruxismo).",
+      "cycleExamples": "<strong>The \"Billy\" Run:</strong> Historically used by long-haul drivers or soldiers to maintain peak alertness for up to 48 hours without rest."
     },
     "de": {
       "benefits": "Massive Ausdauer, Euphorie, Hyperfokus; ermöglicht längere körperliche Arbeit oder sportliche Leistung unter extremer Müdigkeit.",
-      "risks": "Schwere kardiovaskuläre Belastung, Paranoia, schweres Kieferknirschen (Bruxismus)."
+      "risks": "Schwere kardiovaskuläre Belastung, Paranoia, schweres Kieferknirschen (Bruxismus).",
+      "cycleExamples": "<strong>The \"Billy\" Run:</strong> Historically used by long-haul drivers or soldiers to maintain peak alertness for up to 48 hours without rest."
     }
   },
   "piperazines": {
     "es": {
       "benefits": "Estimulación, empatía/euforia leve que se asemeja a MDMA débil; crea un ambiente social \"festivo\".",
-      "risks": "Resacas horribles, náuseas severas, convulsiones en dosis altas, caídas terriblemente malas en comparación con las anfetaminas estándar."
+      "risks": "Resacas horribles, náuseas severas, convulsiones en dosis altas, caídas terriblemente malas en comparación con las anfetaminas estándar.",
+      "cycleExamples": "<strong>Historical Usage:</strong> Widely sold in New Zealand as \"Legal Highs\" (A2) in the mid-2000s, often consumed in 100-200mg doses at dance festivals."
     },
     "it": {
       "benefits": "Stimolazione, lieve empatia/euforia che assomiglia all'MDMA debole; crea un'atmosfera sociale \"da festa\".",
-      "risks": "Postumi di una sbornia orribili, nausea grave, convulsioni a dosi elevate, comedown terrificanti rispetto alle anfetamine standard."
+      "risks": "Postumi di una sbornia orribili, nausea grave, convulsioni a dosi elevate, comedown terrificanti rispetto alle anfetamine standard.",
+      "cycleExamples": "<strong>Historical Usage:</strong> Widely sold in New Zealand as \"Legal Highs\" (A2) in the mid-2000s, often consumed in 100-200mg doses at dance festivals."
     },
     "de": {
       "benefits": "Stimulation, milde Empathie/Euphorie ähnlich schwacher MDMA; schafft eine „partyähnliche“ soziale Atmosphäre.",
-      "risks": "Schrecklicher Kater, starke Übelkeit, Krampfanfälle bei hohen Dosen, erschreckend schlechte Komedowns im Vergleich zu Standardamphetaminen."
+      "risks": "Schrecklicher Kater, starke Übelkeit, Krampfanfälle bei hohen Dosen, erschreckend schlechte Komedowns im Vergleich zu Standardamphetaminen.",
+      "cycleExamples": "<strong>Historical Usage:</strong> Widely sold in New Zealand as \"Legal Highs\" (A2) in the mid-2000s, often consumed in 100-200mg doses at dance festivals."
     }
   },
   "psilocybin": {
     "es": {
       "benefits": "Procesamiento emocional profundo, \"reinicio\" de la red de modo predeterminado en el cerebro, alivio duradero de la depresión resistente al tratamiento; crea apertura a largo plazo.",
-      "risks": "Náuseas, ataques de pánico, confusión extrema en las dosis crudas."
+      "risks": "Náuseas, ataques de pánico, confusión extrema en las dosis crudas.",
+      "cycleExamples": "<strong>Depression Protocol:</strong> A single \"macro-dose\" of 3.5g taken in a therapeutic setting to facilitate deep psychological breakthrough.",
+      "sensoryImpact": "Intense fractal geometric patterns, enhanced color saturation, and objects appearing to \"breathe\" or ripple. High doses can lead to complete visual reconstruction of the environment."
     },
     "it": {
       "benefits": "Elaborazione emotiva profonda, \"reset\" della rete in modalità predefinita nel cervello, sollievo duraturo dalla depressione resistente al trattamento; crea apertura a lungo termine.",
-      "risks": "Nausea, attacchi di panico, estrema confusione ai dosaggi grezzi."
+      "risks": "Nausea, attacchi di panico, estrema confusione ai dosaggi grezzi.",
+      "cycleExamples": "<strong>Depression Protocol:</strong> A single \"macro-dose\" of 3.5g taken in a therapeutic setting to facilitate deep psychological breakthrough.",
+      "sensoryImpact": "Intense fractal geometric patterns, enhanced color saturation, and objects appearing to \"breathe\" or ripple. High doses can lead to complete visual reconstruction of the environment."
     },
     "de": {
       "benefits": "Tiefe emotionale Verarbeitung, „Reset“ des Default Mode Network im Gehirn, dauerhafte Linderung behandlungsresistenter Depressionen; schafft langfristige Offenheit.",
-      "risks": "Übelkeit, Panikattacken, extreme Verwirrung bei Rohdosierungen."
+      "risks": "Übelkeit, Panikattacken, extreme Verwirrung bei Rohdosierungen.",
+      "cycleExamples": "<strong>Depression Protocol:</strong> A single \"macro-dose\" of 3.5g taken in a therapeutic setting to facilitate deep psychological breakthrough.",
+      "sensoryImpact": "Intense fractal geometric patterns, enhanced color saturation, and objects appearing to \"breathe\" or ripple. High doses can lead to complete visual reconstruction of the environment."
     }
   },
   "meo_dmt": {
     "es": {
       "benefits": "Experiencia mística profunda, disolución completa del yo; proporciona un cambio de perspectiva total sobre la existencia en menos de 15 minutos.",
-      "risks": "Depresión respiratoria a dosis altas, trauma psicológico grave, interacción letal con IMAO."
+      "risks": "Depresión respiratoria a dosis altas, trauma psicológico grave, interacción letal con IMAO.",
+      "cycleExamples": "<strong>Spiritual Reset:</strong> A single vaporized dose administered under expert guidance to treat severe existential dread in terminal patients."
     },
     "it": {
       "benefits": "Profonda esperienza mistica, completa dissoluzione del sé; fornisce un totale cambiamento di prospettiva sull'esistenza in meno di 15 minuti.",
-      "risks": "Depressione respiratoria a dosi elevate, trauma psicologico grave, interazione letale con IMAO."
+      "risks": "Depressione respiratoria a dosi elevate, trauma psicologico grave, interazione letale con IMAO.",
+      "cycleExamples": "<strong>Spiritual Reset:</strong> A single vaporized dose administered under expert guidance to treat severe existential dread in terminal patients."
     },
     "de": {
       "benefits": "Tiefgründige mystische Erfahrung, vollständige Auflösung des Selbst; bietet einen totalen Perspektivwechsel auf die Existenz in weniger als 15 Minuten.",
-      "risks": "Atemdepression in hohen Dosen, schweres psychologisches Trauma, tödliche Wechselwirkung mit MAO-Hemmern."
+      "risks": "Atemdepression in hohen Dosen, schweres psychologisches Trauma, tödliche Wechselwirkung mit MAO-Hemmern.",
+      "cycleExamples": "<strong>Spiritual Reset:</strong> A single vaporized dose administered under expert guidance to treat severe existential dread in terminal patients."
     }
   },
   "ibogaine": {
     "es": {
       "benefits": "Capaz de terminar con la abstinencia de opioides y los antojos; induce un estado de sueño de 24-36 horas de vigilia; restablece las vías de la dopamina.",
-      "risks": "Cardiotoxicidad fatal (prolongación del intervalo QT), ataxia, vómitos intensos."
+      "risks": "Cardiotoxicidad fatal (prolongación del intervalo QT), ataxia, vómitos intensos.",
+      "cycleExamples": "<strong>Addiction Termination:</strong> 15mg/kg administered in a clinical setting with full EKG monitoring to interrupt active heroin/fentanyl addiction."
     },
     "it": {
       "benefits": "Capace di porre fine all'astinenza da oppioidi e alle voglie; induce uno stato onirico di veglia di 24-36 ore; ripristina le vie della dopamina.",
-      "risks": "Cardiotossicità fatale (prolungamento dell'intervallo QT), atassia, vomito grave."
+      "risks": "Cardiotossicità fatale (prolungamento dell'intervallo QT), atassia, vomito grave.",
+      "cycleExamples": "<strong>Addiction Termination:</strong> 15mg/kg administered in a clinical setting with full EKG monitoring to interrupt active heroin/fentanyl addiction."
     },
     "de": {
       "benefits": "Kann Opioid-Entzug und Heißhunger beenden; induziert einen 24-36-stündigen traumähnlichen Wachzustand; setzt Dopaminwege zurück.",
-      "risks": "Tödliche Kardiotoxizität (QT-Verlängerung), Ataxie, schweres Erbrechen."
+      "risks": "Tödliche Kardiotoxizität (QT-Verlängerung), Ataxie, schweres Erbrechen.",
+      "cycleExamples": "<strong>Addiction Termination:</strong> 15mg/kg administered in a clinical setting with full EKG monitoring to interrupt active heroin/fentanyl addiction."
     }
   },
   "mescaline": {
     "es": {
       "benefits": "Distorsiones visuales brillantes y coloridas y una profunda conexión con la naturaleza/espíritus; notablemente larga duración en comparación con otras fenetilaminas.",
-      "risks": "Náuseas severas durante el inicio, mareos, ansiedad."
+      "risks": "Náuseas severas durante el inicio, mareos, ansiedad.",
+      "cycleExamples": "<strong>Ritual Usage:</strong> 300mg of pure mescaline sulfate consumed for a 12-hour contemplative experience."
     },
     "it": {
       "benefits": "Distorsioni visive luminose e colorate e un profondo legame con la natura/gli spiriti; durata notevolmente lunga rispetto ad altre fenetilammine.",
-      "risks": "Grave nausea durante l'esordio, vertigini, ansia."
+      "risks": "Grave nausea durante l'esordio, vertigini, ansia.",
+      "cycleExamples": "<strong>Ritual Usage:</strong> 300mg of pure mescaline sulfate consumed for a 12-hour contemplative experience."
     },
     "de": {
       "benefits": "Helle, farbenfrohe visuelle Verzerrungen und eine tiefe Verbindung zur Natur/Spirituosen; bemerkenswert lange Dauer im Vergleich zu anderen Phenethylaminen.",
-      "risks": "Starke Übelkeit bei Beginn, Schwindel, Angst."
+      "risks": "Starke Übelkeit bei Beginn, Schwindel, Angst.",
+      "cycleExamples": "<strong>Ritual Usage:</strong> 300mg of pure mescaline sulfate consumed for a 12-hour contemplative experience."
     }
   },
   "salvia": {
     "es": {
       "benefits": "Intensidad incomparable de alucinación a corto plazo (5-10 min); crea una sensación de plegamiento a través de múltiples dimensiones/realidades.",
-      "risks": "Confusión profunda, pérdida temporal del control motor, disforia."
+      "risks": "Confusión profunda, pérdida temporal del control motor, disforia.",
+      "cycleExamples": "<strong>Short Dive:</strong> 20mg of 10x extract vaporized to induce a short but complete departure from standard consensus reality."
     },
     "it": {
       "benefits": "Intensità ineguagliabile di allucinazioni a breve termine (5-10 minuti); crea una sensazione di ripiegamento attraverso molteplici dimensioni/realtà.",
-      "risks": "Profonda confusione, perdita temporanea del controllo motorio, disforia."
+      "risks": "Profonda confusione, perdita temporanea del controllo motorio, disforia.",
+      "cycleExamples": "<strong>Short Dive:</strong> 20mg of 10x extract vaporized to induce a short but complete departure from standard consensus reality."
     },
     "de": {
       "benefits": "Beispiellose Intensität der kurzfristigen (5-10 min) Halluzination; erzeugt ein Gefühl der Faltung durch mehrere Dimensionen/Realitäten.",
-      "risks": "Starke Verwirrung, vorübergehender Verlust der motorischen Kontrolle, Dysphorie."
+      "risks": "Starke Verwirrung, vorübergehender Verlust der motorischen Kontrolle, Dysphorie.",
+      "cycleExamples": "<strong>Short Dive:</strong> 20mg of 10x extract vaporized to induce a short but complete departure from standard consensus reality."
     }
   },
   "dmt": {
     "es": {
       "benefits": "Conocida como la \"Molécula Espiritual\"; induce reinos geométricos completamente inmersivos e incomprensibles y contacto percibido con la entidad; toxicidad física cero.",
-      "risks": "Shock psicológico traumático por la pura intensidad del inicio."
+      "risks": "Shock psicológico traumático por la pura intensidad del inicio.",
+      "cycleExamples": "<strong>The Breakthrough:</strong> 35mg vaporized in a single inhalation to \"blast off\" into the hyperspace dimension.",
+      "sensoryImpact": "Near-instantaneous transportation to completely alien, 4-dimensional geometric realms. Perceived contact with complex, autonomous \"entities\" or \"machine elves\". Total ego dissolution."
     },
     "it": {
       "benefits": "Indicata come la \"Molecola dello Spirito\"; induce regni geometrici completamente immersivi, incomprensibili e contatto con l'entità percepita; zero tossicità fisica.",
-      "risks": "Shock psicologico traumatico per la pura intensità dell'esordio."
+      "risks": "Shock psicologico traumatico per la pura intensità dell'esordio.",
+      "cycleExamples": "<strong>The Breakthrough:</strong> 35mg vaporized in a single inhalation to \"blast off\" into the hyperspace dimension.",
+      "sensoryImpact": "Near-instantaneous transportation to completely alien, 4-dimensional geometric realms. Perceived contact with complex, autonomous \"entities\" or \"machine elves\". Total ego dissolution."
     },
     "de": {
       "benefits": "Wird als \"Geistmolekül\" bezeichnet; induziert vollständig immersive, unverständliche geometrische Bereiche und wahrgenommenen Entitätskontakt; keine physische Toxizität.",
-      "risks": "Traumatischer psychologischer Schock von der schieren Intensität des Auftretens."
+      "risks": "Traumatischer psychologischer Schock von der schieren Intensität des Auftretens.",
+      "cycleExamples": "<strong>The Breakthrough:</strong> 35mg vaporized in a single inhalation to \"blast off\" into the hyperspace dimension.",
+      "sensoryImpact": "Near-instantaneous transportation to completely alien, 4-dimensional geometric realms. Perceived contact with complex, autonomous \"entities\" or \"machine elves\". Total ego dissolution."
     }
   },
   "amt": {
     "es": {
       "benefits": "Combina la empatía/estimulación de la MDMA con las distorsiones visuales de una dosis leve de LSD que dura hasta 14 horas; intensa apreciación musical.",
-      "risks": "Náuseas, choque terrible, riesgo grave de síndrome serotoninérgico si se combina con otros fármacos (que actúan como un IMAO leve)."
+      "risks": "Náuseas, choque terrible, riesgo grave de síndrome serotoninérgico si se combina con otros fármacos (que actúan como un IMAO leve).",
+      "cycleExamples": "<strong>Clinical Antidepressant (Soviet):</strong> Historically utilized at 5-10mg daily as a potent mood-elevating agent."
     },
     "it": {
       "benefits": "Combina l'empatia/stimolazione dell'MDMA con le distorsioni visive di una leggera dose di LSD che dura fino a 14 ore; intenso apprezzamento musicale.",
-      "risks": "Nausea, crash terribile, grave rischio di Sindrome Serotoninergica se associato ad altri farmaci (agendo come un IMAO lieve)."
+      "risks": "Nausea, crash terribile, grave rischio di Sindrome Serotoninergica se associato ad altri farmaci (agendo come un IMAO lieve).",
+      "cycleExamples": "<strong>Clinical Antidepressant (Soviet):</strong> Historically utilized at 5-10mg daily as a potent mood-elevating agent."
     },
     "de": {
       "benefits": "Kombiniert die Empathie/Stimulation von MDMA mit den visuellen Verzerrungen einer milden LSD-Dosis von bis zu 14 Stunden; intensive Musikverwertung.",
-      "risks": "Übelkeit, schrecklicher Unfall, hohes Risiko eines Serotonin-Syndroms in Kombination mit anderen Medikamenten (als leichter MAO-Hemmer)."
+      "risks": "Übelkeit, schrecklicher Unfall, hohes Risiko eines Serotonin-Syndroms in Kombination mit anderen Medikamenten (als leichter MAO-Hemmer).",
+      "cycleExamples": "<strong>Clinical Antidepressant (Soviet):</strong> Historically utilized at 5-10mg daily as a potent mood-elevating agent."
     }
   },
   "pcp": {
     "es": {
       "benefits": "Adormecimiento total al dolor, sensación de flotación, profunda desconexión corporal; da una sensación de inmenso poder físico e invulnerabilidad.",
-      "risks": "Induce brotes psicóticos severos, estupor, tolerancia literal al dolor sobrehumano que lleva a los usuarios a devastar sus propios cuerpos sin darse cuenta."
+      "risks": "Induce brotes psicóticos severos, estupor, tolerancia literal al dolor sobrehumano que lleva a los usuarios a devastar sus propios cuerpos sin darse cuenta.",
+      "cycleExamples": "<strong>Veterinary Anesthesia:</strong> Historically used to sedate large primates and livestock for surgical procedures."
     },
     "it": {
       "benefits": "Intorpidimento completo al dolore, sensazione di galleggiamento, profonda disconnessione corporea; dà un senso di immensa potenza fisica e invulnerabilità.",
-      "risks": "Induce gravi rotture psicotiche, stupore, tolleranza al dolore letteralmente sovrumana che porta gli utenti a devastare il proprio corpo senza accorgersene."
+      "risks": "Induce gravi rotture psicotiche, stupore, tolleranza al dolore letteralmente sovrumana che porta gli utenti a devastare il proprio corpo senza accorgersene.",
+      "cycleExamples": "<strong>Veterinary Anesthesia:</strong> Historically used to sedate large primates and livestock for surgical procedures."
     },
     "de": {
       "benefits": "Komplette Taubheit gegenüber Schmerzen, schwebendes Gefühl, tiefe körperliche Trennung; vermittelt ein Gefühl von immenser körperlicher Kraft und Unverwundbarkeit.",
-      "risks": "Induziert schwere psychotische Brüche, Stupor, buchstäbliche übermenschliche Schmerztoleranz, die dazu führen, dass Benutzer ihren eigenen Körper verwüsten, ohne es zu bemerken."
+      "risks": "Induziert schwere psychotische Brüche, Stupor, buchstäbliche übermenschliche Schmerztoleranz, die dazu führen, dass Benutzer ihren eigenen Körper verwüsten, ohne es zu bemerken.",
+      "cycleExamples": "<strong>Veterinary Anesthesia:</strong> Historically used to sedate large primates and livestock for surgical procedures."
     }
   },
   "ketamine": {
     "es": {
       "benefits": "Sedación profunda, disociación espiritual \"K-hole\", efectos antidepresivos instantáneos.",
-      "risks": "Toxicidad vesical (cistitis), pérdida de memoria, adicción psicológica grave."
+      "risks": "Toxicidad vesical (cistitis), pérdida de memoria, adicción psicológica grave.",
+      "synthesis": "Synthesized via a multi-step organic reaction starting from o-chloronitrobenzene."
     },
     "it": {
       "benefits": "Sedazione profonda, dissociazione spirituale “K-hole”, effetti antidepressivi istantanei.",
-      "risks": "Tossicità vescicale (cistite), perdita di memoria, grave dipendenza psicologica."
+      "risks": "Tossicità vescicale (cistite), perdita di memoria, grave dipendenza psicologica.",
+      "synthesis": "Synthesized via a multi-step organic reaction starting from o-chloronitrobenzene."
     },
     "de": {
       "benefits": "Tiefe Sedierung, \"K-Loch\" spirituelle Dissoziation, sofortige antidepressive Wirkung.",
-      "risks": "Blasentoxizität (Zystitis), Gedächtnisverlust, schwere psychische Abhängigkeit."
+      "risks": "Blasentoxizität (Zystitis), Gedächtnisverlust, schwere psychische Abhängigkeit.",
+      "synthesis": "Synthesized via a multi-step organic reaction starting from o-chloronitrobenzene."
     }
   },
   "dxm": {
@@ -2654,43 +2876,52 @@ window.DRUG_I18N = {
   "mxe": {
     "es": {
       "benefits": "Profunda disociación espiritual, calor, analgesia.",
-      "risks": "Ataxia prolongada, dependencia psicológica, convulsiones."
+      "risks": "Ataxia prolongada, dependencia psicológica, convulsiones.",
+      "synthesis": "Produced as an analog of ketamine, where the 2-chloro group on the phenyl ring is replaced by a 3-methoxy group, and the N-methyl group is replaced by an N-ethyl group. This structural modification was specifically designed to increase potency and duration while minimizing bladder irritation."
     },
     "it": {
       "benefits": "Profonda dissociazione spirituale, calore, analgesia.",
-      "risks": "Atassia prolungata, dipendenza psicologica, convulsioni."
+      "risks": "Atassia prolungata, dipendenza psicologica, convulsioni.",
+      "synthesis": "Produced as an analog of ketamine, where the 2-chloro group on the phenyl ring is replaced by a 3-methoxy group, and the N-methyl group is replaced by an N-ethyl group. This structural modification was specifically designed to increase potency and duration while minimizing bladder irritation."
     },
     "de": {
       "benefits": "Tiefe spirituelle Dissoziation, Wärme, Analgesie.",
-      "risks": "Anhaltende Ataxie, psychische Abhängigkeit, Krampfanfälle."
+      "risks": "Anhaltende Ataxie, psychische Abhängigkeit, Krampfanfälle.",
+      "synthesis": "Produced as an analog of ketamine, where the 2-chloro group on the phenyl ring is replaced by a 3-methoxy group, and the N-methyl group is replaced by an N-ethyl group. This structural modification was specifically designed to increase potency and duration while minimizing bladder irritation."
     }
   },
   "alcohol": {
     "es": {
       "benefits": "Euforia, reducción dramática de la ansiedad, desinhibición social.",
-      "risks": "Hepatotoxicidad severa, pérdida motora, abstinencia letal (Delirium Tremens)."
+      "risks": "Hepatotoxicidad severa, pérdida motora, abstinencia letal (Delirium Tremens).",
+      "cycleExamples": "<strong>Bodybuilding Conflict:</strong> A single night of heavy binge drinking violently suppresses muscle protein synthesis, crashes testosterone, and elevates cortisol for up to 48 hours."
     },
     "it": {
       "benefits": "Euforia, drammatica riduzione dell'ansia, disinibizione sociale.",
-      "risks": "Grave epatotossicità, perdita motoria, ritiro letale (Delirium Tremens)."
+      "risks": "Grave epatotossicità, perdita motoria, ritiro letale (Delirium Tremens).",
+      "cycleExamples": "<strong>Bodybuilding Conflict:</strong> A single night of heavy binge drinking violently suppresses muscle protein synthesis, crashes testosterone, and elevates cortisol for up to 48 hours."
     },
     "de": {
       "benefits": "Euphorie, dramatischer Angstabbau, soziale Enthemmung.",
-      "risks": "Schwere Hepatotoxizität, motorischer Verlust, letaler Entzug (Delirium Tremens)."
+      "risks": "Schwere Hepatotoxizität, motorischer Verlust, letaler Entzug (Delirium Tremens).",
+      "cycleExamples": "<strong>Bodybuilding Conflict:</strong> A single night of heavy binge drinking violently suppresses muscle protein synthesis, crashes testosterone, and elevates cortisol for up to 48 hours."
     }
   },
   "alprazolam": {
     "es": {
       "benefits": "Cese perfecto e instantáneo de los ataques de pánico o sobreestimulación/frecuencia cardíaca grave inducida por estimulantes.",
-      "risks": "Potencial de amnesia de \"apagón\" masivo, dependencia física terriblemente rápida, convulsiones <strong>letales</strong> durante la abstinencia."
+      "risks": "Potencial de amnesia de \"apagón\" masivo, dependencia física terriblemente rápida, convulsiones <strong>letales</strong> durante la abstinencia.",
+      "synthesis": "Synthesized via a multi-stage process involving the formation of the triazolobenzodiazepine ring."
     },
     "it": {
       "benefits": "Cessazione perfetta e istantanea degli attacchi di panico o della sovrastimolazione/frequenza cardiaca indotta da stimolanti gravi.",
-      "risks": "Massiccio potenziale di amnesia \"blackout\", dipendenza fisica terribilmente rapida, convulsioni <strong>letali</strong> durante l'astinenza."
+      "risks": "Massiccio potenziale di amnesia \"blackout\", dipendenza fisica terribilmente rapida, convulsioni <strong>letali</strong> durante l'astinenza.",
+      "synthesis": "Synthesized via a multi-stage process involving the formation of the triazolobenzodiazepine ring."
     },
     "de": {
       "benefits": "Perfekte, sofortige Beendigung von Panikattacken oder schwerer stimulanzieninduzierter Überstimulation/Herzfrequenz.",
-      "risks": "Massives „Blackout“ -Amnesiepotential, erschreckend schnelle körperliche Abhängigkeit, <strong>tödliche</strong> Anfälle beim Entzug."
+      "risks": "Massives „Blackout“ -Amnesiepotential, erschreckend schnelle körperliche Abhängigkeit, <strong>tödliche</strong> Anfälle beim Entzug.",
+      "synthesis": "Synthesized via a multi-stage process involving the formation of the triazolobenzodiazepine ring."
     }
   },
   "pregabalin": {
@@ -2836,351 +3067,438 @@ window.DRUG_I18N = {
   "cannabis_wax": {
     "es": {
       "benefits": "Inicio instantáneo, potencia extrema, inhalación reducida de materia vegetal.",
-      "risks": "Paranoia extrema, dependencia psicológica, síndrome de vómitos cíclicos (si se usa en exceso)."
+      "risks": "Paranoia extrema, dependencia psicológica, síndrome de vómitos cíclicos (si se usa en exceso).",
+      "synthesis": "Extracted from dried cannabis flower using a high-pressure solvent-based extraction system."
     },
     "it": {
       "benefits": "Esordio istantaneo, potenza estrema, ridotta inalazione di materia vegetale.",
-      "risks": "Paranoia estrema, dipendenza psicologica, sindrome del vomito ciclico (se abusato)."
+      "risks": "Paranoia estrema, dipendenza psicologica, sindrome del vomito ciclico (se abusato).",
+      "synthesis": "Extracted from dried cannabis flower using a high-pressure solvent-based extraction system."
     },
     "de": {
       "benefits": "Sofort einsetzende, extreme Potenz, reduzierte Inhalation von Pflanzenmaterial.",
-      "risks": "Extreme Paranoia, psychische Abhängigkeit, zyklisches Erbrechen (wenn überstrapaziert)."
+      "risks": "Extreme Paranoia, psychische Abhängigkeit, zyklisches Erbrechen (wenn überstrapaziert).",
+      "synthesis": "Extracted from dried cannabis flower using a high-pressure solvent-based extraction system."
     }
   },
   "thc_edibles": {
     "es": {
       "benefits": "Duración de 8-12 horas, alta intensidad corporal, sin riesgo pulmonar.",
-      "risks": "Retraso en el inicio (a menudo conduce a una sobredosis), desorientación extrema, ataques de pánico prolongados."
+      "risks": "Retraso en el inicio (a menudo conduce a una sobredosis), desorientación extrema, ataques de pánico prolongados.",
+      "synthesis": "Produced by decarboxylating raw THC-A and infusing it into a lipid matrix."
     },
     "it": {
       "benefits": "Durata 8-12 ore, corpo alto intenso, nessun rischio polmonare.",
-      "risks": "Insorgenza ritardata (che spesso porta a sovradosaggio), estremo disorientamento, attacchi di panico prolungati."
+      "risks": "Insorgenza ritardata (che spesso porta a sovradosaggio), estremo disorientamento, attacchi di panico prolungati.",
+      "synthesis": "Produced by decarboxylating raw THC-A and infusing it into a lipid matrix."
     },
     "de": {
       "benefits": "8-12 Stunden Dauer, intensiver Körper hoch, kein Lungenrisiko.",
-      "risks": "Verzögerter Beginn (oft mit Überdosierung), extreme Desorientierung, anhaltende Panikattacken."
+      "risks": "Verzögerter Beginn (oft mit Überdosierung), extreme Desorientierung, anhaltende Panikattacken.",
+      "synthesis": "Produced by decarboxylating raw THC-A and infusing it into a lipid matrix."
     }
   },
   "bath_salts": {
     "es": {
       "benefits": "Euforia extrema, empatía y energía; proporciona una oleada de confianza que refleja la dosis alta de MDMA pero con una estimulación mucho mayor.",
-      "risks": "Psicosis inducida, agresión extrema, insuficiencia cardíaca rápida, \"delirio excitado\"."
+      "risks": "Psicosis inducida, agresión extrema, insuficiencia cardíaca rápida, \"delirio excitado\".",
+      "cycleExamples": "<strong>Illicit Abuse:</strong> Historically consumed as \"Ivory Wave\" or \"Vanilla Sky\" in binge cycles lasting 24-48 hours, often leading to acute hospitalization."
     },
     "it": {
       "benefits": "Estrema euforia, empatia ed energia; fornisce un'ondata di fiducia che rispecchia l'MDMA ad alte dosi ma con una stimolazione molto più elevata.",
-      "risks": "Psicosi indotta, aggressività estrema, insufficienza cardiaca rapida, “delirio eccitato”."
+      "risks": "Psicosi indotta, aggressività estrema, insufficienza cardiaca rapida, “delirio eccitato”.",
+      "cycleExamples": "<strong>Illicit Abuse:</strong> Historically consumed as \"Ivory Wave\" or \"Vanilla Sky\" in binge cycles lasting 24-48 hours, often leading to acute hospitalization."
     },
     "de": {
       "benefits": "Extreme Euphorie, Empathie und Energie; bietet einen Vertrauensschub, der hochdosiertes MDMA widerspiegelt, aber mit viel höherer Stimulation.",
-      "risks": "Induzierte Psychose, extreme Aggression, schnelle Herzinsuffizienz, „angeregtes Delirium“."
+      "risks": "Induzierte Psychose, extreme Aggression, schnelle Herzinsuffizienz, „angeregtes Delirium“.",
+      "cycleExamples": "<strong>Illicit Abuse:</strong> Historically consumed as \"Ivory Wave\" or \"Vanilla Sky\" in binge cycles lasting 24-48 hours, often leading to acute hospitalization."
     }
   },
   "benzofurans": {
     "es": {
       "benefits": "Profunda empatía, distorsiones visuales y mejora de la música que dura de 8 a 12 horas; a menudo se describe como \"MDA pero más limpio\".",
-      "risks": "Cardiotoxicidad (a través de la unión a 5-HT2B), problemas graves de termorregulación."
+      "risks": "Cardiotoxicidad (a través de la unión a 5-HT2B), problemas graves de termorregulación.",
+      "cycleExamples": "<strong>The Long Roll:</strong> A single 100mg dose taken for a long-duration empathogenic experience without the mid-session crash of MDMA."
     },
     "it": {
       "benefits": "Profonda empatia, distorsioni visive e potenziamento musicale della durata di 8-12 ore; spesso descritto come \"MDA ma più pulito\".",
-      "risks": "Cardiotossicità (tramite legame 5-HT2B), gravi problemi di termoregolazione."
+      "risks": "Cardiotossicità (tramite legame 5-HT2B), gravi problemi di termoregolazione.",
+      "cycleExamples": "<strong>The Long Roll:</strong> A single 100mg dose taken for a long-duration empathogenic experience without the mid-session crash of MDMA."
     },
     "de": {
       "benefits": "Tiefes Einfühlungsvermögen, visuelle Verzerrungen und Musikverbesserung von 8-12 Stunden; oft als \"MDA, aber sauberer\" beschrieben.",
-      "risks": "Kardiotoxizität (über 5-HT2B-Bindung), schwere Thermoregulationsprobleme."
+      "risks": "Kardiotoxizität (über 5-HT2B-Bindung), schwere Thermoregulationsprobleme.",
+      "cycleExamples": "<strong>The Long Roll:</strong> A single 100mg dose taken for a long-duration empathogenic experience without the mid-session crash of MDMA."
     }
   },
   "phenazepam": {
     "es": {
       "benefits": "Sedación severa, previene todas las formas de ansiedad.",
-      "risks": "Duración extremadamente larga que conduce a toxicidad acumulada, alto riesgo de apagones que duran días."
+      "risks": "Duración extremadamente larga que conduce a toxicidad acumulada, alto riesgo de apagones que duran días.",
+      "synthesis": "Produced via the bromination of the 1,4-benzodiazepine core."
     },
     "it": {
       "benefits": "Grave sedazione, previene ogni forma di ansia.",
-      "risks": "Durata estremamente lunga che porta a tossicità cumulativa, alto rischio di blackout della durata di giorni."
+      "risks": "Durata estremamente lunga che porta a tossicità cumulativa, alto rischio di blackout della durata di giorni.",
+      "synthesis": "Produced via the bromination of the 1,4-benzodiazepine core."
     },
     "de": {
       "benefits": "Starke Sedierung, beugt allen Formen von Angst vor.",
-      "risks": "Extrem lange Dauer, die zu kumulativer Toxizität führt, hohes Risiko für Blackouts, die Tage andauern."
+      "risks": "Extrem lange Dauer, die zu kumulativer Toxizität führt, hohes Risiko für Blackouts, die Tage andauern.",
+      "synthesis": "Produced via the bromination of the 1,4-benzodiazepine core."
     }
   },
   "butylone": {
     "es": {
       "benefits": "Euforia moderada, estimulación leve; menos agresivo que otras catinonas.",
-      "risks": "Riesgos típicos de la catinona: taquicardia, insomnio y dependencia psicológica."
+      "risks": "Riesgos típicos de la catinona: taquicardia, insomnio y dependencia psicológica.",
+      "cycleExamples": "<strong>Recreational Support:</strong> Historically used at 100mg as a middle-ground stimulant between caffeine and amphetamines."
     },
     "it": {
       "benefits": "Euforia moderata, stimolazione lieve; meno aggressivo di altri catinoni.",
-      "risks": "Rischi tipici del catinone: tachicardia, insonnia e dipendenza psicologica."
+      "risks": "Rischi tipici del catinone: tachicardia, insonnia e dipendenza psicologica.",
+      "cycleExamples": "<strong>Recreational Support:</strong> Historically used at 100mg as a middle-ground stimulant between caffeine and amphetamines."
     },
     "de": {
       "benefits": "Mäßige Euphorie, leichte Stimulation; weniger aggressiv als andere Cathinone.",
-      "risks": "Typische Kathinon-Risiken: Tachykardie, Schlaflosigkeit und psychische Abhängigkeit."
+      "risks": "Typische Kathinon-Risiken: Tachykardie, Schlaflosigkeit und psychische Abhängigkeit.",
+      "cycleExamples": "<strong>Recreational Support:</strong> Historically used at 100mg as a middle-ground stimulant between caffeine and amphetamines."
     }
   },
   "tobacco": {
     "es": {
       "benefits": "Agudización cognitiva temporal, supresión del apetito; mejora los efectos de otros estimulantes.",
-      "risks": "Adicción extrema, cáncer (debido a subproductos de la combustión), enfermedad cardiovascular."
+      "risks": "Adicción extrema, cáncer (debido a subproductos de la combustión), enfermedad cardiovascular.",
+      "cycleExamples": "<strong>Habitual Usage:</strong> 10-20 cigarettes daily is the standard documented addiction pattern in long-term users."
     },
     "it": {
       "benefits": "Temporaneo affilamento cognitivo, soppressione dell'appetito; potenzia gli effetti di altri stimolanti.",
-      "risks": "Dipendenza estrema, cancro (dovuto a sottoprodotti della combustione), malattie cardiovascolari."
+      "risks": "Dipendenza estrema, cancro (dovuto a sottoprodotti della combustione), malattie cardiovascolari.",
+      "cycleExamples": "<strong>Habitual Usage:</strong> 10-20 cigarettes daily is the standard documented addiction pattern in long-term users."
     },
     "de": {
       "benefits": "Vorübergehende kognitive Schärfung, Appetitunterdrückung; verstärkt die Wirkung anderer Stimulanzien.",
-      "risks": "Extreme Sucht, Krebs (durch Verbrennungsnebenprodukte), Herz-Kreislauf-Erkrankungen."
+      "risks": "Extreme Sucht, Krebs (durch Verbrennungsnebenprodukte), Herz-Kreislauf-Erkrankungen.",
+      "cycleExamples": "<strong>Habitual Usage:</strong> 10-20 cigarettes daily is the standard documented addiction pattern in long-term users."
     }
   },
   "methylphenidate": {
     "es": {
       "benefits": "Enfoque mejorado, mayor capacidad de atención; permite tareas cognitivas de alta eficiencia en pacientes con TDAH.",
-      "risks": "Ansiedad, tensión cardíaca, retraso en el crecimiento (en niños)."
+      "risks": "Ansiedad, tensión cardíaca, retraso en el crecimiento (en niños).",
+      "cycleExamples": "<strong>Study Protocol:</strong> 20mg extended-release taken in the morning to maintain focus throughout a workday."
     },
     "it": {
       "benefits": "Maggiore concentrazione, maggiore capacità di attenzione; consente compiti cognitivi ad alta efficienza nei pazienti con ADHD.",
-      "risks": "Ansia, affaticamento cardiaco, crescita stentata (nei bambini)."
+      "risks": "Ansia, affaticamento cardiaco, crescita stentata (nei bambini).",
+      "cycleExamples": "<strong>Study Protocol:</strong> 20mg extended-release taken in the morning to maintain focus throughout a workday."
     },
     "de": {
       "benefits": "Verbesserter Fokus, erhöhte Aufmerksamkeitsspanne; ermöglicht hocheffiziente kognitive Aufgaben bei ADHS-Patienten.",
-      "risks": "Angstzustände, Herzbelastung, Wachstumsstörungen (bei Kindern)."
+      "risks": "Angstzustände, Herzbelastung, Wachstumsstörungen (bei Kindern).",
+      "cycleExamples": "<strong>Study Protocol:</strong> 20mg extended-release taken in the morning to maintain focus throughout a workday."
     }
   },
   "heroine": {
     "es": {
       "benefits": "Ráfaga absoluta de euforia y alivio total del dolor; proporciona una profunda sensación de calidez y bienestar.",
-      "risks": "Depresión respiratoria severa, sobredosis letal, adicción física rápida."
+      "risks": "Depresión respiratoria severa, sobredosis letal, adicción física rápida.",
+      "cycleExamples": "<strong>Addiction Cycle:</strong> Typically progresses from 5-10mg (snorted) to much higher, frequent intravenous doses as tolerance rapidly escalates."
     },
     "it": {
       "benefits": "Assoluta scarica di euforia e sollievo totale dal dolore; fornisce un profondo senso di calore e benessere.",
-      "risks": "Grave depressione respiratoria, sovradosaggio letale, rapida dipendenza fisica."
+      "risks": "Grave depressione respiratoria, sovradosaggio letale, rapida dipendenza fisica.",
+      "cycleExamples": "<strong>Addiction Cycle:</strong> Typically progresses from 5-10mg (snorted) to much higher, frequent intravenous doses as tolerance rapidly escalates."
     },
     "de": {
       "benefits": "Absolute Euphorie und totale Schmerzlinderung; sorgt für ein tiefes Gefühl von Wärme und Wohlbefinden.",
-      "risks": "Schwere Atemdepression, tödliche Überdosierung, schnelle körperliche Abhängigkeit."
+      "risks": "Schwere Atemdepression, tödliche Überdosierung, schnelle körperliche Abhängigkeit.",
+      "cycleExamples": "<strong>Addiction Cycle:</strong> Typically progresses from 5-10mg (snorted) to much higher, frequent intravenous doses as tolerance rapidly escalates."
     }
   },
   "oxycodone": {
     "es": {
       "benefits": "Analgesia profunda y sedación; eficaz para tratar el dolor crónico no maligno.",
-      "risks": "Potencial de adicción alto, depresión respiratoria, estreñimiento."
+      "risks": "Potencial de adicción alto, depresión respiratoria, estreñimiento.",
+      "cycleExamples": "<strong>Pain Management:</strong> 10mg every 6 hours for post-surgical recovery, often tapered over 7 days to prevent dependency."
     },
     "it": {
       "benefits": "Profonda analgesia e sedazione; efficace per il trattamento del dolore cronico, non maligno.",
-      "risks": "Alto potenziale di dipendenza, depressione respiratoria, stitichezza."
+      "risks": "Alto potenziale di dipendenza, depressione respiratoria, stitichezza.",
+      "cycleExamples": "<strong>Pain Management:</strong> 10mg every 6 hours for post-surgical recovery, often tapered over 7 days to prevent dependency."
     },
     "de": {
       "benefits": "Tiefe Analgesie und Sedierung; wirksam bei der Behandlung von chronischen, nicht malignen Schmerzen.",
-      "risks": "Hohes Suchtpotential, Atemdepression, Verstopfung."
+      "risks": "Hohes Suchtpotential, Atemdepression, Verstopfung.",
+      "cycleExamples": "<strong>Pain Management:</strong> 10mg every 6 hours for post-surgical recovery, often tapered over 7 days to prevent dependency."
     }
   },
   "fentanyl": {
     "es": {
       "benefits": "Analgesia instantánea; capaz de tratar el dolor que es resistente a todos los demás opioides.",
-      "risks": "Depresión respiratoria letal (la dosis mortal es de ~2 mg para un hombre no tolerante), rigidez de la pared torácica."
+      "risks": "Depresión respiratoria letal (la dosis mortal es de ~2 mg para un hombre no tolerante), rigidez de la pared torácica.",
+      "cycleExamples": "<strong>End-of-Life Care:</strong> 25mcg/hr patch replaced every 72 hours for continuous, high-potency pain suppression."
     },
     "it": {
       "benefits": "Analgesia istantanea; in grado di trattare il dolore resistente a tutti gli altri oppioidi.",
-      "risks": "Depressione respiratoria letale (la dose fatale è di ~2 mg per un maschio non tollerante), rigidità della parete toracica."
+      "risks": "Depressione respiratoria letale (la dose fatale è di ~2 mg per un maschio non tollerante), rigidità della parete toracica.",
+      "cycleExamples": "<strong>End-of-Life Care:</strong> 25mcg/hr patch replaced every 72 hours for continuous, high-potency pain suppression."
     },
     "de": {
       "benefits": "Sofortige Analgesie; in der Lage, Schmerzen zu behandeln, die gegen alle anderen Opioide resistent sind.",
-      "risks": "Tödliche Atemdepression (tödliche Dosis beträgt ~2 mg für einen nicht toleranten Mann), Brustwandsteifigkeit."
+      "risks": "Tödliche Atemdepression (tödliche Dosis beträgt ~2 mg für einen nicht toleranten Mann), Brustwandsteifigkeit.",
+      "cycleExamples": "<strong>End-of-Life Care:</strong> 25mcg/hr patch replaced every 72 hours for continuous, high-potency pain suppression."
     }
   },
   "opioid_maintenance": {
     "es": {
       "benefits": "Evita la abstinencia y bloquea la euforia de otros opioides; permite a las personas volver a una vida funcional y productiva.",
-      "risks": "Adicción, largos periodos de abstinencia."
+      "risks": "Adicción, largos periodos de abstinencia.",
+      "cycleExamples": "<strong>Maintenance Program:</strong> 80mg Methadone daily administered under clinical supervision to stabilize a former heroin user."
     },
     "it": {
       "benefits": "Previene l'astinenza e blocca l'euforia di altri oppioidi; consente alle persone di tornare a una vita funzionale e produttiva.",
-      "risks": "Dipendenza, lunghi periodi di astinenza."
+      "risks": "Dipendenza, lunghi periodi di astinenza.",
+      "cycleExamples": "<strong>Maintenance Program:</strong> 80mg Methadone daily administered under clinical supervision to stabilize a former heroin user."
     },
     "de": {
       "benefits": "Verhindert den Entzug und blockiert die Euphorie anderer Opioide; ermöglicht es dem Einzelnen, zu einem funktionierenden, produktiven Leben zurückzukehren.",
-      "risks": "Sucht, lange Wartezeiten."
+      "risks": "Sucht, lange Wartezeiten.",
+      "cycleExamples": "<strong>Maintenance Program:</strong> 80mg Methadone daily administered under clinical supervision to stabilize a former heroin user."
     }
   },
   "kratom": {
     "es": {
       "benefits": "Alivio legal del dolor, aumento leve del estado de ánimo; eficaz para el autocontrol de los síntomas menores de abstinencia de opioides.",
-      "risks": "Estrés hepático, dependencia física, abstinencia."
+      "risks": "Estrés hepático, dependencia física, abstinencia.",
+      "cycleExamples": "<strong>Natural Pain Relief:</strong> 3-5g of Red Vein powder taken twice daily for chronic back pain management."
     },
     "it": {
       "benefits": "Sollievo legale dal dolore, lieve aumento dell'umore; efficace per l'autogestione dei sintomi di astinenza da oppioidi minori.",
-      "risks": "Stress epatico, dipendenza fisica, astinenza."
+      "risks": "Stress epatico, dipendenza fisica, astinenza.",
+      "cycleExamples": "<strong>Natural Pain Relief:</strong> 3-5g of Red Vein powder taken twice daily for chronic back pain management."
     },
     "de": {
       "benefits": "Rechtliche Schmerzlinderung, leichter Stimmungsschub; wirksam bei selbstverwaltenden leichten Opioid-Entzugssymptomen.",
-      "risks": "Leberstress, körperliche Abhängigkeit, Entzug."
+      "risks": "Leberstress, körperliche Abhängigkeit, Entzug.",
+      "cycleExamples": "<strong>Natural Pain Relief:</strong> 3-5g of Red Vein powder taken twice daily for chronic back pain management."
     }
   },
   "tianeptine": {
     "es": {
       "benefits": "Elevación rápida del estado de ánimo, euforia similar a los opioides; eficaz en el tratamiento de la depresión impulsada por la ansiedad a dosis bajas.",
-      "risks": "Brutal abstinencia de opioides, potencial de adicción grave."
+      "risks": "Brutal abstinencia de opioides, potencial de adicción grave.",
+      "cycleExamples": "<strong>Atypical Recovery:</strong> 12.5mg three times daily for clinical depression, or high-dose illicit usage for acute euphoria."
     },
     "it": {
       "benefits": "Rapido innalzamento dell'umore, euforia simile agli oppioidi; efficace nel trattamento della depressione causata dall'ansia a basse dosi.",
-      "risks": "Astinenza brutale da oppioidi, grave potenziale di dipendenza."
+      "risks": "Astinenza brutale da oppioidi, grave potenziale di dipendenza.",
+      "cycleExamples": "<strong>Atypical Recovery:</strong> 12.5mg three times daily for clinical depression, or high-dose illicit usage for acute euphoria."
     },
     "de": {
       "benefits": "Schnelle Stimmungsaufhellung, opioidähnliche Euphorie; wirksam bei der Behandlung von angstgetriebenen Depressionen bei niedrigen Dosen.",
-      "risks": "Brutaler Opioid-Entzug, starkes Suchtpotential."
+      "risks": "Brutaler Opioid-Entzug, starkes Suchtpotential.",
+      "cycleExamples": "<strong>Atypical Recovery:</strong> 12.5mg three times daily for clinical depression, or high-dose illicit usage for acute euphoria."
     }
   },
   "nbome": {
     "es": {
       "benefits": "Visuales fractales intensos; distorsión sensorial extremadamente potente.",
-      "risks": "<strong>Alto riesgo de mortalidad.</strong> convulsiones, paro cardíaco, vasoconstricción (pérdida de extremidades). Margen de seguridad estrecho."
+      "risks": "<strong>Alto riesgo de mortalidad.</strong> convulsiones, paro cardíaco, vasoconstricción (pérdida de extremidades). Margen de seguridad estrecho.",
+      "cycleExamples": "<strong>LSD Mimicry:</strong> Historically missold on blotter paper as LSD, often resulting in severe physical toxicity at standard acid doses."
     },
     "it": {
       "benefits": "Immagini frattali intense; distorsione sensoriale estremamente potente.",
-      "risks": "<strong>Alto rischio di mortalità.</strong> Convulsioni, arresto cardiaco, vasocostrizione (perdita di arti). Margine di sicurezza ridotto."
+      "risks": "<strong>Alto rischio di mortalità.</strong> Convulsioni, arresto cardiaco, vasocostrizione (perdita di arti). Margine di sicurezza ridotto.",
+      "cycleExamples": "<strong>LSD Mimicry:</strong> Historically missold on blotter paper as LSD, often resulting in severe physical toxicity at standard acid doses."
     },
     "de": {
       "benefits": "Intensive fraktale Visuals; extrem starke sensorische Verzerrung.",
-      "risks": "<strong>Hohes Todesrisiko.</strong> Krampfanfälle, Herzstillstand, Vasokonstriktion (Verlust von Gliedmaßen). Schmale Sicherheitsmarge."
+      "risks": "<strong>Hohes Todesrisiko.</strong> Krampfanfälle, Herzstillstand, Vasokonstriktion (Verlust von Gliedmaßen). Schmale Sicherheitsmarge.",
+      "cycleExamples": "<strong>LSD Mimicry:</strong> Historically missold on blotter paper as LSD, often resulting in severe physical toxicity at standard acid doses."
     }
   },
   "2c_series": {
     "es": {
       "benefits": "Mezcla única de efectos visuales similares al LSD y euforia física similar a la MDMA; 2C-B es muy apreciado por su claridad y mejora táctil.",
-      "risks": "Náuseas, HPPD, confusión, duración extrema (la serie DOx puede durar más de 24 horas)."
+      "risks": "Náuseas, HPPD, confusión, duración extrema (la serie DOx puede durar más de 24 horas).",
+      "cycleExamples": "<strong>2C-B Experience:</strong> 20mg oral dose for a 4-6 hour psychedelic journey with a very manageable headspace."
     },
     "it": {
       "benefits": "Miscela unica di immagini simili all'LSD ed euforia fisica simile all'MDMA; 2C-B è molto apprezzato per la sua chiarezza e il miglioramento tattile.",
-      "risks": "Nausea, HPPD, confusione, durata estrema (la serie DOx può durare più di 24ore)."
+      "risks": "Nausea, HPPD, confusione, durata estrema (la serie DOx può durare più di 24ore).",
+      "cycleExamples": "<strong>2C-B Experience:</strong> 20mg oral dose for a 4-6 hour psychedelic journey with a very manageable headspace."
     },
     "de": {
       "benefits": "Einzigartige Mischung aus LSD-ähnlichen Bildern und MDMA-ähnlicher körperlicher Euphorie; 2C-B wird für seine Klarheit und taktile Verbesserung hoch geschätzt.",
-      "risks": "Übelkeit, HPPD, Verwirrtheit, extreme Dauer (DOx-Serie kann mehr als 24 Stunden dauern)."
+      "risks": "Übelkeit, HPPD, Verwirrtheit, extreme Dauer (DOx-Serie kann mehr als 24 Stunden dauern).",
+      "cycleExamples": "<strong>2C-B Experience:</strong> 20mg oral dose for a 4-6 hour psychedelic journey with a very manageable headspace."
     }
   },
   "k2_spice": {
     "es": {
       "benefits": "Ninguno identificado en un entorno de rendimiento o clínico.",
-      "risks": "Psicosis aguda, convulsiones, infarto de miocardio, insuficiencia renal y dependencia extrema."
+      "risks": "Psicosis aguda, convulsiones, infarto de miocardio, insuficiencia renal y dependencia extrema.",
+      "synthesis": "Chemical synthesis based on aminoalkylindole or cyclohexylphenol structures.",
+      "aestheticProfile": "N/A",
+      "physiologicalTargets": "CB1 receptors in the central nervous system and CB2 receptors in the peripheral immune system."
     },
     "it": {
       "benefits": "Nessuna identificata in una performance o in un contesto clinico.",
-      "risks": "Psicosi acuta, convulsioni, infarto miocardico, insufficienza renale e dipendenza estrema."
+      "risks": "Psicosi acuta, convulsioni, infarto miocardico, insufficienza renale e dipendenza estrema.",
+      "synthesis": "Chemical synthesis based on aminoalkylindole or cyclohexylphenol structures.",
+      "aestheticProfile": "N/A",
+      "physiologicalTargets": "CB1 receptors in the central nervous system and CB2 receptors in the peripheral immune system."
     },
     "de": {
       "benefits": "Keine in einer Leistungs- oder klinischen Umgebung identifiziert.",
-      "risks": "Akute Psychosen, Krampfanfälle, Myokardinfarkt, Nierenversagen und extreme Abhängigkeit."
+      "risks": "Akute Psychosen, Krampfanfälle, Myokardinfarkt, Nierenversagen und extreme Abhängigkeit.",
+      "synthesis": "Chemical synthesis based on aminoalkylindole or cyclohexylphenol structures.",
+      "aestheticProfile": "N/A",
+      "physiologicalTargets": "CB1 receptors in the central nervous system and CB2 receptors in the peripheral immune system."
     }
   },
   "misc_tryptamines": {
     "es": {
       "benefits": "Alucinaciones visuales/auditivas, introspección emocional; 4-AcO-DMT proporciona una experiencia casi idéntica a los hongos de psilocibina.",
-      "risks": "Confusión, distorsión auditiva temporal (DiPT), riesgos psicodélicos típicos."
+      "risks": "Confusión, distorsión auditiva temporal (DiPT), riesgos psicodélicos típicos.",
+      "cycleExamples": "<strong>Research Dive:</strong> 25mg of 4-AcO-DMT for a deep, 6-hour introspective session similar to a \"Level 3\" mushroom trip."
     },
     "it": {
       "benefits": "Allucinazioni visive/uditive, introspezione emotiva; 4-AcO-DMT fornisce un'esperienza quasi identica ai funghi psilocibina.",
-      "risks": "Confusione, distorsione uditiva temporanea (DiPT), rischi psichedelici tipici."
+      "risks": "Confusione, distorsione uditiva temporanea (DiPT), rischi psichedelici tipici.",
+      "cycleExamples": "<strong>Research Dive:</strong> 25mg of 4-AcO-DMT for a deep, 6-hour introspective session similar to a \"Level 3\" mushroom trip."
     },
     "de": {
       "benefits": "Visuelle/akustische Halluzinationen, emotionale Introspektion; 4-AcO-DMT bietet ein nahezu identisches Erlebnis wie Psilocybinpilze.",
-      "risks": "Verwirrung, vorübergehende Hörverzerrung (DiPT), typische psychedelische Risiken."
+      "risks": "Verwirrung, vorübergehende Hörverzerrung (DiPT), typische psychedelische Risiken.",
+      "cycleExamples": "<strong>Research Dive:</strong> 25mg of 4-AcO-DMT for a deep, 6-hour introspective session similar to a \"Level 3\" mushroom trip."
     }
   },
   "lsa": {
     "es": {
       "benefits": "Sedación onírica, efectos visuales e introspección profunda; históricamente significativo como fuente legal y natural de lisergamidas.",
-      "risks": "Náuseas extremas, vasoconstricción severa (dolor en las piernas), letargo."
+      "risks": "Náuseas extremas, vasoconstricción severa (dolor en las piernas), letargo.",
+      "cycleExamples": "<strong>Traditional Brew:</strong> Cold water extraction of 300 seeds to minimize the nauseating plant matter while isolating the LSA."
     },
     "it": {
       "benefits": "Sedazione onirica, immagini e profonda introspezione; storicamente significativa come fonte legale e naturale di lisergammidi.",
-      "risks": "Nausea estrema, vasocostrizione grave (dolore alle gambe), letargia."
+      "risks": "Nausea estrema, vasocostrizione grave (dolore alle gambe), letargia.",
+      "cycleExamples": "<strong>Traditional Brew:</strong> Cold water extraction of 300 seeds to minimize the nauseating plant matter while isolating the LSA."
     },
     "de": {
       "benefits": "Traumhafte Sedierung, Visuals und tiefe Selbstbeobachtung; historisch bedeutsam als legale, natürliche Quelle von Lysergamiden.",
-      "risks": "Extreme Übelkeit, starke Vasokonstriktion (Beinschmerzen), Lethargie."
+      "risks": "Extreme Übelkeit, starke Vasokonstriktion (Beinschmerzen), Lethargie.",
+      "cycleExamples": "<strong>Traditional Brew:</strong> Cold water extraction of 300 seeds to minimize the nauseating plant matter while isolating the LSA."
     }
   },
   "methamphetamine": {
     "es": {
       "benefits": "Euforia extrema, energía ilimitada, supresión total de la fatiga; permite una concentración y un rendimiento físico sin precedentes.",
-      "risks": "Neurotoxicidad severa, insuficiencia cardíaca, \"boca de metanfetamina\" (debido a la vasoconstricción/higiene), adicción rápida y devastadora."
+      "risks": "Neurotoxicidad severa, insuficiencia cardíaca, \"boca de metanfetamina\" (debido a la vasoconstricción/higiene), adicción rápida y devastadora.",
+      "cycleExamples": "<strong>Clinical Desoxyn:</strong> 5mg daily prescribed for treatment-resistant ADHD or morbid obesity under strict medical monitoring."
     },
     "it": {
       "benefits": "Euforia estrema, energia illimitata, soppressione totale della fatica; consente una concentrazione e una produzione fisica senza precedenti.",
-      "risks": "Grave neurotossicità, insufficienza cardiaca, “Meth mouth” (per vasocostrizione/igiene), dipendenza rapida devastante."
+      "risks": "Grave neurotossicità, insufficienza cardiaca, “Meth mouth” (per vasocostrizione/igiene), dipendenza rapida devastante.",
+      "cycleExamples": "<strong>Clinical Desoxyn:</strong> 5mg daily prescribed for treatment-resistant ADHD or morbid obesity under strict medical monitoring."
     },
     "de": {
       "benefits": "Extreme Euphorie, grenzenlose Energie, totale Ermüdungsunterdrückung; ermöglicht beispiellose Konzentration und körperliche Leistung.",
-      "risks": "Schwere Neurotoxizität, Herzinsuffizienz, „Meth Mund“ (durch Vasokonstriktion/Hygiene), schnelle verheerende Sucht."
+      "risks": "Schwere Neurotoxizität, Herzinsuffizienz, „Meth Mund“ (durch Vasokonstriktion/Hygiene), schnelle verheerende Sucht.",
+      "cycleExamples": "<strong>Clinical Desoxyn:</strong> 5mg daily prescribed for treatment-resistant ADHD or morbid obesity under strict medical monitoring."
     }
   },
   "mdea": {
     "es": {
       "benefits": "Calidez, empatía, apertura emocional; a menudo descrito como \"MDMA más suave y relajante\".",
-      "risks": "Neurotoxicidad, problemas de termorregulación."
+      "risks": "Neurotoxicidad, problemas de termorregulación.",
+      "cycleExamples": "<strong>The Calm Roll:</strong> 120mg taken orally for a social, empathetic experience with less jaw-clenching and \"speedy\" effects than MDMA."
     },
     "it": {
       "benefits": "Calore, empatia, apertura emotiva; spesso descritto come \"MDMA più mite e rilassante\".",
-      "risks": "Neurotossicità, problemi di termoregolazione."
+      "risks": "Neurotossicità, problemi di termoregolazione.",
+      "cycleExamples": "<strong>The Calm Roll:</strong> 120mg taken orally for a social, empathetic experience with less jaw-clenching and \"speedy\" effects than MDMA."
     },
     "de": {
       "benefits": "Wärme, Empathie, emotionale Offenheit; oft als „milderes, entspannteres MDMA“ bezeichnet.",
-      "risks": "Neurotoxizität, Thermoregulationsprobleme."
+      "risks": "Neurotoxizität, Thermoregulationsprobleme.",
+      "cycleExamples": "<strong>The Calm Roll:</strong> 120mg taken orally for a social, empathetic experience with less jaw-clenching and \"speedy\" effects than MDMA."
     }
   },
   "oxy_hydro": {
     "es": {
       "benefits": "Alivio completo del dolor, relajación; el estándar clínico absoluto para controlar el dolor moderado a severo.",
-      "risks": "Alto potencial de abuso, depresión respiratoria fatal en sobredosis."
+      "risks": "Alto potencial de abuso, depresión respiratoria fatal en sobredosis.",
+      "cycleExamples": "<strong>Post-Op Recovery:</strong> 5mg Vicodin (Hydrocodone/Acetaminophen) every 4 hours for the first 3 days after orthopedic surgery."
     },
     "it": {
       "benefits": "Sollievo completo dal dolore, rilassamento; lo standard clinico assoluto per la gestione del dolore da moderato a grave.",
-      "risks": "Alto potenziale di abuso, depressione respiratoria fatale in caso di sovradosaggio."
+      "risks": "Alto potenziale di abuso, depressione respiratoria fatale in caso di sovradosaggio.",
+      "cycleExamples": "<strong>Post-Op Recovery:</strong> 5mg Vicodin (Hydrocodone/Acetaminophen) every 4 hours for the first 3 days after orthopedic surgery."
     },
     "de": {
       "benefits": "Komplette Schmerzlinderung, Entspannung; der absolute klinische Standard für die Behandlung mittelschwerer bis schwerer Schmerzen.",
-      "risks": "Hohes Missbrauchspotential, tödliche Atemdepression bei Überdosierung."
+      "risks": "Hohes Missbrauchspotential, tödliche Atemdepression bei Überdosierung.",
+      "cycleExamples": "<strong>Post-Op Recovery:</strong> 5mg Vicodin (Hydrocodone/Acetaminophen) every 4 hours for the first 3 days after orthopedic surgery."
     }
   },
   "misc_sedatives": {
     "es": {
       "benefits": "Inducción instantánea de sueño intenso; históricamente proporcionó una alternativa \"sin resaca\" a los barbitúricos en algunos usuarios.",
-      "risks": "Sobredosis mortal cuando se mezcla con alcohol, ataxia severa."
+      "risks": "Sobredosis mortal cuando se mezcla con alcohol, ataxia severa.",
+      "cycleExamples": "<strong>The Mickey Finn:</strong> Historically, Chloral Hydrate was slipped into drinks to induce immediate, deep unconsciousness in the target."
     },
     "it": {
       "benefits": "Induzione del sonno istantanea e pesante; storicamente ha fornito un'alternativa \"senza intoppi\" ai barbiturici in alcuni utenti.",
-      "risks": "Sovradosaggio fatale se miscelato con alcol, atassia grave."
+      "risks": "Sovradosaggio fatale se miscelato con alcol, atassia grave.",
+      "cycleExamples": "<strong>The Mickey Finn:</strong> Historically, Chloral Hydrate was slipped into drinks to induce immediate, deep unconsciousness in the target."
     },
     "de": {
       "benefits": "Sofortige, starke Schlafinduktion; bot in der Vergangenheit bei einigen Benutzern eine \"katerfreie\" Alternative zu Barbituraten.",
-      "risks": "Tödliche Überdosierung in Kombination mit Alkohol, schwere Ataxie."
+      "risks": "Tödliche Überdosierung in Kombination mit Alkohol, schwere Ataxie.",
+      "cycleExamples": "<strong>The Mickey Finn:</strong> Historically, Chloral Hydrate was slipped into drinks to induce immediate, deep unconsciousness in the target."
     }
   },
   "nootropics": {
     "es": {
       "benefits": "Mejora de la fluidez verbal, retención de la memoria, \"claridad mental\"; ayuda a proteger el cerebro del estrés oxidativo.",
-      "risks": "Dolores de cabeza (debido al agotamiento de la colina), irritabilidad."
+      "risks": "Dolores de cabeza (debido al agotamiento de la colina), irritabilidad.",
+      "cycleExamples": "<strong>The Cognitive Stack:</strong> 800mg Piracetam with 300mg Alpha-GPC (choline source) twice daily for enhanced study performance."
     },
     "it": {
       "benefits": "Miglioramento della fluidità verbale, della ritenzione della memoria, della \"chiarezza mentale\"; aiuta a proteggere il cervello dallo stress ossidativo.",
-      "risks": "Mal di testa (a causa dell'esaurimento della colina), irritabilità."
+      "risks": "Mal di testa (a causa dell'esaurimento della colina), irritabilità.",
+      "cycleExamples": "<strong>The Cognitive Stack:</strong> 800mg Piracetam with 300mg Alpha-GPC (choline source) twice daily for enhanced study performance."
     },
     "de": {
       "benefits": "Verbesserte Sprachflüssigkeit, Gedächtniserhaltung, \"geistige Klarheit\"; hilft, das Gehirn vor oxidativem Stress zu schützen.",
-      "risks": "Kopfschmerzen (durch Cholinmangel), Reizbarkeit."
+      "risks": "Kopfschmerzen (durch Cholinmangel), Reizbarkeit.",
+      "cycleExamples": "<strong>The Cognitive Stack:</strong> 800mg Piracetam with 300mg Alpha-GPC (choline source) twice daily for enhanced study performance."
     }
   },
   "retatrutide": {
     "es": {
       "benefits": "Pérdida de peso promedio de hasta el 24-28% en los ensayos; mejora significativa en los marcadores metabólicos; potencial efecto \"termogénico\" debido al agonismo del glucagón.",
-      "risks": "Angustia gastrointestinal (náuseas, vómitos), aumento transitorio de la frecuencia cardíaca, potencial de pérdida muscular si la pérdida de peso es demasiado rápida."
+      "risks": "Angustia gastrointestinal (náuseas, vómitos), aumento transitorio de la frecuencia cardíaca, potencial de pérdida muscular si la pérdida de peso es demasiado rápida.",
+      "synthesis": "A complex synthetic peptide manufactured via solid-phase peptide synthesis (SPPS), featuring a unique structure that allows binding to three distinct receptors.",
+      "aestheticProfile": "Rapid and severe depletion of adipose tissue. May cause a \"sunken\" facial appearance if weight loss occurs too quickly.",
+      "physiologicalTargets": "GLP-1, GIP, and Glucagon receptors in the brain, pancreas, liver, and adipose tissue."
     },
     "it": {
       "benefits": "Perdita di peso media fino al 24-28% negli studi; miglioramento significativo dei marcatori metabolici; potenziale effetto \"termogenico\" dovuto all'agonismo del glucagone.",
-      "risks": "Distress gastrointestinale (nausea, vomito), aumento transitorio della frequenza cardiaca, potenziale perdita muscolare se la perdita di peso è troppo rapida."
+      "risks": "Distress gastrointestinale (nausea, vomito), aumento transitorio della frequenza cardiaca, potenziale perdita muscolare se la perdita di peso è troppo rapida.",
+      "synthesis": "A complex synthetic peptide manufactured via solid-phase peptide synthesis (SPPS), featuring a unique structure that allows binding to three distinct receptors.",
+      "aestheticProfile": "Rapid and severe depletion of adipose tissue. May cause a \"sunken\" facial appearance if weight loss occurs too quickly.",
+      "physiologicalTargets": "GLP-1, GIP, and Glucagon receptors in the brain, pancreas, liver, and adipose tissue."
     },
     "de": {
       "benefits": "Durchschnittlicher Gewichtsverlust von bis zu 24-28% in Studien; signifikante Verbesserung der Stoffwechselmarker; potenzielle \"thermogene\" Wirkung aufgrund von Glukagonagonismus.",
-      "risks": "Magen-Darm-Beschwerden (Übelkeit, Erbrechen), vorübergehende Erhöhung der Herzfrequenz, Potenzial für Muskelverlust, wenn der Gewichtsverlust zu schnell ist."
+      "risks": "Magen-Darm-Beschwerden (Übelkeit, Erbrechen), vorübergehende Erhöhung der Herzfrequenz, Potenzial für Muskelverlust, wenn der Gewichtsverlust zu schnell ist.",
+      "synthesis": "A complex synthetic peptide manufactured via solid-phase peptide synthesis (SPPS), featuring a unique structure that allows binding to three distinct receptors.",
+      "aestheticProfile": "Rapid and severe depletion of adipose tissue. May cause a \"sunken\" facial appearance if weight loss occurs too quickly.",
+      "physiologicalTargets": "GLP-1, GIP, and Glucagon receptors in the brain, pancreas, liver, and adipose tissue."
     }
   },
   "melanotan_ii": {
@@ -3256,85 +3574,121 @@ window.DRUG_I18N = {
   "vitamin_k2": {
     "es": {
       "benefits": "Previene la rigidez vascular, revierte la calcificación arterial en etapa temprana y garantiza la seguridad sinérgica al utilizar protocolos de mega dosis de vitamina D3.",
-      "risks": "Mínima; interferencia con medicamentos anticoagulantes (warfarina)."
+      "risks": "Mínima; interferencia con medicamentos anticoagulantes (warfarina).",
+      "synthesis": "Produced via bacterial fermentation (Bacillus subtilis natto).",
+      "aestheticProfile": "N/A",
+      "physiologicalTargets": "Vascular smooth muscle cells and osteoblasts. Primary focus is the maintenance of arterial elasticity."
     },
     "it": {
       "benefits": "Previene la rigidità vascolare, inverte la calcificazione arteriosa in fase iniziale e garantisce una sicurezza sinergica quando si utilizzano protocolli di vitamina D3 mega-dosati.",
-      "risks": "Minima; interferenza con farmaci anticoagulanti (Warfarin)."
+      "risks": "Minima; interferenza con farmaci anticoagulanti (Warfarin).",
+      "synthesis": "Produced via bacterial fermentation (Bacillus subtilis natto).",
+      "aestheticProfile": "N/A",
+      "physiologicalTargets": "Vascular smooth muscle cells and osteoblasts. Primary focus is the maintenance of arterial elasticity."
     },
     "de": {
       "benefits": "Verhindert Gefäßsteifigkeit, hebt die arterielle Verkalkung im Frühstadium auf und sorgt für synergistische Sicherheit bei der Verwendung von mega-dosierten Vitamin D3-Protokollen.",
-      "risks": "Minimal; Interferenz mit blutverdünnenden Medikamenten (Warfarin)."
+      "risks": "Minimal; Interferenz mit blutverdünnenden Medikamenten (Warfarin).",
+      "synthesis": "Produced via bacterial fermentation (Bacillus subtilis natto).",
+      "aestheticProfile": "N/A",
+      "physiologicalTargets": "Vascular smooth muscle cells and osteoblasts. Primary focus is the maintenance of arterial elasticity."
     }
   },
   "vitamin_d3": {
     "es": {
       "benefits": "Aumento significativo de la testosterona libre en hombres deficientes, mejor sensibilidad a la insulina y mayor producción de fuerza muscular.",
-      "risks": "Hipercalcemia (acumulación de calcio) si se toma en dosis extremas sin vitamina K2."
+      "risks": "Hipercalcemia (acumulación de calcio) si se toma en dosis extremas sin vitamina K2.",
+      "synthesis": "Synthesized from 7-dehydrocholesterol via UV-B irradiation.",
+      "physiologicalTargets": "Systemic nuclear receptors; primary focus on bone mineral density and T-cell activation."
     },
     "it": {
       "benefits": "Aumento significativo del testosterone libero negli uomini carenti, migliore sensibilità all'insulina e maggiore produzione di forza muscolare.",
-      "risks": "Ipercalcemia (accumulo di calcio) se assunto in dosi estreme senza vitamina K2."
+      "risks": "Ipercalcemia (accumulo di calcio) se assunto in dosi estreme senza vitamina K2.",
+      "synthesis": "Synthesized from 7-dehydrocholesterol via UV-B irradiation.",
+      "physiologicalTargets": "Systemic nuclear receptors; primary focus on bone mineral density and T-cell activation."
     },
     "de": {
       "benefits": "Signifikanter Anstieg des freien Testosterons bei mangelhaften Männern, verbesserte Insulinsensitivität und verbesserte Muskelkraftproduktion.",
-      "risks": "Hyperkalzämie (Kalziumaufbau) bei Einnahme in extremen Dosen ohne Vitamin K2."
+      "risks": "Hyperkalzämie (Kalziumaufbau) bei Einnahme in extremen Dosen ohne Vitamin K2.",
+      "synthesis": "Synthesized from 7-dehydrocholesterol via UV-B irradiation.",
+      "physiologicalTargets": "Systemic nuclear receptors; primary focus on bone mineral density and T-cell activation."
     }
   },
   "vitamin_c": {
     "es": {
       "benefits": "Recuperación acelerada a través de la reducción del cortisol, mejora de la integridad de las articulaciones a través de la síntesis de colágeno y protección contra el daño oxidativo por el uso de andrógenos.",
-      "risks": "Angustia gastrointestinal (diarrea) a la tolerancia intestinal; potencial de cálculos renales en individuos predispuestos."
+      "risks": "Angustia gastrointestinal (diarrea) a la tolerancia intestinal; potencial de cálculos renales en individuos predispuestos.",
+      "synthesis": "Industrial synthesis via the Reichstein process from glucose.",
+      "physiologicalTargets": "Adrenal glands and connective tissues."
     },
     "it": {
       "benefits": "Recupero accelerato tramite cortisolo inferiore, migliore integrità articolare attraverso la sintesi del collagene e protezione contro il danno ossidativo derivante dall'uso di androgeni.",
-      "risks": "Distress gastrointestinale (diarrea) alla tolleranza intestinale; potenziale di calcoli renali in individui predisposti."
+      "risks": "Distress gastrointestinale (diarrea) alla tolleranza intestinale; potenziale di calcoli renali in individui predisposti.",
+      "synthesis": "Industrial synthesis via the Reichstein process from glucose.",
+      "physiologicalTargets": "Adrenal glands and connective tissues."
     },
     "de": {
       "benefits": "Beschleunigte Erholung durch niedrigeres Cortisol, verbesserte Gelenkintegrität durch Kollagensynthese und Schutz vor oxidativen Schäden durch Androgenkonsum.",
-      "risks": "Magen-Darm-Beschwerden (Durchfall) bei Darmtoleranz; Potenzial für Nierensteine bei prädisponierten Personen."
+      "risks": "Magen-Darm-Beschwerden (Durchfall) bei Darmtoleranz; Potenzial für Nierensteine bei prädisponierten Personen.",
+      "synthesis": "Industrial synthesis via the Reichstein process from glucose.",
+      "physiologicalTargets": "Adrenal glands and connective tissues."
     }
   },
   "vitamin_b12": {
     "es": {
       "benefits": "Aumento profundo de los niveles de energía subjetiva, mejora de la claridad cognitiva y estabilización de los recuentos de glóbulos rojos durante los ciclos de andrógenos pesados.",
-      "risks": "Raro; potencialmente acné en dosis altas."
+      "risks": "Raro; potencialmente acné en dosis altas.",
+      "synthesis": "Bacterial fermentation (cannot be synthesized chemically at scale).",
+      "physiologicalTargets": "Central nervous system and hematopoietic system."
     },
     "it": {
       "benefits": "Profondo aumento dei livelli di energia soggettiva, migliore chiarezza cognitiva e stabilizzazione della conta dei globuli rossi durante i cicli di androgeni pesanti.",
-      "risks": "Raro; potenzialmente acne a dosi elevate."
+      "risks": "Raro; potenzialmente acne a dosi elevate.",
+      "synthesis": "Bacterial fermentation (cannot be synthesized chemically at scale).",
+      "physiologicalTargets": "Central nervous system and hematopoietic system."
     },
     "de": {
       "benefits": "Starke Erhöhung des subjektiven Energieniveaus, verbesserte kognitive Klarheit und Stabilisierung der Anzahl der roten Blutkörperchen während schwerer Androgenzyklen.",
-      "risks": "Selten; möglicherweise Akne in hohen Dosen."
+      "risks": "Selten; möglicherweise Akne in hohen Dosen.",
+      "synthesis": "Bacterial fermentation (cannot be synthesized chemically at scale).",
+      "physiologicalTargets": "Central nervous system and hematopoietic system."
     }
   },
   "vitamin_b6_p5p": {
     "es": {
       "benefits": "Supresión de los efectos secundarios inducidos por la prolactina (ginecomastia, disfunción eréctil), mejor estado de ánimo y mejor metabolismo de las proteínas.",
-      "risks": "Neuropatía periférica si se toma en dosis extremas (típicamente >500 mg/día) durante largos períodos."
+      "risks": "Neuropatía periférica si se toma en dosis extremas (típicamente >500 mg/día) durante largos períodos.",
+      "synthesis": "Chemical synthesis from oxazoles.",
+      "physiologicalTargets": "Pituitary gland and amino acid metabolic pathways."
     },
     "it": {
       "benefits": "Soppressione degli effetti collaterali indotti dalla prolattina (ginecomastia, disfunzione erettile), miglioramento dell'umore e migliore metabolismo delle proteine.",
-      "risks": "Neuropatia periferica se assunta in dosi estreme (tipicamente >500mg/die) per lunghi periodi."
+      "risks": "Neuropatia periferica se assunta in dosi estreme (tipicamente >500mg/die) per lunghi periodi.",
+      "synthesis": "Chemical synthesis from oxazoles.",
+      "physiologicalTargets": "Pituitary gland and amino acid metabolic pathways."
     },
     "de": {
       "benefits": "Unterdrückung von Prolaktin-induzierten Nebenwirkungen (Gynäkomastie, ED), verbesserte Stimmung und besserer Proteinstoffwechsel.",
-      "risks": "Periphere Neuropathie, wenn sie in extremen Dosen (typischerweise >500 mg/Tag) über einen längeren Zeitraum eingenommen wird."
+      "risks": "Periphere Neuropathie, wenn sie in extremen Dosen (typischerweise >500 mg/Tag) über einen längeren Zeitraum eingenommen wird.",
+      "synthesis": "Chemical synthesis from oxazoles.",
+      "physiologicalTargets": "Pituitary gland and amino acid metabolic pathways."
     }
   },
   "tadalafil": {
     "es": {
       "benefits": "Flujo sanguíneo masivo a los músculos (bombas), disminución de la presión arterial, mejora de la salud vascular.",
-      "risks": "Dolores de cabeza, congestión nasal, caída peligrosa de la presión arterial si se mezcla con nitratos (Poppers/Nitroglicerina)."
+      "risks": "Dolores de cabeza, congestión nasal, caída peligrosa de la presión arterial si se mezcla con nitratos (Poppers/Nitroglicerina).",
+      "synthesis": "Produced via a complex multi-step organic synthesis starting from the amino acid D-tryptophan and piperonal. The process involves a Pictet-Spengler reaction to form the fundamental tetrahydro-beta-carboline scaffold, followed by further modifications to create the final PDE5 inhibitor molecule."
     },
     "it": {
       "benefits": "Massiccio flusso sanguigno ai muscoli (pompe), abbassamento della pressione sanguigna, miglioramento della salute vascolare.",
-      "risks": "Mal di testa, congestione nasale, pericoloso calo della PA se miscelato con Nitrati (Poppers/Nitroglicerina)."
+      "risks": "Mal di testa, congestione nasale, pericoloso calo della PA se miscelato con Nitrati (Poppers/Nitroglicerina).",
+      "synthesis": "Produced via a complex multi-step organic synthesis starting from the amino acid D-tryptophan and piperonal. The process involves a Pictet-Spengler reaction to form the fundamental tetrahydro-beta-carboline scaffold, followed by further modifications to create the final PDE5 inhibitor molecule."
     },
     "de": {
       "benefits": "Massiver Blutfluss zu den Muskeln (Pumpen), niedriger Blutdruck, verbesserte Gefäßgesundheit.",
-      "risks": "Kopfschmerzen, verstopfte Nase, gefährlicher Blutdruckabfall bei Mischung mit Nitraten (Poppers/Nitroglycerin)."
+      "risks": "Kopfschmerzen, verstopfte Nase, gefährlicher Blutdruckabfall bei Mischung mit Nitraten (Poppers/Nitroglycerin).",
+      "synthesis": "Produced via a complex multi-step organic synthesis starting from the amino acid D-tryptophan and piperonal. The process involves a Pictet-Spengler reaction to form the fundamental tetrahydro-beta-carboline scaffold, followed by further modifications to create the final PDE5 inhibitor molecule."
     }
   },
   "metformin": {
@@ -3396,43 +3750,58 @@ window.DRUG_I18N = {
   "ayahuasca": {
     "es": {
       "benefits": "Profundas percepciones espirituales/introspectivas, reducción rápida de los síntomas depresivos, neuroplasticidad a largo plazo.",
-      "risks": "Síndrome serotoninérgico (letal si se combina con ISRS), crisis hipertensiva, purga fisiológica extrema (vómitos/diarrea), angustia psicológica grave."
+      "risks": "Síndrome serotoninérgico (letal si se combina con ISRS), crisis hipertensiva, purga fisiológica extrema (vómitos/diarrea), angustia psicológica grave.",
+      "sensoryImpact": "Vivid, immersive mythological visions, auditory messages from \"nature spirits,\" and a profound sense of ego death followed by rebirth. Time perception is completely obliterated."
     },
     "it": {
       "benefits": "Profonde intuizioni spirituali/introspettive, rapida riduzione dei sintomi depressivi, neuroplasticità a lungo termine.",
-      "risks": "Sindrome serotoninergica (letale se combinata con SSRI), crisi ipertensiva, spurgo fisiologico estremo (vomito/diarrea), grave disagio psicologico."
+      "risks": "Sindrome serotoninergica (letale se combinata con SSRI), crisi ipertensiva, spurgo fisiologico estremo (vomito/diarrea), grave disagio psicologico.",
+      "sensoryImpact": "Vivid, immersive mythological visions, auditory messages from \"nature spirits,\" and a profound sense of ego death followed by rebirth. Time perception is completely obliterated."
     },
     "de": {
       "benefits": "Tiefe spirituelle/introspektive Einsichten, schnelle Reduktion depressiver Symptome, langfristige Neuroplastizität.",
-      "risks": "Serotonin-Syndrom (tödlich in Kombination mit SSRI), hypertensive Krise, extreme physiologische Säuberung (Erbrechen/Durchfall), schwere psychische Belastung."
+      "risks": "Serotonin-Syndrom (tödlich in Kombination mit SSRI), hypertensive Krise, extreme physiologische Säuberung (Erbrechen/Durchfall), schwere psychische Belastung.",
+      "sensoryImpact": "Vivid, immersive mythological visions, auditory messages from \"nature spirits,\" and a profound sense of ego death followed by rebirth. Time perception is completely obliterated."
     }
   },
   "insulin_humalog": {
     "es": {
       "benefits": "Llenura muscular instantánea, recuperación rápida y aumento de peso masivo en un tiempo récord.",
-      "risks": "<strong>Hipoglucemia letal.</strong> Una dosis incorrecta o la omisión de una comida pueden provocar un coma inmediato o la muerte. Alto riesgo de aumento de grasa visceral."
+      "risks": "<strong>Hipoglucemia letal.</strong> Una dosis incorrecta o la omisión de una comida pueden provocar un coma inmediato o la muerte. Alto riesgo de aumento de grasa visceral.",
+      "aestheticProfile": "Creates a \"balloon-like\" muscle appearance. Muscles look hyper-inflated and dense. Can lead to \"spilling over\" and losing definition if carbohydrate timing is off.",
+      "physiologicalTargets": "Insulin receptors located on almost every cell in the body, with a heavy focus on skeletal muscle and adipose tissue."
     },
     "it": {
       "benefits": "Pienezza muscolare istantanea, recupero rapido e massiccio aumento di peso in tempi record.",
-      "risks": "<strong>Ipoglicemia letale.</strong> Una dose errata o la mancanza di un pasto possono causare coma immediato o morte. Alto rischio di aumento di grasso viscerale."
+      "risks": "<strong>Ipoglicemia letale.</strong> Una dose errata o la mancanza di un pasto possono causare coma immediato o morte. Alto rischio di aumento di grasso viscerale.",
+      "aestheticProfile": "Creates a \"balloon-like\" muscle appearance. Muscles look hyper-inflated and dense. Can lead to \"spilling over\" and losing definition if carbohydrate timing is off.",
+      "physiologicalTargets": "Insulin receptors located on almost every cell in the body, with a heavy focus on skeletal muscle and adipose tissue."
     },
     "de": {
       "benefits": "Sofortige Muskelfülle, schnelle Erholung und massive Gewichtszunahme in Rekordzeit.",
-      "risks": "<strong>Tödliche Hypoglykämie.</strong> Eine falsche Dosis oder das Auslassen einer Mahlzeit kann zu sofortigem Koma oder zum Tod führen. Hohes Risiko für viszeralen Fettaufbau."
+      "risks": "<strong>Tödliche Hypoglykämie.</strong> Eine falsche Dosis oder das Auslassen einer Mahlzeit kann zu sofortigem Koma oder zum Tod führen. Hohes Risiko für viszeralen Fettaufbau.",
+      "aestheticProfile": "Creates a \"balloon-like\" muscle appearance. Muscles look hyper-inflated and dense. Can lead to \"spilling over\" and losing definition if carbohydrate timing is off.",
+      "physiologicalTargets": "Insulin receptors located on almost every cell in the body, with a heavy focus on skeletal muscle and adipose tissue."
     }
   },
   "dnp_extreme": {
     "es": {
       "benefits": "Pérdida de grasa de hasta 1 libra por día. No requiere ejercicio ni déficit calórico para trabajar.",
-      "risks": "<strong>Muerte por Sobrecalentamiento.</strong> El cuerpo literalmente \"cocina\" de adentro hacia afuera. Cataratas, neuropatía e insuficiencia orgánica."
+      "risks": "<strong>Muerte por Sobrecalentamiento.</strong> El cuerpo literalmente \"cocina\" de adentro hacia afuera. Cataratas, neuropatía e insuficiencia orgánica.",
+      "aestheticProfile": "During use, the subject looks \"flat,\" exhausted, and often drenched in yellow sweat. Post-cycle, the fat loss is dramatic, revealing an extremely shredded physique.",
+      "physiologicalTargets": "The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely."
     },
     "it": {
       "benefits": "Perdita di grasso fino a 1 libbra al giorno. Non richiede esercizio fisico o deficit calorico per funzionare.",
-      "risks": "<strong>Morte per surriscaldamento.</strong> Il corpo letteralmente \"cuoce\" dall'interno verso l'esterno. Cataratta, neuropatia e insufficienza d'organo."
+      "risks": "<strong>Morte per surriscaldamento.</strong> Il corpo letteralmente \"cuoce\" dall'interno verso l'esterno. Cataratta, neuropatia e insufficienza d'organo.",
+      "aestheticProfile": "During use, the subject looks \"flat,\" exhausted, and often drenched in yellow sweat. Post-cycle, the fat loss is dramatic, revealing an extremely shredded physique.",
+      "physiologicalTargets": "The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely."
     },
     "de": {
       "benefits": "Fettabbau von bis zu 1 Pfund pro Tag. Benötigt keine Bewegung oder ein Kaloriendefizit, um zu funktionieren.",
-      "risks": "<strong>Tod durch Überhitzung.</strong> Der Körper „kocht“ buchstäblich von innen heraus. Katarakte, Neuropathie und Organversagen."
+      "risks": "<strong>Tod durch Überhitzung.</strong> Der Körper „kocht“ buchstäblich von innen heraus. Katarakte, Neuropathie und Organversagen.",
+      "aestheticProfile": "During use, the subject looks \"flat,\" exhausted, and often drenched in yellow sweat. Post-cycle, the fat loss is dramatic, revealing an extremely shredded physique.",
+      "physiologicalTargets": "The Mitochondria of every cell in the human body. Bypasses the central nervous system entirely."
     }
   },
   "fluoxetine": {

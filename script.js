@@ -2067,7 +2067,7 @@ function loadArticle(id) {
         <section class="cycle-archetypes">
             <h2>${getT('dosage_experimental')}</h2>
             <div class="disclaimer">${getT('experimental_warning')}</div>
-            <p>${item[`cycleExamples_${currentLang}`] || item.cycleExamples}</p>
+            <p>${item[`cycleExamples_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].cycleExamples) || item.cycleExamples}</p>
         </section>
     ` : '';
 
@@ -2118,18 +2118,18 @@ function loadArticle(id) {
                     ${hologramHTML}
                     <section style="margin-top: 30px;">
                         <h2>${getT('overview')}</h2>
-                        <p>${item[`overview_${currentLang}`] || item.overview}</p>
+                        <p>${item[`overview_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].overview) || item.overview}</p>
                     </section>
                     
                     <section>
                         <h2>${getT('mechanism')}</h2>
-                        <p>${item[`mechanism_${currentLang}`] || item.mechanism}</p>
+                        <p>${item[`mechanism_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].mechanism) || item.mechanism}</p>
                     </section>
 
                     ${item.synthesis ? `
                     <section>
                         <h2>${getT('synthesis')}</h2>
-                        <p>${item[`synthesis_${currentLang}`] || item.synthesis}</p>
+                        <p>${item[`synthesis_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].synthesis) || item.synthesis}</p>
                     </section>
                     ` : ''}
 
@@ -2137,7 +2137,7 @@ function loadArticle(id) {
                     <section class="aesthetic-section">
                         <h2><i class="fas fa-eye"></i> ${getT('aesthetic_profile')}</h2>
                         <div class="aesthetic-card">
-                            <p>${item[`aestheticProfile_${currentLang}`] || item.aestheticProfile}</p>
+                            <p>${item[`aestheticProfile_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].aestheticProfile) || item.aestheticProfile}</p>
                         </div>
                     </section>
                     ` : ''}
@@ -2146,7 +2146,7 @@ function loadArticle(id) {
                     <section class="targets-section">
                         <h2><i class="fas fa-bullseye"></i> ${getT('physiological_targets')}</h2>
                         <div class="targets-card">
-                            <p>${item[`physiologicalTargets_${currentLang}`] || item.physiologicalTargets}</p>
+                            <p>${item[`physiologicalTargets_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].physiologicalTargets) || item.physiologicalTargets}</p>
                         </div>
                     </section>
                     ` : ''}
@@ -2155,7 +2155,7 @@ function loadArticle(id) {
                     <section class="sensory-section">
                         <h2><i class="fas fa-brain"></i> ${getT('sensory_impact')}</h2>
                         <div class="sensory-card">
-                            <p>${item[`sensoryImpact_${currentLang}`] || item.sensoryImpact}</p>
+                            <p>${item[`sensoryImpact_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].sensoryImpact) || item.sensoryImpact}</p>
                         </div>
                     </section>
                     ` : ''}
@@ -2170,12 +2170,12 @@ function loadArticle(id) {
                         
                         <div class="data-box">
                             <div class="data-box-label">${getT('primary_uses')}</div>
-                            <div class="data-box-value">${item[`primaryUses_${currentLang}`] || item.primaryUses}</div>
+                            <div class="data-box-value">${item[`primaryUses_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].primaryUses) || item.primaryUses}</div>
                         </div>
 
                         <div class="data-box" style="border-left: 3px solid var(--accent); background: rgba(0,240,255,0.05)">
                             <div class="data-box-label" style="color: var(--accent)">${getT('dosage_clinical')}</div>
-                            <div class="data-box-value">${item[`dosage_${currentLang}`] || item.dosage}</div>
+                            <div class="data-box-value">${item[`dosage_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].dosage) || item.dosage}</div>
                         </div>
 
                         <div class="data-panel-header" style="background: rgba(181, 255, 77, 0.05); border-top: 1px solid var(--border); color: var(--accent2)">${getT('dosage_experimental').toUpperCase()}</div>
