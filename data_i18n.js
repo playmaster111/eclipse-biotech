@@ -1473,7 +1473,9 @@ window.DRUG_I18N = {
       "name": "Fluoximesterona (Halotestin)",
       "overview": "Halotestin es célebremente uno de los andrógenos orales más potentes y hepatotóxicos, empleado por levantadores de potencia para disparar fuerza y agresividad competitiva.",
       "mechanism": "Posee flúor en C-9 e hidroxilo en C-11. Se une con fuerza colosal al receptor androgénico confiriendo ganancias puras de fuerza sin retención de agua ni aumento de peso.",
-      "primaryUses": "Hipogonadismo masculino (raro), pubertad tardía"
+      "primaryUses": "Hipogonadismo masculino (raro), pubertad tardía",
+      "benefits": "El andrógeno oral más potente para la fuerza bruta; aumenta drásticamente la agresión y la motivación antes de la competición; cero efectos secundarios estrogénicos.",
+      "risks": "Toxicidad hepática extrema, agresión aguda (“Roid Rage”), devastación lipídica."
     }
   },
   "exemestane": {
@@ -1590,6 +1592,2099 @@ window.DRUG_I18N = {
       "dosage": "10mg a 25mg diarios.",
       "benefits": "Elevación duradera de IGF-1; aumento voraz del apetito; mejora radical del sueño profundo y regeneración articular.",
       "risks": "Resistencia a la insulina con uso crónico sin control de carbohidratos, retención de líquidos."
+    }
+  },
+  "dht": {
+    "es": {
+      "benefits": "Proporciona directamente las señales androgénicas más potentes para el desarrollo masculino; eficaz para tratar la ginecomastia y mejorar la dureza sin retención de agua.",
+      "risks": "Agrandamiento de la próstata, calvicie acelerada de patrón masculino."
+    },
+    "it": {
+      "benefits": "Fornisce direttamente i segnali androgeni più potenti per lo sviluppo maschile; efficace per il trattamento del gyno e per migliorare la durezza senza ritenzione idrica.",
+      "risks": "Ingrossamento della prostata, calvizie maschile accelerata."
+    },
+    "de": {
+      "benefits": "Bietet direkt die stärksten androgenen Signale für die männliche Entwicklung; wirksam zur Behandlung von Gynäkomastie und zur Verbesserung der Härte ohne Wassereinlagerungen.",
+      "risks": "Prostatavergrößerung, beschleunigte Glatzenbildung bei Männern."
+    }
+  },
+  "epitiostanol": {
+    "es": {
+      "benefits": "Fuertemente antiestrogénico; útil para mitigar el ginecoma y al mismo tiempo proporcionar un estímulo anabólico leve.",
+      "risks": "Letargo, dolor articular (por estrógeno bajo), toxicidad hepática."
+    },
+    "it": {
+      "benefits": "Fortemente anti-estrogenico; utile per mitigare il gyno e allo stesso tempo fornire un lieve stimolo anabolico.",
+      "risks": "Letargia, dolori articolari (dovuti a bassi livelli di estrogeni), tossicità epatica."
+    },
+    "de": {
+      "benefits": "Stark anti-östrogen; nützlich zur Milderung von Gynäkomastie bei gleichzeitiger Bereitstellung eines milden anabolen Stimulus.",
+      "risks": "Lethargie, Gelenkschmerzen (aufgrund von niedrigem Östrogen), Lebertoxizität."
+    }
+  },
+  "methyltestosterone": {
+    "es": {
+      "benefits": "Impulso de testosterona oral de acción rápida; históricamente efectivo para tratar la pubertad tardía y el cáncer de mama femenino avanzado.",
+      "risks": "Estrés hepático profundo, retención masiva de agua, ginecomastia."
+    },
+    "it": {
+      "benefits": "Boost di testosterone orale ad azione rapida; storicamente efficace per il trattamento della pubertà ritardata e del carcinoma mammario femminile avanzato.",
+      "risks": "Profondo stress epatico, massiccia ritenzione idrica, ginecomastia."
+    },
+    "de": {
+      "benefits": "Schnell wirkender oraler Testosteronschub; historisch wirksam bei der Behandlung von verzögerter Pubertät und fortgeschrittenem weiblichem Brustkrebs.",
+      "risks": "Starker Leberstress, massive Wassereinlagerungen, Gynäkomastie."
+    }
+  },
+  "clostebol": {
+    "es": {
+      "risks": "Muy leve en comparación con el AAS estándar, irritación tópica."
+    },
+    "it": {
+      "risks": "Molto lieve rispetto all'AAS standard, irritazione topica."
+    },
+    "de": {
+      "risks": "Sehr mild im Vergleich zu Standard-AAS, topische Reizung."
+    }
+  },
+  "danazol": {
+    "es": {
+      "benefits": "Únicamente eficaz para detener el dolor severo de la endometriosis y el sangrado abundante; se puede usar en hombres para reducir la SHBG, aunque rara vez se usa para este propósito.",
+      "risks": "Profundización de la voz en mujeres, acné, retención de líquidos."
+    },
+    "it": {
+      "benefits": "Unicamente efficace nell'arrestare il dolore da endometriosi grave e il sanguinamento pesante; può essere utilizzato nei maschi per ridurre la SHBG, sebbene raramente utilizzato per questo scopo.",
+      "risks": "Approfondimento della voce nelle femmine, acne, ritenzione idrica."
+    },
+    "de": {
+      "benefits": "Einzigartig wirksam bei der Beendigung schwerer Endometriose-Schmerzen und schwerer Blutungen; kann bei Männern verwendet werden, um SHBG zu senken, wenn auch selten zu diesem Zweck.",
+      "risks": "Vertiefung der Stimme bei Frauen, Akne, Flüssigkeitsretention."
+    }
+  },
+  "mestanolone": {
+    "es": {
+      "benefits": "Proporciona un impulso inmediato en el impulso y la concentración del sistema nervioso; útil para alcanzar la fuerza máxima antes de un evento atlético.",
+      "risks": "Estrés hepático severo, hipertrofia prostática."
+    },
+    "it": {
+      "benefits": "Fornisce una spinta immediata alla spinta e alla concentrazione del sistema nervoso; utile per raggiungere il picco di forza prima di un evento sportivo.",
+      "risks": "Grave stress epatico, ipertrofia prostatica."
+    },
+    "de": {
+      "benefits": "Bietet eine sofortige Steigerung des Antriebs und der Konzentration des Nervensystems; nützlich für maximale Kraft vor einer sportlichen Veranstaltung.",
+      "risks": "Starker Leberstress, Prostatahypertrophie."
+    }
+  },
+  "norbolethone": {
+    "es": {
+      "risks": "Toxicidad hepática, HPTA severo apagado."
+    },
+    "it": {
+      "risks": "Tossicità epatica, HPTA grave interrotta."
+    },
+    "de": {
+      "risks": "Lebertoxizität, schwere HPTA-Abschaltung."
+    }
+  },
+  "prednisone": {
+    "es": {
+      "benefits": "Detiene rápidamente los brotes autoinmunes agudos y las reacciones alérgicas potencialmente mortales; eficaz en el tratamiento de la hiedra venenosa grave o el rechazo de trasplantes de órganos.",
+      "risks": "Hiperglucemia, osteoporosis, cambios de humor, aumento de peso."
+    },
+    "it": {
+      "benefits": "Arresta rapidamente le riacutizzazioni autoimmuni acute e le reazioni allergiche pericolose per la vita; efficace nella gestione dell'edera velenosa grave o del rigetto del trapianto di organi.",
+      "risks": "Iperglicemia, osteoporosi, sbalzi d'umore, aumento di peso."
+    },
+    "de": {
+      "benefits": "Stoppt schnell akute Autoimmunfackeln und lebensbedrohliche allergische Reaktionen; wirksam bei der Behandlung von schwerer Giftefeu- oder Organtransplantatabstoßung.",
+      "risks": "Hyperglykämie, Osteoporose, Stimmungsschwankungen, Gewichtszunahme."
+    }
+  },
+  "prednisolone": {
+    "es": {
+      "risks": "Cataratas, supresión suprarrenal, adelgazamiento de la piel."
+    },
+    "it": {
+      "risks": "Cataratta, soppressione surrenale, assottigliamento della pelle."
+    },
+    "de": {
+      "risks": "Katarakte, Nebennierenunterdrückung, Hautverdünnung."
+    }
+  },
+  "dexamethasone": {
+    "es": {
+      "risks": "Inmunosupresión masiva potente, riesgo de supresión suprarrenal grave."
+    },
+    "it": {
+      "risks": "Immunosoppressione di massa potente, grave rischio di soppressione surrenalica."
+    },
+    "de": {
+      "risks": "Starke Massenimmunsuppression, schweres Nebennierensuppressionsrisiko."
+    }
+  },
+  "hydrocortisone": {
+    "es": {
+      "risks": "SUPRESIÓN del eje HPA, retención de líquidos, adelgazamiento de la piel."
+    },
+    "it": {
+      "risks": "SOPPRESSIONE dell'asse HPA, ritenzione di liquidi, assottigliamento della pelle."
+    },
+    "de": {
+      "risks": "UNTERDRÜCKUNG der HPA-Achse, Flüssigkeitsretention, Hautverdünnung."
+    }
+  },
+  "cortisone": {
+    "es": {
+      "risks": "Destrucción del cartílago (si se inyecta con demasiada frecuencia), ruptura localizada del tendón."
+    },
+    "it": {
+      "risks": "Distruzione della cartilagine (se iniettata troppo frequentemente), rottura localizzata del tendine."
+    },
+    "de": {
+      "risks": "Knorpelzerstörung (bei zu häufiger Injektion), lokalisierter Sehnenriss."
+    }
+  },
+  "betamethasone": {
+    "es": {
+      "risks": "Crecimiento fetal atrofiado a largo plazo (si se usa en exceso), riesgos típicos de corticosteroides."
+    },
+    "it": {
+      "risks": "Crescita fetale stentata a lungo termine (se abusata), rischi tipici dei corticosteroidi."
+    },
+    "de": {
+      "risks": "Verkümmertes langfristiges fetales Wachstum (wenn überstrapaziert), typische Kortikosteroidrisiken."
+    }
+  },
+  "methylprednisolone": {
+    "es": {
+      "risks": "Interrupción intensa del sueño, cambios de humor dramáticos."
+    },
+    "it": {
+      "risks": "Intensi disturbi del sonno, drammatici sbalzi d'umore."
+    },
+    "de": {
+      "risks": "Intensive Schlafstörungen, dramatische Stimmungsschwankungen."
+    }
+  },
+  "triamcinolone": {
+    "es": {
+      "risks": "Decoloración de la piel en el lugar de la inyección, efectos secundarios de absorción sistémica."
+    },
+    "it": {
+      "risks": "Scolorimento cutaneo al sito di iniezione, effetti collaterali di assorbimento sistemico."
+    },
+    "de": {
+      "risks": "Hautverfärbungen an der Injektionsstelle, systemische Resorptionsnebenwirkungen."
+    }
+  },
+  "fluticasone": {
+    "es": {
+      "risks": "Hemorragias nasales, irritación leve de la garganta, candidiasis oral (si se inhala por la boca)."
+    },
+    "it": {
+      "risks": "Sanguinamento dal naso, lieve irritazione alla gola, mughetto orale (se inalato per bocca)."
+    },
+    "de": {
+      "risks": "Nasenbluten, leichte Halsreizung, Mundsoor (bei Inhalation über den Mund)."
+    }
+  },
+  "budesonide": {
+    "es": {
+      "risks": "Efectos secundarios sistémicos relativamente bajos en comparación con la prednisona, pérdida leve de densidad ósea con el uso prolongado."
+    },
+    "it": {
+      "risks": "Effetti collaterali sistemici relativamente bassi rispetto al prednisone, lieve perdita di densità ossea con uso prolungato."
+    },
+    "de": {
+      "risks": "Relativ geringe systemische Nebenwirkungen im Vergleich zu Prednison, leichter Knochendichteverlust bei längerer Anwendung."
+    }
+  },
+  "somatropin": {
+    "es": {
+      "benefits": "Pérdida acelerada de grasa, cicatrización sistémica de tejidos, hiperplasia (creación de nuevas células musculares), mejora de la arquitectura del sueño.",
+      "risks": "Resistencia a la insulina, síndrome del túnel carpiano, organomegalia (órganos agrandados)."
+    },
+    "it": {
+      "benefits": "Perdita di grasso accelerata, guarigione sistemica dei tessuti, iperplasia (creazione di nuove cellule muscolari), miglioramento dell'architettura del sonno.",
+      "risks": "Insulino-resistenza, sindrome del tunnel carpale, organomegalia (ingrossamento degli organi)."
+    },
+    "de": {
+      "benefits": "Beschleunigter Fettabbau, systemische Gewebeheilung, Hyperplasie (neue Muskelzellbildung), verbesserte Schlafarchitektur.",
+      "risks": "Insulinresistenz, Karpaltunnelsyndrom, Organomegalie (vergrößerte Organe)."
+    }
+  },
+  "igf1_lr3": {
+    "es": {
+      "benefits": "Partición de nutrientes, bombeo localizado, hiperplasia.",
+      "risks": "Hipoglucemia, riesgo inmenso de exacerbar tumores/cánceres no detectados."
+    },
+    "it": {
+      "benefits": "Ripartizione dei nutrienti, pompaggio localizzato, iperplasia.",
+      "risks": "Ipoglicemia, immenso rischio di esacerbare tumori/cancri non rilevati."
+    },
+    "de": {
+      "benefits": "Nährstoffpartitionierung, lokalisiertes Pumpen, Hyperplasie.",
+      "risks": "Hypoglykämie, immenses Risiko, unentdeckte Tumore/Krebsarten zu verschlimmern."
+    }
+  },
+  "insulin": {
+    "es": {
+      "benefits": "Increíble almacenamiento de glucógeno que causa una hinchazón masiva de los tejidos; extremadamente sinérgico con HGH y AAS.",
+      "risks": "<strong>Hipoglucemia letal. La</strong> sobredosis aguda puede causar coma extremadamente rápido y la muerte."
+    },
+    "it": {
+      "benefits": "Incredibile accumulo di glicogeno che causa un massiccio gonfiore dei tessuti; estremamente sinergico con HGH e AAS.",
+      "risks": "<strong>Ipoglicemia letale.</strong> Il sovradosaggio acuto può causare coma estremamente rapido e morte."
+    },
+    "de": {
+      "benefits": "Unglaubliche Glykogenspeicherung, die zu massiven Gewebeschwellungen führt; äußerst synergistisch mit HGH und AAS.",
+      "risks": "<strong>Tödliche Hypoglykämie.</strong> Eine akute Überdosierung kann zu einem extrem schnellen Koma und zum Tod führen."
+    }
+  },
+  "cjc1295": {
+    "es": {
+      "risks": "Retención de agua, sueños vívidos, letargo leve."
+    },
+    "it": {
+      "risks": "Ritenzione idrica, sogni vividi, lieve letargia."
+    },
+    "de": {
+      "risks": "Wassereinlagerungen, lebhafte Träume, leichte Lethargie."
+    }
+  },
+  "mod_grf": {
+    "es": {
+      "risks": "Rubefacción repentina de la cabeza después de la inyección, irritación leve del sitio."
+    },
+    "it": {
+      "risks": "Arrossamento della testa dopo l'iniezione, lieve irritazione in sede."
+    },
+    "de": {
+      "risks": "Spülung des Kopfes nach der Injektion, geringfügige Reizung der Stelle."
+    }
+  },
+  "sermorelin": {
+    "es": {
+      "risks": "Dolor en el lugar de la inyección, dolores de cabeza, enrojecimiento."
+    },
+    "it": {
+      "risks": "Dolore al sito di iniezione, mal di testa, vampate."
+    },
+    "de": {
+      "risks": "Schmerzen an der Injektionsstelle, Kopfschmerzen, Hitzewallungen."
+    }
+  },
+  "ghrp2": {
+    "es": {
+      "risks": "Prolactina y cortisol elevados, picos de hambre moderados."
+    },
+    "it": {
+      "risks": "Prolattina e cortisolo elevati, picchi di fame moderati."
+    },
+    "de": {
+      "risks": "Erhöhtes Prolaktin und Cortisol, moderate Hungerspitzen."
+    }
+  },
+  "ghrp6": {
+    "es": {
+      "risks": "Hambre extrema, aumento de prolactina, retención de agua."
+    },
+    "it": {
+      "risks": "Fame estrema, aumento della prolattina, ritenzione idrica."
+    },
+    "de": {
+      "risks": "Extremer Hunger, Prolaktinerhöhung, Wassereinlagerungen."
+    }
+  },
+  "hexarelin": {
+    "es": {
+      "risks": "Picos masivos de prolactina, desensibilización rápida de los receptores, letargo intenso."
+    },
+    "it": {
+      "risks": "Massicci picchi di prolattina, rapida desensibilizzazione dei recettori, letargia intensa."
+    },
+    "de": {
+      "risks": "Massive Prolaktinspitzen, schnelle Rezeptordesensibilisierung, intensive Lethargie."
+    }
+  },
+  "ipamorelin": {
+    "es": {
+      "risks": "Muy leve; fiebre de cabeza ocasional o ligero peso del agua."
+    },
+    "it": {
+      "risks": "Molto mite; occasionale rush alla testa o leggero peso dell'acqua."
+    },
+    "de": {
+      "risks": "Sehr mild; gelegentlicher Kopfansturm oder leichtes Wassergewicht."
+    }
+  },
+  "hgh_frag": {
+    "es": {
+      "risks": "Ronchas en el sitio de inyección, letargo menor."
+    },
+    "it": {
+      "risks": "Velluti in sede di iniezione, letargia lieve."
+    },
+    "de": {
+      "risks": "Striemen an der Injektionsstelle, leichte Lethargie."
+    }
+  },
+  "aod9604": {
+    "es": {
+      "risks": "Dolores de cabeza leves, irritación en el lugar de la inyección."
+    },
+    "it": {
+      "risks": "Lieve cefalea, irritazione in sede di iniezione."
+    },
+    "de": {
+      "risks": "Leichte Kopfschmerzen, Reizung an der Injektionsstelle."
+    }
+  },
+  "tesamorelin": {
+    "es": {
+      "risks": "Resistencia a la insulina, dolor articular, edema."
+    },
+    "it": {
+      "risks": "Insulino-resistenza, dolori articolari, edema."
+    },
+    "de": {
+      "risks": "Insulinresistenz, Gelenkschmerzen, Ödeme."
+    }
+  },
+  "motsc": {
+    "es": {
+      "risks": "Hipoglucemia, dolor intenso en el lugar de la inyección."
+    },
+    "it": {
+      "risks": "Ipoglicemia, forte dolore al sito di iniezione."
+    },
+    "de": {
+      "risks": "Hypoglykämie, starke Schmerzen an der Injektionsstelle."
+    }
+  },
+  "tb500": {
+    "es": {
+      "benefits": "Curación rápida y localizada de lesiones agudas, reducción de la inflamación de las articulaciones, aumento de la flexibilidad y posible rebrote del cabello.",
+      "risks": "Letargo, prisa de cabeza inmediatamente después de la inyección, riesgo teórico de acelerar el crecimiento del cáncer preexistente debido a la angiogénesis extrema."
+    },
+    "it": {
+      "benefits": "Rapida guarigione localizzata delle lesioni acute, ridotta infiammazione articolare, maggiore flessibilità e potenziale ricrescita dei capelli.",
+      "risks": "Letargia, rush cranico subito dopo l'iniezione, rischio teorico di accelerazione della crescita tumorale preesistente per angiogenesi estrema."
+    },
+    "de": {
+      "benefits": "Schnelle lokalisierte Heilung von akuten Verletzungen, reduzierte Gelenkentzündung, erhöhte Flexibilität und potenzielles Nachwachsen der Haare.",
+      "risks": "Lethargie, Kopfansturm unmittelbar nach der Injektion, theoretisches Risiko einer Beschleunigung des vorbestehenden Krebswachstums aufgrund extremer Angiogenese."
+    }
+  },
+  "peg_mgf": {
+    "es": {
+      "risks": "Hipoglucemia, agotamiento intenso post-inyección."
+    },
+    "it": {
+      "risks": "Ipoglicemia, spossatezza intensa post-iniezione."
+    },
+    "de": {
+      "risks": "Hypoglykämie, starke Erschöpfung nach der Injektion."
+    }
+  },
+  "igf1_des": {
+    "es": {
+      "risks": "Hipoglucemia peligrosa, crecimiento severo de órganos si se absorbe sistemáticamente."
+    },
+    "it": {
+      "risks": "Ipoglicemia pericolosa, grave crescita degli organi se assorbiti sistematicamente."
+    },
+    "de": {
+      "risks": "Gefährliche Hypoglykämie, starkes Organwachstum bei systematischer Resorption."
+    }
+  },
+  "semax": {
+    "es": {
+      "risks": "Pérdida de cabello (BDNF regula al alza la DHT en el cuero cabelludo), sobreestimulación."
+    },
+    "it": {
+      "risks": "Perdita di capelli (BDNF sovraregola il DHT nel cuoio capelluto), sovrastimolazione."
+    },
+    "de": {
+      "risks": "Haarausfall (BDNF hochreguliert DHT in der Kopfhaut), Überstimulation."
+    }
+  },
+  "selank": {
+    "es": {
+      "risks": "Fatiga leve, respuestas emocionales completamente embotadas a dosis altas."
+    },
+    "it": {
+      "risks": "Lieve affaticamento, risposte emotive completamente smussate a dosi elevate."
+    },
+    "de": {
+      "risks": "Leichte Müdigkeit, völlig abgestumpfte emotionale Reaktionen bei hohen Dosen."
+    }
+  },
+  "dihexa": {
+    "es": {
+      "risks": "Sobrecarga sensorial similar al autismo, escalada tumoral teórica extrema del cáncer (se une a c-Met)."
+    },
+    "it": {
+      "risks": "Sovraccarico sensoriale simile all'autismo, estrema escalation teorica del tumore tumorale (si lega a c-Met)."
+    },
+    "de": {
+      "risks": "Autismusähnliche sensorische Überlastung, extreme theoretische Krebstumorskalation (bindet an c-Met)."
+    }
+  },
+  "cerebrolysin": {
+    "es": {
+      "risks": "Letargo, riesgo de enfermedades basadas en priones (extremadamente raras/teóricas), gran volumen de inyección."
+    },
+    "it": {
+      "risks": "Letargia, rischio di malattie a base di prioni (estremamente raro/teorico), grande volume di iniezione."
+    },
+    "de": {
+      "risks": "Lethargie, Risiko Prionen-basierter Erkrankungen (extrem selten/theoretisch), großes Injektionsvolumen."
+    }
+  },
+  "thymosin_a1": {
+    "es": {
+      "risks": "Irritación leve en el lugar de la inyección, brotes autoinmunes (paradójico)."
+    },
+    "it": {
+      "risks": "Lieve irritazione in sede di iniezione, riacutizzazioni autoimmuni (paradosso)."
+    },
+    "de": {
+      "risks": "Leichte Reizung an der Injektionsstelle, autoimmune Schübe (paradox)."
+    }
+  },
+  "epitalon": {
+    "es": {
+      "risks": "Sueño profundo/disruptivo, aceleración teórica del cáncer."
+    },
+    "it": {
+      "risks": "Sonno profondo/dirompente, accelerazione teorica del cancro."
+    },
+    "de": {
+      "risks": "Tiefschlaf/störender Schlaf, theoretische Krebsbeschleunigung."
+    }
+  },
+  "ll37": {
+    "es": {
+      "risks": "Graves brotes autoinmunes que rastrean la muerte (\"reacción de Herxheimer\")."
+    },
+    "it": {
+      "risks": "Gravi riacutizzazioni autoimmuni che seguono la morte (\"reazione di Herxheimer\")."
+    },
+    "de": {
+      "risks": "Schwere Autoimmun-Schübe, die das Absterben verfolgen („Herxheimer-Reaktion“)."
+    }
+  },
+  "pt141": {
+    "es": {
+      "risks": "Náuseas severas, enrojecimiento facial, priapismo incontrolable (en hombres)."
+    },
+    "it": {
+      "risks": "Grave nausea, rossore al viso, priapismo incontrollabile (negli uomini)."
+    },
+    "de": {
+      "risks": "Starke Übelkeit, Gesichtsrötung, unkontrollierbarer Priapismus (bei Männern)."
+    }
+  },
+  "kisspeptin": {
+    "es": {
+      "risks": "Desensibilización del eje de GnRH con uso excesivo, frecuencia cardíaca rápida."
+    },
+    "it": {
+      "risks": "Desensibilizzazione dell'asse GnRH con uso eccessivo, frequenza cardiaca rapida."
+    },
+    "de": {
+      "risks": "Desensibilisierung der GnRH-Achse mit Überbeanspruchung, schnelle Herzfrequenz."
+    }
+  },
+  "ghkcu": {
+    "es": {
+      "risks": "Dolor intenso e insoportable en el lugar de la inyección (PIP) si no se diluye fuertemente con BPC-157 o agua BAC."
+    },
+    "it": {
+      "risks": "Grave dolore lancinante al sito di iniezione (PIP) se non fortemente diluito con acqua BPC-157 o BAC."
+    },
+    "de": {
+      "risks": "Starke, brennende, quälende Schmerzen an der Injektionsstelle (PIP), wenn sie nicht stark mit BPC-157 oder BAC-Wasser verdünnt sind."
+    }
+  },
+  "matrixyl": {
+    "es": {
+      "risks": "Extremadamente seguro; irritación leve de la piel en individuos ultrasensibles."
+    },
+    "it": {
+      "risks": "Estremamente sicuro; lieve irritazione cutanea su individui ultra-sensibili."
+    },
+    "de": {
+      "risks": "Äußerst sicher; leichte Hautreizung bei ultra-sensiblen Personen."
+    }
+  },
+  "creatine": {
+    "es": {
+      "benefits": "Aumentos significativos en la potencia explosiva, resistencia muscular mejorada, plenitud muscular mejorada y posibles mejoras cognitivas a través del amortiguamiento de la energía cerebral.",
+      "risks": "Angustia gastrointestinal leve si no se disuelve completamente, aumento de peso temporal (agua), tensión renal teórica solo en individuos con patología renal preexistente."
+    },
+    "it": {
+      "benefits": "Aumenti significativi della potenza esplosiva, migliore resistenza muscolare, maggiore pienezza muscolare e potenziali miglioramenti cognitivi tramite il tamponamento dell'energia cerebrale.",
+      "risks": "Lieve sofferenza gastrointestinale se non completamente disciolta, temporaneo aumento di peso (acqua), ceppo renale teorico solo in soggetti con patologia renale preesistente."
+    },
+    "de": {
+      "benefits": "Signifikante Erhöhungen der Sprengkraft, verbesserte Muskelausdauer, verbesserte Muskelfülle und potenzielle kognitive Verbesserungen durch Gehirn-Energiepufferung.",
+      "risks": "Leichte Magen-Darm-Beschwerden, wenn nicht vollständig gelöst, vorübergehende Gewichtszunahme (Wasser), theoretische Nierenbelastung nur bei Personen mit vorbestehender Nierenpathologie."
+    }
+  },
+  "clomiphene": {
+    "es": {
+      "benefits": "Estimulación masiva de LH/FSH, reinicio muy rápido del eje testicular.",
+      "risks": "Inestabilidad emocional (\"llanto\"), flotadores/trazadores visuales permanentes en caso de sobredosis."
+    },
+    "it": {
+      "benefits": "Massiccia stimolazione di LH/FSH, ripresa molto rapida dell'asse testicolare.",
+      "risks": "Instabilità emotiva (\"pianto\"), fluttuanti/traccianti visivi permanenti in caso di sovradosaggio."
+    },
+    "de": {
+      "benefits": "Massive Stimulation von LH/FSH, sehr schneller Neustart der Hodenachse.",
+      "risks": "Emotionale Instabilität („Weepiness“), permanente visuelle Floater/Tracer bei Überdosierung."
+    }
+  },
+  "enclomiphene": {
+    "es": {
+      "benefits": "Duplica o triplica los niveles naturales de testosterona con prácticamente cero efectos secundarios emocionales; mantiene el volumen testicular mejor que cualquier otro SERM.",
+      "risks": "Reducción leve de IGF-1, caro/difícil de obtener."
+    },
+    "it": {
+      "benefits": "Raddoppia o triplica i livelli naturali di testosterone con effetti collaterali emotivi praticamente nulli; mantiene il volume testicolare meglio di qualsiasi altro SERM.",
+      "risks": "Lieve riduzione di IGF-1, costoso/difficile da reperire."
+    },
+    "de": {
+      "benefits": "Verdoppelt oder verdreifacht den natürlichen Testosteronspiegel mit praktisch null emotionalen Nebenwirkungen; hält das Hodenvolumen besser aufrecht als jedes andere SERM.",
+      "risks": "Leichte Reduktion von IGF-1, teuer/schwer zu beschaffen."
+    }
+  },
+  "raloxifene": {
+    "es": {
+      "benefits": "Capaz de reducir físicamente las glándulas de ginecomastia endurecidas existentes mejor que cualquier otro compuesto; aumenta la densidad mineral ósea.",
+      "risks": "Mayor riesgo de trombosis venosa profunda (coágulos de sangre), calambres en las piernas."
+    },
+    "it": {
+      "benefits": "Capace di ridurre fisicamente le ghiandole ginecomastia indurite esistenti meglio di qualsiasi altro composto; aumenta la densità minerale ossea.",
+      "risks": "Aumento del rischio di trombosi venosa profonda (coaguli di sangue), crampi alle gambe."
+    },
+    "de": {
+      "benefits": "In der Lage, bestehende, gehärtete Gynäkomastie-Drüsen besser als jede andere Verbindung physisch zu schrumpfen; erhöht die Knochenmineraldichte.",
+      "risks": "Erhöhtes Risiko für tiefe Venenthrombosen (Blutgerinnsel), Beinkrämpfe."
+    }
+  },
+  "letrozole": {
+    "es": {
+      "benefits": "Detendrá instantáneamente los brotes de ginecomastia aguda y secará violentamente el agua subcutánea para culturistas competitivos.",
+      "risks": "Perfiles lipídicos rotos garantizados, dolor articular insoportable, libido destruida, depresión profunda."
+    },
+    "it": {
+      "benefits": "Fermerà immediatamente le riacutizzazioni acute della ginecomastia e asciugherà violentemente l'acqua sottocutanea per i bodybuilder competitivi.",
+      "risks": "Profili lipidici frantumati garantiti, dolori articolari insopportabili, libido distrutta, depressione profonda."
+    },
+    "de": {
+      "benefits": "Stoppt sofort akute Gynäkomastie-Fackeln und trocknet das subkutane Wasser für wettbewerbsfähige Bodybuilder heftig aus.",
+      "risks": "Garantiert zersplitterte Lipidprofile, unerträgliche Gelenkschmerzen, zerstörte Libido, tiefe Depressionen."
+    }
+  },
+  "dutasteride": {
+    "es": {
+      "benefits": "Máxima protección absoluta contra la pérdida de cabello; resultados del cuero cabelludo muy superiores en comparación con la finasterida; eliminó casi todo el acné relacionado con la DHT.",
+      "risks": "Riesgo extremo de disfunción sexual, alteración completa de la producción de neuroesteroides (ALLOP), persistencia prolongada de los efectos secundarios debido a la vida media."
+    },
+    "it": {
+      "benefits": "Massima protezione assoluta contro la caduta dei capelli; risultati del cuoio capelluto di gran lunga superiori rispetto a Finasteride; ha spazzato via quasi tutta l'acne correlata al DHT.",
+      "risks": "Rischio estremo di disfunzione sessuale, alterazione completa della produzione di neurosteroidi (ALLOP), lunga persistenza degli effetti collaterali a causa dell'emivita."
+    },
+    "de": {
+      "benefits": "Absoluter maximaler Schutz vor Haarausfall; weit überlegene Ergebnisse für die Kopfhaut im Vergleich zu Finasterid; fast alle DHT-bedingten Akne ausgelöscht.",
+      "risks": "Extremes Risiko für sexuelle Dysfunktion, vollständige Veränderung der Neurosteroidproduktion (ALLOP), langanhaltende Nebenwirkung aufgrund der Halbwertszeit."
+    }
+  },
+  "albuterol": {
+    "es": {
+      "benefits": "Excelente quema de grasa dirigida alrededor de los entrenamientos, permite el sueño real por la noche a diferencia del Clenbuterol; perfil mucho más seguro para el corazón.",
+      "risks": "Ritmo cardíaco rápido, sudoración, temblores leves."
+    },
+    "it": {
+      "benefits": "Eccellente brucia grassi mirato intorno agli allenamenti, consente un sonno reale durante la notte a differenza del clenbuterolo; profilo molto più sicuro per il cuore.",
+      "risks": "Battito cardiaco accelerato, sudorazione, lievi tremori."
+    },
+    "de": {
+      "benefits": "Ausgezeichnete gezielte Fettverbrennung rund um Workouts, ermöglicht tatsächlichen Schlaf in der Nacht im Gegensatz zu Clenbuterol; viel sicherer Profil für das Herz.",
+      "risks": "Schneller Herzschlag, Schwitzen, leichtes Zittern."
+    }
+  },
+  "hcg": {
+    "es": {
+      "benefits": "Previene la atrofia testicular (\"encogimiento\") durante el ciclo, mantiene la fertilidad, hace que la PCT sea significativamente más fácil/más corta.",
+      "risks": "Puede aumentar drásticamente la aromatización, lo que conduce a un alto nivel de estrógeno y a la desensibilización de las células de Leydig si se abusa mucho de ellas."
+    },
+    "it": {
+      "benefits": "Previene l'atrofia testicolare (\"restringimento\") durante il ciclo, mantiene la fertilità, rende la PCT significativamente più facile/più breve.",
+      "risks": "Può aumentare drasticamente l'aromatizzazione portando ad alti livelli di estrogeni, desensibilizzazione delle cellule di Leydig se pesantemente abusate."
+    },
+    "de": {
+      "benefits": "Verhindert Hodenatrophie („Schrumpfung“) während des Zyklus, erhält die Fruchtbarkeit, macht PCT deutlich leichter/kürzer.",
+      "risks": "Kann die Aromatisierung drastisch ankurbeln, was zu einem hohen Östrogenspiegel und einer Desensibilisierung der Leydig-Zellen führt, wenn sie stark missbraucht werden."
+    }
+  },
+  "hmg": {
+    "es": {
+      "benefits": "La herramienta definitiva para garantizar que un hombre permanezca completamente fértil y produzca espermatozoides activamente mientras explota el equipo; restaura el volumen testicular natural incluso después de años de apagado.",
+      "risks": "Astronómicamente caro."
+    },
+    "it": {
+      "benefits": "L'ultimo strumento per garantire che un maschio rimanga completamente fertile e produca attivamente sperma durante la sabbiatura; ripristina il volume testicolare naturale anche dopo anni di arresto.",
+      "risks": "Astronomicamente costoso."
+    },
+    "de": {
+      "benefits": "Das ultimative Werkzeug, um sicherzustellen, dass ein Mann vollständig fruchtbar bleibt und aktiv Spermien produziert, während er Ausrüstung sprengt; stellt das natürliche Hodenvolumen auch nach Jahren des Stillstands wieder her.",
+      "risks": "Astronomisch teuer."
+    }
+  },
+  "yk11": {
+    "es": {
+      "benefits": "Ganancias rápidas y explosivas en tamaño y fuerza que teóricamente pueden romper los límites genéticos naturales; produce un aspecto muscular duro, seco y \"plástico\".",
+      "risks": "Dolor articular (de tendones secos), supresión severa de testosterona, toxicidad hepática potencial (es esteroide), consecuencias a largo plazo completamente desconocidas."
+    },
+    "it": {
+      "benefits": "Guadagni rapidi ed esplosivi di dimensioni e forza che possono teoricamente violare i limiti genetici naturali; produce un aspetto muscolare duro, asciutto e \"plastico\".",
+      "risks": "Dolore articolare (da tendini secchi), grave soppressione del testosterone, potenziale tossicità epatica (è steroidea), conseguenze a lungo termine completamente sconosciute."
+    },
+    "de": {
+      "benefits": "Schnelle, explosive Zuwächse an Größe und Festigkeit, die theoretisch natürliche genetische Grenzen überschreiten können; erzeugt einen harten, trockenen, \"plastischen\" Muskel-Look.",
+      "risks": "Gelenkschmerzen (durch trockene Sehnen), starke Testosteronsuppression, mögliche Lebertoxizität (steroidale), völlig unbekannte Langzeitfolgen."
+    }
+  },
+  "s23": {
+    "es": {
+      "benefits": "Dureza muscular profunda, secado extremo del agua subcutánea.",
+      "risks": "<strong>Apagado total de HPTA</strong> (no supresión, apagado verdadero), requiere una base de testosterona o causará letargo severo y cero estrógenos."
+    },
+    "it": {
+      "benefits": "Profonda durezza muscolare, estrema secchezza dall'acqua sottocutanea.",
+      "risks": "<strong>Spegnimento totale HPTA</strong> (non soppressione, vero spegnimento), richiede una base di testosterone o causerà grave letargia e zero estrogeni."
+    },
+    "de": {
+      "benefits": "Tiefe Muskelhärte, extremes Austrocknen von subkutanem Wasser.",
+      "risks": "<strong>Totale HPTA-Abschaltung</strong> (keine Unterdrückung, echte Abschaltung), erfordert eine Testosteronbasis oder verursacht schwere Lethargie und kein Östrogen."
+    }
+  },
+  "andarine": {
+    "es": {
+      "benefits": "Excelente fuerza y sinergia de pérdida de grasa sin la supresión extrema de SARM más duros.",
+      "risks": "<strong>Alteración de la visión:</strong> crea un tinte amarillo/verde intenso en la visión, dificultad severa para ajustarse de entornos claros a oscuros."
+    },
+    "it": {
+      "benefits": "Eccellente sinergia tra forza e perdita di grasso senza l'estrema soppressione dei SARM più duri.",
+      "risks": "<strong>Alterazione della vista:</strong> crea una pesante tinta gialla/verde nella visione, grave difficoltà a passare da ambienti chiari a quelli scuri."
+    },
+    "de": {
+      "benefits": "Ausgezeichnete Kraft- und Fettabbau-Synergie ohne die extreme Unterdrückung härterer SARMs.",
+      "risks": "<strong>Sehstörungen:</strong> Erzeugt einen starken gelb-grünen Farbton im Sehvermögen, schwere Schwierigkeiten bei der Anpassung von hellen an dunkle Umgebungen."
+    }
+  },
+  "stenabolic": {
+    "es": {
+      "benefits": "Aumento masivo de la resistencia, pérdida de grasa pesada; ayuda a normalizar los patrones de sueño en los trabajadores por turnos; actúa como \"ejercicio en una píldora\".",
+      "risks": "Insomnio, alteración del ritmo circadiano. Biodisponibilidad oral extremadamente pobre (requiere dosificación o inyección sublingual)."
+    },
+    "it": {
+      "benefits": "Massiccia spinta di resistenza, perdita di grasso pesante; aiuta a normalizzare i modelli di sonno nei lavoratori a turni; agisce come \"esercizio in una pillola\".",
+      "risks": "Insonnia, alterazione del ritmo circadiano. Biodisponibilità orale estremamente scarsa (richiede dosaggio o iniezione sublinguale)."
+    },
+    "de": {
+      "benefits": "Massiver Ausdauer-Boost, starker Fettabbau; hilft, Schlafmuster bei Schichtarbeitern zu normalisieren; wirkt als \"Übung in einer Pille\".",
+      "risks": "Schlaflosigkeit, Störung des zirkadianen Rhythmus. Äußerst schlechte orale Bioverfügbarkeit (erfordert sublinguale Dosierung oder Injektion)."
+    }
+  },
+  "superdrol": {
+    "es": {
+      "benefits": "Ganancias de fuerza ridículamente rápidas, supercompensación de glucógeno que resulta en un aspecto duro y muy bombeado sin ninguna retención de agua estrogénica.",
+      "risks": "Toxicidad hepática masiva y sin precedentes (hepatotoxicidad). Letargo tan severo que los usuarios a menudo no pueden permanecer despiertos (\"letargo de Superdrol\"), lípidos rotos."
+    },
+    "it": {
+      "benefits": "Guadagni di forza ridicolmente veloci, supercompensazione del glicogeno con conseguente aspetto pesantemente pompato e duro senza ritenzione idrica estrogenica.",
+      "risks": "Tossicità epatica massiccia e senza precedenti (epatotossicità). Letargia utenti così gravi spesso non possono rimanere svegli (\"Superdrol letargia\"), lipidi frantumati."
+    },
+    "de": {
+      "benefits": "Lächerlich schnelle Kraftzuwächse, Glykogen-Superkompensation, die zu einem stark gepumpten, harten Aussehen ohne östrogene Wassereinlagerungen führt.",
+      "risks": "Massive, beispiellose Lebertoxizität (Hepatotoxizität). Lethargie so starke Anwender können oft nicht wach bleiben („Superdrol-Lethargie“), zersplitterte Lipide."
+    }
+  },
+  "epistane": {
+    "es": {
+      "benefits": "Endurecimiento muscular extremo, apoyo agudo a la pérdida de grasa, prevención/reducción de la ginecomastia durante el ciclo; da una estética seca y granulada.",
+      "risks": "Deshidratación articular severa (dolor en las articulaciones/tendones), toxicidad hepática, bombas en las pantorrillas tan severas que pueden inhibir la marcha."
+    },
+    "it": {
+      "benefits": "Indurimento muscolare estremo, supporto per la perdita di grasso acuta, prevenzione/riduzione della ginecomastia durante il ciclo; dona un'estetica secca e granulosa.",
+      "risks": "Grave disidratazione articolare (articolazioni/tendini doloranti), tossicità epatica, pompe del polpaccio così gravi da poter inibire la deambulazione."
+    },
+    "de": {
+      "benefits": "Extreme Muskelverhärtung, Unterstützung des akuten Fettabbaus, Vorbeugung/Reduzierung von Gynäkomastie während des Zyklus; verleiht eine trockene, körnige Ästhetik.",
+      "risks": "Schwere Gelenkdehydratation (schmerzende Gelenke/Sehnen), Lebertoxizität, Wadenpumpen so stark, dass sie das Gehen hemmen können."
+    }
+  },
+  "halodrol": {
+    "es": {
+      "benefits": "Ganancias secas lentas y mantenibles; aumento masivo de la fuerza central y la visibilidad abdominal; excelente para principiantes debido a su alta tolerabilidad.",
+      "risks": "Tensión hepática leve, ligera supresión."
+    },
+    "it": {
+      "benefits": "Guadagni a secco lenti e manutenibili; massiccia spinta alla forza del core e alla visibilità addominale; eccellente per i principianti grazie all'elevata tollerabilità.",
+      "risks": "Lieve affaticamento epatico, lieve soppressione."
+    },
+    "de": {
+      "benefits": "Langsame, wartbare Trockengewinne; massive Steigerung der Rumpfkraft und der Bauchsicht; aufgrund der hohen Verträglichkeit hervorragend für Anfänger geeignet.",
+      "risks": "Leichte Leberbelastung, leichte Unterdrückung."
+    }
+  },
+  "msten": {
+    "es": {
+      "benefits": "Tamaño y fuerza masivos que reflejan Superdrol pero con menos letargo intracelular; acción increíblemente rápida (resultados visibles en 7 días).",
+      "risks": "Hepatotoxicidad muy alta, destrucción rápida de lípidos, apagado severo de HPTA."
+    },
+    "it": {
+      "benefits": "Dimensioni e forza enormi che rispecchiano Superdrol ma con meno letargia intracellulare; azione incredibilmente rapida (risultati visibili entro 7 giorni).",
+      "risks": "Epatotossicità molto elevata, rapida distruzione lipidica, grave arresto dell'HPTA."
+    },
+    "de": {
+      "benefits": "Massive Größe und Stärke spiegeln Superdrol wider, aber mit weniger intrazellulärer Lethargie; unglaublich schnell wirkend (sichtbare Ergebnisse innerhalb von 7 Tagen).",
+      "risks": "Sehr hohe Hepatotoxizität, schnelle Lipidzerstörung, schwere HPTA-Abschaltung."
+    }
+  },
+  "trenavar": {
+    "es": {
+      "benefits": "Produce la vascularización cruda, la agresión y la pérdida de grasa de la trembolona inyectable a través de una cápsula oral; partición extrema de nutrientes.",
+      "risks": "Presión arterial alta, acidez estomacal severa, sudores nocturnos intensos, impuestos hepáticos brutales."
+    },
+    "it": {
+      "benefits": "Rende la vascolarizzazione grezza, l'aggressività e la perdita di grasso di Trenbolone iniettabile tramite una capsula orale; ripartizione dei nutrienti estrema.",
+      "risks": "Pressione alta, forte bruciore di stomaco, sudorazione notturna intensa, tassazione brutale del fegato."
+    },
+    "de": {
+      "benefits": "Ergibt die rohe Vaskularität, Aggression und den Fettabbau von injizierbarem Trenbolon über eine orale Kapsel; extreme Nährstoffverteilung.",
+      "risks": "Bluthochdruck, starkes Sodbrennen, intensives Nachtschweiß, brutale Leberbesteuerung."
+    }
+  },
+  "blood_lipids": {
+    "es": {
+      "benefits": "Mantener lípidos saludables previene por completo la aterosclerosis (acumulación de placa en las arterias) y los riesgos de accidente cerebrovascular/ataque cardíaco a largo plazo.",
+      "risks": "Trenbolone, Superdrol y Winstrol son famosos por triturar el HDL en un solo dígito en 2 semanas."
+    },
+    "it": {
+      "benefits": "Il mantenimento di lipidi sani previene completamente l'aterosclerosi (accumulo di placca nelle arterie) e i rischi di ictus/infarto a lungo termine.",
+      "risks": "Trenbolone, Superdrol e Winstrol sono noti per schiacciare l'HDL nelle singole cifre entro 2 settimane."
+    },
+    "de": {
+      "benefits": "Die Aufrechterhaltung gesunder Lipide verhindert vollständig Atherosklerose (Plaqueaufbau in Arterien) und langfristige Schlaganfall-/Herzinfarktrisiken.",
+      "risks": "Trenbolon, Superdrol und Winstrol sind berüchtigt dafür, HDL innerhalb von 2 Wochen im einstelligen Bereich zu zerkleinern."
+    }
+  },
+  "blood_liver": {
+    "es": {
+      "benefits": "Mantener estas enzimas bajas asegura que el hígado pueda eliminar las toxinas por completo y prevenir la colestasis (bloqueo de los conductos biliares/ictericia).",
+      "risks": "Los valores altos durante largos períodos equivalen a ictericia, lesiones hepáticas y eventual cirrosis."
+    },
+    "it": {
+      "benefits": "Mantenere bassi questi enzimi garantisce che il fegato possa eliminare efficacemente le tossine e prevenire la colestasi (blocco del dotto biliare/ittero).",
+      "risks": "Valori elevati per lunghi periodi equivalgono a ittero, lesioni epatiche ed eventuale cirrosi."
+    },
+    "de": {
+      "benefits": "Wenn diese Enzyme niedrig gehalten werden, kann die Leber Giftstoffe effektiv vollständig beseitigen und Cholestase (Gallengangsblockade/Gelbsucht) verhindern.",
+      "risks": "Hohe Werte über lange Zeiträume entsprechen Gelbsucht, Leberläsionen und eventueller Zirrhose."
+    }
+  },
+  "blood_kidneys": {
+    "es": {
+      "benefits": "La protección de los riñones evita la diálisis y garantiza que la dinámica de fluidos permanezca estable sin provocar edema (acumulación grave de líquidos en las piernas).",
+      "risks": "Ignorar la presión arterial alta en el ciclo es la causa #1 de destrucción renal irreversible."
+    },
+    "it": {
+      "benefits": "Proteggere i reni previene la dialisi e garantisce che la fluidodinamica rimanga stabile senza edema da vaiolatura (grave accumulo di liquidi nelle gambe).",
+      "risks": "Ignorare l'ipertensione durante il ciclo è la prima causa di distruzione irreversibile dei reni."
+    },
+    "de": {
+      "benefits": "Der Schutz der Nieren beugt der Dialyse vor und sorgt dafür, dass die Flüssigkeitsdynamik stabil bleibt, ohne dass es zu Ödemen kommt (starke Flüssigkeitsansammlung in den Beinen).",
+      "risks": "Das Ignorieren von Bluthochdruck während des Zyklus ist die Hauptursache für die irreversible Nierenzerstörung."
+    }
+  },
+  "blood_hematocrit": {
+    "es": {
+      "benefits": "Los glóbulos rojos más altos mejoran enormemente el transporte de oxígeno y la resistencia cardiovascular (de ahí la razón por la que Equipoise se siente tan bien para la resistencia).",
+      "risks": "Si la sangre se convierte en lodo, el corazón tiene que trabajar 10 veces más para bombearlo. Conduce a hipertrofia ventricular izquierda extrema, accidentes cerebrovasculares y letargo catastrófico."
+    },
+    "it": {
+      "benefits": "Un eritrocito più elevato migliora notevolmente il trasporto di ossigeno e la resistenza cardiovascolare (ecco perché Equipoise si sente così bene per la resistenza).",
+      "risks": "Se il sangue si trasforma in fango, il cuore deve lavorare 10 volte di più per pomparlo. Porta a ipertrofia ventricolare estrema sinistra, ictus e letargia catastrofica."
+    },
+    "de": {
+      "benefits": "Höhere Erythrozyten verbessern massiv den Sauerstofftransport und die kardiovaskuläre Ausdauer (daher fühlt sich Equipoise so gut für die Ausdauer an).",
+      "risks": "Wenn Blut zu Schlamm wird, muss das Herz 10x härter arbeiten, um es zu pumpen. Führt zu extremer linksventrikulärer Hypertrophie, Schlaganfällen und katastrophaler Lethargie."
+    }
+  },
+  "modafinil": {
+    "es": {
+      "benefits": "Despertar extremo e implacable sin la estimulación física periférica nerviosa o el choque severo de las anfetaminas.",
+      "risks": "Dolores de cabeza, apetito suprimido, erupción cutánea grave rara (síndrome de Stevens-Johnson), deuda de sueño grave a largo plazo."
+    },
+    "it": {
+      "benefits": "Sveglia estrema e implacabile senza la stimolazione fisica periferica nervosa o il grave incidente delle anfetamine.",
+      "risks": "Mal di testa, appetito soppresso, raro rash grave (sindrome di Stevens-Johnson), grave debito di sonno a lungo termine."
+    },
+    "de": {
+      "benefits": "Extreme, unerbittliche Wachheit ohne die nervöse periphere körperliche Stimulation oder den schweren Absturz von Amphetaminen.",
+      "risks": "Kopfschmerzen, Appetitlosigkeit, seltener schwerer Hautausschlag (Stevens-Johnson-Syndrom), schwere langfristige Schlafverschuldung."
+    }
+  },
+  "adderall": {
+    "es": {
+      "benefits": "Euforia intensa, enfoque similar al láser, supresión masiva de la fatiga física, fuerte aumento temporal de la fuerza en el gimnasio.",
+      "risks": "Neurotoxicidad severa a dosis altas, agotamiento suprarrenal absoluto, terrible \"choque\" que resulta en letargo profundo y depresión, vector de adicción extremadamente rápido."
+    },
+    "it": {
+      "benefits": "Euforia intensa, messa a fuoco simile a un laser, massiccia soppressione dell'affaticamento fisico, forte aumento temporaneo della forza in palestra.",
+      "risks": "Grave neurotossicità a dosi elevate, burnout surrenale assoluto, terribile \"crash\" con conseguente letargia profonda e depressione, vettore di dipendenza estremamente veloce."
+    },
+    "de": {
+      "benefits": "Intensive Euphorie, laserähnliche Fokussierung, massive Unterdrückung körperlicher Ermüdung, starke temporäre Kraftsteigerung im Fitnessstudio.",
+      "risks": "Schwere Neurotoxizität bei hohen Dosen, absoluter Nebennieren-Burnout, schrecklicher \"Crash\", der zu tiefer Lethargie und Depression führt, extrem schneller Suchtvektor."
+    }
+  },
+  "caffeine": {
+    "es": {
+      "benefits": "Barato, legal, reduce drásticamente la tasa de esfuerzo percibido (RPE) y moviliza los ácidos grasos como combustible.",
+      "risks": "Fatiga suprarrenal severa con uso diario excesivo, ansiedad extrema, taquicardia severa."
+    },
+    "it": {
+      "benefits": "Economico, legale, riduce drasticamente il tasso di sforzo percepito (RPE) e mobilita gli acidi grassi per il carburante.",
+      "risks": "Grave affaticamento surrenale con uso quotidiano eccessivo, ansia estrema, grave tachicardia."
+    },
+    "de": {
+      "benefits": "Billig, legal, senkt dramatisch die Rate der wahrgenommenen Anstrengung (RPE) und mobilisiert Fettsäuren als Treibstoff.",
+      "risks": "Schwere Nebennierenermüdung bei übermäßiger täglicher Anwendung, extreme Angstzustände, schwere Tachykardie."
+    }
+  },
+  "ephedrine": {
+    "es": {
+      "benefits": "Mata el apetito por completo, aumenta masivamente la TMB (tasa metabólica basal).",
+      "risks": "Accidente cerebrovascular, presión arterial extrema, deshidratación severa."
+    },
+    "it": {
+      "benefits": "Uccide completamente l'appetito, aumenta massicciamente il BMR (Basal Metabolic Rate).",
+      "risks": "Ictus, pressione arteriosa estrema, grave disidratazione."
+    },
+    "de": {
+      "benefits": "Tötet den Appetit vollständig, erhöht massiv die BMR (Basal Metabolic Rate).",
+      "risks": "Schlaganfall, extremer Blutdruck, starke Austrocknung."
+    }
+  },
+  "amphetamine_sulfate": {
+    "es": {
+      "benefits": "Resistencia masiva, euforia, hiperenfoque; permite un trabajo físico prolongado o un rendimiento atlético bajo fatiga extrema.",
+      "risks": "Tensión cardiovascular severa, paranoia, apretamiento fuerte de la mandíbula (bruxismo)."
+    },
+    "it": {
+      "benefits": "Massiccia resistenza, euforia, iper-focalizzazione; consente un lavoro fisico prolungato o prestazioni atletiche in condizioni di estrema fatica.",
+      "risks": "Grave sforzo cardiovascolare, paranoia, pesante serraggio della mascella (bruxismo)."
+    },
+    "de": {
+      "benefits": "Massive Ausdauer, Euphorie, Hyperfokus; ermöglicht längere körperliche Arbeit oder sportliche Leistung unter extremer Müdigkeit.",
+      "risks": "Schwere kardiovaskuläre Belastung, Paranoia, schweres Kieferknirschen (Bruxismus)."
+    }
+  },
+  "piperazines": {
+    "es": {
+      "benefits": "Estimulación, empatía/euforia leve que se asemeja a MDMA débil; crea un ambiente social \"festivo\".",
+      "risks": "Resacas horribles, náuseas severas, convulsiones en dosis altas, caídas terriblemente malas en comparación con las anfetaminas estándar."
+    },
+    "it": {
+      "benefits": "Stimolazione, lieve empatia/euforia che assomiglia all'MDMA debole; crea un'atmosfera sociale \"da festa\".",
+      "risks": "Postumi di una sbornia orribili, nausea grave, convulsioni a dosi elevate, comedown terrificanti rispetto alle anfetamine standard."
+    },
+    "de": {
+      "benefits": "Stimulation, milde Empathie/Euphorie ähnlich schwacher MDMA; schafft eine „partyähnliche“ soziale Atmosphäre.",
+      "risks": "Schrecklicher Kater, starke Übelkeit, Krampfanfälle bei hohen Dosen, erschreckend schlechte Komedowns im Vergleich zu Standardamphetaminen."
+    }
+  },
+  "psilocybin": {
+    "es": {
+      "benefits": "Procesamiento emocional profundo, \"reinicio\" de la red de modo predeterminado en el cerebro, alivio duradero de la depresión resistente al tratamiento; crea apertura a largo plazo.",
+      "risks": "Náuseas, ataques de pánico, confusión extrema en las dosis crudas."
+    },
+    "it": {
+      "benefits": "Elaborazione emotiva profonda, \"reset\" della rete in modalità predefinita nel cervello, sollievo duraturo dalla depressione resistente al trattamento; crea apertura a lungo termine.",
+      "risks": "Nausea, attacchi di panico, estrema confusione ai dosaggi grezzi."
+    },
+    "de": {
+      "benefits": "Tiefe emotionale Verarbeitung, „Reset“ des Default Mode Network im Gehirn, dauerhafte Linderung behandlungsresistenter Depressionen; schafft langfristige Offenheit.",
+      "risks": "Übelkeit, Panikattacken, extreme Verwirrung bei Rohdosierungen."
+    }
+  },
+  "meo_dmt": {
+    "es": {
+      "benefits": "Experiencia mística profunda, disolución completa del yo; proporciona un cambio de perspectiva total sobre la existencia en menos de 15 minutos.",
+      "risks": "Depresión respiratoria a dosis altas, trauma psicológico grave, interacción letal con IMAO."
+    },
+    "it": {
+      "benefits": "Profonda esperienza mistica, completa dissoluzione del sé; fornisce un totale cambiamento di prospettiva sull'esistenza in meno di 15 minuti.",
+      "risks": "Depressione respiratoria a dosi elevate, trauma psicologico grave, interazione letale con IMAO."
+    },
+    "de": {
+      "benefits": "Tiefgründige mystische Erfahrung, vollständige Auflösung des Selbst; bietet einen totalen Perspektivwechsel auf die Existenz in weniger als 15 Minuten.",
+      "risks": "Atemdepression in hohen Dosen, schweres psychologisches Trauma, tödliche Wechselwirkung mit MAO-Hemmern."
+    }
+  },
+  "ibogaine": {
+    "es": {
+      "benefits": "Capaz de terminar con la abstinencia de opioides y los antojos; induce un estado de sueño de 24-36 horas de vigilia; restablece las vías de la dopamina.",
+      "risks": "Cardiotoxicidad fatal (prolongación del intervalo QT), ataxia, vómitos intensos."
+    },
+    "it": {
+      "benefits": "Capace di porre fine all'astinenza da oppioidi e alle voglie; induce uno stato onirico di veglia di 24-36 ore; ripristina le vie della dopamina.",
+      "risks": "Cardiotossicità fatale (prolungamento dell'intervallo QT), atassia, vomito grave."
+    },
+    "de": {
+      "benefits": "Kann Opioid-Entzug und Heißhunger beenden; induziert einen 24-36-stündigen traumähnlichen Wachzustand; setzt Dopaminwege zurück.",
+      "risks": "Tödliche Kardiotoxizität (QT-Verlängerung), Ataxie, schweres Erbrechen."
+    }
+  },
+  "mescaline": {
+    "es": {
+      "benefits": "Distorsiones visuales brillantes y coloridas y una profunda conexión con la naturaleza/espíritus; notablemente larga duración en comparación con otras fenetilaminas.",
+      "risks": "Náuseas severas durante el inicio, mareos, ansiedad."
+    },
+    "it": {
+      "benefits": "Distorsioni visive luminose e colorate e un profondo legame con la natura/gli spiriti; durata notevolmente lunga rispetto ad altre fenetilammine.",
+      "risks": "Grave nausea durante l'esordio, vertigini, ansia."
+    },
+    "de": {
+      "benefits": "Helle, farbenfrohe visuelle Verzerrungen und eine tiefe Verbindung zur Natur/Spirituosen; bemerkenswert lange Dauer im Vergleich zu anderen Phenethylaminen.",
+      "risks": "Starke Übelkeit bei Beginn, Schwindel, Angst."
+    }
+  },
+  "salvia": {
+    "es": {
+      "benefits": "Intensidad incomparable de alucinación a corto plazo (5-10 min); crea una sensación de plegamiento a través de múltiples dimensiones/realidades.",
+      "risks": "Confusión profunda, pérdida temporal del control motor, disforia."
+    },
+    "it": {
+      "benefits": "Intensità ineguagliabile di allucinazioni a breve termine (5-10 minuti); crea una sensazione di ripiegamento attraverso molteplici dimensioni/realtà.",
+      "risks": "Profonda confusione, perdita temporanea del controllo motorio, disforia."
+    },
+    "de": {
+      "benefits": "Beispiellose Intensität der kurzfristigen (5-10 min) Halluzination; erzeugt ein Gefühl der Faltung durch mehrere Dimensionen/Realitäten.",
+      "risks": "Starke Verwirrung, vorübergehender Verlust der motorischen Kontrolle, Dysphorie."
+    }
+  },
+  "dmt": {
+    "es": {
+      "benefits": "Conocida como la \"Molécula Espiritual\"; induce reinos geométricos completamente inmersivos e incomprensibles y contacto percibido con la entidad; toxicidad física cero.",
+      "risks": "Shock psicológico traumático por la pura intensidad del inicio."
+    },
+    "it": {
+      "benefits": "Indicata come la \"Molecola dello Spirito\"; induce regni geometrici completamente immersivi, incomprensibili e contatto con l'entità percepita; zero tossicità fisica.",
+      "risks": "Shock psicologico traumatico per la pura intensità dell'esordio."
+    },
+    "de": {
+      "benefits": "Wird als \"Geistmolekül\" bezeichnet; induziert vollständig immersive, unverständliche geometrische Bereiche und wahrgenommenen Entitätskontakt; keine physische Toxizität.",
+      "risks": "Traumatischer psychologischer Schock von der schieren Intensität des Auftretens."
+    }
+  },
+  "amt": {
+    "es": {
+      "benefits": "Combina la empatía/estimulación de la MDMA con las distorsiones visuales de una dosis leve de LSD que dura hasta 14 horas; intensa apreciación musical.",
+      "risks": "Náuseas, choque terrible, riesgo grave de síndrome serotoninérgico si se combina con otros fármacos (que actúan como un IMAO leve)."
+    },
+    "it": {
+      "benefits": "Combina l'empatia/stimolazione dell'MDMA con le distorsioni visive di una leggera dose di LSD che dura fino a 14 ore; intenso apprezzamento musicale.",
+      "risks": "Nausea, crash terribile, grave rischio di Sindrome Serotoninergica se associato ad altri farmaci (agendo come un IMAO lieve)."
+    },
+    "de": {
+      "benefits": "Kombiniert die Empathie/Stimulation von MDMA mit den visuellen Verzerrungen einer milden LSD-Dosis von bis zu 14 Stunden; intensive Musikverwertung.",
+      "risks": "Übelkeit, schrecklicher Unfall, hohes Risiko eines Serotonin-Syndroms in Kombination mit anderen Medikamenten (als leichter MAO-Hemmer)."
+    }
+  },
+  "pcp": {
+    "es": {
+      "benefits": "Adormecimiento total al dolor, sensación de flotación, profunda desconexión corporal; da una sensación de inmenso poder físico e invulnerabilidad.",
+      "risks": "Induce brotes psicóticos severos, estupor, tolerancia literal al dolor sobrehumano que lleva a los usuarios a devastar sus propios cuerpos sin darse cuenta."
+    },
+    "it": {
+      "benefits": "Intorpidimento completo al dolore, sensazione di galleggiamento, profonda disconnessione corporea; dà un senso di immensa potenza fisica e invulnerabilità.",
+      "risks": "Induce gravi rotture psicotiche, stupore, tolleranza al dolore letteralmente sovrumana che porta gli utenti a devastare il proprio corpo senza accorgersene."
+    },
+    "de": {
+      "benefits": "Komplette Taubheit gegenüber Schmerzen, schwebendes Gefühl, tiefe körperliche Trennung; vermittelt ein Gefühl von immenser körperlicher Kraft und Unverwundbarkeit.",
+      "risks": "Induziert schwere psychotische Brüche, Stupor, buchstäbliche übermenschliche Schmerztoleranz, die dazu führen, dass Benutzer ihren eigenen Körper verwüsten, ohne es zu bemerken."
+    }
+  },
+  "ketamine": {
+    "es": {
+      "benefits": "Sedación profunda, disociación espiritual \"K-hole\", efectos antidepresivos instantáneos.",
+      "risks": "Toxicidad vesical (cistitis), pérdida de memoria, adicción psicológica grave."
+    },
+    "it": {
+      "benefits": "Sedazione profonda, dissociazione spirituale “K-hole”, effetti antidepressivi istantanei.",
+      "risks": "Tossicità vescicale (cistite), perdita di memoria, grave dipendenza psicologica."
+    },
+    "de": {
+      "benefits": "Tiefe Sedierung, \"K-Loch\" spirituelle Dissoziation, sofortige antidepressive Wirkung.",
+      "risks": "Blasentoxizität (Zystitis), Gedächtnisverlust, schwere psychische Abhängigkeit."
+    }
+  },
+  "dxm": {
+    "es": {
+      "benefits": "Euforia, distorsión visual, mejora de la música.",
+      "risks": "Estrés hepático, síndrome serotoninérgico (si se mezcla), náuseas intensas, deterioro motor \"Robowalk\"."
+    },
+    "it": {
+      "benefits": "Euforia, distorsione visiva, potenziamento musicale.",
+      "risks": "Stress epatico, sindrome serotoninergica (se mista), nausea intensa, compromissione motoria “Robowalk”."
+    },
+    "de": {
+      "benefits": "Euphorie, visuelle Verzerrung, Musikverbesserung.",
+      "risks": "Leberstress, Serotonin-Syndrom (wenn gemischt), starke Übelkeit, „Robowalk“ motorische Beeinträchtigung."
+    }
+  },
+  "mxe": {
+    "es": {
+      "benefits": "Profunda disociación espiritual, calor, analgesia.",
+      "risks": "Ataxia prolongada, dependencia psicológica, convulsiones."
+    },
+    "it": {
+      "benefits": "Profonda dissociazione spirituale, calore, analgesia.",
+      "risks": "Atassia prolungata, dipendenza psicologica, convulsioni."
+    },
+    "de": {
+      "benefits": "Tiefe spirituelle Dissoziation, Wärme, Analgesie.",
+      "risks": "Anhaltende Ataxie, psychische Abhängigkeit, Krampfanfälle."
+    }
+  },
+  "alcohol": {
+    "es": {
+      "benefits": "Euforia, reducción dramática de la ansiedad, desinhibición social.",
+      "risks": "Hepatotoxicidad severa, pérdida motora, abstinencia letal (Delirium Tremens)."
+    },
+    "it": {
+      "benefits": "Euforia, drammatica riduzione dell'ansia, disinibizione sociale.",
+      "risks": "Grave epatotossicità, perdita motoria, ritiro letale (Delirium Tremens)."
+    },
+    "de": {
+      "benefits": "Euphorie, dramatischer Angstabbau, soziale Enthemmung.",
+      "risks": "Schwere Hepatotoxizität, motorischer Verlust, letaler Entzug (Delirium Tremens)."
+    }
+  },
+  "alprazolam": {
+    "es": {
+      "benefits": "Cese perfecto e instantáneo de los ataques de pánico o sobreestimulación/frecuencia cardíaca grave inducida por estimulantes.",
+      "risks": "Potencial de amnesia de \"apagón\" masivo, dependencia física terriblemente rápida, convulsiones <strong>letales</strong> durante la abstinencia."
+    },
+    "it": {
+      "benefits": "Cessazione perfetta e istantanea degli attacchi di panico o della sovrastimolazione/frequenza cardiaca indotta da stimolanti gravi.",
+      "risks": "Massiccio potenziale di amnesia \"blackout\", dipendenza fisica terribilmente rapida, convulsioni <strong>letali</strong> durante l'astinenza."
+    },
+    "de": {
+      "benefits": "Perfekte, sofortige Beendigung von Panikattacken oder schwerer stimulanzieninduzierter Überstimulation/Herzfrequenz.",
+      "risks": "Massives „Blackout“ -Amnesiepotential, erschreckend schnelle körperliche Abhängigkeit, <strong>tödliche</strong> Anfälle beim Entzug."
+    }
+  },
+  "pregabalin": {
+    "es": {
+      "benefits": "Reducción significativa del dolor nervioso, alivio profundo de la ansiedad, euforia, disociación leve y mejora de la sociabilidad.",
+      "risks": "Mareos, somnolencia extrema, aumento de peso, dependencia física, síndrome de abstinencia grave y disminución del umbral convulsivo a dosis masivas."
+    },
+    "it": {
+      "benefits": "Significativa riduzione del dolore nervoso, profondo sollievo dall'ansia, euforia, lieve dissociazione e miglioramento della socievolezza.",
+      "risks": "Vertigini, estrema sonnolenza, aumento di peso, dipendenza fisica, grave sindrome da astinenza e riduzione della soglia convulsiva a dosi massicce."
+    },
+    "de": {
+      "benefits": "Signifikante Verringerung von Nervenschmerzen, tiefgreifende Linderung von Angstzuständen, Euphorie, leichte Dissoziation und Verbesserung der Geselligkeit.",
+      "risks": "Schwindel, extreme Schläfrigkeit, Gewichtszunahme, körperliche Abhängigkeit, schweres Entzugssyndrom und niedrigere Anfallsschwelle bei massiven Dosen."
+    }
+  },
+  "ghb": {
+    "es": {
+      "benefits": "Euforia intensa, desinhibición social, estimulación de la hormona del crecimiento.",
+      "risks": "Sobredosis peligrosa (coma), interacción letal con el alcohol, adicción física."
+    },
+    "it": {
+      "benefits": "Euforia intensa, disinibizione sociale, stimolazione dell'ormone della crescita.",
+      "risks": "Sovradosaggio pericoloso (coma), interazione letale con l'alcol, dipendenza fisica."
+    },
+    "de": {
+      "benefits": "Intensive Euphorie, soziale Enthemmung, Wachstumshormonstimulation.",
+      "risks": "Gefährliche Überdosierung (Koma), tödliche Wechselwirkung mit Alkohol, körperliche Sucht."
+    }
+  },
+  "methaqualone": {
+    "es": {
+      "benefits": "Sedación profunda, relajación física \"gelatinosa\", sensación intensa de calma.",
+      "risks": "Depresión respiratoria letal (especialmente cuando se mezcla con alcohol), deterioro motor extremo (\"ludes walk\"), abstinencia física severa."
+    },
+    "it": {
+      "benefits": "Profonda sedazione, rilassamento fisico “gelatinoso”, intenso senso di calma.",
+      "risks": "Depressione respiratoria letale (soprattutto se miscelata con alcol), compromissione motoria estrema (\"ludes walk\"), grave astinenza fisica."
+    },
+    "de": {
+      "benefits": "Tiefe Beruhigung, \"geleeartige\" körperliche Entspannung, intensives Gefühl der Ruhe.",
+      "risks": "Tödliche Atemdepression (insbesondere in Mischung mit Alkohol), extreme motorische Beeinträchtigung („ludes walk“), schwerer körperlicher Entzug."
+    }
+  },
+  "barbiturates": {
+    "es": {
+      "benefits": "Apagado profundo del SNC.",
+      "risks": "Depresión respiratoria letal, abstinencia severa."
+    },
+    "it": {
+      "benefits": "Arresto profondo del SNC.",
+      "risks": "Depressione respiratoria letale, grave astinenza."
+    },
+    "de": {
+      "benefits": "Tiefgreifende ZNS-Abschaltung.",
+      "risks": "Tödliche Atemdepression, schwerer Entzug."
+    }
+  },
+  "phenibut": {
+    "es": {
+      "benefits": "Profunda sociabilidad, intensa apreciación musical, larga duración.",
+      "risks": "Abstinencia física severa (comparable a Benzos/Opioides), tolerancia rápida."
+    },
+    "it": {
+      "benefits": "Profonda socievolezza, intenso apprezzamento musicale, lunga durata.",
+      "risks": "Grave astinenza fisica (paragonabile a Benzos/Oppioidi), rapida tolleranza."
+    },
+    "de": {
+      "benefits": "Tiefe Geselligkeit, intensive musikalische Wertschätzung, lange Dauer.",
+      "risks": "Schwerer körperlicher Entzug (vergleichbar mit Benzos/Opioiden), schnelle Verträglichkeit."
+    }
+  },
+  "acetylfentanyl": {
+    "es": {
+      "benefits": "Obliteración absoluta del dolor.",
+      "risks": "<strong>Depresión respiratoria.</strong> El cerebro simplemente se olvida de ordenar a los pulmones que respiren, lo que resulta en una hipoxia fatal rápida. Altamente adictivo."
+    },
+    "it": {
+      "benefits": "Cancellazione assoluta del dolore.",
+      "risks": "<strong>Depressione respiratoria.</strong> Il cervello dimentica semplicemente di comandare ai polmoni di respirare, causando una rapida ipossia fatale. Dà molta dipendenza."
+    },
+    "de": {
+      "benefits": "Absolute Schmerzauslöschung.",
+      "risks": "<strong>Atemdepression.</strong> Das Gehirn vergisst einfach, den Lungen das Atmen zu befehlen, was zu einer schnellen tödlichen Hypoxie führt. Sehr süchtig machend."
+    }
+  },
+  "amyl_nitrite": {
+    "es": {
+      "benefits": "Enrojecimiento instantáneo de calor, euforia transitoria severa, relajación extrema de los músculos pélvicos/esfínter.",
+      "risks": "Caída peligrosa de la presión arterial (puede ser mortal si se combina con Viagra/Cialis), destrucción de glóbulos rojos (metahemoglobinemia), daño a los nervios ópticos."
+    },
+    "it": {
+      "benefits": "Vampata di calore istantanea, grave euforia transitoria, estremo rilassamento dei muscoli pelvici/sfinteri.",
+      "risks": "Pericoloso calo della pressione sanguigna (può essere fatale se combinato con Viagra/Cialis), distruzione dei globuli rossi (metaemoglobinemia), danni ai nervi ottici."
+    },
+    "de": {
+      "benefits": "Sofortige Wärmespülung, schwere vorübergehende Euphorie, extreme Entspannung der Becken-/Schließmuskulatur.",
+      "risks": "Gefährlicher Blutdruckabfall (kann in Kombination mit Viagra/Cialis tödlich sein), Zerstörung der roten Blutkörperchen (Methämoglobinämie), optische Nervenschäden."
+    }
+  },
+  "nitrous_oxide": {
+    "es": {
+      "benefits": "Comienzo extremadamente rápido de euforia, sensaciones flotantes y risas.",
+      "risks": "Agotamiento de B12 que conduce a daño nervioso permanente (neuropatía periférica), hipoxia, mareos severos."
+    },
+    "it": {
+      "benefits": "Inizio estremamente rapido di euforia, sensazioni fluttuanti e risate.",
+      "risks": "Deplezione di vitamina B12 che porta a danni permanenti ai nervi (neuropatia periferica), ipossia, vertigini gravi."
+    },
+    "de": {
+      "benefits": "Extrem schnell einsetzende Euphorie, schwebende Empfindungen und Lachen.",
+      "risks": "B12-Depletion, die zu dauerhaften Nervenschäden (periphere Neuropathie), Hypoxie, starkem Schwindel führt."
+    }
+  },
+  "aerosols": {
+    "es": {
+      "benefits": "Ninguno (alucinación/euforia inducida por toxicidad).",
+      "risks": "<strong>Síndrome de muerte súbita por inhalación (SSD)</strong>: el pico repentino de adrenalina combinado con un corazón sensibilizado causa un paro cardíaco inmediato e irreversible. Daño cerebral permanente."
+    },
+    "it": {
+      "benefits": "Nessuna (allucinazione/euforia indotta da tossicità).",
+      "risks": "<strong>Sindrome della morte improvvisa per annusamento (SSD)</strong>: un improvviso picco di adrenalina combinato con un cuore sensibilizzato provoca un arresto cardiaco immediato e irreversibile. Danno cerebrale permanente."
+    },
+    "de": {
+      "benefits": "Keine (toxizitätsinduzierte Halluzination/Euphorie).",
+      "risks": "<strong>Plötzliches Schnüffeltod-Syndrom (SSDS)</strong>: Plötzlicher Adrenalinstoß in Kombination mit einem sensibilisierten Herzen verursacht einen sofortigen, irreversiblen Herzstillstand. Permanenter Hirnschaden."
+    }
+  },
+  "cannabis_hybrid": {
+    "es": {
+      "benefits": "Efectos versátiles, relajación manejable sin letargo extremo.",
+      "risks": "Perfil mixto de ansiedad potencial o sedación leve."
+    },
+    "it": {
+      "benefits": "Effetti versatili, relax gestibile senza estrema letargia.",
+      "risks": "Profilo misto di potenziale ansia o lieve sedazione."
+    },
+    "de": {
+      "benefits": "Vielseitige Effekte, überschaubare Entspannung ohne extreme Lethargie.",
+      "risks": "Gemischtes Profil potenzieller Angstzustände oder leichter Sedierung."
+    }
+  },
+  "cannabis_wax": {
+    "es": {
+      "benefits": "Inicio instantáneo, potencia extrema, inhalación reducida de materia vegetal.",
+      "risks": "Paranoia extrema, dependencia psicológica, síndrome de vómitos cíclicos (si se usa en exceso)."
+    },
+    "it": {
+      "benefits": "Esordio istantaneo, potenza estrema, ridotta inalazione di materia vegetale.",
+      "risks": "Paranoia estrema, dipendenza psicologica, sindrome del vomito ciclico (se abusato)."
+    },
+    "de": {
+      "benefits": "Sofort einsetzende, extreme Potenz, reduzierte Inhalation von Pflanzenmaterial.",
+      "risks": "Extreme Paranoia, psychische Abhängigkeit, zyklisches Erbrechen (wenn überstrapaziert)."
+    }
+  },
+  "thc_edibles": {
+    "es": {
+      "benefits": "Duración de 8-12 horas, alta intensidad corporal, sin riesgo pulmonar.",
+      "risks": "Retraso en el inicio (a menudo conduce a una sobredosis), desorientación extrema, ataques de pánico prolongados."
+    },
+    "it": {
+      "benefits": "Durata 8-12 ore, corpo alto intenso, nessun rischio polmonare.",
+      "risks": "Insorgenza ritardata (che spesso porta a sovradosaggio), estremo disorientamento, attacchi di panico prolungati."
+    },
+    "de": {
+      "benefits": "8-12 Stunden Dauer, intensiver Körper hoch, kein Lungenrisiko.",
+      "risks": "Verzögerter Beginn (oft mit Überdosierung), extreme Desorientierung, anhaltende Panikattacken."
+    }
+  },
+  "bath_salts": {
+    "es": {
+      "benefits": "Euforia extrema, empatía y energía; proporciona una oleada de confianza que refleja la dosis alta de MDMA pero con una estimulación mucho mayor.",
+      "risks": "Psicosis inducida, agresión extrema, insuficiencia cardíaca rápida, \"delirio excitado\"."
+    },
+    "it": {
+      "benefits": "Estrema euforia, empatia ed energia; fornisce un'ondata di fiducia che rispecchia l'MDMA ad alte dosi ma con una stimolazione molto più elevata.",
+      "risks": "Psicosi indotta, aggressività estrema, insufficienza cardiaca rapida, “delirio eccitato”."
+    },
+    "de": {
+      "benefits": "Extreme Euphorie, Empathie und Energie; bietet einen Vertrauensschub, der hochdosiertes MDMA widerspiegelt, aber mit viel höherer Stimulation.",
+      "risks": "Induzierte Psychose, extreme Aggression, schnelle Herzinsuffizienz, „angeregtes Delirium“."
+    }
+  },
+  "benzofurans": {
+    "es": {
+      "benefits": "Profunda empatía, distorsiones visuales y mejora de la música que dura de 8 a 12 horas; a menudo se describe como \"MDA pero más limpio\".",
+      "risks": "Cardiotoxicidad (a través de la unión a 5-HT2B), problemas graves de termorregulación."
+    },
+    "it": {
+      "benefits": "Profonda empatia, distorsioni visive e potenziamento musicale della durata di 8-12 ore; spesso descritto come \"MDA ma più pulito\".",
+      "risks": "Cardiotossicità (tramite legame 5-HT2B), gravi problemi di termoregolazione."
+    },
+    "de": {
+      "benefits": "Tiefes Einfühlungsvermögen, visuelle Verzerrungen und Musikverbesserung von 8-12 Stunden; oft als \"MDA, aber sauberer\" beschrieben.",
+      "risks": "Kardiotoxizität (über 5-HT2B-Bindung), schwere Thermoregulationsprobleme."
+    }
+  },
+  "phenazepam": {
+    "es": {
+      "benefits": "Sedación severa, previene todas las formas de ansiedad.",
+      "risks": "Duración extremadamente larga que conduce a toxicidad acumulada, alto riesgo de apagones que duran días."
+    },
+    "it": {
+      "benefits": "Grave sedazione, previene ogni forma di ansia.",
+      "risks": "Durata estremamente lunga che porta a tossicità cumulativa, alto rischio di blackout della durata di giorni."
+    },
+    "de": {
+      "benefits": "Starke Sedierung, beugt allen Formen von Angst vor.",
+      "risks": "Extrem lange Dauer, die zu kumulativer Toxizität führt, hohes Risiko für Blackouts, die Tage andauern."
+    }
+  },
+  "butylone": {
+    "es": {
+      "benefits": "Euforia moderada, estimulación leve; menos agresivo que otras catinonas.",
+      "risks": "Riesgos típicos de la catinona: taquicardia, insomnio y dependencia psicológica."
+    },
+    "it": {
+      "benefits": "Euforia moderata, stimolazione lieve; meno aggressivo di altri catinoni.",
+      "risks": "Rischi tipici del catinone: tachicardia, insonnia e dipendenza psicologica."
+    },
+    "de": {
+      "benefits": "Mäßige Euphorie, leichte Stimulation; weniger aggressiv als andere Cathinone.",
+      "risks": "Typische Kathinon-Risiken: Tachykardie, Schlaflosigkeit und psychische Abhängigkeit."
+    }
+  },
+  "tobacco": {
+    "es": {
+      "benefits": "Agudización cognitiva temporal, supresión del apetito; mejora los efectos de otros estimulantes.",
+      "risks": "Adicción extrema, cáncer (debido a subproductos de la combustión), enfermedad cardiovascular."
+    },
+    "it": {
+      "benefits": "Temporaneo affilamento cognitivo, soppressione dell'appetito; potenzia gli effetti di altri stimolanti.",
+      "risks": "Dipendenza estrema, cancro (dovuto a sottoprodotti della combustione), malattie cardiovascolari."
+    },
+    "de": {
+      "benefits": "Vorübergehende kognitive Schärfung, Appetitunterdrückung; verstärkt die Wirkung anderer Stimulanzien.",
+      "risks": "Extreme Sucht, Krebs (durch Verbrennungsnebenprodukte), Herz-Kreislauf-Erkrankungen."
+    }
+  },
+  "methylphenidate": {
+    "es": {
+      "benefits": "Enfoque mejorado, mayor capacidad de atención; permite tareas cognitivas de alta eficiencia en pacientes con TDAH.",
+      "risks": "Ansiedad, tensión cardíaca, retraso en el crecimiento (en niños)."
+    },
+    "it": {
+      "benefits": "Maggiore concentrazione, maggiore capacità di attenzione; consente compiti cognitivi ad alta efficienza nei pazienti con ADHD.",
+      "risks": "Ansia, affaticamento cardiaco, crescita stentata (nei bambini)."
+    },
+    "de": {
+      "benefits": "Verbesserter Fokus, erhöhte Aufmerksamkeitsspanne; ermöglicht hocheffiziente kognitive Aufgaben bei ADHS-Patienten.",
+      "risks": "Angstzustände, Herzbelastung, Wachstumsstörungen (bei Kindern)."
+    }
+  },
+  "heroine": {
+    "es": {
+      "benefits": "Ráfaga absoluta de euforia y alivio total del dolor; proporciona una profunda sensación de calidez y bienestar.",
+      "risks": "Depresión respiratoria severa, sobredosis letal, adicción física rápida."
+    },
+    "it": {
+      "benefits": "Assoluta scarica di euforia e sollievo totale dal dolore; fornisce un profondo senso di calore e benessere.",
+      "risks": "Grave depressione respiratoria, sovradosaggio letale, rapida dipendenza fisica."
+    },
+    "de": {
+      "benefits": "Absolute Euphorie und totale Schmerzlinderung; sorgt für ein tiefes Gefühl von Wärme und Wohlbefinden.",
+      "risks": "Schwere Atemdepression, tödliche Überdosierung, schnelle körperliche Abhängigkeit."
+    }
+  },
+  "oxycodone": {
+    "es": {
+      "benefits": "Analgesia profunda y sedación; eficaz para tratar el dolor crónico no maligno.",
+      "risks": "Potencial de adicción alto, depresión respiratoria, estreñimiento."
+    },
+    "it": {
+      "benefits": "Profonda analgesia e sedazione; efficace per il trattamento del dolore cronico, non maligno.",
+      "risks": "Alto potenziale di dipendenza, depressione respiratoria, stitichezza."
+    },
+    "de": {
+      "benefits": "Tiefe Analgesie und Sedierung; wirksam bei der Behandlung von chronischen, nicht malignen Schmerzen.",
+      "risks": "Hohes Suchtpotential, Atemdepression, Verstopfung."
+    }
+  },
+  "fentanyl": {
+    "es": {
+      "benefits": "Analgesia instantánea; capaz de tratar el dolor que es resistente a todos los demás opioides.",
+      "risks": "Depresión respiratoria letal (la dosis mortal es de ~2 mg para un hombre no tolerante), rigidez de la pared torácica."
+    },
+    "it": {
+      "benefits": "Analgesia istantanea; in grado di trattare il dolore resistente a tutti gli altri oppioidi.",
+      "risks": "Depressione respiratoria letale (la dose fatale è di ~2 mg per un maschio non tollerante), rigidità della parete toracica."
+    },
+    "de": {
+      "benefits": "Sofortige Analgesie; in der Lage, Schmerzen zu behandeln, die gegen alle anderen Opioide resistent sind.",
+      "risks": "Tödliche Atemdepression (tödliche Dosis beträgt ~2 mg für einen nicht toleranten Mann), Brustwandsteifigkeit."
+    }
+  },
+  "opioid_maintenance": {
+    "es": {
+      "benefits": "Evita la abstinencia y bloquea la euforia de otros opioides; permite a las personas volver a una vida funcional y productiva.",
+      "risks": "Adicción, largos periodos de abstinencia."
+    },
+    "it": {
+      "benefits": "Previene l'astinenza e blocca l'euforia di altri oppioidi; consente alle persone di tornare a una vita funzionale e produttiva.",
+      "risks": "Dipendenza, lunghi periodi di astinenza."
+    },
+    "de": {
+      "benefits": "Verhindert den Entzug und blockiert die Euphorie anderer Opioide; ermöglicht es dem Einzelnen, zu einem funktionierenden, produktiven Leben zurückzukehren.",
+      "risks": "Sucht, lange Wartezeiten."
+    }
+  },
+  "kratom": {
+    "es": {
+      "benefits": "Alivio legal del dolor, aumento leve del estado de ánimo; eficaz para el autocontrol de los síntomas menores de abstinencia de opioides.",
+      "risks": "Estrés hepático, dependencia física, abstinencia."
+    },
+    "it": {
+      "benefits": "Sollievo legale dal dolore, lieve aumento dell'umore; efficace per l'autogestione dei sintomi di astinenza da oppioidi minori.",
+      "risks": "Stress epatico, dipendenza fisica, astinenza."
+    },
+    "de": {
+      "benefits": "Rechtliche Schmerzlinderung, leichter Stimmungsschub; wirksam bei selbstverwaltenden leichten Opioid-Entzugssymptomen.",
+      "risks": "Leberstress, körperliche Abhängigkeit, Entzug."
+    }
+  },
+  "tianeptine": {
+    "es": {
+      "benefits": "Elevación rápida del estado de ánimo, euforia similar a los opioides; eficaz en el tratamiento de la depresión impulsada por la ansiedad a dosis bajas.",
+      "risks": "Brutal abstinencia de opioides, potencial de adicción grave."
+    },
+    "it": {
+      "benefits": "Rapido innalzamento dell'umore, euforia simile agli oppioidi; efficace nel trattamento della depressione causata dall'ansia a basse dosi.",
+      "risks": "Astinenza brutale da oppioidi, grave potenziale di dipendenza."
+    },
+    "de": {
+      "benefits": "Schnelle Stimmungsaufhellung, opioidähnliche Euphorie; wirksam bei der Behandlung von angstgetriebenen Depressionen bei niedrigen Dosen.",
+      "risks": "Brutaler Opioid-Entzug, starkes Suchtpotential."
+    }
+  },
+  "nbome": {
+    "es": {
+      "benefits": "Visuales fractales intensos; distorsión sensorial extremadamente potente.",
+      "risks": "<strong>Alto riesgo de mortalidad.</strong> convulsiones, paro cardíaco, vasoconstricción (pérdida de extremidades). Margen de seguridad estrecho."
+    },
+    "it": {
+      "benefits": "Immagini frattali intense; distorsione sensoriale estremamente potente.",
+      "risks": "<strong>Alto rischio di mortalità.</strong> Convulsioni, arresto cardiaco, vasocostrizione (perdita di arti). Margine di sicurezza ridotto."
+    },
+    "de": {
+      "benefits": "Intensive fraktale Visuals; extrem starke sensorische Verzerrung.",
+      "risks": "<strong>Hohes Todesrisiko.</strong> Krampfanfälle, Herzstillstand, Vasokonstriktion (Verlust von Gliedmaßen). Schmale Sicherheitsmarge."
+    }
+  },
+  "2c_series": {
+    "es": {
+      "benefits": "Mezcla única de efectos visuales similares al LSD y euforia física similar a la MDMA; 2C-B es muy apreciado por su claridad y mejora táctil.",
+      "risks": "Náuseas, HPPD, confusión, duración extrema (la serie DOx puede durar más de 24 horas)."
+    },
+    "it": {
+      "benefits": "Miscela unica di immagini simili all'LSD ed euforia fisica simile all'MDMA; 2C-B è molto apprezzato per la sua chiarezza e il miglioramento tattile.",
+      "risks": "Nausea, HPPD, confusione, durata estrema (la serie DOx può durare più di 24ore)."
+    },
+    "de": {
+      "benefits": "Einzigartige Mischung aus LSD-ähnlichen Bildern und MDMA-ähnlicher körperlicher Euphorie; 2C-B wird für seine Klarheit und taktile Verbesserung hoch geschätzt.",
+      "risks": "Übelkeit, HPPD, Verwirrtheit, extreme Dauer (DOx-Serie kann mehr als 24 Stunden dauern)."
+    }
+  },
+  "k2_spice": {
+    "es": {
+      "benefits": "Ninguno identificado en un entorno de rendimiento o clínico.",
+      "risks": "Psicosis aguda, convulsiones, infarto de miocardio, insuficiencia renal y dependencia extrema."
+    },
+    "it": {
+      "benefits": "Nessuna identificata in una performance o in un contesto clinico.",
+      "risks": "Psicosi acuta, convulsioni, infarto miocardico, insufficienza renale e dipendenza estrema."
+    },
+    "de": {
+      "benefits": "Keine in einer Leistungs- oder klinischen Umgebung identifiziert.",
+      "risks": "Akute Psychosen, Krampfanfälle, Myokardinfarkt, Nierenversagen und extreme Abhängigkeit."
+    }
+  },
+  "misc_tryptamines": {
+    "es": {
+      "benefits": "Alucinaciones visuales/auditivas, introspección emocional; 4-AcO-DMT proporciona una experiencia casi idéntica a los hongos de psilocibina.",
+      "risks": "Confusión, distorsión auditiva temporal (DiPT), riesgos psicodélicos típicos."
+    },
+    "it": {
+      "benefits": "Allucinazioni visive/uditive, introspezione emotiva; 4-AcO-DMT fornisce un'esperienza quasi identica ai funghi psilocibina.",
+      "risks": "Confusione, distorsione uditiva temporanea (DiPT), rischi psichedelici tipici."
+    },
+    "de": {
+      "benefits": "Visuelle/akustische Halluzinationen, emotionale Introspektion; 4-AcO-DMT bietet ein nahezu identisches Erlebnis wie Psilocybinpilze.",
+      "risks": "Verwirrung, vorübergehende Hörverzerrung (DiPT), typische psychedelische Risiken."
+    }
+  },
+  "lsa": {
+    "es": {
+      "benefits": "Sedación onírica, efectos visuales e introspección profunda; históricamente significativo como fuente legal y natural de lisergamidas.",
+      "risks": "Náuseas extremas, vasoconstricción severa (dolor en las piernas), letargo."
+    },
+    "it": {
+      "benefits": "Sedazione onirica, immagini e profonda introspezione; storicamente significativa come fonte legale e naturale di lisergammidi.",
+      "risks": "Nausea estrema, vasocostrizione grave (dolore alle gambe), letargia."
+    },
+    "de": {
+      "benefits": "Traumhafte Sedierung, Visuals und tiefe Selbstbeobachtung; historisch bedeutsam als legale, natürliche Quelle von Lysergamiden.",
+      "risks": "Extreme Übelkeit, starke Vasokonstriktion (Beinschmerzen), Lethargie."
+    }
+  },
+  "methamphetamine": {
+    "es": {
+      "benefits": "Euforia extrema, energía ilimitada, supresión total de la fatiga; permite una concentración y un rendimiento físico sin precedentes.",
+      "risks": "Neurotoxicidad severa, insuficiencia cardíaca, \"boca de metanfetamina\" (debido a la vasoconstricción/higiene), adicción rápida y devastadora."
+    },
+    "it": {
+      "benefits": "Euforia estrema, energia illimitata, soppressione totale della fatica; consente una concentrazione e una produzione fisica senza precedenti.",
+      "risks": "Grave neurotossicità, insufficienza cardiaca, “Meth mouth” (per vasocostrizione/igiene), dipendenza rapida devastante."
+    },
+    "de": {
+      "benefits": "Extreme Euphorie, grenzenlose Energie, totale Ermüdungsunterdrückung; ermöglicht beispiellose Konzentration und körperliche Leistung.",
+      "risks": "Schwere Neurotoxizität, Herzinsuffizienz, „Meth Mund“ (durch Vasokonstriktion/Hygiene), schnelle verheerende Sucht."
+    }
+  },
+  "mdea": {
+    "es": {
+      "benefits": "Calidez, empatía, apertura emocional; a menudo descrito como \"MDMA más suave y relajante\".",
+      "risks": "Neurotoxicidad, problemas de termorregulación."
+    },
+    "it": {
+      "benefits": "Calore, empatia, apertura emotiva; spesso descritto come \"MDMA più mite e rilassante\".",
+      "risks": "Neurotossicità, problemi di termoregolazione."
+    },
+    "de": {
+      "benefits": "Wärme, Empathie, emotionale Offenheit; oft als „milderes, entspannteres MDMA“ bezeichnet.",
+      "risks": "Neurotoxizität, Thermoregulationsprobleme."
+    }
+  },
+  "oxy_hydro": {
+    "es": {
+      "benefits": "Alivio completo del dolor, relajación; el estándar clínico absoluto para controlar el dolor moderado a severo.",
+      "risks": "Alto potencial de abuso, depresión respiratoria fatal en sobredosis."
+    },
+    "it": {
+      "benefits": "Sollievo completo dal dolore, rilassamento; lo standard clinico assoluto per la gestione del dolore da moderato a grave.",
+      "risks": "Alto potenziale di abuso, depressione respiratoria fatale in caso di sovradosaggio."
+    },
+    "de": {
+      "benefits": "Komplette Schmerzlinderung, Entspannung; der absolute klinische Standard für die Behandlung mittelschwerer bis schwerer Schmerzen.",
+      "risks": "Hohes Missbrauchspotential, tödliche Atemdepression bei Überdosierung."
+    }
+  },
+  "misc_sedatives": {
+    "es": {
+      "benefits": "Inducción instantánea de sueño intenso; históricamente proporcionó una alternativa \"sin resaca\" a los barbitúricos en algunos usuarios.",
+      "risks": "Sobredosis mortal cuando se mezcla con alcohol, ataxia severa."
+    },
+    "it": {
+      "benefits": "Induzione del sonno istantanea e pesante; storicamente ha fornito un'alternativa \"senza intoppi\" ai barbiturici in alcuni utenti.",
+      "risks": "Sovradosaggio fatale se miscelato con alcol, atassia grave."
+    },
+    "de": {
+      "benefits": "Sofortige, starke Schlafinduktion; bot in der Vergangenheit bei einigen Benutzern eine \"katerfreie\" Alternative zu Barbituraten.",
+      "risks": "Tödliche Überdosierung in Kombination mit Alkohol, schwere Ataxie."
+    }
+  },
+  "nootropics": {
+    "es": {
+      "benefits": "Mejora de la fluidez verbal, retención de la memoria, \"claridad mental\"; ayuda a proteger el cerebro del estrés oxidativo.",
+      "risks": "Dolores de cabeza (debido al agotamiento de la colina), irritabilidad."
+    },
+    "it": {
+      "benefits": "Miglioramento della fluidità verbale, della ritenzione della memoria, della \"chiarezza mentale\"; aiuta a proteggere il cervello dallo stress ossidativo.",
+      "risks": "Mal di testa (a causa dell'esaurimento della colina), irritabilità."
+    },
+    "de": {
+      "benefits": "Verbesserte Sprachflüssigkeit, Gedächtniserhaltung, \"geistige Klarheit\"; hilft, das Gehirn vor oxidativem Stress zu schützen.",
+      "risks": "Kopfschmerzen (durch Cholinmangel), Reizbarkeit."
+    }
+  },
+  "retatrutide": {
+    "es": {
+      "benefits": "Pérdida de peso promedio de hasta el 24-28% en los ensayos; mejora significativa en los marcadores metabólicos; potencial efecto \"termogénico\" debido al agonismo del glucagón.",
+      "risks": "Angustia gastrointestinal (náuseas, vómitos), aumento transitorio de la frecuencia cardíaca, potencial de pérdida muscular si la pérdida de peso es demasiado rápida."
+    },
+    "it": {
+      "benefits": "Perdita di peso media fino al 24-28% negli studi; miglioramento significativo dei marcatori metabolici; potenziale effetto \"termogenico\" dovuto all'agonismo del glucagone.",
+      "risks": "Distress gastrointestinale (nausea, vomito), aumento transitorio della frequenza cardiaca, potenziale perdita muscolare se la perdita di peso è troppo rapida."
+    },
+    "de": {
+      "benefits": "Durchschnittlicher Gewichtsverlust von bis zu 24-28% in Studien; signifikante Verbesserung der Stoffwechselmarker; potenzielle \"thermogene\" Wirkung aufgrund von Glukagonagonismus.",
+      "risks": "Magen-Darm-Beschwerden (Übelkeit, Erbrechen), vorübergehende Erhöhung der Herzfrequenz, Potenzial für Muskelverlust, wenn der Gewichtsverlust zu schnell ist."
+    }
+  },
+  "melanotan_ii": {
+    "es": {
+      "benefits": "Bronceado extremo de la piel, aumento dramático de la libido, supresión del apetito.",
+      "risks": "Oscurecimiento sistémico de lunares, náuseas severas (\"MT-Náuseas\"), enrojecimiento facial, priapismo (erecciones dolorosas de larga duración)."
+    },
+    "it": {
+      "benefits": "Abbronzatura estrema della pelle, aumento drammatico della libido, soppressione dell'appetito.",
+      "risks": "Oscuramento sistemico dei nei, nausea grave (“MT-Nausea”), rossore al viso, priapismo (erezioni dolorose di lunga durata)."
+    },
+    "de": {
+      "benefits": "Extreme Hautbräunung, dramatischer Anstieg der Libido, Appetitunterdrückung.",
+      "risks": "Systemische Verdunkelung der Muttermale, starke Übelkeit („MT-Übelkeit“), Gesichtsrötung, Priapismus (schmerzhafte lang anhaltende Erektionen)."
+    }
+  },
+  "telmisartan": {
+    "es": {
+      "benefits": "Reduce la grasa visceral, mejora la sensibilidad a la insulina, previene el engrosamiento de las paredes del corazón (LVH) en el ciclo.",
+      "risks": "Hiperpotasemia (potasio alto), mareos, tensión renal si ya está dañado."
+    },
+    "it": {
+      "benefits": "Riduce il grasso viscerale, migliora la sensibilità all'insulina, previene l'ispessimento delle pareti del cuore (LVH) durante il ciclo.",
+      "risks": "Iperkaliemia (potassio alto), vertigini, affaticamento renale se già danneggiato."
+    },
+    "de": {
+      "benefits": "Reduziert viszerales Fett, verbessert die Insulinsensitivität, verhindert die Verdickung der Herzwände (LVH) während des Zyklus.",
+      "risks": "Hyperkaliämie (hohes Kalium), Schwindel, Nierenbelastung, wenn bereits geschädigt."
+    }
+  },
+  "nebivolol": {
+    "es": {
+      "benefits": "Disminuye la frecuencia cardíaca en reposo, reduce la tensión cardiovascular sin el \"letargo\" o la \"planitud\" asociados con Propranolol.",
+      "risks": "Bradicardia (frecuencia cardíaca demasiado baja), enmascaramiento de los síntomas de hipoglucemia."
+    },
+    "it": {
+      "benefits": "Abbassa la frequenza cardiaca a riposo, riduce lo sforzo cardiovascolare senza la \"letargia\" o \"piattezza\" associata al propranololo.",
+      "risks": "Bradicardia (frequenza cardiaca troppo bassa), mascheramento dei sintomi dell'ipoglicemia."
+    },
+    "de": {
+      "benefits": "Senkt die Ruheherzfrequenz, reduziert die kardiovaskuläre Belastung ohne die mit Propranolol verbundene \"Lethargie\" oder \"Flachheit\".",
+      "risks": "Bradykardie (zu niedrige Herzfrequenz), Maskierung von Hypoglykämiesymptomen."
+    }
+  },
+  "lisinopril": {
+    "es": {
+      "benefits": "Disminuye profundamente la presión arterial, protege los riñones y reduce la carga de trabajo en el corazón.",
+      "risks": "Tos seca persistente, mareos, potencial de hiperpotasemia."
+    },
+    "it": {
+      "benefits": "Abbassa profondamente la pressione sanguigna, protegge i reni e riduce il carico di lavoro sul cuore.",
+      "risks": "Tosse secca persistente, vertigini, potenziale iperkaliemia."
+    },
+    "de": {
+      "benefits": "Senkt den Blutdruck tiefgreifend, schützt die Nieren und reduziert die Arbeitsbelastung des Herzens.",
+      "risks": "Trockener anhaltender Husten, Schwindel, Potenzial für Hyperkaliämie."
+    }
+  },
+  "aspirin_low_dose": {
+    "es": {
+      "benefits": "Reduce la viscosidad de la sangre (\"adelgaza la sangre\"), lo que reduce significativamente el riesgo de accidente cerebrovascular y coagulación de las arterias en el ciclo.",
+      "risks": "Úlceras estomacales, aumento del sangrado por cortes/hematomas menores."
+    },
+    "it": {
+      "benefits": "Riduce la viscosità del sangue (\"assottiglia il sangue\"), riducendo significativamente il rischio di ictus e di coagulazione delle arterie durante il ciclo.",
+      "risks": "Ulcere allo stomaco, aumento del sanguinamento da piccoli tagli/contusioni."
+    },
+    "de": {
+      "benefits": "Reduziert die Blutviskosität („verdünnt das Blut“), was das Risiko eines Schlaganfalls und gerinnter Arterien im Zyklus signifikant senkt.",
+      "risks": "Magengeschwüre, vermehrte Blutungen aus kleineren Schnitten/Blutergüssen."
+    }
+  },
+  "vitamin_k2": {
+    "es": {
+      "benefits": "Previene la rigidez vascular, revierte la calcificación arterial en etapa temprana y garantiza la seguridad sinérgica al utilizar protocolos de mega dosis de vitamina D3.",
+      "risks": "Mínima; interferencia con medicamentos anticoagulantes (warfarina)."
+    },
+    "it": {
+      "benefits": "Previene la rigidità vascolare, inverte la calcificazione arteriosa in fase iniziale e garantisce una sicurezza sinergica quando si utilizzano protocolli di vitamina D3 mega-dosati.",
+      "risks": "Minima; interferenza con farmaci anticoagulanti (Warfarin)."
+    },
+    "de": {
+      "benefits": "Verhindert Gefäßsteifigkeit, hebt die arterielle Verkalkung im Frühstadium auf und sorgt für synergistische Sicherheit bei der Verwendung von mega-dosierten Vitamin D3-Protokollen.",
+      "risks": "Minimal; Interferenz mit blutverdünnenden Medikamenten (Warfarin)."
+    }
+  },
+  "vitamin_d3": {
+    "es": {
+      "benefits": "Aumento significativo de la testosterona libre en hombres deficientes, mejor sensibilidad a la insulina y mayor producción de fuerza muscular.",
+      "risks": "Hipercalcemia (acumulación de calcio) si se toma en dosis extremas sin vitamina K2."
+    },
+    "it": {
+      "benefits": "Aumento significativo del testosterone libero negli uomini carenti, migliore sensibilità all'insulina e maggiore produzione di forza muscolare.",
+      "risks": "Ipercalcemia (accumulo di calcio) se assunto in dosi estreme senza vitamina K2."
+    },
+    "de": {
+      "benefits": "Signifikanter Anstieg des freien Testosterons bei mangelhaften Männern, verbesserte Insulinsensitivität und verbesserte Muskelkraftproduktion.",
+      "risks": "Hyperkalzämie (Kalziumaufbau) bei Einnahme in extremen Dosen ohne Vitamin K2."
+    }
+  },
+  "vitamin_c": {
+    "es": {
+      "benefits": "Recuperación acelerada a través de la reducción del cortisol, mejora de la integridad de las articulaciones a través de la síntesis de colágeno y protección contra el daño oxidativo por el uso de andrógenos.",
+      "risks": "Angustia gastrointestinal (diarrea) a la tolerancia intestinal; potencial de cálculos renales en individuos predispuestos."
+    },
+    "it": {
+      "benefits": "Recupero accelerato tramite cortisolo inferiore, migliore integrità articolare attraverso la sintesi del collagene e protezione contro il danno ossidativo derivante dall'uso di androgeni.",
+      "risks": "Distress gastrointestinale (diarrea) alla tolleranza intestinale; potenziale di calcoli renali in individui predisposti."
+    },
+    "de": {
+      "benefits": "Beschleunigte Erholung durch niedrigeres Cortisol, verbesserte Gelenkintegrität durch Kollagensynthese und Schutz vor oxidativen Schäden durch Androgenkonsum.",
+      "risks": "Magen-Darm-Beschwerden (Durchfall) bei Darmtoleranz; Potenzial für Nierensteine bei prädisponierten Personen."
+    }
+  },
+  "vitamin_b12": {
+    "es": {
+      "benefits": "Aumento profundo de los niveles de energía subjetiva, mejora de la claridad cognitiva y estabilización de los recuentos de glóbulos rojos durante los ciclos de andrógenos pesados.",
+      "risks": "Raro; potencialmente acné en dosis altas."
+    },
+    "it": {
+      "benefits": "Profondo aumento dei livelli di energia soggettiva, migliore chiarezza cognitiva e stabilizzazione della conta dei globuli rossi durante i cicli di androgeni pesanti.",
+      "risks": "Raro; potenzialmente acne a dosi elevate."
+    },
+    "de": {
+      "benefits": "Starke Erhöhung des subjektiven Energieniveaus, verbesserte kognitive Klarheit und Stabilisierung der Anzahl der roten Blutkörperchen während schwerer Androgenzyklen.",
+      "risks": "Selten; möglicherweise Akne in hohen Dosen."
+    }
+  },
+  "vitamin_b6_p5p": {
+    "es": {
+      "benefits": "Supresión de los efectos secundarios inducidos por la prolactina (ginecomastia, disfunción eréctil), mejor estado de ánimo y mejor metabolismo de las proteínas.",
+      "risks": "Neuropatía periférica si se toma en dosis extremas (típicamente >500 mg/día) durante largos períodos."
+    },
+    "it": {
+      "benefits": "Soppressione degli effetti collaterali indotti dalla prolattina (ginecomastia, disfunzione erettile), miglioramento dell'umore e migliore metabolismo delle proteine.",
+      "risks": "Neuropatia periferica se assunta in dosi estreme (tipicamente >500mg/die) per lunghi periodi."
+    },
+    "de": {
+      "benefits": "Unterdrückung von Prolaktin-induzierten Nebenwirkungen (Gynäkomastie, ED), verbesserte Stimmung und besserer Proteinstoffwechsel.",
+      "risks": "Periphere Neuropathie, wenn sie in extremen Dosen (typischerweise >500 mg/Tag) über einen längeren Zeitraum eingenommen wird."
+    }
+  },
+  "tadalafil": {
+    "es": {
+      "benefits": "Flujo sanguíneo masivo a los músculos (bombas), disminución de la presión arterial, mejora de la salud vascular.",
+      "risks": "Dolores de cabeza, congestión nasal, caída peligrosa de la presión arterial si se mezcla con nitratos (Poppers/Nitroglicerina)."
+    },
+    "it": {
+      "benefits": "Massiccio flusso sanguigno ai muscoli (pompe), abbassamento della pressione sanguigna, miglioramento della salute vascolare.",
+      "risks": "Mal di testa, congestione nasale, pericoloso calo della PA se miscelato con Nitrati (Poppers/Nitroglicerina)."
+    },
+    "de": {
+      "benefits": "Massiver Blutfluss zu den Muskeln (Pumpen), niedriger Blutdruck, verbesserte Gefäßgesundheit.",
+      "risks": "Kopfschmerzen, verstopfte Nase, gefährlicher Blutdruckabfall bei Mischung mit Nitraten (Poppers/Nitroglycerin)."
+    }
+  },
+  "metformin": {
+    "es": {
+      "benefits": "Previene el aumento de grasa, mejora la longevidad, controla los picos de azúcar en la sangre de la HGH.",
+      "risks": "Angustia gastrointestinal (heces blandas), agotamiento de vitamina B12, acidosis láctica (rara)."
+    },
+    "it": {
+      "benefits": "Previene l'aumento di grasso, migliora la longevità, gestisce i picchi di zucchero nel sangue da HGH.",
+      "risks": "Distress gastrointestinale (feci molli), deplezione di vitamina B12, acidosi lattica (rara)."
+    },
+    "de": {
+      "benefits": "Verhindert die Fettvermehrung, verbessert die Langlebigkeit, bewältigt die Blutzuckerspitzen von HGH.",
+      "risks": "Magen-Darm-Beschwerden (lockerer Stuhl), Vitamin-B12-Depletion, Laktatazidose (selten)."
+    }
+  },
+  "vardenafil_avanafil": {
+    "es": {
+      "benefits": "Inicio rápido (Avanafil actúa en <15 minutos), mejora la calidad eréctil.",
+      "risks": "Dolores de cabeza, enrojecimiento facial, cambios en la visión (tinte azul)."
+    },
+    "it": {
+      "benefits": "Esordio rapido (Avanafil agisce in <15 min), migliore qualità erettile.",
+      "risks": "Mal di testa, rossore al viso, alterazioni della vista (colorazione blu)."
+    },
+    "de": {
+      "benefits": "Schnell einsetzend (Avanafil wirkt in <15 Minuten), verbesserte erektile Qualität.",
+      "risks": "Kopfschmerzen, Gesichtsrötung, Sehstörungen (Blaufärbung)."
+    }
+  },
+  "dapoxetine": {
+    "es": {
+      "benefits": "Aumenta significativamente el tiempo de latencia eyaculatoria intravaginal (IELT); mejora el control sobre la eyaculación.",
+      "risks": "Náuseas, mareos, dolor de cabeza, sequedad de boca."
+    },
+    "it": {
+      "benefits": "Aumenta significativamente il tempo di latenza eiaculatoria intravaginale (IELT); migliora il controllo sull'eiaculazione.",
+      "risks": "Nausea, vertigini, mal di testa, secchezza delle fauci."
+    },
+    "de": {
+      "benefits": "Erhöht signifikant die intravaginale Ejakulationslatenzzeit (IELT); verbessert die Kontrolle über die Ejakulation.",
+      "risks": "Übelkeit, Schwindel, Kopfschmerzen, Mundtrockenheit."
+    }
+  },
+  "hashish": {
+    "es": {
+      "benefits": "Mejora sensorial extrema, disociación del dolor, propiedades antieméticas significativas.",
+      "risks": "Ansiedad/pánico agudo, letargo cognitivo, vulnerabilidad a la psicosis inducida por fármacos en individuos predispuestos, síndrome de hiperemesis cannabinoide (CHS)."
+    },
+    "it": {
+      "benefits": "Estrema intensificazione sensoriale, dissociazione del dolore, significative proprietà antiemetiche.",
+      "risks": "Ansia/panico acuto, letargia cognitiva, vulnerabilità alla psicosi indotta da farmaci in individui predisposti, sindrome da iperemesi da cannabinoidi (CHS)."
+    },
+    "de": {
+      "benefits": "Extreme sensorische Verbesserung, Schmerzdissoziation, signifikante antiemetische Eigenschaften.",
+      "risks": "Akute Angst/Panik, kognitive Lethargie, Anfälligkeit für medikamenteninduzierte Psychosen bei prädisponierten Personen, Cannabinoid-Hyperemesis-Syndrom (CHS)."
+    }
+  },
+  "ayahuasca": {
+    "es": {
+      "benefits": "Profundas percepciones espirituales/introspectivas, reducción rápida de los síntomas depresivos, neuroplasticidad a largo plazo.",
+      "risks": "Síndrome serotoninérgico (letal si se combina con ISRS), crisis hipertensiva, purga fisiológica extrema (vómitos/diarrea), angustia psicológica grave."
+    },
+    "it": {
+      "benefits": "Profonde intuizioni spirituali/introspettive, rapida riduzione dei sintomi depressivi, neuroplasticità a lungo termine.",
+      "risks": "Sindrome serotoninergica (letale se combinata con SSRI), crisi ipertensiva, spurgo fisiologico estremo (vomito/diarrea), grave disagio psicologico."
+    },
+    "de": {
+      "benefits": "Tiefe spirituelle/introspektive Einsichten, schnelle Reduktion depressiver Symptome, langfristige Neuroplastizität.",
+      "risks": "Serotonin-Syndrom (tödlich in Kombination mit SSRI), hypertensive Krise, extreme physiologische Säuberung (Erbrechen/Durchfall), schwere psychische Belastung."
+    }
+  },
+  "insulin_humalog": {
+    "es": {
+      "benefits": "Llenura muscular instantánea, recuperación rápida y aumento de peso masivo en un tiempo récord.",
+      "risks": "<strong>Hipoglucemia letal.</strong> Una dosis incorrecta o la omisión de una comida pueden provocar un coma inmediato o la muerte. Alto riesgo de aumento de grasa visceral."
+    },
+    "it": {
+      "benefits": "Pienezza muscolare istantanea, recupero rapido e massiccio aumento di peso in tempi record.",
+      "risks": "<strong>Ipoglicemia letale.</strong> Una dose errata o la mancanza di un pasto possono causare coma immediato o morte. Alto rischio di aumento di grasso viscerale."
+    },
+    "de": {
+      "benefits": "Sofortige Muskelfülle, schnelle Erholung und massive Gewichtszunahme in Rekordzeit.",
+      "risks": "<strong>Tödliche Hypoglykämie.</strong> Eine falsche Dosis oder das Auslassen einer Mahlzeit kann zu sofortigem Koma oder zum Tod führen. Hohes Risiko für viszeralen Fettaufbau."
+    }
+  },
+  "dnp_extreme": {
+    "es": {
+      "benefits": "Pérdida de grasa de hasta 1 libra por día. No requiere ejercicio ni déficit calórico para trabajar.",
+      "risks": "<strong>Muerte por Sobrecalentamiento.</strong> El cuerpo literalmente \"cocina\" de adentro hacia afuera. Cataratas, neuropatía e insuficiencia orgánica."
+    },
+    "it": {
+      "benefits": "Perdita di grasso fino a 1 libbra al giorno. Non richiede esercizio fisico o deficit calorico per funzionare.",
+      "risks": "<strong>Morte per surriscaldamento.</strong> Il corpo letteralmente \"cuoce\" dall'interno verso l'esterno. Cataratta, neuropatia e insufficienza d'organo."
+    },
+    "de": {
+      "benefits": "Fettabbau von bis zu 1 Pfund pro Tag. Benötigt keine Bewegung oder ein Kaloriendefizit, um zu funktionieren.",
+      "risks": "<strong>Tod durch Überhitzung.</strong> Der Körper „kocht“ buchstäblich von innen heraus. Katarakte, Neuropathie und Organversagen."
+    }
+  },
+  "fluoxetine": {
+    "es": {
+      "benefits": "Elevación significativa del estado de ánimo, reducción de los pensamientos obsesivos, alto perfil de seguridad clínica.",
+      "risks": "Disfunción sexual, embotamiento emocional, insomnio, riesgo de síndrome serotoninérgico si se combina con IMAO."
+    },
+    "it": {
+      "benefits": "Aumento significativo dell'umore, riduzione dei pensieri ossessivi, alto profilo di sicurezza clinica.",
+      "risks": "Disfunzione sessuale, ottundimento emotivo, insonnia, rischio di sindrome serotoninergica se combinato con IMAO."
+    },
+    "de": {
+      "benefits": "Signifikante Stimmungsaufhellung, Reduktion von Zwangsgedanken, hohes klinisches Sicherheitsprofil.",
+      "risks": "Sexuelle Dysfunktion, emotionale Abstumpfung, Schlaflosigkeit, Risiko eines Serotonin-Syndroms in Kombination mit MAO-Hemmern."
+    }
+  },
+  "sertraline": {
+    "es": {
+      "benefits": "Altamente eficaz para la ansiedad severa y los trastornos de pánico junto con la depresión.",
+      "risks": "Angustia gastrointestinal (común), disfunción sexual, embotamiento emocional, cambios de peso."
+    },
+    "it": {
+      "benefits": "Altamente efficace per gravi disturbi d'ansia e di panico insieme alla depressione.",
+      "risks": "Distress gastrointestinale (comune), disfunzione sessuale, ottundimento emotivo, cambiamenti di peso."
+    },
+    "de": {
+      "benefits": "Hochwirksam bei schweren Angst- und Panikstörungen neben Depressionen.",
+      "risks": "Magen-Darm-Beschwerden (häufig), sexuelle Dysfunktion, emotionale Abstumpfung, Gewichtsveränderungen."
+    }
+  },
+  "escitalopram": {
+    "es": {
+      "benefits": "Se considera que tiene el perfil de efectos secundarios más limpio de los ISRS; aparición muy rápida de efectos ansiolíticos.",
+      "risks": "Letargo, disfunción sexual, prolongación del intervalo QT dependiente de la dosis (cambios en el ritmo cardíaco)."
+    },
+    "it": {
+      "benefits": "Considerato il profilo di effetti collaterali più pulito degli SSRI; insorgenza molto rapida di effetti ansiolitici.",
+      "risks": "Letargia, disfunzione sessuale, prolungamento dell'intervallo QT dose-dipendente (variazioni del ritmo cardiaco)."
+    },
+    "de": {
+      "benefits": "Es wird angenommen, dass es das sauberste Nebenwirkungsprofil der SSRIs aufweist; sehr schnell einsetzende anxiolytische Wirkungen.",
+      "risks": "Lethargie, sexuelle Dysfunktion, dosisabhängige QT-Intervallverlängerung (Herzrhythmusstörungen)."
+    }
+  },
+  "venlafaxine": {
+    "es": {
+      "benefits": "Altamente eficaz para la depresión resistente al tratamiento y las afecciones de dolor crónico.",
+      "risks": "Síndrome de abstinencia grave (\"zaps cerebrales\"), presión arterial elevada, sudoración intensa, insomnio."
+    },
+    "it": {
+      "benefits": "Altamente efficace per la depressione resistente al trattamento e le condizioni di dolore cronico.",
+      "risks": "Sindrome da astinenza grave (\"brain zaps\"), pressione sanguigna elevata, sudorazione grave, insonnia."
+    },
+    "de": {
+      "benefits": "Hochwirksam bei behandlungsresistenten Depressionen und chronischen Schmerzzuständen.",
+      "risks": "Schweres Entzugssyndrom („brain zaps“), erhöhter Blutdruck, starkes Schwitzen, Schlaflosigkeit."
+    }
+  },
+  "duloxetine": {
+    "es": {
+      "benefits": "Trata simultáneamente la depresión y el dolor físico intenso/fibromialgia.",
+      "risks": "Toxicidad hepática (especialmente si se combina con alcohol), síndrome de abstinencia intenso, náuseas."
+    },
+    "it": {
+      "benefits": "Tratta contemporaneamente depressione e dolore fisico grave/fibromialgia.",
+      "risks": "Tossicità epatica (soprattutto se associata ad alcool), sindrome da astinenza intensa, nausea."
+    },
+    "de": {
+      "benefits": "Behandelt gleichzeitig Depressionen und starke körperliche Schmerzen/Fibromyalgie.",
+      "risks": "Lebertoxizität (insbesondere in Kombination mit Alkohol), intensives Entzugssyndrom, Übelkeit."
+    }
+  },
+  "bupropion": {
+    "es": {
+      "benefits": "Aumenta la energía y la libido (a menudo se usa para revertir la disfunción sexual inducida por ISRS); altamente efectivo para dejar la nicotina.",
+      "risks": "Riesgo grave de convulsiones inducidas por fármacos a dosis altas, aumento de la ansiedad, insomnio, pérdida de peso."
+    },
+    "it": {
+      "benefits": "Aumenta l'energia e la libido (spesso utilizzata per invertire la disfunzione sessuale indotta da SSRI); altamente efficace per smettere di assumere nicotina.",
+      "risks": "Grave rischio di convulsioni indotte da farmaci a dosi elevate, aumento dell'ansia, insonnia, perdita di peso."
+    },
+    "de": {
+      "benefits": "Erhöht Energie und Libido (oft verwendet, um SSRI-induzierte sexuelle Dysfunktion umzukehren); hochwirksam bei der Nikotinentwöhnung.",
+      "risks": "Schweres Risiko von medikamenteninduzierten Anfällen bei hohen Dosen, Angsteskalation, Schlaflosigkeit, Gewichtsverlust."
+    }
+  },
+  "mirtazapine": {
+    "es": {
+      "benefits": "Cura instantánea para el insomnio severo; aumento masivo de peso para pacientes con bajo peso; prácticamente cero disfunción sexual.",
+      "risks": "Somnolencia severa (\"efecto resaca\"), aumento de peso/obesidad extremadamente rápido, alteración de los lípidos."
+    },
+    "it": {
+      "benefits": "Cura istantanea per l'insonnia grave; massiccio aumento di peso per i pazienti sottopeso; disfunzione sessuale praticamente nulla.",
+      "risks": "Grave intontimento (\"effetto sbornia\"), aumento di peso/obesità estremamente rapido, alterazione dei lipidi."
+    },
+    "de": {
+      "benefits": "Sofortige Heilung bei schwerer Schlaflosigkeit; massive Gewichtszunahme bei untergewichtigen Patienten; praktisch keine sexuelle Dysfunktion.",
+      "risks": "Starke Benommenheit („Hangover-Effekt“), extrem schnelle Gewichtszunahme/Fettleibigkeit, Lipidstörung."
+    }
+  },
+  "amitriptyline": {
+    "es": {
+      "benefits": "Increíble eficacia para el dolor neuropático y las migrañas crónicas; profundos efectos sedantes para el insomnio.",
+      "risks": "Letal en sobredosis (cardiotoxicidad), boca extremadamente seca, estreñimiento severo, retención urinaria, aumento de peso."
+    },
+    "it": {
+      "benefits": "Incredibile efficacia per il dolore neuropatico e le emicranie croniche; profondi effetti sedativi per l'insonnia.",
+      "risks": "Letale in sovradosaggio (cardiotossicità), secchezza delle fauci estrema, stipsi grave, ritenzione urinaria, aumento di peso."
+    },
+    "de": {
+      "benefits": "Unglaubliche Wirksamkeit bei neuropathischen Schmerzen und chronischer Migräne; tiefgreifende beruhigende Wirkung bei Schlaflosigkeit.",
+      "risks": "Tödlich bei Überdosierung (Kardiotoxizität), extreme Mundtrockenheit, schwere Verstopfung, Harnverhalt, Gewichtszunahme."
+    }
+  },
+  "tranylcypromine": {
+    "es": {
+      "benefits": "Puede curar completamente la depresión atípica extrema y resistente al tratamiento donde literalmente nada más funciona.",
+      "risks": "<strong>Interacciones dietéticas letales (el \"efecto queso\").</strong> Comer alimentos ricos en tiramina (queso añejo, vino, carnes curadas) puede causar una crisis hipertensiva letal (presión arterial explosiva)."
+    },
+    "it": {
+      "benefits": "Può curare completamente la depressione atipica estrema e resistente al trattamento dove letteralmente non funziona nient' altro.",
+      "risks": "<strong>Interazioni dietetiche letali (\"effetto formaggio\").</strong> Mangiare cibi ricchi di tiramina (formaggi stagionati, vino, salumi) può causare una crisi ipertensiva letale (esplosione della pressione sanguigna)."
+    },
+    "de": {
+      "benefits": "Kann extreme, behandlungsresistente atypische Depressionen vollständig heilen, wo buchstäblich nichts anderes funktioniert.",
+      "risks": "<strong>Tödliche diätetische Interaktionen (der „Käse-Effekt“).</strong> Der Verzehr tyraminreicher Lebensmittel (gereifter Käse, Wein, Wurstwaren) kann zu einer tödlichen hypertensiven Krise (explodierender Blutdruck) führen."
+    }
+  },
+  "codeine": {
+    "es": {
+      "benefits": "Proporciona euforia de leve a moderada, fuerte supresión de la tos y alivio del dolor. Mucho más suave que la oxicodona o el fentanilo.",
+      "risks": "Depresión respiratoria letal a dosis masivas, estreñimiento severo, liberación intensa de histamina (picazón), dependencia física."
+    },
+    "it": {
+      "benefits": "Fornisce euforia da lieve a moderata, una forte soppressione della tosse e sollievo dal dolore. Molto più mite dell'ossicodone o del fentanil.",
+      "risks": "Depressione respiratoria letale a dosi massicce, stipsi grave, intenso rilascio di istamina (prurito), dipendenza fisica."
+    },
+    "de": {
+      "benefits": "Bietet leichte bis mäßige Euphorie, starke Hustenunterdrückung und Schmerzlinderung. Viel milder als Oxycodon oder Fentanyl.",
+      "risks": "Tödliche Atemdepression bei massiven Dosen, schwere Verstopfung, intensive Histaminfreisetzung (Juckreiz), körperliche Abhängigkeit."
+    }
+  },
+  "nad_plus": {
+    "es": {
+      "benefits": "Aumento masivo de la energía celular, claridad mental profunda, recuperación acelerada de un entrenamiento intenso o abuso de sustancias, propiedades antienvejecimiento.",
+      "risks": "Intensas molestias fisiológicas durante la infusión IV (opresión en el pecho, calambres estomacales, ansiedad). Generalmente muy seguro."
+    },
+    "it": {
+      "benefits": "Massiccio aumento dell'energia cellulare, profonda chiarezza mentale, recupero accelerato da allenamento intenso o abuso di sostanze, proprietà anti-invecchiamento.",
+      "risks": "Intenso disagio fisiologico durante l'infusione EV (costrizione toracica, crampi allo stomaco, ansia). Generalmente molto sicuro."
+    },
+    "de": {
+      "benefits": "Massive Steigerung der Zellenergie, tiefgreifende geistige Klarheit, beschleunigte Erholung von intensivem Training oder Drogenmissbrauch, Anti-Aging-Eigenschaften.",
+      "risks": "Intensive physiologische Beschwerden während der intravenösen Infusion (Engegefühl in der Brust, Magenkrämpfe, Angstzustände). Im Allgemeinen sehr sicher."
+    }
+  },
+  "mots_c": {
+    "es": {
+      "benefits": "Profundos aumentos en la resistencia física, pérdida rápida de grasa sin cambios drásticos en la dieta y protección contra el deterioro metabólico (resistencia a la insulina).",
+      "risks": "Compuesto relativamente nuevo con riesgos desconocidos a largo plazo. Potencial de hipoglucemia si se combina con insulina o ayuno intenso."
+    },
+    "it": {
+      "benefits": "Profondi aumenti della resistenza fisica, rapida perdita di grasso senza drastici cambiamenti nella dieta e protezione contro il declino metabolico (insulino-resistenza).",
+      "risks": "Composto relativamente nuovo con rischi a lungo termine sconosciuti. Potenziale ipoglicemia se combinato con insulina o digiuno severo."
+    },
+    "de": {
+      "benefits": "Tiefgreifende Steigerung der körperlichen Ausdauer, schneller Fettabbau ohne drastische Ernährungsumstellung und Schutz vor Stoffwechselrückgang (Insulinresistenz).",
+      "risks": "Relativ neues Compound mit unbekannten Langzeitrisiken. Potenzial für Hypoglykämie in Kombination mit Insulin oder starkem Fasten."
+    }
+  },
+  "clonazepam": {
+    "es": {
+      "benefits": "Elimina profundamente la ansiedad, previene las convulsiones, induce la relajación muscular y ayuda a detener los \"malos viajes\" de los psicodélicos.",
+      "risks": "Dependencia física grave, convulsiones de abstinencia potencialmente mortales, amnesia anterógrada (desmayos) y depresión respiratoria letal cuando se mezclan con alcohol u opioides."
+    },
+    "it": {
+      "benefits": "Elimina profondamente l'ansia, previene le convulsioni, induce il rilassamento muscolare e aiuta a fermare i \"brutti viaggi\" delle sostanze psichedeliche.",
+      "risks": "Grave dipendenza fisica, crisi di astinenza pericolose per la vita, amnesia anterograda (blackout) e depressione respiratoria letale se miscelata con alcol o oppioidi."
+    },
+    "de": {
+      "benefits": "Beseitigt tiefgreifend Angstzustände, beugt Anfällen vor, induziert Muskelentspannung und hilft, \"schlechte Reisen\" von Psychedelika zu stoppen.",
+      "risks": "Schwere körperliche Abhängigkeit, lebensbedrohliche Entzugsanfälle, anterograde Amnesie (Blackouts) und tödliche Atemdepression bei Mischung mit Alkohol oder Opioiden."
+    }
+  },
+  "diazepam": {
+    "es": {
+      "benefits": "Excelente para reducir el consumo de benzos o alcohol de acción corta, relajación muscular profunda y alivio de la ansiedad de larga duración.",
+      "risks": "Letargo, embotamiento cognitivo, dependencia física grave, depresión respiratoria letal cuando se combina con opioides/alcohol."
+    },
+    "it": {
+      "benefits": "Eccellente per ridurre le benzodiazepine o l'alcol a breve durata d'azione, il rilassamento muscolare profondo e il sollievo dall'ansia a lungo termine.",
+      "risks": "Letargia, ottundimento cognitivo, grave dipendenza fisica, depressione respiratoria letale quando combinato con oppioidi/alcol."
+    },
+    "de": {
+      "benefits": "Hervorragend geeignet, um kürzer wirkende Benzos oder Alkohol, tiefgreifende Muskelentspannung und lang anhaltende Linderung von Angstzuständen abzubauen.",
+      "risks": "Lethargie, kognitive Abstumpfung, schwere körperliche Abhängigkeit, tödliche Atemdepression in Kombination mit Opioiden/Alkohol."
+    }
+  },
+  "lorazepam": {
+    "es": {
+      "benefits": "Inicio de acción muy rápido; altamente eficaz para detener instantáneamente los ataques de pánico graves o las convulsiones agudas.",
+      "risks": "Amnesia severa (desmayos), tolerancia rápida, adicción física, depresión respiratoria."
+    },
+    "it": {
+      "benefits": "Inizio d'azione molto rapido; altamente efficace nell'arrestare immediatamente gravi attacchi di panico o convulsioni acute.",
+      "risks": "Grave amnesia (blackout), rapida tolleranza, dipendenza fisica, depressione respiratoria."
+    },
+    "de": {
+      "benefits": "Sehr schneller Wirkungseintritt; sehr effektiv bei der sofortigen Beendigung schwerer Panikattacken oder akuter Anfälle.",
+      "risks": "Schwere Amnesie (Blackouts), schnelle Toleranz, körperliche Sucht, Atemdepression."
+    }
+  },
+  "zolpidem": {
+    "es": {
+      "benefits": "Forza el inicio rápido del sueño. A veces puede \"volver a despertar\" la función cerebral en pacientes con daño cerebral grave (efecto paradójico).",
+      "risks": "<strong>Sonambulismo/Amnesia.</strong> Los usuarios a menudo realizan tareas complejas (conducir, cocinar, tener conversaciones) con cero memoria del evento. Alucinaciones si se resiste al sueño."
+    },
+    "it": {
+      "benefits": "Forza l'insorgenza rapida del sonno. Può a volte \"risvegliare\" la funzione cerebrale in pazienti con gravi danni cerebrali (effetto paradossale).",
+      "risks": "<strong>Sonnambulismo/Amnesia.</strong> Gli utenti spesso svolgono compiti complessi (guidare, cucinare, conversare) con zero memoria dell'evento. Allucinazioni se si resiste al sonno."
+    },
+    "de": {
+      "benefits": "Erzwingt schnelles Einschlafen. Kann bei Patienten mit schweren Hirnschäden manchmal die Gehirnfunktion „wiedererwecken“ (paradoxer Effekt).",
+      "risks": "<strong>Schlafwandeln/Amnesie.</strong> Benutzer erledigen oft komplexe Aufgaben (Fahren, Kochen, Gespräche führen) ohne Erinnerung an das Ereignis. Halluzinationen, wenn dem Schlaf widerstanden wird."
+    }
+  },
+  "carisoprodol": {
+    "es": {
+      "benefits": "Relajación muscular total; intensa euforia corporal \"gelatinosa\" (el \"Soma Coma\").",
+      "risks": "Perfil de abstinencia extremadamente adictivo y peligroso, altamente letal cuando se mezcla con alcohol u opioides debido a la depresión respiratoria sinérgica."
+    },
+    "it": {
+      "benefits": "Rilassamento muscolare totale; intensa euforia “gelatinosa” corporea alta (il “Soma Coma”).",
+      "risks": "Profilo di astinenza estremamente avvincente e pericoloso, altamente letale se miscelato con alcol o oppioidi a causa della depressione respiratoria sinergica."
+    },
+    "de": {
+      "benefits": "Totale Muskelentspannung; intensives euphorisches \"geleeartiges\" Körperhoch (das \"Soma Coma\").",
+      "risks": "Extrem süchtig machendes, gefährliches Entzugsprofil, sehr tödlich bei Mischung mit Alkohol oder Opioiden aufgrund einer synergistischen Atemdepression."
+    }
+  },
+  "morphine": {
+    "es": {
+      "benefits": "Alivio profundo del dolor, euforia significativa, alivio de la dificultad respiratoria severa (hambre de aire) en pacientes terminales.",
+      "risks": "Depresión respiratoria letal, adicción física severa, estreñimiento profundo, liberación de histamina que conduce a picazón severa e hipotensión."
+    },
+    "it": {
+      "benefits": "Profondo sollievo dal dolore, euforia significativa, sollievo da gravi difficoltà respiratorie (fame d'aria) nei pazienti terminali.",
+      "risks": "Depressione respiratoria letale, grave dipendenza fisica, costipazione profonda, rilascio di istamina che porta a grave prurito e ipotensione."
+    },
+    "de": {
+      "benefits": "Tiefe Schmerzlinderung, deutliche Euphorie, Linderung schwerer Atemnot (Lufthunger) bei terminalen Patienten.",
+      "risks": "Tödliche Atemdepression, schwere körperliche Abhängigkeit, tiefe Verstopfung, Histaminfreisetzung, die zu starkem Juckreiz und Hypotonie führt."
     }
   }
 };

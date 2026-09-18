@@ -974,6 +974,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (window.playClickSound) window.playClickSound();
 
+                if (typeof mergeTranslations === 'function') mergeTranslations();
                 updateUIStrings();
                 const searchInput = document.getElementById('searchInput');
                 renderSidebar(searchInput ? searchInput.value : '');
@@ -2053,11 +2054,11 @@ function loadArticle(id) {
         <div class="pros-cons-grid">
             <div class="pro-con-box pro">
                 <div class="box-header">+ ${currentLang === 'en' ? 'OBSERVED BENEFITS' : getT('status_safe').toUpperCase() + ' / ' + getT('dosage_clinical').toUpperCase()}</div>
-                <div class="box-content">${item[`benefits_${currentLang}`] || item.benefits || getT('not_applicable')}</div>
+                <div class="box-content">${item[`benefits_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].benefits) || item.benefits || getT('not_applicable')}</div>
             </div>
             <div class="pro-con-box con">
                 <div class="box-header">- ${getT('risks').toUpperCase()}</div>
-                <div class="box-content">${item[`risks_${currentLang}`] || item.risks || getT('not_applicable')}</div>
+                <div class="box-content">${item[`risks_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].risks) || item.risks || getT('not_applicable')}</div>
             </div>
         </div>
     ` : '';
