@@ -369,7 +369,7 @@ window.playClickSound = function() {
 
 // Tactical audio feedback for interactive controls
 document.addEventListener('click', (e) => {
-    if (e.target.closest('.cyber-btn, .nav-item, .theme-card, .audio-btn, .progress-step, .bookmark-btn, .mobile-nav-btn')) {
+    if (e.target.closest('.cyber-btn, .nav-item, .theme-card, .audio-btn, .progress-step, .bookmark-btn, .mobile-nav-btn, .mbn-item, .mobile-toggle, .mobile-close, .lang-selected-btn, .lang-option-card')) {
         window.playClickSound();
     }
 });
@@ -1112,80 +1112,125 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Draggable Mobile Sidebar Interaction ---
+    // --- High-Performance Fluid Draggable Mobile Sidebar Interaction ---
     let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
     let isDraggingSidebar = false;
-    const sidebarEdgeThreshold = 40; // Zone for edge swipe
+    let canStartDrag = false;
+    let dragDirection = null; // null | 'horizontal' | 'vertical'
+    const sidebarEdgeThreshold = 44; // Zone for edge swipe open
 
     document.addEventListener('touchstart', (e) => {
-        if (window.innerWidth > 1024) return; // Only on mobile/tablet
+        if (window.innerWidth > 1024 || !sidebar) return;
         
-        const touchX = e.touches[0].clientX;
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        touchStartTime = Date.now();
+        isDraggingSidebar = false;
+        dragDirection = null;
+        
         const isCollapsed = sidebar.classList.contains('collapsed');
         
-        // Start dragging if:
-        // 1. Sidebar is collapsed AND touch is near the left edge
-        // 2. Sidebar is NOT collapsed AND touch is ON the sidebar
-        if (isCollapsed && touchX < sidebarEdgeThreshold) {
-            touchStartX = touchX;
-            isDraggingSidebar = true;
-            sidebar.classList.add('dragging');
+        // Allowed to start drag if:
+        // 1. Sidebar is collapsed AND touch begins near the left screen edge
+        // 2. Sidebar is OPEN (can swipe anywhere leftwards to dismiss)
+        if (isCollapsed && touchStartX <= sidebarEdgeThreshold) {
+            canStartDrag = true;
         } else if (!isCollapsed) {
-            const rect = sidebar.getBoundingClientRect();
-            if (touchX <= rect.right) {
-                touchStartX = touchX;
-                isDraggingSidebar = true;
-                sidebar.classList.add('dragging');
-            }
+            canStartDrag = true;
+        } else {
+            canStartDrag = false;
         }
     }, { passive: true });
 
     document.addEventListener('touchmove', (e) => {
-        if (!isDraggingSidebar) return;
+        if (!canStartDrag || !sidebar) return;
         
-        const touchX = e.touches[0].clientX;
-        const isCollapsed = sidebar.classList.contains('collapsed');
-        const sidebarWidth = sidebar.getBoundingClientRect().width;
+        const touch = e.touches[0];
+        const currentX = touch.clientX;
+        const currentY = touch.clientY;
+        const dx = currentX - touchStartX;
+        const dy = currentY - touchStartY;
         
-        let deltaX = touchX - touchStartX;
-        let translate = 0;
-
-        if (isCollapsed) {
-            // Dragging to open: translate from -sidebarWidth to 0
-            translate = Math.min(0, -sidebarWidth + deltaX);
-        } else {
-            // Dragging to close: translate from 0 to -sidebarWidth
-            translate = Math.min(0, Math.max(-sidebarWidth, deltaX));
+        // Disambiguate intention if not yet locked
+        if (dragDirection === null) {
+            if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 7) {
+                // User is scrolling the page vertically! Release drag completely
+                dragDirection = 'vertical';
+                canStartDrag = false;
+                return;
+            } else if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 7) {
+                // User is dragging horizontally!
+                const isCollapsed = sidebar.classList.contains('collapsed');
+                // If collapsed and dragging left, ignore
+                if (isCollapsed && dx <= 0) {
+                    dragDirection = 'vertical';
+                    canStartDrag = false;
+                    return;
+                }
+                dragDirection = 'horizontal';
+                isDraggingSidebar = true;
+                sidebar.classList.add('dragging');
+            }
         }
-
-        sidebar.style.transform = `translateX(${translate}px)`;
-    }, { passive: false }); // Need passive: false to prevent potential scrolling issues during drag
+        
+        if (dragDirection === 'horizontal' && isDraggingSidebar) {
+            if (e.cancelable) e.preventDefault();
+            
+            const isCollapsed = sidebar.classList.contains('collapsed');
+            const sidebarWidth = sidebar.getBoundingClientRect().width || 300;
+            
+            let translate = 0;
+            if (isCollapsed) {
+                translate = Math.min(0, Math.max(-sidebarWidth, -sidebarWidth + dx));
+            } else {
+                translate = Math.min(0, Math.max(-sidebarWidth, dx));
+            }
+            
+            sidebar.style.transform = `translateX(${translate}px)`;
+        }
+    }, { passive: false });
 
     document.addEventListener('touchend', (e) => {
-        if (!isDraggingSidebar) return;
+        if (!canStartDrag || !sidebar) {
+            canStartDrag = false;
+            dragDirection = null;
+            return;
+        }
         
-        isDraggingSidebar = false;
-        sidebar.classList.remove('dragging');
-        sidebar.style.transform = ''; 
-
-        const touchEndX = e.changedTouches[0].clientX;
-        const deltaX = touchEndX - touchStartX;
-        const sidebarWidth = sidebar.getBoundingClientRect().width;
-        const threshold = sidebarWidth / 4; // 25% threshold to commit the action
-
-        const isCollapsed = sidebar.classList.contains('collapsed');
-
-        if (isCollapsed) {
-            if (deltaX > threshold) {
-                sidebar.classList.remove('collapsed');
-                if (window.updateSidebarNavState) window.updateSidebarNavState();
-            }
-        } else {
-            if (deltaX < -threshold) {
-                sidebar.classList.add('collapsed');
-                if (window.updateSidebarNavState) window.updateSidebarNavState();
+        if (isDraggingSidebar) {
+            isDraggingSidebar = false;
+            sidebar.classList.remove('dragging');
+            sidebar.style.transform = ''; 
+            
+            const touchEndX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : touchStartX;
+            const deltaX = touchEndX - touchStartX;
+            const dt = Math.max(1, Date.now() - touchStartTime);
+            const velocityX = deltaX / dt; // px per ms
+            const sidebarWidth = sidebar.getBoundingClientRect().width || 300;
+            const threshold = sidebarWidth * 0.25; // 25% threshold
+            
+            const isCollapsed = sidebar.classList.contains('collapsed');
+            
+            if (isCollapsed) {
+                // Open if dragged past 25% OR fast right flick
+                if (deltaX > threshold || (velocityX > 0.35 && deltaX > 25)) {
+                    sidebar.classList.remove('collapsed');
+                    if (window.updateSidebarNavState) window.updateSidebarNavState();
+                }
+            } else {
+                // Close if dragged left past 25% OR fast left flick
+                if (deltaX < -threshold || (velocityX < -0.35 && deltaX < -25)) {
+                    sidebar.classList.add('collapsed');
+                    if (window.updateSidebarNavState) window.updateSidebarNavState();
+                }
             }
         }
+        
+        canStartDrag = false;
+        dragDirection = null;
     });
 });
 

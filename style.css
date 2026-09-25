@@ -5171,13 +5171,70 @@ iframe.goog-te-banner-frame,
     .timeline-content .log-title, .heat-map-header { color: #fff !important; }
     .timeline-content .log-desc, .zone-label { color: #dce8f0 !important; }
     .timeline-content .log-ver, .timeline-content .log-date { color: var(--cyan) !important; }
-    .nav-controls .audio-wrap { background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; gap: 8px !important; }
-    .audio-btn, .track-toggle { background: rgba(0, 240, 255, 0.05) !important; border: 1px solid rgba(0, 240, 255, 0.4) !important; border-radius: 4px !important; }
-    .breadcrumbs { display: none !important; }
-    .lang-custom-select { display: none !important; }
-    .nav-controls { width: 100%; justify-content: flex-end; gap: 8px !important; }
+    .nav-controls .audio-wrap { background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; gap: 6px !important; }
+    .audio-btn, .track-toggle { background: rgba(0, 240, 255, 0.05) !important; border: 1px solid rgba(0, 240, 255, 0.4) !important; border-radius: 6px !important; }
+    .breadcrumbs {
+        display: flex !important;
+        align-items: center;
+        gap: 4px;
+        font-size: 10px !important;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 130px;
+        flex-shrink: 1;
+        font-family: var(--font-m);
+    }
+    .breadcrumbs #home-breadcrumb,
+    .breadcrumbs .divider {
+        display: none !important;
+    }
+    .breadcrumbs #current-category {
+        color: var(--accent);
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .breadcrumbs #current-category::before {
+        content: '// ';
+        opacity: 0.6;
+    }
+    .lang-custom-select {
+        display: inline-flex !important;
+        height: 36px !important;
+        min-width: 58px !important;
+        width: auto !important;
+        padding: 0 !important;
+        border-radius: 6px !important;
+    }
+    .lang-selected-btn {
+        padding: 0 8px !important;
+        gap: 4px !important;
+        font-size: 10px !important;
+    }
+    .lang-globe-icon { font-size: 11px !important; }
+    .lang-chevron { font-size: 7px !important; }
+    .nav-controls {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end;
+        gap: 6px !important;
+        flex-shrink: 0;
+    }
     .track-toggle span, .audio-btn span, #bioIdBtn span { display: none !important; }
-    .track-toggle, .audio-btn, #bioIdBtn, .mobile-toggle { width: 36px !important; height: 36px !important; justify-content: center; padding: 0 !important; min-width: unset !important; }
+    .track-toggle, .audio-btn, #bioIdBtn, .mobile-toggle, #themeBtn, #visualsBtn {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 !important;
+        border-radius: 6px !important;
+        box-sizing: border-box !important;
+    }
     .volume-ctrl { display: none !important; }
     .clinical-meta-grid {
         grid-template-columns: 1fr !important;
@@ -6045,10 +6102,9 @@ body::before { pointer-events: none !important; }
 
 @media (max-width: 768px) {
     .sidebar { width: 100% !important; }
-    .top-nav-bar { height: 48px; padding: 0 10px !important; }
-    .nav-controls { gap: 4px !important; }
-    .nav-controls .cyber-btn, .nav-controls .audio-wrap, .nav-controls .lang-custom-select { height: 32px !important; }
-    #visualsBtn { width: 36px !important; height: 36px !important; border-radius: 6px !important; }
+    .top-nav-bar { height: 50px; padding: 0 10px !important; }
+    .nav-controls { gap: 6px !important; }
+    .nav-controls .cyber-btn, .nav-controls .audio-wrap, .nav-controls .lang-custom-select, #visualsBtn, #themeBtn { height: 36px !important; }
     .welcome-card { padding: 30px 20px; margin: 15px; }
     .glitch-large { font-size: 1.2rem !important; letter-spacing: 0.08em !important; }
     .card-telemetry { font-size: 0.55rem !important; letter-spacing: 0.1em !important; padding: 4px 10px !important; }
@@ -9692,5 +9748,119 @@ html[data-theme="blood"] .lang-option-card.active {
     background: rgba(255, 26, 64, 0.18) !important;
     border-color: #ff1a40 !important;
 }
+
+/* ============================================================
+   MOBILE POLISH PASS: NAVIGATION, DRAWER GESTURES & TOUCH TARGETS
+   ============================================================ */
+
+/* Mobile Close Button in Sidebar Header */
+@media (max-width: 1024px) {
+    .logo-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .mobile-close {
+        display: flex !important;
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        border-radius: 8px !important;
+        background: rgba(0, 240, 255, 0.08) !important;
+        border: 1px solid rgba(0, 240, 255, 0.25) !important;
+        color: var(--accent) !important;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 16px !important;
+        transition: all 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-close:active {
+        transform: scale(0.92);
+        background: rgba(0, 240, 255, 0.2) !important;
+    }
+
+    /* Category Accordion Header Touch Target */
+    .nav-folder-head {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 12px 18px;
+    }
+
+    /* Compound Links Touch Area */
+    .nav-item {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-item:active {
+        background: rgba(0, 240, 255, 0.08);
+    }
+}
+
+/* Phones & Small Screens: Language Dropdown as Centered Modal Sheet */
+@media (max-width: 480px) {
+    .lang-options-dropdown {
+        position: fixed !important;
+        top: 56px !important;
+        left: 10px !important;
+        right: 10px !important;
+        width: auto !important;
+        max-width: none !important;
+        z-index: 5000 !important;
+        border-radius: 10px !important;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 240, 255, 0.25) !important;
+    }
+
+    .lang-option-card {
+        padding: 12px 14px !important;
+        min-height: 46px !important;
+    }
+
+    .lang-opt-name {
+        font-size: 12px !important;
+    }
+
+    .lang-opt-sub {
+        font-size: 9px !important;
+    }
+
+    /* Mobile Bottom Nav safe-area and touch polish */
+    .mobile-bottom-nav {
+        height: calc(56px + env(safe-area-inset-bottom, 0px));
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .mbn-item:active {
+        transform: scale(0.92);
+    }
+
+    .mbn-center-ring {
+        width: 46px;
+        height: 46px;
+        margin-top: -18px;
+    }
+
+    /* Back-to-top floating button above bottom nav */
+    .back-to-top {
+        bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+        right: 14px !important;
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    /* Article Scroll Area Padding */
+    .article-scroll-area {
+        padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+}
+
 
 
