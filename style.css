@@ -9862,5 +9862,168 @@ html[data-theme="blood"] .lang-option-card.active {
     }
 }
 
+/* ============================================================
+   ARTICLE QUICK NAVIGATION PILLS
+   ============================================================ */
+.article-quick-nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 16px 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
 
+.quick-nav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: rgba(0, 240, 255, 0.04);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    color: var(--muted);
+    font-family: var(--font-m);
+    font-size: 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
 
+.quick-nav-pill i {
+    font-size: 10px;
+    color: var(--accent);
+}
+
+.quick-nav-pill:hover,
+.quick-nav-pill:active {
+    background: rgba(0, 240, 255, 0.12);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+/* Theme overrides for quick-nav-pill */
+html[data-theme="clinical"] .quick-nav-pill {
+    background: #e4ecf3 !important;
+    border-color: #b0c4d4 !important;
+    color: #3d5a72 !important;
+}
+html[data-theme="clinical"] .quick-nav-pill:hover {
+    background: #005fa3 !important;
+    color: #ffffff !important;
+    border-color: #005fa3 !important;
+}
+html[data-theme="clinical"] .quick-nav-pill:hover i {
+    color: #ffffff !important;
+}
+
+html[data-theme="hacker"] .quick-nav-pill {
+    background: rgba(0, 255, 102, 0.06) !important;
+    border-color: rgba(0, 255, 102, 0.25) !important;
+    color: #00ff66 !important;
+}
+
+html[data-theme="blood"] .quick-nav-pill {
+    background: rgba(255, 26, 64, 0.08) !important;
+    border-color: rgba(255, 26, 64, 0.3) !important;
+    color: #ff8090 !important;
+}
+
+/* ============================================================
+   PRINT STYLESHEET: CLEAN MEDICAL EXPORT PROTOCOL
+   ============================================================ */
+@media print {
+    .sidebar,
+    .top-nav-bar,
+    .mobile-bottom-nav,
+    .background-canvas,
+    .grid-bg,
+    .orb,
+    .bf3-noise,
+    .modal-overlay,
+    .init-overlay,
+    .back-to-top,
+    .theme-panel,
+    .theme-panel-overlay,
+    .bw-controls-bar,
+    .cyber-btn,
+    .article-quick-nav,
+    #sidebar-close,
+    .fx-layer {
+        display: none !important;
+    }
+
+    body, html {
+        background: #ffffff !important;
+        color: #0d1a26 !important;
+        position: static !important;
+        overflow: visible !important;
+        height: auto !important;
+        font-family: Arial, sans-serif !important;
+    }
+
+    .app-window,
+    .article-scroll-area,
+    .article-viewer,
+    .bloodwork-view,
+    .wiki-article {
+        position: static !important;
+        overflow: visible !important;
+        height: auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+        color: #0d1a26 !important;
+    }
+
+    .bw-summary-header,
+    .bw-result-card,
+    .bw-chart-container,
+    .bw-intervention-card,
+    .data-panel,
+    .pro-con-box {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #0f172a !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+    }
+
+    .bw-result-card .bw-rc-value {
+        color: #0f172a !important;
+    }
+
+    .bw-risk-badge.critical {
+        background: #fee2e2 !important;
+        color: #b91c1c !important;
+        border: 1px solid #f87171 !important;
+    }
+
+    .bw-risk-badge.elevated {
+        background: #fef3c7 !important;
+        color: #b45309 !important;
+        border: 1px solid #fbbf24 !important;
+    }
+
+    .bw-risk-badge.optimal {
+        background: #dcfce7 !important;
+        color: #15803d !important;
+        border: 1px solid #4ade80 !important;
+    }
+
+    .bw-results-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    h1, h2, h3, h4, h5 {
+        color: #0f172a !important;
+        text-shadow: none !important;
+    }
+}

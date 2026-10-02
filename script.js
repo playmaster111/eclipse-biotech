@@ -2071,6 +2071,13 @@ function generateAIResponse(q) {
     return `I could not identify a specific compound in your query. <br><br><span style="color:var(--muted)">TARGET_IDENTIFICATION_FAILED. Please specify a substance (e.g., "${suggestions[Math.floor(Math.random()*suggestions.length)]}").</span>`;
 }
 
+window.scrollToSection = function(id) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+};
+
 // Load Article into Main Mount
 function loadArticle(id) {
     if (window.mbnSetActive) window.mbnSetActive('');
@@ -2096,7 +2103,7 @@ function loadArticle(id) {
     
     // Generate Pros/Cons and Cycle HTML if data exists
     const prosConsHTML = (item.benefits || item.risks) ? `
-        <div class="pros-cons-grid">
+        <div id="sec-proscons" class="pros-cons-grid">
             <div class="pro-con-box pro">
                 <div class="box-header">+ ${currentLang === 'en' ? 'OBSERVED BENEFITS' : getT('status_safe').toUpperCase() + ' / ' + getT('dosage_clinical').toUpperCase()}</div>
                 <div class="box-content">${item[`benefits_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].benefits) || item.benefits || getT('not_applicable')}</div>
@@ -2109,7 +2116,7 @@ function loadArticle(id) {
     ` : '';
 
     const cycleHTML = item.cycleExamples ? `
-        <section class="cycle-archetypes">
+        <section id="sec-cycles" class="cycle-archetypes">
             <h2>${getT('dosage_experimental')}</h2>
             <div class="disclaimer">${getT('experimental_warning')}</div>
             <p>${item[`cycleExamples_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].cycleExamples) || item.cycleExamples}</p>
@@ -2156,17 +2163,24 @@ function loadArticle(id) {
                     ${item.esters ? `<span class="badge" style="border-color: var(--accent2); color: var(--accent2)">${item[`esters_${currentLang}`] || item.esters.replace(/[\(\)]/g, '')}</span>` : ''}
                 </div>
                 ${item.aka ? `<div class="aka-row"><i class="fas fa-tags"></i> AKA: <span class="aka-names">${item.aka}</span></div>` : ''}
+                <div class="article-quick-nav">
+                    <button class="quick-nav-pill" onclick="window.scrollToSection('sec-overview')"><i class="fas fa-file-alt"></i> ${getT('overview').toUpperCase()}</button>
+                    <button class="quick-nav-pill" onclick="window.scrollToSection('sec-mechanism')"><i class="fas fa-cogs"></i> ${getT('mechanism').toUpperCase()}</button>
+                    ${(item.benefits || item.risks) ? `<button class="quick-nav-pill" onclick="window.scrollToSection('sec-proscons')"><i class="fas fa-shield-alt"></i> ${currentLang === 'en' ? 'BENEFITS & RISKS' : (getT('status_safe') + ' / ' + getT('risks')).toUpperCase()}</button>` : ''}
+                    ${item.cycleExamples ? `<button class="quick-nav-pill" onclick="window.scrollToSection('sec-cycles')"><i class="fas fa-dna"></i> ${getT('dosage_experimental').toUpperCase()}</button>` : ''}
+                    <button class="quick-nav-pill" onclick="window.scrollToSection('sec-clinical')"><i class="fas fa-notes-medical"></i> ${getT('clinical_profile').toUpperCase()}</button>
+                </div>
             </header>
 
             <div class="wiki-grid">
                 <div class="wiki-main-col">
                     ${hologramHTML}
-                    <section style="margin-top: 30px;">
+                    <section id="sec-overview" style="margin-top: 30px;">
                         <h2>${getT('overview')}</h2>
                         <p>${item[`overview_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].overview) || item.overview}</p>
                     </section>
                     
-                    <section>
+                    <section id="sec-mechanism">
                         <h2>${getT('mechanism')}</h2>
                         <p>${item[`mechanism_${currentLang}`] || (window.DRUG_I18N && window.DRUG_I18N[item.id] && window.DRUG_I18N[item.id][currentLang] && window.DRUG_I18N[item.id][currentLang].mechanism) || item.mechanism}</p>
                     </section>
@@ -2210,7 +2224,7 @@ function loadArticle(id) {
                 </div>
 
                 <aside class="wiki-side-col">
-                    <div class="data-panel">
+                    <div id="sec-clinical" class="data-panel">
                         <div class="data-panel-header">${getT('clinical_profile')} / ${getT('id_header')}</div>
                         
                         <div class="data-box">
@@ -3645,13 +3659,16 @@ function loadBloodworkView() {
 
     const mount = document.getElementById('article-mount');
 
-    if (!currentUser) {
+    if (!currentUser && !window.guestBwAccess) {
         mount.innerHTML = `
             <div class="empty-state">
                 <div class="glitch-icon" style="color: var(--red)"><i class="fas fa-vials"></i></div>
                 <h2 class="glitch-small" data-text="CLINICAL_LOCKOUT" style="color: var(--red)">CLINICAL_LOCKOUT</h2>
-                <p style="max-width: 400px; line-height: 1.6; margin-bottom: 25px;">The Bloodwork Lab module processes sensitive clinical biomarker data. BIO-ID authentication is required for pathological cross-referencing.</p>
-                <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn">AUTHENTICATE_TO_ANALYZE</button>
+                <p style="max-width: 420px; line-height: 1.6; margin-bottom: 25px;">The Bloodwork Lab module processes sensitive clinical biomarker data. Authenticate with your BIO-ID or continue in instant guest analysis mode.</p>
+                <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="document.getElementById('bioIdBtn').click()" class="cyber-btn"><i class="fas fa-fingerprint"></i> AUTHENTICATE_ID</button>
+                    <button onclick="window.guestBwAccess = true; loadBloodworkView();" class="cyber-btn muted-btn"><i class="fas fa-user-secret"></i> GUEST_DEMO_ACCESS</button>
+                </div>
             </div>
         `;
         return;
@@ -3691,9 +3708,22 @@ function loadBloodworkView() {
                 <p>Input your lab panel values to receive instant clinical risk assessment, biomarker visualization, and pharmacological intervention protocols.</p>
             </div>
 
-            <div class="bw-sex-toggle">
-                <button id="bw-sex-male" class="${bwSex === 'male' ? 'active' : ''}" onclick="window.setBwSex('male')">♂ MALE</button>
-                <button id="bw-sex-female" class="${bwSex === 'female' ? 'active' : ''}" onclick="window.setBwSex('female')">♀ FEMALE</button>
+            <div class="bw-controls-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
+                <div class="bw-sex-toggle" style="margin-bottom: 0;">
+                    <button id="bw-sex-male" class="${bwSex === 'male' ? 'active' : ''}" onclick="window.setBwSex('male')">♂ MALE</button>
+                    <button id="bw-sex-female" class="${bwSex === 'female' ? 'active' : ''}" onclick="window.setBwSex('female')">♀ FEMALE</button>
+                </div>
+                <div class="bw-presets" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button class="cyber-btn" onclick="window.loadBwPreset('cycle')" style="font-size: 10px; padding: 6px 12px; border-color: #ff9d00; color: #ff9d00;" title="Load simulated on-cycle lab panel">
+                        <i class="fas fa-bolt"></i> ON_CYCLE_SAMPLE
+                    </button>
+                    <button class="cyber-btn" onclick="window.loadBwPreset('healthy')" style="font-size: 10px; padding: 6px 12px; border-color: #00ffaa; color: #00ffaa;" title="Load healthy physiological baseline">
+                        <i class="fas fa-shield-alt"></i> HEALTHY_SAMPLE
+                    </button>
+                    <button class="cyber-btn muted-btn" onclick="window.clearBwInputs()" style="font-size: 10px; padding: 6px 12px;" title="Reset all input fields">
+                        <i class="fas fa-eraser"></i> CLEAR
+                    </button>
+                </div>
             </div>
 
             <div class="bloodwork-grid">
@@ -3710,6 +3740,40 @@ function loadBloodworkView() {
         </div>
     `;
 }
+
+window.loadBwPreset = function(type) {
+    const cycleData = {
+        alt: 86, ast: 74, total_t: 2850, free_t: 72, estradiol: 68,
+        prolactin: 22, hematocrit: 53.5, hemoglobin: 17.8,
+        hdl: 26, ldl: 172, egfr: 78, creatinine: 1.45
+    };
+    const healthyData = {
+        alt: 21, ast: 23, total_t: 710, free_t: 19.5, estradiol: 26,
+        prolactin: 8.5, hematocrit: 44.5, hemoglobin: 15.2,
+        hdl: 58, ldl: 86, egfr: 108, creatinine: 0.92
+    };
+    const data = type === 'cycle' ? cycleData : healthyData;
+    BW_MARKERS.forEach(m => {
+        const input = document.getElementById('bw-' + m.id);
+        if (input && data[m.id] !== undefined) {
+            input.value = data[m.id];
+        }
+    });
+    if (window.analyzeBloodwork) window.analyzeBloodwork();
+};
+
+window.clearBwInputs = function() {
+    BW_MARKERS.forEach(m => {
+        const input = document.getElementById('bw-' + m.id);
+        if (input) input.value = '';
+    });
+    const resultsDiv = document.getElementById('bw-results');
+    if (resultsDiv) resultsDiv.innerHTML = '';
+};
+
+window.printBloodworkReport = function() {
+    window.print();
+};
 
 window.setBwSex = function(s) {
     bwSex = s;
@@ -3826,9 +3890,12 @@ window.analyzeBloodwork = function() {
                 ${interventionsHtml.length > 0 ? interventionsHtml : '<div class="bw-intervention-card success"><h5><i class="fas fa-shield-alt"></i> NO INTERVENTIONS REQUIRED</h5><p>All submitted biomarkers are within optimal or acceptable reference ranges. Continue current protocol and retest in 8-12 weeks.</p></div>'}
             </div>
 
-            <div style="text-align: center; margin-top: 15px;">
+            <div style="text-align: center; margin-top: 20px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
                 <button class="cyber-btn" onclick="saveBloodworkToVault()" style="border-color: #00ffaa; color: #00ffaa;">
                     <i class="fas fa-save"></i>&nbsp; SAVE_TO_VAULT
+                </button>
+                <button class="cyber-btn" onclick="window.printBloodworkReport()" style="border-color: #00f0ff; color: #00f0ff;">
+                    <i class="fas fa-file-medical-alt"></i>&nbsp; PRINT_/_EXPORT_PDF
                 </button>
             </div>
         </div>
