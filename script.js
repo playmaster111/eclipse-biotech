@@ -5421,6 +5421,198 @@ window.resetHoloOrientation = function() {
     }
 };
 
+// --- Hologram Dynamic Canvas Label Generators ---
+function getCapsuleLabelCanvas() {
+    if (window._holoCapsuleCanvas) return window._holoCapsuleCanvas;
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 256;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, 512, 256);
+
+    ctx.save();
+    ctx.translate(256, 128);
+
+    // Subtle Framed Badge
+    ctx.strokeStyle = 'rgba(0, 240, 255, 0.7)';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(-180, -75, 360, 150);
+    ctx.fillStyle = 'rgba(6, 10, 18, 0.65)';
+    ctx.fillRect(-180, -75, 360, 150);
+
+    // Corner L-accents
+    ctx.fillStyle = '#00f0ff';
+    ctx.fillRect(-182, -77, 12, 4);
+    ctx.fillRect(-182, -77, 4, 12);
+    ctx.fillRect(170, -77, 12, 4);
+    ctx.fillRect(178, -77, 4, 12);
+    ctx.fillRect(-182, 73, 12, 4);
+    ctx.fillRect(-182, 65, 4, 12);
+    ctx.fillRect(170, 73, 12, 4);
+    ctx.fillRect(178, 65, 4, 12);
+
+    // Delta / Triangle Icon
+    ctx.fillStyle = '#ff1744';
+    ctx.beginPath();
+    ctx.moveTo(0, -56);
+    ctx.lineTo(10, -42);
+    ctx.lineTo(-10, -42);
+    ctx.closePath();
+    ctx.fill();
+
+    // Brand Headline
+    ctx.font = 'bold 36px "Segoe UI", Roboto, monospace';
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = '#00f0ff';
+    ctx.shadowBlur = 10;
+    ctx.fillText('E C L I P S E', 0, -18);
+    ctx.shadowBlur = 0;
+
+    // Laser divider line
+    ctx.strokeStyle = '#00f0ff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(-150, 8);
+    ctx.lineTo(150, 8);
+    ctx.stroke();
+
+    // Secondary Specs
+    ctx.font = 'bold 20px "Segoe UI", Roboto, monospace';
+    ctx.fillStyle = '#b5ff4d';
+    ctx.fillText('NANO-XR // 250 MG', 0, 32);
+
+    // Telemetry Ticks
+    ctx.font = 'bold 11px monospace';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
+    ctx.fillText('SEC-09 • RX ONLY • MATRIX COATED', 0, 56);
+
+    ctx.restore();
+    window._holoCapsuleCanvas = canvas;
+    return canvas;
+}
+
+function getVialLabelCanvas() {
+    if (window._holoVialCanvas) return window._holoVialCanvas;
+    const canvas = document.createElement('canvas');
+    canvas.width = 1024;
+    canvas.height = 512;
+    const ctx = canvas.getContext('2d');
+
+    // Deep matte pharmaceutical slate background
+    const bgGrad = ctx.createLinearGradient(0, 0, 1024, 0);
+    bgGrad.addColorStop(0, '#070b12');
+    bgGrad.addColorStop(0.5, '#0e1724');
+    bgGrad.addColorStop(1, '#070b12');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, 1024, 512);
+
+    // High-tech Cyan/Crimson Border Framing
+    ctx.strokeStyle = '#00f0ff';
+    ctx.lineWidth = 6;
+    ctx.strokeRect(16, 16, 992, 480);
+
+    ctx.strokeStyle = 'rgba(255, 23, 68, 0.6)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(26, 26, 972, 460);
+
+    // Top Category Header Banner
+    ctx.fillStyle = '#ff1744';
+    ctx.fillRect(36, 36, 280, 34);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 16px monospace';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('STERILE INJECTABLE', 50, 53);
+
+    ctx.fillStyle = '#00f0ff';
+    ctx.font = 'bold 15px monospace';
+    ctx.fillText('USP GRADE • 10 mL', 336, 53);
+
+    // Main Brand Name
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '900 48px "Segoe UI", Roboto, sans-serif';
+    ctx.fillText('ECLIPSE BIOTECH', 42, 115);
+
+    // Compound Name
+    ctx.fillStyle = '#00f0ff';
+    ctx.font = 'bold 36px "Segoe UI", Roboto, sans-serif';
+    ctx.fillText('TESTOSTERONE CYPIONATE', 42, 168);
+
+    // Concentration Badge
+    ctx.fillStyle = 'rgba(0, 240, 255, 0.15)';
+    ctx.fillRect(42, 195, 300, 52);
+    ctx.strokeStyle = '#00f0ff';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(42, 195, 300, 52);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '900 32px monospace';
+    ctx.fillText('250 mg / mL', 60, 222);
+
+    // Administration Note
+    ctx.fillStyle = '#9cb3c9';
+    ctx.font = '16px "Segoe UI", Roboto, sans-serif';
+    ctx.fillText('FOR INTRAMUSCULAR INJECTION ONLY', 42, 278);
+    ctx.fillText('MULTIPLE DOSE VIAL • SESAME OIL VEHICLE', 42, 304);
+
+    // Warning Tag
+    ctx.fillStyle = 'rgba(255, 23, 68, 0.2)';
+    ctx.fillRect(42, 330, 420, 30);
+    ctx.fillStyle = '#ff4d6d';
+    ctx.font = 'bold 13px monospace';
+    ctx.fillText('WARNING: PROTECT FROM LIGHT • 20°-25°C', 52, 345);
+
+    // Micro QR / Chip Verification Matrix
+    ctx.fillStyle = 'rgba(0, 240, 255, 0.2)';
+    ctx.fillRect(520, 195, 170, 165);
+    ctx.strokeStyle = '#00f0ff';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(520, 195, 170, 165);
+    ctx.fillStyle = '#00f0ff';
+    ctx.font = 'bold 12px monospace';
+    ctx.fillText('BIO-TAG VERIFIED', 532, 218);
+    for (let r = 0; r < 5; r++) {
+        for (let c = 0; c < 5; c++) {
+            if ((r + c * 3) % 2 === 0) {
+                ctx.fillStyle = ((r + c) % 3 === 0) ? '#ff1744' : '#00f0ff';
+                ctx.fillRect(535 + c * 26, 235 + r * 20, 18, 14);
+            }
+        }
+    }
+
+    // Barcode Block on the Right Side
+    const bcX = 760;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(bcX - 20, 50, 220, 390);
+
+    // Draw realistic barcode lines
+    ctx.fillStyle = '#000000';
+    const barWidths = [4, 2, 6, 2, 4, 8, 2, 4, 2, 6, 4, 2, 8, 4, 2, 6, 2, 4, 6, 2, 4, 8, 4, 2, 6, 2, 4, 2, 8, 4, 2];
+    let curBx = bcX;
+    for (let i = 0; i < barWidths.length && curBx < bcX + 180; i++) {
+        if (i % 2 === 0) {
+            ctx.fillRect(curBx, 70, barWidths[i], 220);
+        }
+        curBx += barWidths[i] + 2;
+    }
+
+    ctx.font = 'bold 16px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('(01) 0038942001', bcX + 90, 315);
+    ctx.font = '13px monospace';
+    ctx.fillText('LOT #8942-X7', bcX + 90, 345);
+    ctx.fillText('EXP 12/2028', bcX + 90, 370);
+    ctx.textAlign = 'left';
+
+    // Lower Footer
+    ctx.fillStyle = '#4a627a';
+    ctx.font = '12px monospace';
+    ctx.fillText('ECLIPSE PHARMACEUTICALS LLC • SAN DIEGO, CA • RX ONLY', 42, 440);
+
+    window._holoVialCanvas = canvas;
+    return canvas;
+}
+
 function initHologram(type) {
     type = type || 'molecule';
     const container = document.getElementById('hologram-canvas-container');
@@ -5649,213 +5841,427 @@ function initHologram(type) {
     }
 
     // ─────────────────────────────────────────────────────────────
-    // MODEL 2: PILL (High-Gloss Dual-Tone Nanotech Capsule)
+    // MODEL 2: PILL (High-Gloss Dual-Tone Nanotech Capsule v2.1)
     // ─────────────────────────────────────────────────────────────
     else if (type === 'pill') {
         const pillGroup = new THREE.Group();
-        pillGroup.rotation.z = 0.35;
+        pillGroup.rotation.z = 0.36;
+        pillGroup.rotation.x = 0.15;
 
-        // Top Half (Cap): Cyber-Cyan Translucent Gel
-        const topGeo = new THREE.CylinderGeometry(0.75, 0.75, 1.1, 32, 1, true);
-        const topMat = new THREE.MeshPhongMaterial({
+        // Top Half (Cap): Cyber-Cyan Translucent Gel with Stepped Lip
+        const capGeo = new THREE.CylinderGeometry(0.76, 0.76, 1.15, 36, 1, true);
+        const capMat = new THREE.MeshPhongMaterial({
             color: 0x00f0ff,
-            emissive: 0x003344,
+            emissive: 0x002c38,
+            emissiveIntensity: 0.35,
             specular: 0xffffff,
+            shininess: 170,
+            transparent: true,
+            opacity: 0.62,
+            side: THREE.DoubleSide
+        });
+        const capMesh = new THREE.Mesh(capGeo, capMat);
+        capMesh.position.y = 0.575;
+        pillGroup.add(capMesh);
+
+        const capDomeGeo = new THREE.SphereGeometry(0.76, 36, 20, 0, Math.PI * 2, 0, Math.PI / 2);
+        const capDome = new THREE.Mesh(capDomeGeo, capMat);
+        capDome.position.y = 1.15;
+        pillGroup.add(capDome);
+
+        // Cap Overlap Lip Ring at junction (y = 0)
+        const capLip = new THREE.Mesh(
+            new THREE.TorusGeometry(0.764, 0.024, 16, 48),
+            new THREE.MeshPhongMaterial({
+                color: 0x00f0ff,
+                emissive: 0x004455,
+                specular: 0xffffff,
+                shininess: 180
+            })
+        );
+        capLip.rotation.x = Math.PI / 2;
+        capLip.position.y = 0.0;
+        pillGroup.add(capLip);
+
+        // Bottom Half (Body): Vivid Electric-Crimson Shell (narrower radius 0.72)
+        const bodyGeo = new THREE.CylinderGeometry(0.72, 0.72, 1.25, 36, 1, true);
+        const bodyMat = new THREE.MeshPhongMaterial({
+            color: 0xff003c,
+            emissive: 0x3d0010,
+            specular: 0xffaacc,
             shininess: 140,
             transparent: true,
-            opacity: 0.65
+            opacity: 0.92
         });
-        const topMesh = new THREE.Mesh(topGeo, topMat);
-        topMesh.position.y = 0.55;
-        pillGroup.add(topMesh);
+        const bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
+        bodyMesh.position.y = -0.625;
+        pillGroup.add(bodyMesh);
 
-        const topDomeGeo = new THREE.SphereGeometry(0.75, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
-        const topDome = new THREE.Mesh(topDomeGeo, topMat);
-        topDome.position.y = 1.1;
-        pillGroup.add(topDome);
+        const bodyDomeGeo = new THREE.SphereGeometry(0.72, 36, 20, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
+        const bodyDome = new THREE.Mesh(bodyDomeGeo, bodyMat);
+        bodyDome.position.y = -1.25;
+        pillGroup.add(bodyDome);
 
-        // Bottom Half (Body): Vivid Electric-Crimson Shell
-        const btmGeo = new THREE.CylinderGeometry(0.73, 0.73, 1.1, 32, 1, true);
-        const btmMat = new THREE.MeshPhongMaterial({
-            color: 0xff1744,
-            emissive: 0x3d0010,
-            specular: 0xff88a0,
-            shininess: 120,
+        // Inner Body Extension (Inserted into Cap, visible through cyan translucent gel)
+        const innerInsert = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.718, 0.718, 0.38, 36, 1, true),
+            new THREE.MeshPhongMaterial({
+                color: 0xff003c,
+                emissive: 0x220008,
+                specular: 0xffffff,
+                shininess: 100,
+                transparent: true,
+                opacity: 0.8
+            })
+        );
+        innerInsert.position.y = 0.19;
+        pillGroup.add(innerInsert);
+
+        // Laser-Debossed Pharmaceutical Imprint Decal
+        const capCanvas = getCapsuleLabelCanvas();
+        const capTexture = new THREE.CanvasTexture(capCanvas);
+        capTexture.wrapS = THREE.ClampToEdgeWrapping;
+        capTexture.wrapT = THREE.ClampToEdgeWrapping;
+        const decalGeo = new THREE.CylinderGeometry(0.725, 0.725, 0.75, 36, 1, true, -Math.PI * 0.55, Math.PI * 1.1);
+        const decalMat = new THREE.MeshBasicMaterial({
+            map: capTexture,
             transparent: true,
-            opacity: 0.88
+            opacity: 0.95,
+            side: THREE.DoubleSide
         });
-        const btmMesh = new THREE.Mesh(btmGeo, btmMat);
-        btmMesh.position.y = -0.55;
-        pillGroup.add(btmMesh);
+        const decalMesh = new THREE.Mesh(decalGeo, decalMat);
+        decalMesh.position.y = -0.62;
+        pillGroup.add(decalMesh);
 
-        const btmDomeGeo = new THREE.SphereGeometry(0.73, 32, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
-        const btmDome = new THREE.Mesh(btmDomeGeo, btmMat);
-        btmDome.position.y = -1.1;
-        pillGroup.add(btmDome);
-
-        // Central Precision Chrome Lock Band
-        const bandGeo = new THREE.TorusGeometry(0.76, 0.04, 16, 64);
+        // Central Precision Titanium Lock Band
+        const bandGeo = new THREE.TorusGeometry(0.772, 0.034, 16, 64);
         const bandMat = new THREE.MeshPhongMaterial({
             color: 0xffffff,
             emissive: 0x00f0ff,
-            emissiveIntensity: 0.2,
+            emissiveIntensity: 0.3,
             specular: 0xffffff,
-            shininess: 180
+            shininess: 220
         });
         const band = new THREE.Mesh(bandGeo, bandMat);
         band.rotation.x = Math.PI / 2;
+        band.position.y = 0.0;
         pillGroup.add(band);
 
+        // Compacted Micro-Powder Bed inside Crimson Body
+        const powderBed = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.68, 0.68, 0.55, 24),
+            new THREE.MeshPhongMaterial({ color: 0x80001e, emissive: 0x220008, shininess: 30 })
+        );
+        powderBed.position.y = -0.92;
+        pillGroup.add(powderBed);
+
         // Active Nanotech Center Core (Pulsing Octahedron)
-        const coreGeo = new THREE.OctahedronGeometry(0.32, 0);
+        const coreGeo = new THREE.OctahedronGeometry(0.28, 0);
         const coreMat = new THREE.MeshPhongMaterial({
             color: 0xb5ff4d,
-            emissive: 0xb5ff4d,
-            emissiveIntensity: 0.45,
+            emissive: 0x55aa00,
+            emissiveIntensity: 0.6,
             wireframe: true
         });
         const activeCore = new THREE.Mesh(coreGeo, coreMat);
         activeCore.userData.corePulse = true;
         pillGroup.add(activeCore);
 
-        // 70 Floating Internal Nano-Pellets in Top Dome
-        for (let i = 0; i < 70; i++) {
-            const sz = 0.025 + Math.random() * 0.035;
-            const pColors = [0xffd700, 0x00f0ff, 0xffffff, 0xb5ff4d];
+        // 85 Multi-Color Floating Nano-Pellets in Top Translucent Dome
+        for (let i = 0; i < 85; i++) {
+            const sz = 0.024 + Math.random() * 0.032;
+            const pColors = [0xffd700, 0x00f0ff, 0xffffff, 0xff1744];
             const pColor = pColors[i % pColors.length];
             const pellet = new THREE.Mesh(
                 new THREE.SphereGeometry(sz, 8, 8),
-                new THREE.MeshPhongMaterial({ color: pColor, emissive: pColor, emissiveIntensity: 0.25, shininess: 120 })
+                new THREE.MeshPhongMaterial({ color: pColor, emissive: pColor, emissiveIntensity: 0.35, shininess: 140 })
             );
             const r = 0.52 * Math.sqrt(Math.random());
             const th = Math.random() * Math.PI * 2;
-            const y = 0.1 + Math.random() * 1.35;
+            const y = 0.08 + Math.random() * 1.38;
             pellet.position.set(r * Math.cos(th), y, r * Math.sin(th));
             pellet.userData.pDrift = { off: Math.random() * 6.28, spd: 0.001 + Math.random() * 0.002 };
             pillGroup.add(pellet);
         }
 
-        // Outer Scanning Ring
+        // Dual-Axis Holographic Telemetry Gimbal Rings
         const pScan = new THREE.Mesh(
-            new THREE.TorusGeometry(1.2, 0.02, 8, 64),
+            new THREE.TorusGeometry(1.25, 0.015, 8, 64),
             new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.45 })
         );
         pScan.rotation.x = Math.PI / 2;
         pillGroup.add(pScan);
 
+        const pGimbal = new THREE.Mesh(
+            new THREE.TorusGeometry(1.4, 0.012, 8, 64),
+            new THREE.MeshBasicMaterial({ color: 0xb5ff4d, transparent: true, opacity: 0.25 })
+        );
+        pGimbal.rotation.x = Math.PI / 3;
+        pGimbal.rotation.y = Math.PI / 5;
+        pGimbal.userData.spinSpeed = 0.004;
+        pillGroup.add(pGimbal);
+
         group.add(pillGroup);
     }
 
     // ─────────────────────────────────────────────────────────────
-    // MODEL 3: VIAL (Medical Glass Ampoule & Volumetric Serum)
+    // MODEL 3: VIAL (Pharmaceutical 10mL Injectable Borosilicate Ampoule v2.1)
     // ─────────────────────────────────────────────────────────────
     else if (type === 'vial') {
         const vialGroup = new THREE.Group();
 
-        // Borosilicate Glass Cylinder
-        const bodyGeo = new THREE.CylinderGeometry(0.72, 0.72, 2.1, 32, 1, true);
+        // Borosilicate Glass Outer Cylinder
+        const bodyGeo = new THREE.CylinderGeometry(0.74, 0.74, 2.05, 36, 1, true);
         const glassMat = new THREE.MeshPhongMaterial({
             color: 0x00f0ff,
-            emissive: 0x001a24,
+            emissive: 0x001420,
             specular: 0xffffff,
-            shininess: 160,
+            shininess: 180,
             transparent: true,
-            opacity: 0.35
+            opacity: 0.32,
+            depthWrite: false
         });
         const bodyMesh = new THREE.Mesh(bodyGeo, glassMat);
-        bodyMesh.position.y = 0.05;
+        bodyMesh.position.y = 0.08;
         vialGroup.add(bodyMesh);
 
-        // Thick Glass Concave Base
-        const btmDome = new THREE.Mesh(
-            new THREE.SphereGeometry(0.72, 32, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
+        // Thick Glass Base Disc
+        const baseDisc = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.74, 0.74, 0.14, 36),
             glassMat
         );
-        btmDome.position.y = -1.0;
-        vialGroup.add(btmDome);
+        baseDisc.position.y = -0.92;
+        vialGroup.add(baseDisc);
+
+        // Outer Base Rim Bevel
+        const baseRim = new THREE.Mesh(
+            new THREE.TorusGeometry(0.70, 0.045, 16, 36),
+            glassMat
+        );
+        baseRim.rotation.x = Math.PI / 2;
+        baseRim.position.y = -0.92;
+        vialGroup.add(baseRim);
+
+        // Concave Push-Up Dimple (authentic vial base indentation)
+        const pushUp = new THREE.Mesh(
+            new THREE.SphereGeometry(0.38, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2),
+            glassMat
+        );
+        pushUp.position.y = -0.98;
+        vialGroup.add(pushUp);
+
+        // Inner Glass Cavity (1.2mm realistic wall thickness)
+        const innerCavity = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.66, 0.66, 2.0, 36, 1, true),
+            new THREE.MeshPhongMaterial({
+                color: 0x00f0ff,
+                emissive: 0x000c14,
+                specular: 0xffffff,
+                shininess: 140,
+                transparent: true,
+                opacity: 0.20,
+                depthWrite: false
+            })
+        );
+        innerCavity.position.y = 0.08;
+        vialGroup.add(innerCavity);
 
         // Tapered Glass Shoulder
-        const shldrGeo = new THREE.CylinderGeometry(0.38, 0.72, 0.4, 32, 1, true);
+        const shldrGeo = new THREE.CylinderGeometry(0.40, 0.74, 0.42, 36, 1, true);
         const shldr = new THREE.Mesh(shldrGeo, glassMat);
-        shldr.position.y = 1.3;
+        shldr.position.y = 1.28;
         vialGroup.add(shldr);
 
-        // Glass Neck
-        const neckGeo = new THREE.CylinderGeometry(0.38, 0.38, 0.35, 32, 1, true);
+        // Glass Neck Cylinder
+        const neckGeo = new THREE.CylinderGeometry(0.40, 0.40, 0.28, 36, 1, true);
         const neck = new THREE.Mesh(neckGeo, glassMat);
-        neck.position.y = 1.65;
+        neck.position.y = 1.63;
         vialGroup.add(neck);
 
-        // Crimped Aluminum Seal Collar
-        const crimpGeo = new THREE.CylinderGeometry(0.46, 0.46, 0.32, 32);
+        // Molded Glass Crown Bead Lip (crimp collar locking bead)
+        const crownLip = new THREE.Mesh(
+            new THREE.TorusGeometry(0.44, 0.05, 16, 36),
+            glassMat
+        );
+        crownLip.rotation.x = Math.PI / 2;
+        crownLip.position.y = 1.77;
+        vialGroup.add(crownLip);
+
+        // Crimped Aluminum Seal Collar (Ferrule)
+        const crimpGeo = new THREE.CylinderGeometry(0.49, 0.49, 0.38, 36);
         const crimpMat = new THREE.MeshPhongMaterial({
-            color: 0xc4d8e8,
-            emissive: 0x14202c,
+            color: 0xd2e0ed,
+            emissive: 0x16222d,
             specular: 0xffffff,
-            shininess: 180
+            shininess: 170
         });
         const crimp = new THREE.Mesh(crimpGeo, crimpMat);
-        crimp.position.y = 1.95;
+        crimp.position.y = 1.94;
         vialGroup.add(crimp);
 
-        // Injection Septum Stopper & Needle Target
-        const septumGeo = new THREE.CylinderGeometry(0.35, 0.35, 0.06, 24);
-        const septumMat = new THREE.MeshPhongMaterial({ color: 0x1a2430, shininess: 40 });
+        // Crimp Indentation Groove
+        const crimpGroove = new THREE.Mesh(
+            new THREE.TorusGeometry(0.495, 0.02, 12, 36),
+            new THREE.MeshPhongMaterial({ color: 0x8fa4b8, specular: 0xffffff, shininess: 100 })
+        );
+        crimpGroove.rotation.x = Math.PI / 2;
+        crimpGroove.position.y = 1.88;
+        vialGroup.add(crimpGroove);
+
+        // Molded Flip-Off Plastic Cap
+        const flipCap = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.50, 0.50, 0.08, 36),
+            new THREE.MeshPhongMaterial({
+                color: 0xff1744,
+                emissive: 0x3d0010,
+                specular: 0xffaacc,
+                shininess: 120
+            })
+        );
+        flipCap.position.y = 2.14;
+        vialGroup.add(flipCap);
+
+        // Flip Cap Top Rim Grip
+        const capBezel = new THREE.Mesh(
+            new THREE.TorusGeometry(0.48, 0.024, 12, 36),
+            new THREE.MeshPhongMaterial({ color: 0xff4d6d, specular: 0xffffff, shininess: 140 })
+        );
+        capBezel.rotation.x = Math.PI / 2;
+        capBezel.position.y = 2.18;
+        vialGroup.add(capBezel);
+
+        // Chlorobutyl Rubber Injection Septum
+        const septumGeo = new THREE.CylinderGeometry(0.36, 0.36, 0.10, 24);
+        const septumMat = new THREE.MeshPhongMaterial({ color: 0x1a222a, shininess: 30 });
         const septum = new THREE.Mesh(septumGeo, septumMat);
-        septum.position.y = 2.12;
+        septum.position.y = 2.10;
         vialGroup.add(septum);
 
+        // Needle Target Ring
         const targetRing = new THREE.Mesh(
-            new THREE.TorusGeometry(0.12, 0.02, 8, 24),
+            new THREE.TorusGeometry(0.12, 0.018, 8, 24),
             new THREE.MeshBasicMaterial({ color: 0xff1744 })
         );
-        targetRing.rotation.x = Math.PI / 2; targetRing.position.y = 2.15;
+        targetRing.rotation.x = Math.PI / 2;
+        targetRing.position.y = 2.17;
         vialGroup.add(targetRing);
 
-        // Volumetric Luminescent Active Serum
-        const serumGeo = new THREE.CylinderGeometry(0.64, 0.64, 1.4, 32);
+        // Center Needle Puncture Dimple
+        const needleDimple = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.028, 0.028, 0.02, 12),
+            new THREE.MeshBasicMaterial({ color: 0x05070a })
+        );
+        needleDimple.position.y = 2.17;
+        vialGroup.add(needleDimple);
+
+        // Authentic Multi-Dose Adhesive Pharmaceutical Wrap Label (covers front 240°, rear 120° open)
+        const vialCanvas = getVialLabelCanvas();
+        const vialLabelTexture = new THREE.CanvasTexture(vialCanvas);
+        vialLabelTexture.generateMipmaps = true;
+        vialLabelTexture.minFilter = THREE.LinearMipmapLinearFilter;
+        vialLabelTexture.wrapS = THREE.ClampToEdgeWrapping;
+        vialLabelTexture.wrapT = THREE.ClampToEdgeWrapping;
+
+        const labelGeo = new THREE.CylinderGeometry(0.745, 0.745, 1.35, 48, 1, true, -Math.PI * 0.65, Math.PI * 1.30);
+        const labelMat = new THREE.MeshBasicMaterial({
+            map: vialLabelTexture,
+            side: THREE.DoubleSide
+        });
+        const labelMesh = new THREE.Mesh(labelGeo, labelMat);
+        labelMesh.position.y = 0.08;
+        vialGroup.add(labelMesh);
+
+        // Volumetric Active Injectable Serum
+        const serumGeo = new THREE.CylinderGeometry(0.64, 0.64, 1.42, 36);
         const serumMat = new THREE.MeshPhongMaterial({
             color: 0x00f0ff,
             emissive: 0x004466,
-            emissiveIntensity: 0.4,
+            emissiveIntensity: 0.55,
             specular: 0xffffff,
-            shininess: 100,
+            shininess: 120,
             transparent: true,
-            opacity: 0.65
+            opacity: 0.72
         });
         const serum = new THREE.Mesh(serumGeo, serumMat);
-        serum.position.y = -0.25;
+        serum.position.y = -0.21;
         vialGroup.add(serum);
 
-        // Fluid Surface Meniscus
-        const meniscus = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.64, 0.64, 0.02, 32),
-            new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x00f0ff, emissiveIntensity: 0.5, transparent: true, opacity: 0.85 })
+        // Realistic Meniscus Ring
+        const meniscusRim = new THREE.Mesh(
+            new THREE.TorusGeometry(0.63, 0.022, 16, 36),
+            new THREE.MeshPhongMaterial({
+                color: 0x00f0ff,
+                emissive: 0x00f0ff,
+                emissiveIntensity: 0.75,
+                transparent: true,
+                opacity: 0.85
+            })
         );
-        meniscus.position.y = 0.45;
-        vialGroup.add(meniscus);
+        meniscusRim.rotation.x = Math.PI / 2;
+        meniscusRim.position.y = 0.50;
+        vialGroup.add(meniscusRim);
 
-        // Rising Micro-Bubbles
-        for (let b = 0; b < 20; b++) {
+        // Meniscus Surface Top Disc
+        const meniscusDisc = new THREE.Mesh(
+            new THREE.CircleGeometry(0.63, 36),
+            new THREE.MeshPhongMaterial({
+                color: 0x00f0ff,
+                emissive: 0x004466,
+                emissiveIntensity: 0.45,
+                specular: 0xffffff,
+                shininess: 160,
+                transparent: true,
+                opacity: 0.80
+            })
+        );
+        meniscusDisc.rotation.x = -Math.PI / 2;
+        meniscusDisc.position.y = 0.50;
+        vialGroup.add(meniscusDisc);
+
+        // 24 Animated Rising Micro-Bubbles
+        for (let b = 0; b < 24; b++) {
             const bub = new THREE.Mesh(
-                new THREE.SphereGeometry(0.02 + Math.random() * 0.03, 8, 8),
-                new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x00f0ff, emissiveIntensity: 0.6, transparent: true, opacity: 0.55 })
+                new THREE.SphereGeometry(0.018 + Math.random() * 0.028, 8, 8),
+                new THREE.MeshPhongMaterial({
+                    color: 0x00f0ff,
+                    emissive: 0x00f0ff,
+                    emissiveIntensity: 0.7,
+                    transparent: true,
+                    opacity: 0.65
+                })
             );
-            bub.position.set((Math.random() - 0.5) * 0.7, -0.9 + Math.random() * 1.3, (Math.random() - 0.5) * 0.7);
-            bub.userData.bub = { spd: 0.002 + Math.random() * 0.004, top: 0.42, btm: -0.9 };
+            bub.position.set((Math.random() - 0.5) * 0.8, -0.85 + Math.random() * 1.3, (Math.random() - 0.5) * 0.8);
+            bub.userData.bub = { spd: 0.002 + Math.random() * 0.004, top: 0.48, btm: -0.88 };
             vialGroup.add(bub);
         }
 
-        // Measurement Graduations
-        for (let m = 0; m < 8; m++) {
-            const ly = -0.7 + m * 0.16;
-            const tl = m % 2 === 0 ? 0.22 : 0.12;
+        // Rear Laser Metric Graduations (Visible through the open glass window)
+        for (let g = 0; g < 9; g++) {
+            const gy = -0.65 + g * 0.1425;
+            const isMajor = g % 2 === 0;
+            const len = isMajor ? 0.22 : 0.12;
             const tick = new THREE.Line(
-                new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0.73, ly, 0), new THREE.Vector3(0.73 + tl, ly, 0)]),
-                new THREE.LineBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.6 })
+                new THREE.BufferGeometry().setFromPoints([
+                    new THREE.Vector3(-len / 2, gy, -0.742),
+                    new THREE.Vector3(len / 2, gy, -0.742)
+                ]),
+                new THREE.LineBasicMaterial({
+                    color: isMajor ? 0x00f0ff : 0x00aacc,
+                    transparent: true,
+                    opacity: isMajor ? 0.85 : 0.5
+                })
             );
             vialGroup.add(tick);
         }
+
+        // Ambient Diagnostic Scanning Ring at Base
+        const vScan = new THREE.Mesh(
+            new THREE.TorusGeometry(1.2, 0.015, 8, 64),
+            new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.35 })
+        );
+        vScan.rotation.x = Math.PI / 2;
+        vScan.position.y = -0.92;
+        vialGroup.add(vScan);
 
         group.add(vialGroup);
     }
@@ -6057,6 +6463,7 @@ function initHologram(type) {
             }
             if (child.userData.bub) {
                 child.position.y += child.userData.bub.spd;
+                child.position.x += Math.sin(t * 3 + child.position.y * 5) * 0.0004;
                 if (child.position.y > child.userData.bub.top) child.position.y = child.userData.bub.btm;
             }
             if (child.userData.pDrift) {
