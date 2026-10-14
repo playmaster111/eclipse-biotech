@@ -10027,3 +10027,99 @@ html[data-theme="blood"] .quick-nav-pill {
         text-shadow: none !important;
     }
 }
+
+/* ============================================================
+   HIGH-FIDELITY HOLOGRAM HUD CONTROLS
+   ============================================================ */
+.hologram-viewport {
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.hologram-viewport:active {
+    cursor: grabbing;
+}
+
+.holo-mode-pills {
+    position: absolute;
+    left: 14px;
+    bottom: 12px;
+    display: flex;
+    gap: 5px;
+    z-index: 10;
+}
+
+.holo-mode-btn {
+    padding: 3px 8px;
+    font-size: 8px;
+    font-family: var(--font-m);
+    letter-spacing: 1px;
+    background: rgba(6, 12, 18, 0.75);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 3px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.holo-mode-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(0, 240, 255, 0.12);
+}
+
+.holo-mode-btn.active {
+    color: #050b11 !important;
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.holo-ctrl-hint {
+    position: absolute;
+    right: 48px;
+    bottom: 14px;
+    font-size: 8px;
+    font-family: var(--font-m);
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.35);
+    z-index: 10;
+    pointer-events: none;
+    text-transform: uppercase;
+}
+
+.holo-reset-btn {
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 12, 18, 0.75);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 4px;
+    color: var(--muted);
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+    font-size: 10px;
+}
+
+.holo-reset-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(0, 240, 255, 0.15);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+@media (max-width: 600px) {
+    .holo-ctrl-hint {
+        display: none;
+    }
+}
+

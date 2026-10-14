@@ -2141,10 +2141,18 @@ function loadArticle(id) {
             <div class="hologram-grid-floor"></div>
             <div class="hologram-data-stream">
                 ${getT('id_header')}: ${item.id.toUpperCase()}<br>
-                GEO_TYPE: ${holoType.toUpperCase()}_MESH<br>
+                GEO_TYPE: <span id="holo-mesh-label">${holoType.toUpperCase()}</span>_HD<br>
                 AUTH: BIOTECH_ADMIN<br>
                 STATUS: ${item.status.toUpperCase()}
             </div>
+            <div class="holo-mode-pills">
+                <button class="holo-mode-btn ${holoType==='molecule'?'active':''}" onclick="event.stopPropagation(); initHologram('molecule')" title="Steroid Backbone Model">MOL</button>
+                <button class="holo-mode-btn ${holoType==='pill'?'active':''}" onclick="event.stopPropagation(); initHologram('pill')" title="Oral Nanotech Capsule">CAPSULE</button>
+                <button class="holo-mode-btn ${holoType==='vial'?'active':''}" onclick="event.stopPropagation(); initHologram('vial')" title="Injectable Glass Ampoule">VIAL</button>
+                <button class="holo-mode-btn ${holoType==='dna'?'active':''}" onclick="event.stopPropagation(); initHologram('dna')" title="Peptide Double Helix">DNA</button>
+            </div>
+            <div class="holo-ctrl-hint"><i class="fas fa-arrows-alt"></i> 3D DRAG • ZOOM</div>
+            <button class="holo-reset-btn" onclick="event.stopPropagation(); window.resetHoloOrientation()" title="Reset 3D View"><i class="fas fa-compress-arrows-alt"></i></button>
             <div class="hologram-scanline"></div>
             <div class="hologram-laser"></div>
             <div class="hologram-flare"></div>
@@ -5400,225 +5408,677 @@ window.generateCOA = function() {
     `;
 }
 
-// --- Three.js Hologram Engine ---
+// --- Three.js Hologram Engine (High-Fidelity Cyberpunk Hologram v2.0) ---
 let holoScene, holoCamera, holoRenderer, holoMesh, holoRequestID;
+let holoCamZoom = 6.0;
+
+window.resetHoloOrientation = function() {
+    holoCamZoom = 6.0;
+    if (holoCamera) holoCamera.position.set(0, 1.2, 6.0);
+    if (holoMesh) {
+        holoMesh.rotation.x = 0;
+        holoMesh.rotation.y = 0;
+    }
+};
 
 function initHologram(type) {
-    var container = document.getElementById('hologram-canvas-container');
+    type = type || 'molecule';
+    const container = document.getElementById('hologram-canvas-container');
     if (!container) return;
     if (holoRequestID) cancelAnimationFrame(holoRequestID);
     if (holoRenderer) { container.innerHTML = ''; holoRenderer.dispose(); }
 
+    const label = document.getElementById('holo-mesh-label');
+    if (label) label.textContent = type.toUpperCase();
+    document.querySelectorAll('.holo-mode-btn').forEach(btn => {
+        const txt = btn.textContent.trim().toLowerCase();
+        btn.classList.toggle('active', txt === type || (type === 'molecule' && txt === 'mol') || (type === 'pill' && txt === 'capsule'));
+    });
+
     holoScene = new THREE.Scene();
 
-    holoCamera = new THREE.PerspectiveCamera(40, container.offsetWidth / container.offsetHeight, 0.1, 1000);
-    holoCamera.position.set(0, 1.5, 6);
+    const w = container.offsetWidth || 300;
+    const h = container.offsetHeight || 220;
+    holoCamera = new THREE.PerspectiveCamera(40, w / h, 0.1, 1000);
+    holoCamera.position.set(0, 1.2, holoCamZoom);
     holoCamera.lookAt(0, 0, 0);
 
-    holoRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    holoRenderer.setSize(container.offsetWidth, container.offsetHeight);
+    holoRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    holoRenderer.setSize(w, h);
     holoRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(holoRenderer.domElement);
 
-    // Lighting
-    holoScene.add(new THREE.AmbientLight(0x40a0b0, 2.5));
-    var keyLight = new THREE.PointLight(0x00f0ff, 4, 25);
-    keyLight.position.set(3, 3, 3);
+    // Dynamic Multi-Source Cyberpunk Lighting
+    holoScene.add(new THREE.AmbientLight(0x306080, 2.0));
+    
+    const keyLight = new THREE.PointLight(0x00f0ff, 4.5, 30);
+    keyLight.position.set(3.5, 4, 3.5);
     holoScene.add(keyLight);
-    var fillLight = new THREE.PointLight(0xb5ff4d, 2.5, 20);
-    fillLight.position.set(-3, -1, 2);
+
+    const fillLight = new THREE.PointLight(0xb5ff4d, 2.5, 25);
+    fillLight.position.set(-3.5, -1, 3);
     holoScene.add(fillLight);
-    var rimLight = new THREE.PointLight(0xff3a5c, 1.5, 18);
-    rimLight.position.set(0, -3, -3);
+
+    const rimLight = new THREE.PointLight(0xff1744, 3.0, 25);
+    rimLight.position.set(0, -3.5, -4);
     holoScene.add(rimLight);
 
-    // Materials
-    var cyMat = new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x004060, transparent: true, opacity: 0.55, wireframe: true, shininess: 100 });
-    var cyFill = new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x003040, transparent: true, opacity: 0.18, shininess: 80 });
-    var grMat = new THREE.MeshPhongMaterial({ color: 0xb5ff4d, emissive: 0x204000, transparent: true, opacity: 0.55, wireframe: true });
-    var rdMat = new THREE.MeshPhongMaterial({ color: 0xff3a5c, emissive: 0x400020, transparent: true, opacity: 0.55, wireframe: true });
-    var orMat = new THREE.MeshPhongMaterial({ color: 0xff9d00, emissive: 0x402000, transparent: true, opacity: 0.55, wireframe: true });
-    var glowMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.08 });
-    var lineMat = new THREE.LineBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.25 });
+    const group = new THREE.Group();
 
-    var group = new THREE.Group();
-
-    // Base plate
-    var baseGeo = new THREE.CylinderGeometry(2.2, 2.4, 0.06, 48);
-    var baseMat = new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x001015, transparent: true, opacity: 0.15 });
-    var base = new THREE.Mesh(baseGeo, baseMat);
-    base.position.y = -2.2;
-    group.add(base);
-    var baseRing = new THREE.Mesh(new THREE.TorusGeometry(2.3, 0.02, 8, 64), new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.4 }));
-    baseRing.rotation.x = Math.PI/2; baseRing.position.y = -2.17;
-    group.add(baseRing);
-    // Grid on base
-    for (var gi = -2; gi <= 2; gi += 0.4) {
-        var pts1 = [new THREE.Vector3(gi, -2.17, -2.3), new THREE.Vector3(gi, -2.17, 2.3)];
-        var pts2 = [new THREE.Vector3(-2.3, -2.17, gi), new THREE.Vector3(2.3, -2.17, gi)];
-        var gMat = new THREE.LineBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.06 });
-        group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts1), gMat));
-        group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts2), gMat));
-    }
-
-    // Scan ring helper
-    function addScan(g, r) {
-        var sr = new THREE.Mesh(new THREE.TorusGeometry(r, 0.02, 8, 64), new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.5 }));
-        sr.rotation.x = Math.PI/2; sr.userData.scan = true; g.add(sr);
-    }
-    // Particles
-    function addDust(g, n, s) {
-        for (var i=0;i<n;i++) {
-            var p = new THREE.Mesh(new THREE.SphereGeometry(0.015+Math.random()*0.02,4,4), new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.3+Math.random()*0.5 }));
-            p.position.set((Math.random()-0.5)*s,(Math.random()-0.5)*s,(Math.random()-0.5)*s);
-            p.userData.drift = {spd:0.001+Math.random()*0.003, off:Math.random()*6.28}; g.add(p);
-        }
-    }
-
-    if (type === 'pill') {
-        var outer = new THREE.Mesh(new THREE.CapsuleGeometry(0.85,1.5,12,32), cyMat);
-        var fill = new THREE.Mesh(new THREE.CapsuleGeometry(0.85,1.5,12,32), cyFill);
-        var inner = new THREE.Mesh(new THREE.CapsuleGeometry(0.45,0.9,6,16), grMat);
-        var band = new THREE.Mesh(new THREE.TorusGeometry(0.87,0.04,12,48), new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x00f0ff, transparent: true, opacity: 0.8 }));
-        band.rotation.x = Math.PI/2;
-        var glow = new THREE.Mesh(new THREE.CapsuleGeometry(1.1,1.8,6,16), glowMat);
-        group.add(outer, fill, inner, band, glow);
-        for (var i=0;i<50;i++) {
-            var sz = 0.02+Math.random()*0.04;
-            var mat = i%4===0 ? grMat : (i%5===0 ? rdMat : cyMat);
-            var dot = new THREE.Mesh(new THREE.SphereGeometry(sz,6,6), mat);
-            var r=0.55*Math.sqrt(Math.random()), th=Math.random()*6.28, y=(Math.random()-0.5)*1.8;
-            dot.position.set(r*Math.cos(th),y,r*Math.sin(th)); group.add(dot);
-        }
-        addScan(group,1.1); addDust(group,35,4);
-
-    } else if (type === 'vial') {
-        var body = new THREE.Mesh(new THREE.CylinderGeometry(0.65,0.65,2.2,32), cyMat);
-        var bodyF = new THREE.Mesh(new THREE.CylinderGeometry(0.65,0.65,2.2,32), cyFill);
-        var btm = new THREE.Mesh(new THREE.SphereGeometry(0.65,32,16,0,6.28,1.57,1.57), cyFill);
-        btm.position.y = -1.1;
-        var shldr = new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.65,0.4,32), cyMat);
-        shldr.position.y = 1.3;
-        var neck = new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.35,0.5,32), cyMat);
-        neck.position.y = 1.6;
-        var cap = new THREE.Mesh(new THREE.CylinderGeometry(0.42,0.42,0.25,32), new THREE.MeshPhongMaterial({ color: 0xb5ff4d, emissive: 0xb5ff4d, transparent: true, opacity: 0.6, wireframe: true }));
-        cap.position.y = 1.95;
-        var liq = new THREE.Mesh(new THREE.CylinderGeometry(0.55,0.55,1.4,24), new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x003040, transparent: true, opacity: 0.15 }));
-        liq.position.y = -0.2; liq.userData.liquid = true;
-        group.add(body,bodyF,btm,shldr,neck,cap,liq);
-        // Measurement ticks
-        for (var m=0;m<7;m++) { var ly=-0.9+m*0.3, tl=m%2===0?0.18:0.1;
-            group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0.66,ly,0), new THREE.Vector3(0.66+tl,ly,0)]), lineMat));
-        }
-        // Bubbles
-        for (var b=0;b<15;b++) {
-            var bub = new THREE.Mesh(new THREE.SphereGeometry(0.025+Math.random()*0.035,8,8), new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x004050, transparent: true, opacity: 0.25 }));
-            bub.position.set((Math.random()-0.5)*0.7,-0.8+Math.random()*1.2,(Math.random()-0.5)*0.7);
-            bub.userData.bub = {spd:0.002+Math.random()*0.004, off:Math.random()*6.28}; group.add(bub);
-        }
-        var glow2 = new THREE.Mesh(new THREE.CylinderGeometry(0.9,0.9,2.8,16), glowMat);
-        group.add(glow2);
-        addScan(group,0.85); addDust(group,30,3.5);
-
-    
-    } else if (type === 'dna') {
-        var N=70, R=0.95, H=5.5, c1=[], c2=[];
-        var dnaGroup = new THREE.Group();
-        for (var i=0;i<N;i++) {
-            var t=i/N, a=t*Math.PI*8, y=t*H-H/2;
-            var x1=Math.sin(a)*R, z1=Math.cos(a)*R;
-            var x2=Math.sin(a+Math.PI)*R, z2=Math.cos(a+Math.PI)*R;
-            var s1=new THREE.Mesh(new THREE.SphereGeometry(0.055,10,10), cyMat);
-            s1.position.set(x1,y,z1); dnaGroup.add(s1); c1.push(new THREE.Vector3(x1,y,z1));
-            var s2=new THREE.Mesh(new THREE.SphereGeometry(0.055,10,10), cyMat);
-            s2.position.set(x2,y,z2); dnaGroup.add(s2); c2.push(new THREE.Vector3(x2,y,z2));
-            if (i%2===0) {
-                var mx=(x1+x2)/2, mz=(z1+z2)/2;
-                var c1m = i%4===0 ? 0xb5ff4d : 0xff9d00;
-                var c2m = i%4===0 ? 0xff3a5c : 0x00f0ff;
-                dnaGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x1,y,z1),new THREE.Vector3(mx,y,mz)]), new THREE.LineBasicMaterial({color:c1m,transparent:true,opacity:0.5})));
-                dnaGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(mx,y,mz),new THREE.Vector3(x2,y,z2)]), new THREE.LineBasicMaterial({color:c2m,transparent:true,opacity:0.5})));
-                var hb=new THREE.Mesh(new THREE.OctahedronGeometry(0.04,0), new THREE.MeshPhongMaterial({color:0xffffff,emissive:0x404040,transparent:true,opacity:0.6}));
-                hb.position.set(mx,y,mz); dnaGroup.add(hb);
-            }
-            if (i%6===0) {
-                var nd=new THREE.Mesh(new THREE.OctahedronGeometry(0.1,0), grMat);
-                nd.position.set(x1,y,z1); dnaGroup.add(nd);
-            }
-        }
-        dnaGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(c1), new THREE.LineBasicMaterial({color:0x00f0ff,transparent:true,opacity:0.7})));
-        dnaGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(c2), new THREE.LineBasicMaterial({color:0x00f0ff,transparent:true,opacity:0.7})));
-        addDust(dnaGroup,50,5); addScan(dnaGroup,1.3);
-        dnaGroup.rotation.z = Math.PI/2;
-        group.add(dnaGroup);
-
-        
-
-    } else {
-        var atoms = [
-            {p:[0,0,0],s:0.5,c:0x00f0ff},{p:[1.3,0.3,0.2],s:0.3,c:0x00f0ff},
-            {p:[-1.1,-0.4,0.3],s:0.3,c:0xb5ff4d},{p:[0.4,1.2,0.6],s:0.3,c:0x00f0ff},
-            {p:[-0.3,-1.1,-0.5],s:0.3,c:0xb5ff4d},{p:[0.1,0.4,1.3],s:0.25,c:0xff9d00},
-            {p:[-0.2,-0.3,-1.2],s:0.25,c:0xff9d00},{p:[1.7,0.9,0.8],s:0.2,c:0xff3a5c},
-            {p:[-1.5,0.6,-0.7],s:0.2,c:0xff3a5c},{p:[0.8,-1.3,0.9],s:0.2,c:0xb5ff4d},
-            {p:[-0.9,1.4,-0.4],s:0.2,c:0x00f0ff},{p:[1.9,-0.5,-0.3],s:0.15,c:0x00f0ff},
-            {p:[-1.8,-0.8,0.5],s:0.15,c:0xff9d00},{p:[0.5,1.8,-0.8],s:0.15,c:0xb5ff4d}
-        ];
-        atoms.forEach(function(a,idx){
-            var am=new THREE.MeshPhongMaterial({color:a.c,emissive:a.c,emissiveIntensity:0.15,transparent:true,opacity:0.45,wireframe:true,shininess:120});
-            var af=new THREE.MeshPhongMaterial({color:a.c,emissive:a.c,emissiveIntensity:0.05,transparent:true,opacity:0.1});
-            var m=new THREE.Mesh(new THREE.SphereGeometry(a.s,20,20),am);
-            var f=new THREE.Mesh(new THREE.SphereGeometry(a.s,20,20),af);
-            m.position.set(a.p[0],a.p[1],a.p[2]); f.position.set(a.p[0],a.p[1],a.p[2]);
-            group.add(m,f);
-            if(a.s>0.2){
-                var sh=new THREE.Mesh(new THREE.SphereGeometry(a.s*1.7,10,10),new THREE.MeshBasicMaterial({color:a.c,transparent:true,opacity:0.04}));
-                sh.position.set(a.p[0],a.p[1],a.p[2]); group.add(sh);
-            }
-            atoms.slice(idx+1).forEach(function(t){
-                var d=new THREE.Vector3(a.p[0],a.p[1],a.p[2]).distanceTo(new THREE.Vector3(t.p[0],t.p[1],t.p[2]));
-                if(d<2.0){
-                    var dir=new THREE.Vector3(t.p[0]-a.p[0],t.p[1]-a.p[1],t.p[2]-a.p[2]).normalize();
-                    var perp=new THREE.Vector3(-dir.y,dir.x,0).normalize().multiplyScalar(0.04);
-                    var pa=new THREE.Vector3(a.p[0],a.p[1],a.p[2]), pb=new THREE.Vector3(t.p[0],t.p[1],t.p[2]);
-                    group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([pa.clone().add(perp),pb.clone().add(perp)]),lineMat));
-                    group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([pa.clone().sub(perp),pb.clone().sub(perp)]),lineMat));
-                }
-            });
+    // Helper: Create 3D Cylindrical Bond
+    function createBond(p1, p2, radius, colorHex, opacityVal) {
+        const v1 = new THREE.Vector3(p1[0], p1[1], p1[2]);
+        const v2 = new THREE.Vector3(p2[0], p2[1], p2[2]);
+        const dir = new THREE.Vector3().subVectors(v2, v1);
+        const len = dir.length();
+        const geom = new THREE.CylinderGeometry(radius, radius, len, 10);
+        const mat = new THREE.MeshPhongMaterial({
+            color: colorHex || 0x00f0ff,
+            emissive: (colorHex || 0x00f0ff),
+            emissiveIntensity: 0.25,
+            specular: 0xffffff,
+            shininess: 110,
+            transparent: true,
+            opacity: opacityVal || 0.8
         });
-        addDust(group,45,5); addScan(group,1.8);
+        const mesh = new THREE.Mesh(geom, mat);
+        const mid = new THREE.Vector3().addVectors(v1, v2).multiplyScalar(0.5);
+        mesh.position.copy(mid);
+        mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().normalize());
+        return mesh;
     }
 
-    holoScene.add(group); holoMesh = group;
+    // Pedestal Emitter Base
+    const pedestalGroup = new THREE.Group();
+    const baseGeo = new THREE.CylinderGeometry(2.3, 2.5, 0.08, 48);
+    const baseMat = new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x001522, transparent: true, opacity: 0.25, shininess: 100 });
+    const base = new THREE.Mesh(baseGeo, baseMat);
+    base.position.y = -2.2;
+    pedestalGroup.add(base);
 
-    // Interaction
-    var drag=false, prevX=0;
-    container.addEventListener('mousedown',function(e){drag=true;prevX=e.clientX;});
-    window.addEventListener('mouseup',function(){drag=false;});
-    window.addEventListener('mousemove',function(e){if(drag&&holoMesh){holoMesh.rotation.y+=(e.clientX-prevX)*0.01;prevX=e.clientX;}});
-    container.addEventListener('touchstart',function(e){drag=true;prevX=e.touches[0].clientX;});
-    window.addEventListener('touchend',function(){drag=false;});
-    window.addEventListener('touchmove',function(e){if(drag&&holoMesh){holoMesh.rotation.y+=(e.touches[0].clientX-prevX)*0.01;prevX=e.touches[0].clientX;}});
+    // Counter-Rotating Telemetry Laser Rings
+    const ring1 = new THREE.Mesh(
+        new THREE.TorusGeometry(2.4, 0.02, 8, 64),
+        new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.55 })
+    );
+    ring1.rotation.x = Math.PI / 2; ring1.position.y = -2.16;
+    ring1.userData.spinSpeed = 0.006;
+    pedestalGroup.add(ring1);
 
-    // Animation
-    var time0 = Date.now();
-    var animate = function() {
+    const ring2 = new THREE.Mesh(
+        new THREE.TorusGeometry(1.85, 0.018, 8, 48),
+        new THREE.MeshBasicMaterial({ color: 0xb5ff4d, transparent: true, opacity: 0.4 })
+    );
+    ring2.rotation.x = Math.PI / 2; ring2.position.y = -2.15;
+    ring2.userData.spinSpeed = -0.009;
+    pedestalGroup.add(ring2);
+
+    // Holographic Grid Lines on Base
+    for (let gi = -2.0; gi <= 2.0; gi += 0.5) {
+        const pts1 = [new THREE.Vector3(gi, -2.14, -2.1), new THREE.Vector3(gi, -2.14, 2.1)];
+        const pts2 = [new THREE.Vector3(-2.1, -2.14, gi), new THREE.Vector3(2.1, -2.14, gi)];
+        const gMat = new THREE.LineBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.08 });
+        pedestalGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts1), gMat));
+        pedestalGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts2), gMat));
+    }
+    group.add(pedestalGroup);
+
+    // Vertical Scanner Ring
+    const scanRing = new THREE.Mesh(
+        new THREE.TorusGeometry(1.9, 0.025, 8, 64),
+        new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.6 })
+    );
+    scanRing.rotation.x = Math.PI / 2;
+    scanRing.userData.scan = true;
+    group.add(scanRing);
+
+    // Ambient floating dust particles
+    for (let i = 0; i < 40; i++) {
+        const p = new THREE.Mesh(
+            new THREE.SphereGeometry(0.015 + Math.random() * 0.02, 6, 6),
+            new THREE.MeshBasicMaterial({ color: i % 3 === 0 ? 0xb5ff4d : 0x00f0ff, transparent: true, opacity: 0.35 + Math.random() * 0.45 })
+        );
+        p.position.set((Math.random() - 0.5) * 4.5, (Math.random() - 0.5) * 3.5, (Math.random() - 0.5) * 4.5);
+        p.userData.drift = { spd: 0.001 + Math.random() * 0.003, off: Math.random() * 6.28 };
+        group.add(p);
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // MODEL 1: MOLECULE (Authentic 4-Ring Gonane Steroid Backbone)
+    // ─────────────────────────────────────────────────────────────
+    if (type === 'molecule') {
+        const molGroup = new THREE.Group();
+        
+        // 21-atom steroid nucleus (centered)
+        const steroidAtoms = [
+            // Ring A
+            { id: 'C1',  p: [-2.67, -0.63, 0.01],  c: 0x00f0ff, r: 0.24 },
+            { id: 'C2',  p: [-3.07, -1.83, -0.04], c: 0x00f0ff, r: 0.24 },
+            { id: 'C3',  p: [-2.27, -2.83, -0.19], c: 0x00f0ff, r: 0.26 },
+            { id: 'O3',  p: [-2.67, -3.93, -0.29], c: 0xff1744, r: 0.32 }, // Carbonyl =O
+            { id: 'C4',  p: [-1.07, -2.63, -0.29], c: 0x00f0ff, r: 0.24 },
+            { id: 'C5',  p: [-0.67, -1.33, -0.19], c: 0x00f0ff, r: 0.26 },
+            { id: 'C10', p: [-1.47, -0.33, -0.09], c: 0x00f0ff, r: 0.26 },
+            { id: 'C19', p: [-1.57, 0.77, 0.66],   c: 0xffaa00, r: 0.28 }, // C19 methyl
+            
+            // Ring B
+            { id: 'C6',  p: [0.53, -1.13, -0.34],  c: 0x00f0ff, r: 0.24 },
+            { id: 'C7',  p: [0.93, 0.07, -0.24],   c: 0x00f0ff, r: 0.24 },
+            { id: 'C8',  p: [0.13, 1.07, -0.09],   c: 0x00f0ff, r: 0.26 },
+            { id: 'C9',  p: [-1.07, 0.87, -0.14],  c: 0x00f0ff, r: 0.26 },
+            
+            // Ring C
+            { id: 'C11', p: [-0.67, 2.07, 0.01],   c: 0x00f0ff, r: 0.24 },
+            { id: 'C12', p: [0.53, 2.27, 0.11],    c: 0x00f0ff, r: 0.24 },
+            { id: 'C13', p: [1.33, 1.27, 0.01],    c: 0x00f0ff, r: 0.28 },
+            { id: 'C18', p: [1.53, 2.07, 1.06],    c: 0xffaa00, r: 0.28 }, // C18 methyl
+            { id: 'C14', p: [0.93, 0.27, -0.09],   c: 0x00f0ff, r: 0.26 },
+            
+            // Ring D
+            { id: 'C15', p: [2.13, -0.43, -0.19],  c: 0x00f0ff, r: 0.24 },
+            { id: 'C16', p: [3.13, 0.37, -0.04],   c: 0x00f0ff, r: 0.24 },
+            { id: 'C17', p: [2.63, 1.57, 0.11],    c: 0x00f0ff, r: 0.26 },
+            { id: 'O17', p: [3.43, 2.47, 0.26],    c: 0x00ffaa, r: 0.30 }  // 17-OH
+        ];
+
+        const atomMap = {};
+        steroidAtoms.forEach(a => {
+            atomMap[a.id] = a.p;
+            // Dual-layer atom sphere: Core + Emissive Shell
+            const coreGeo = new THREE.SphereGeometry(a.r * 0.9, 24, 24);
+            const coreMat = new THREE.MeshPhongMaterial({
+                color: a.c,
+                emissive: a.c,
+                emissiveIntensity: 0.35,
+                specular: 0xffffff,
+                shininess: 120
+            });
+            const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+            coreMesh.position.set(a.p[0], a.p[1], a.p[2]);
+            molGroup.add(coreMesh);
+
+            const haloGeo = new THREE.SphereGeometry(a.r * 1.5, 12, 12);
+            const haloMat = new THREE.MeshBasicMaterial({ color: a.c, transparent: true, opacity: 0.15 });
+            const haloMesh = new THREE.Mesh(haloGeo, haloMat);
+            haloMesh.position.set(a.p[0], a.p[1], a.p[2]);
+            molGroup.add(haloMesh);
+        });
+
+        // Covalent Bonds
+        const bonds = [
+            ['C1', 'C2'], ['C2', 'C3'], ['C3', 'C4'], ['C4', 'C5'], ['C5', 'C10'], ['C10', 'C1'],
+            ['C10', 'C19'],
+            ['C5', 'C6'], ['C6', 'C7'], ['C7', 'C8'], ['C8', 'C9'], ['C9', 'C10'],
+            ['C8', 'C14'], ['C9', 'C11'], ['C11', 'C12'], ['C12', 'C13'], ['C13', 'C14'],
+            ['C13', 'C18'],
+            ['C13', 'C17'], ['C14', 'C15'], ['C15', 'C16'], ['C16', 'C17'],
+            ['C17', 'O17']
+        ];
+
+        bonds.forEach(([id1, id2]) => {
+            if (atomMap[id1] && atomMap[id2]) {
+                molGroup.add(createBond(atomMap[id1], atomMap[id2], 0.05, 0x00f0ff, 0.85));
+            }
+        });
+
+        // Double Bond for C3=O3
+        if (atomMap['C3'] && atomMap['O3']) {
+            const p1 = atomMap['C3'], p2 = atomMap['O3'];
+            const off = 0.06;
+            molGroup.add(createBond([p1[0] + off, p1[1], p1[2]], [p2[0] + off, p2[1], p2[2]], 0.035, 0xff1744, 0.9));
+            molGroup.add(createBond([p1[0] - off, p1[1], p1[2]], [p2[0] - off, p2[1], p2[2]], 0.035, 0xff1744, 0.9));
+        }
+
+        // Surrounding Holographic Orbital Telemetry Rings
+        const orb1 = new THREE.Mesh(
+            new THREE.TorusGeometry(2.8, 0.015, 8, 80),
+            new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.35 })
+        );
+        orb1.rotation.x = Math.PI / 3; orb1.rotation.y = Math.PI / 6;
+        molGroup.add(orb1);
+
+        const orb2 = new THREE.Mesh(
+            new THREE.TorusGeometry(2.5, 0.015, 8, 80),
+            new THREE.MeshBasicMaterial({ color: 0xffaa00, transparent: true, opacity: 0.25 })
+        );
+        orb2.rotation.x = -Math.PI / 4; orb2.rotation.z = Math.PI / 4;
+        molGroup.add(orb2);
+
+        molGroup.scale.set(0.72, 0.72, 0.72);
+        group.add(molGroup);
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // MODEL 2: PILL (High-Gloss Dual-Tone Nanotech Capsule)
+    // ─────────────────────────────────────────────────────────────
+    else if (type === 'pill') {
+        const pillGroup = new THREE.Group();
+        pillGroup.rotation.z = 0.35;
+
+        // Top Half (Cap): Cyber-Cyan Translucent Gel
+        const topGeo = new THREE.CylinderGeometry(0.75, 0.75, 1.1, 32, 1, true);
+        const topMat = new THREE.MeshPhongMaterial({
+            color: 0x00f0ff,
+            emissive: 0x003344,
+            specular: 0xffffff,
+            shininess: 140,
+            transparent: true,
+            opacity: 0.65
+        });
+        const topMesh = new THREE.Mesh(topGeo, topMat);
+        topMesh.position.y = 0.55;
+        pillGroup.add(topMesh);
+
+        const topDomeGeo = new THREE.SphereGeometry(0.75, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
+        const topDome = new THREE.Mesh(topDomeGeo, topMat);
+        topDome.position.y = 1.1;
+        pillGroup.add(topDome);
+
+        // Bottom Half (Body): Vivid Electric-Crimson Shell
+        const btmGeo = new THREE.CylinderGeometry(0.73, 0.73, 1.1, 32, 1, true);
+        const btmMat = new THREE.MeshPhongMaterial({
+            color: 0xff1744,
+            emissive: 0x3d0010,
+            specular: 0xff88a0,
+            shininess: 120,
+            transparent: true,
+            opacity: 0.88
+        });
+        const btmMesh = new THREE.Mesh(btmGeo, btmMat);
+        btmMesh.position.y = -0.55;
+        pillGroup.add(btmMesh);
+
+        const btmDomeGeo = new THREE.SphereGeometry(0.73, 32, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
+        const btmDome = new THREE.Mesh(btmDomeGeo, btmMat);
+        btmDome.position.y = -1.1;
+        pillGroup.add(btmDome);
+
+        // Central Precision Chrome Lock Band
+        const bandGeo = new THREE.TorusGeometry(0.76, 0.04, 16, 64);
+        const bandMat = new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            emissive: 0x00f0ff,
+            emissiveIntensity: 0.2,
+            specular: 0xffffff,
+            shininess: 180
+        });
+        const band = new THREE.Mesh(bandGeo, bandMat);
+        band.rotation.x = Math.PI / 2;
+        pillGroup.add(band);
+
+        // Active Nanotech Center Core (Pulsing Octahedron)
+        const coreGeo = new THREE.OctahedronGeometry(0.32, 0);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0xb5ff4d,
+            emissive: 0xb5ff4d,
+            emissiveIntensity: 0.45,
+            wireframe: true
+        });
+        const activeCore = new THREE.Mesh(coreGeo, coreMat);
+        activeCore.userData.corePulse = true;
+        pillGroup.add(activeCore);
+
+        // 70 Floating Internal Nano-Pellets in Top Dome
+        for (let i = 0; i < 70; i++) {
+            const sz = 0.025 + Math.random() * 0.035;
+            const pColors = [0xffd700, 0x00f0ff, 0xffffff, 0xb5ff4d];
+            const pColor = pColors[i % pColors.length];
+            const pellet = new THREE.Mesh(
+                new THREE.SphereGeometry(sz, 8, 8),
+                new THREE.MeshPhongMaterial({ color: pColor, emissive: pColor, emissiveIntensity: 0.25, shininess: 120 })
+            );
+            const r = 0.52 * Math.sqrt(Math.random());
+            const th = Math.random() * Math.PI * 2;
+            const y = 0.1 + Math.random() * 1.35;
+            pellet.position.set(r * Math.cos(th), y, r * Math.sin(th));
+            pellet.userData.pDrift = { off: Math.random() * 6.28, spd: 0.001 + Math.random() * 0.002 };
+            pillGroup.add(pellet);
+        }
+
+        // Outer Scanning Ring
+        const pScan = new THREE.Mesh(
+            new THREE.TorusGeometry(1.2, 0.02, 8, 64),
+            new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.45 })
+        );
+        pScan.rotation.x = Math.PI / 2;
+        pillGroup.add(pScan);
+
+        group.add(pillGroup);
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // MODEL 3: VIAL (Medical Glass Ampoule & Volumetric Serum)
+    // ─────────────────────────────────────────────────────────────
+    else if (type === 'vial') {
+        const vialGroup = new THREE.Group();
+
+        // Borosilicate Glass Cylinder
+        const bodyGeo = new THREE.CylinderGeometry(0.72, 0.72, 2.1, 32, 1, true);
+        const glassMat = new THREE.MeshPhongMaterial({
+            color: 0x00f0ff,
+            emissive: 0x001a24,
+            specular: 0xffffff,
+            shininess: 160,
+            transparent: true,
+            opacity: 0.35
+        });
+        const bodyMesh = new THREE.Mesh(bodyGeo, glassMat);
+        bodyMesh.position.y = 0.05;
+        vialGroup.add(bodyMesh);
+
+        // Thick Glass Concave Base
+        const btmDome = new THREE.Mesh(
+            new THREE.SphereGeometry(0.72, 32, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
+            glassMat
+        );
+        btmDome.position.y = -1.0;
+        vialGroup.add(btmDome);
+
+        // Tapered Glass Shoulder
+        const shldrGeo = new THREE.CylinderGeometry(0.38, 0.72, 0.4, 32, 1, true);
+        const shldr = new THREE.Mesh(shldrGeo, glassMat);
+        shldr.position.y = 1.3;
+        vialGroup.add(shldr);
+
+        // Glass Neck
+        const neckGeo = new THREE.CylinderGeometry(0.38, 0.38, 0.35, 32, 1, true);
+        const neck = new THREE.Mesh(neckGeo, glassMat);
+        neck.position.y = 1.65;
+        vialGroup.add(neck);
+
+        // Crimped Aluminum Seal Collar
+        const crimpGeo = new THREE.CylinderGeometry(0.46, 0.46, 0.32, 32);
+        const crimpMat = new THREE.MeshPhongMaterial({
+            color: 0xc4d8e8,
+            emissive: 0x14202c,
+            specular: 0xffffff,
+            shininess: 180
+        });
+        const crimp = new THREE.Mesh(crimpGeo, crimpMat);
+        crimp.position.y = 1.95;
+        vialGroup.add(crimp);
+
+        // Injection Septum Stopper & Needle Target
+        const septumGeo = new THREE.CylinderGeometry(0.35, 0.35, 0.06, 24);
+        const septumMat = new THREE.MeshPhongMaterial({ color: 0x1a2430, shininess: 40 });
+        const septum = new THREE.Mesh(septumGeo, septumMat);
+        septum.position.y = 2.12;
+        vialGroup.add(septum);
+
+        const targetRing = new THREE.Mesh(
+            new THREE.TorusGeometry(0.12, 0.02, 8, 24),
+            new THREE.MeshBasicMaterial({ color: 0xff1744 })
+        );
+        targetRing.rotation.x = Math.PI / 2; targetRing.position.y = 2.15;
+        vialGroup.add(targetRing);
+
+        // Volumetric Luminescent Active Serum
+        const serumGeo = new THREE.CylinderGeometry(0.64, 0.64, 1.4, 32);
+        const serumMat = new THREE.MeshPhongMaterial({
+            color: 0x00f0ff,
+            emissive: 0x004466,
+            emissiveIntensity: 0.4,
+            specular: 0xffffff,
+            shininess: 100,
+            transparent: true,
+            opacity: 0.65
+        });
+        const serum = new THREE.Mesh(serumGeo, serumMat);
+        serum.position.y = -0.25;
+        vialGroup.add(serum);
+
+        // Fluid Surface Meniscus
+        const meniscus = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.64, 0.64, 0.02, 32),
+            new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x00f0ff, emissiveIntensity: 0.5, transparent: true, opacity: 0.85 })
+        );
+        meniscus.position.y = 0.45;
+        vialGroup.add(meniscus);
+
+        // Rising Micro-Bubbles
+        for (let b = 0; b < 20; b++) {
+            const bub = new THREE.Mesh(
+                new THREE.SphereGeometry(0.02 + Math.random() * 0.03, 8, 8),
+                new THREE.MeshPhongMaterial({ color: 0x00f0ff, emissive: 0x00f0ff, emissiveIntensity: 0.6, transparent: true, opacity: 0.55 })
+            );
+            bub.position.set((Math.random() - 0.5) * 0.7, -0.9 + Math.random() * 1.3, (Math.random() - 0.5) * 0.7);
+            bub.userData.bub = { spd: 0.002 + Math.random() * 0.004, top: 0.42, btm: -0.9 };
+            vialGroup.add(bub);
+        }
+
+        // Measurement Graduations
+        for (let m = 0; m < 8; m++) {
+            const ly = -0.7 + m * 0.16;
+            const tl = m % 2 === 0 ? 0.22 : 0.12;
+            const tick = new THREE.Line(
+                new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0.73, ly, 0), new THREE.Vector3(0.73 + tl, ly, 0)]),
+                new THREE.LineBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.6 })
+            );
+            vialGroup.add(tick);
+        }
+
+        group.add(vialGroup);
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // MODEL 4: DNA (Smooth 3D Double Helix & Peptide Matrix)
+    // ─────────────────────────────────────────────────────────────
+    else if (type === 'dna') {
+        const dnaGroup = new THREE.Group();
+        const pts1 = [], pts2 = [];
+        const turns = 2.4, length = 4.8, radius = 0.95, steps = 80;
+
+        for (let i = 0; i <= steps; i++) {
+            const t = i / steps;
+            const a = t * Math.PI * 2 * turns;
+            const y = (t - 0.5) * length;
+            pts1.push(new THREE.Vector3(Math.cos(a) * radius, y, Math.sin(a) * radius));
+            pts2.push(new THREE.Vector3(Math.cos(a + Math.PI) * radius, y, Math.sin(a + Math.PI) * radius));
+        }
+
+        // Smooth 3D Solid Backbone Tubes
+        const curve1 = new THREE.CatmullRomCurve3(pts1);
+        const curve2 = new THREE.CatmullRomCurve3(pts2);
+        const tubeMat = new THREE.MeshPhongMaterial({
+            color: 0x00f0ff,
+            emissive: 0x003355,
+            emissiveIntensity: 0.35,
+            specular: 0xffffff,
+            shininess: 120
+        });
+        const tube1 = new THREE.Mesh(new THREE.TubeGeometry(curve1, 70, 0.045, 10, false), tubeMat);
+        const tube2 = new THREE.Mesh(new THREE.TubeGeometry(curve2, 70, 0.045, 10, false), tubeMat);
+        dnaGroup.add(tube1, tube2);
+
+        // Base Pair Rungs
+        const rungCount = 22;
+        const bpColors = [
+            [0x00f0ff, 0xff1744], // Cyan - Ruby
+            [0xb5ff4d, 0xffaa00]  // Lime - Amber
+        ];
+
+        for (let r = 0; r < rungCount; r++) {
+            const t = r / (rungCount - 1);
+            const a = t * Math.PI * 2 * turns;
+            const y = (t - 0.5) * length;
+            const p1 = new THREE.Vector3(Math.cos(a) * radius, y, Math.sin(a) * radius);
+            const p2 = new THREE.Vector3(Math.cos(a + Math.PI) * radius, y, Math.sin(a + Math.PI) * radius);
+            const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+
+            const pairColor = bpColors[r % bpColors.length];
+            dnaGroup.add(createBond([p1.x, p1.y, p1.z], [mid.x, mid.y, mid.z], 0.035, pairColor[0], 0.85));
+            dnaGroup.add(createBond([mid.x, mid.y, mid.z], [p2.x, p2.y, p2.z], 0.035, pairColor[1], 0.85));
+
+            // Central Hydrogen Bond Node
+            const hNode = new THREE.Mesh(
+                new THREE.SphereGeometry(0.045, 8, 8),
+                new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 })
+            );
+            hNode.position.copy(mid);
+            dnaGroup.add(hNode);
+        }
+
+        // Orbiting Peptide Amino Clusters
+        for (let k = 0; k < 6; k++) {
+            const cluster = new THREE.Mesh(
+                new THREE.OctahedronGeometry(0.12, 0),
+                new THREE.MeshPhongMaterial({ color: 0xb5ff4d, emissive: 0x306000, wireframe: true })
+            );
+            const angle = (k / 6) * Math.PI * 2;
+            cluster.position.set(Math.cos(angle) * 1.5, (k - 2.5) * 0.7, Math.sin(angle) * 1.5);
+            cluster.userData.orbit = { a: angle, r: 1.5, spd: 0.015 };
+            dnaGroup.add(cluster);
+        }
+
+        dnaGroup.rotation.z = Math.PI / 2;
+        group.add(dnaGroup);
+    }
+
+    holoScene.add(group);
+    holoMesh = group;
+
+    // ─────────────────────────────────────────────────────────────
+    // INTERACTION ENGINE: 3D Orbit Drag, Inertia, Pitch & Zoom
+    // ─────────────────────────────────────────────────────────────
+    let isDragging = false;
+    let prevPointerX = 0, prevPointerY = 0;
+    let velX = 0, velY = 0;
+    let touchDistance0 = 0;
+
+    container.onmousedown = function(e) {
+        isDragging = true;
+        prevPointerX = e.clientX;
+        prevPointerY = e.clientY;
+        velX = 0; velY = 0;
+    };
+
+    window.onmouseup = function() {
+        isDragging = false;
+    };
+
+    window.onmousemove = function(e) {
+        if (!isDragging || !holoMesh) return;
+        const dx = e.clientX - prevPointerX;
+        const dy = e.clientY - prevPointerY;
+        velX = dx * 0.008;
+        velY = dy * 0.006;
+        holoMesh.rotation.y += velX;
+        holoMesh.rotation.x = Math.max(-0.9, Math.min(0.9, holoMesh.rotation.x + velY));
+        prevPointerX = e.clientX;
+        prevPointerY = e.clientY;
+    };
+
+    container.ontouchstart = function(e) {
+        if (e.touches.length === 1) {
+            isDragging = true;
+            prevPointerX = e.touches[0].clientX;
+            prevPointerY = e.touches[0].clientY;
+            velX = 0; velY = 0;
+        } else if (e.touches.length === 2) {
+            isDragging = false;
+            touchDistance0 = Math.hypot(
+                e.touches[0].clientX - e.touches[1].clientX,
+                e.touches[0].clientY - e.touches[1].clientY
+            );
+        }
+    };
+
+    window.ontouchend = function() {
+        isDragging = false;
+    };
+
+    window.ontouchmove = function(e) {
+        if (!holoMesh) return;
+        if (e.touches.length === 1 && isDragging) {
+            const dx = e.touches[0].clientX - prevPointerX;
+            const dy = e.touches[0].clientY - prevPointerY;
+            velX = dx * 0.008;
+            velY = dy * 0.006;
+            holoMesh.rotation.y += velX;
+            holoMesh.rotation.x = Math.max(-0.9, Math.min(0.9, holoMesh.rotation.x + velY));
+            prevPointerX = e.touches[0].clientX;
+            prevPointerY = e.touches[0].clientY;
+        } else if (e.touches.length === 2) {
+            const dist = Math.hypot(
+                e.touches[0].clientX - e.touches[1].clientX,
+                e.touches[0].clientY - e.touches[1].clientY
+            );
+            const delta = (touchDistance0 - dist) * 0.01;
+            holoCamZoom = Math.max(3.2, Math.min(8.5, holoCamZoom + delta));
+            if (holoCamera) holoCamera.position.z = holoCamZoom;
+            touchDistance0 = dist;
+        }
+    };
+
+    // Mouse Wheel Zoom
+    container.onwheel = function(e) {
+        e.preventDefault();
+        holoCamZoom = Math.max(3.2, Math.min(8.5, holoCamZoom + e.deltaY * 0.005));
+        if (holoCamera) holoCamera.position.z = holoCamZoom;
+    };
+
+    // ─────────────────────────────────────────────────────────────
+    // ANIMATION LOOP: Inertia, Particle Drift, Pulsing Lights
+    // ─────────────────────────────────────────────────────────────
+    const time0 = Date.now();
+    function animate() {
         holoRequestID = requestAnimationFrame(animate);
         if (!holoMesh) return;
-        var t = (Date.now()-time0)*0.001;
-        if (!drag) holoMesh.rotation.y += 0.003;
-        holoMesh.position.y = Math.sin(t*1.2)*0.1;
-        // Pulse lights
-        keyLight.intensity = 2 + Math.sin(t*2)*0.5;
-        fillLight.intensity = 1 + Math.sin(t*1.5+1)*0.3;
-        holoMesh.traverse(function(ch){
-            if(ch.userData.scan){ch.position.y=Math.sin(t*1.5)*1.8;ch.material.opacity=0.3+Math.sin(t*3)*0.2;}
-            if(ch.userData.drift){ch.position.y+=Math.sin(t*2+ch.userData.drift.off)*0.0008;}
-            if(ch.userData.bub){ch.position.y+=ch.userData.bub.spd*0.3;if(ch.position.y>1.2)ch.position.y=-0.8;}
-            if(ch.userData.liquid){ch.rotation.z=Math.sin(t*0.8)*0.02;}
+        const t = (Date.now() - time0) * 0.001;
+
+        if (!isDragging) {
+            velX *= 0.94;
+            velY *= 0.94;
+            holoMesh.rotation.y += velX;
+            holoMesh.rotation.x = Math.max(-0.9, Math.min(0.9, holoMesh.rotation.x + velY));
+            if (Math.abs(velX) < 0.0005) {
+                holoMesh.rotation.y += 0.004; // Smooth idle rotation
+            }
+        }
+
+        // Gentle levitation float
+        holoMesh.position.y = Math.sin(t * 1.4) * 0.08;
+
+        // Dynamic light pulsation
+        keyLight.intensity = 4.0 + Math.sin(t * 2.2) * 0.8;
+        fillLight.intensity = 2.2 + Math.sin(t * 1.8 + 1.2) * 0.5;
+
+        // Traverse animated components
+        holoMesh.traverse(function(child) {
+            if (child.userData.spinSpeed) {
+                child.rotation.z += child.userData.spinSpeed;
+            }
+            if (child.userData.scan) {
+                child.position.y = Math.sin(t * 1.8) * 1.7;
+                child.material.opacity = 0.35 + Math.sin(t * 3.5) * 0.25;
+            }
+            if (child.userData.drift) {
+                child.position.y += Math.sin(t * 2 + child.userData.drift.off) * 0.0008;
+            }
+            if (child.userData.bub) {
+                child.position.y += child.userData.bub.spd;
+                if (child.position.y > child.userData.bub.top) child.position.y = child.userData.bub.btm;
+            }
+            if (child.userData.pDrift) {
+                child.position.y += Math.sin(t * 2.5 + child.userData.pDrift.off) * 0.0005;
+            }
+            if (child.userData.corePulse) {
+                child.rotation.x += 0.02;
+                child.rotation.y += 0.03;
+                child.scale.setScalar(1 + Math.sin(t * 4) * 0.15);
+            }
+            if (child.userData.orbit) {
+                child.userData.orbit.a += child.userData.orbit.spd;
+                child.position.x = Math.cos(child.userData.orbit.a) * child.userData.orbit.r;
+                child.position.z = Math.sin(child.userData.orbit.a) * child.userData.orbit.r;
+                child.rotation.y += 0.02;
+            }
         });
-        if(holoRenderer&&holoScene&&holoCamera) holoRenderer.render(holoScene,holoCamera);
-    };
+
+        if (holoRenderer && holoScene && holoCamera) {
+            holoRenderer.render(holoScene, holoCamera);
+        }
+    }
     animate();
 }
 
