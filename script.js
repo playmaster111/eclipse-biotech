@@ -5422,77 +5422,6 @@ window.resetHoloOrientation = function() {
 };
 
 // --- Hologram Dynamic Canvas Label Generators ---
-function getCapsuleLabelCanvas() {
-    if (window._holoCapsuleCanvas) return window._holoCapsuleCanvas;
-    const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 256;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, 512, 256);
-
-    ctx.save();
-    ctx.translate(256, 128);
-
-    // Subtle Framed Badge
-    ctx.strokeStyle = 'rgba(0, 240, 255, 0.7)';
-    ctx.lineWidth = 3;
-    ctx.strokeRect(-180, -75, 360, 150);
-    ctx.fillStyle = 'rgba(6, 10, 18, 0.65)';
-    ctx.fillRect(-180, -75, 360, 150);
-
-    // Corner L-accents
-    ctx.fillStyle = '#00f0ff';
-    ctx.fillRect(-182, -77, 12, 4);
-    ctx.fillRect(-182, -77, 4, 12);
-    ctx.fillRect(170, -77, 12, 4);
-    ctx.fillRect(178, -77, 4, 12);
-    ctx.fillRect(-182, 73, 12, 4);
-    ctx.fillRect(-182, 65, 4, 12);
-    ctx.fillRect(170, 73, 12, 4);
-    ctx.fillRect(178, 65, 4, 12);
-
-    // Delta / Triangle Icon
-    ctx.fillStyle = '#ff1744';
-    ctx.beginPath();
-    ctx.moveTo(0, -56);
-    ctx.lineTo(10, -42);
-    ctx.lineTo(-10, -42);
-    ctx.closePath();
-    ctx.fill();
-
-    // Brand Headline
-    ctx.font = 'bold 36px "Segoe UI", Roboto, monospace';
-    ctx.fillStyle = '#ffffff';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.shadowColor = '#00f0ff';
-    ctx.shadowBlur = 10;
-    ctx.fillText('E C L I P S E', 0, -18);
-    ctx.shadowBlur = 0;
-
-    // Laser divider line
-    ctx.strokeStyle = '#00f0ff';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(-150, 8);
-    ctx.lineTo(150, 8);
-    ctx.stroke();
-
-    // Secondary Specs
-    ctx.font = 'bold 20px "Segoe UI", Roboto, monospace';
-    ctx.fillStyle = '#b5ff4d';
-    ctx.fillText('NANO-XR // 250 MG', 0, 32);
-
-    // Telemetry Ticks
-    ctx.font = 'bold 11px monospace';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
-    ctx.fillText('SEC-09 • RX ONLY • MATRIX COATED', 0, 56);
-
-    ctx.restore();
-    window._holoCapsuleCanvas = canvas;
-    return canvas;
-}
-
 function getVialLabelCanvas() {
     if (window._holoVialCanvas) return window._holoVialCanvas;
     const canvas = document.createElement('canvas');
@@ -5916,22 +5845,6 @@ function initHologram(type) {
         );
         innerInsert.position.y = 0.19;
         pillGroup.add(innerInsert);
-
-        // Laser-Debossed Pharmaceutical Imprint Decal
-        const capCanvas = getCapsuleLabelCanvas();
-        const capTexture = new THREE.CanvasTexture(capCanvas);
-        capTexture.wrapS = THREE.ClampToEdgeWrapping;
-        capTexture.wrapT = THREE.ClampToEdgeWrapping;
-        const decalGeo = new THREE.CylinderGeometry(0.725, 0.725, 0.75, 36, 1, true, -Math.PI * 0.55, Math.PI * 1.1);
-        const decalMat = new THREE.MeshBasicMaterial({
-            map: capTexture,
-            transparent: true,
-            opacity: 0.95,
-            side: THREE.DoubleSide
-        });
-        const decalMesh = new THREE.Mesh(decalGeo, decalMat);
-        decalMesh.position.y = -0.62;
-        pillGroup.add(decalMesh);
 
         // Central Precision Titanium Lock Band
         const bandGeo = new THREE.TorusGeometry(0.772, 0.034, 16, 64);
