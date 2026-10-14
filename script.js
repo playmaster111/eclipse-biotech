@@ -25,9 +25,10 @@ let width, height;
 let particles = [];
 let currentParticleMode = localStorage.getItem('eclipse_particle_mode') || 'neural';
 let currentVelocityScale = parseFloat(localStorage.getItem('eclipse_velocity_scale') || '1');
-const CONNECTION_DISTANCE = 150;
-
-const PARTICLE_COUNT = 80;
+const isMobileDevice = typeof window !== 'undefined' && window.innerWidth <= 768;
+let CONNECTION_DISTANCE = isMobileDevice ? 90 : 125;
+let CONNECTION_DIST_SQ = CONNECTION_DISTANCE * CONNECTION_DISTANCE;
+let PARTICLE_COUNT = isMobileDevice ? 32 : 55;
 let mouse = { x: null, y: null };
 
 window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
@@ -186,6 +187,10 @@ class Particle {
 
 function initParticles() {
     particles = [];
+    const isMobile = window.innerWidth <= 768;
+    PARTICLE_COUNT = isMobile ? 32 : 55;
+    CONNECTION_DISTANCE = isMobile ? 90 : 125;
+    CONNECTION_DIST_SQ = CONNECTION_DISTANCE * CONNECTION_DISTANCE;
     for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
 }
 
@@ -202,8 +207,9 @@ function animateParticles() {
         if (currentParticleMode === 'neural') {
             for (let j = i + 1; j < particles.length; j++) {
                 let dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < CONNECTION_DISTANCE) {
+                let distSq = dx * dx + dy * dy;
+                if (distSq < CONNECTION_DIST_SQ) {
+                    let distance = Math.sqrt(distSq);
                     const alpha = 0.18 * (1 - distance / CONNECTION_DISTANCE);
                     ctx.beginPath();
                     ctx.strokeStyle = `rgba(${c.r},${c.g},${c.b},${alpha})`;
