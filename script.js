@@ -5798,20 +5798,6 @@ function initHologram(type) {
         capDome.position.y = 1.15;
         pillGroup.add(capDome);
 
-        // Cap Overlap Lip Ring at junction (y = 0)
-        const capLip = new THREE.Mesh(
-            new THREE.TorusGeometry(0.764, 0.024, 16, 48),
-            new THREE.MeshPhongMaterial({
-                color: 0x00f0ff,
-                emissive: 0x004455,
-                specular: 0xffffff,
-                shininess: 180
-            })
-        );
-        capLip.rotation.x = Math.PI / 2;
-        capLip.position.y = 0.0;
-        pillGroup.add(capLip);
-
         // Bottom Half (Body): Vivid Electric-Crimson Shell (narrower radius 0.72)
         const bodyGeo = new THREE.CylinderGeometry(0.72, 0.72, 1.25, 36, 1, true);
         const bodyMat = new THREE.MeshPhongMaterial({
@@ -5845,20 +5831,6 @@ function initHologram(type) {
         );
         innerInsert.position.y = 0.19;
         pillGroup.add(innerInsert);
-
-        // Central Precision Titanium Lock Band
-        const bandGeo = new THREE.TorusGeometry(0.772, 0.034, 16, 64);
-        const bandMat = new THREE.MeshPhongMaterial({
-            color: 0xffffff,
-            emissive: 0x00f0ff,
-            emissiveIntensity: 0.3,
-            specular: 0xffffff,
-            shininess: 220
-        });
-        const band = new THREE.Mesh(bandGeo, bandMat);
-        band.rotation.x = Math.PI / 2;
-        band.position.y = 0.0;
-        pillGroup.add(band);
 
         // Compacted Micro-Powder Bed inside Crimson Body
         const powderBed = new THREE.Mesh(
@@ -5896,23 +5868,6 @@ function initHologram(type) {
             pellet.userData.pDrift = { off: Math.random() * 6.28, spd: 0.001 + Math.random() * 0.002 };
             pillGroup.add(pellet);
         }
-
-        // Dual-Axis Holographic Telemetry Gimbal Rings
-        const pScan = new THREE.Mesh(
-            new THREE.TorusGeometry(1.25, 0.015, 8, 64),
-            new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.45 })
-        );
-        pScan.rotation.x = Math.PI / 2;
-        pillGroup.add(pScan);
-
-        const pGimbal = new THREE.Mesh(
-            new THREE.TorusGeometry(1.4, 0.012, 8, 64),
-            new THREE.MeshBasicMaterial({ color: 0xb5ff4d, transparent: true, opacity: 0.25 })
-        );
-        pGimbal.rotation.x = Math.PI / 3;
-        pGimbal.rotation.y = Math.PI / 5;
-        pGimbal.userData.spinSpeed = 0.004;
-        pillGroup.add(pGimbal);
 
         group.add(pillGroup);
     }
