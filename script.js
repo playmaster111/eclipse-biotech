@@ -5777,8 +5777,8 @@ function initHologram(type) {
         pillGroup.rotation.z = 0.36;
         pillGroup.rotation.x = 0.15;
 
-        // Top Half (Cap): Cyber-Cyan Translucent Gel with Stepped Lip
-        const capGeo = new THREE.CylinderGeometry(0.76, 0.76, 1.15, 36, 1, true);
+        // Top Half (Cap): Cyber-Cyan Translucent Gel
+        const capGeo = new THREE.CylinderGeometry(0.75, 0.75, 1.15, 36, 1, true);
         const capMat = new THREE.MeshPhongMaterial({
             color: 0x00f0ff,
             emissive: 0x002c38,
@@ -5787,50 +5787,36 @@ function initHologram(type) {
             shininess: 170,
             transparent: true,
             opacity: 0.62,
-            side: THREE.DoubleSide
+            depthWrite: false,
+            side: THREE.FrontSide
         });
         const capMesh = new THREE.Mesh(capGeo, capMat);
         capMesh.position.y = 0.575;
         pillGroup.add(capMesh);
 
-        const capDomeGeo = new THREE.SphereGeometry(0.76, 36, 20, 0, Math.PI * 2, 0, Math.PI / 2);
+        const capDomeGeo = new THREE.SphereGeometry(0.75, 36, 20, 0, Math.PI * 2, 0, Math.PI / 2);
         const capDome = new THREE.Mesh(capDomeGeo, capMat);
         capDome.position.y = 1.15;
         pillGroup.add(capDome);
 
-        // Bottom Half (Body): Vivid Electric-Crimson Shell (narrower radius 0.72)
-        const bodyGeo = new THREE.CylinderGeometry(0.72, 0.72, 1.25, 36, 1, true);
+        // Bottom Half (Body): Vivid Electric-Crimson Shell
+        const bodyGeo = new THREE.CylinderGeometry(0.74, 0.74, 1.25, 36, 1, true);
         const bodyMat = new THREE.MeshPhongMaterial({
             color: 0xff003c,
             emissive: 0x3d0010,
             specular: 0xffaacc,
             shininess: 140,
-            transparent: true,
-            opacity: 0.92
+            transparent: false,
+            opacity: 1.0
         });
         const bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
         bodyMesh.position.y = -0.625;
         pillGroup.add(bodyMesh);
 
-        const bodyDomeGeo = new THREE.SphereGeometry(0.72, 36, 20, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
+        const bodyDomeGeo = new THREE.SphereGeometry(0.74, 36, 20, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
         const bodyDome = new THREE.Mesh(bodyDomeGeo, bodyMat);
         bodyDome.position.y = -1.25;
         pillGroup.add(bodyDome);
-
-        // Inner Body Extension (Inserted into Cap, visible through cyan translucent gel)
-        const innerInsert = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.718, 0.718, 0.38, 36, 1, true),
-            new THREE.MeshPhongMaterial({
-                color: 0xff003c,
-                emissive: 0x220008,
-                specular: 0xffffff,
-                shininess: 100,
-                transparent: true,
-                opacity: 0.8
-            })
-        );
-        innerInsert.position.y = 0.19;
-        pillGroup.add(innerInsert);
 
         // Compacted Micro-Powder Bed inside Crimson Body
         const powderBed = new THREE.Mesh(
