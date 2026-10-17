@@ -1334,18 +1334,6 @@ window.goHome = function() {
     mount.innerHTML = `
         <div class="home-dashboard">
 
-            <!-- Modern Executive Hero Banner -->
-            <div class="home-hero-banner">
-                <div class="hero-chip"><span class="pulse-beacon"></span> NEXT-GEN PHARMACOLOGY // v5.6.5</div>
-                <h1 class="home-hero-title">PRECISION BIOTECHNOLOGY & COMPOUND INTELLIGENCE</h1>
-                <p class="home-hero-desc">Interactive 3D molecular visualization, multi-system bloodwork analytics, and real-time pharmacokinetic telemetry for biohackers and clinicians.</p>
-                <div class="home-hero-actions">
-                    <button class="hero-pill-btn primary" onclick="renderView('model3d')"><i class="fas fa-cube"></i> 3D Hologram Engine</button>
-                    <button class="hero-pill-btn" onclick="renderView('bloodwork')"><i class="fas fa-vial"></i> Bloodwork Lab</button>
-                    <button class="hero-pill-btn" onclick="document.getElementById('searchInput')?.focus()"><i class="fas fa-search"></i> Rapid Finder</button>
-                </div>
-            </div>
-
             <!-- Stats bar -->
             <div class="home-stats-bar">
                 <div class="home-stat">
@@ -1359,7 +1347,7 @@ window.goHome = function() {
                 </div>
                 <div class="home-stat-divider"></div>
                 <div class="home-stat">
-                    <span class="home-stat-val" style="font-size:0.9rem">v5.6.5</span>
+                    <span class="home-stat-val" style="font-size:0.9rem">v5.2</span>
                     <span class="home-stat-label">DATABANK</span>
                 </div>
                 <div class="home-stat-divider"></div>
@@ -6619,92 +6607,34 @@ function startNeuralUplink() {
     mount.style.pointerEvents = 'auto';
     if (appWindow) { appWindow.style.opacity = '0'; appWindow.style.pointerEvents = 'none'; }
 
-    let phase1Fired = false, phase2Fired = false, finished = false, logIdx = 0;
+    let phase1Fired = false, phase2Fired = false, logIdx = 0;
     let logArea, progBar, statusText, pctText, logTimer = null;
-    let phase1Timeout = null, phase2Timeout = null, glitchInterval = null;
     const now = new Date();
-    const LOG_INTERVAL_MS = 60;
+    const LOG_INTERVAL_MS = 320;
 
     const bootLogs = [
-        { msg: 'UEFI_SECURE_BOOT // HARDWARE_CRYPTO_VERIFIED', type: 'success' },
-        { msg: 'LOADING_KERNEL: eclipse_biotech_core.sys // v5.6.5', type: '' },
-        { msg: 'MOUNTING_ENCRYPTED_VOLUME: /dev/pharma_idx [AES-512-GCM]', type: '' },
-        { msg: 'DECRYPTING_COMPOUND_DATABASE... 2,912 CLINICAL ENTRIES', type: 'success' },
-        { msg: 'INITIALIZING_WEBGL_3D_RENDERER (PBR Pipeline)', type: '' },
-        { msg: 'CALIBRATING_BLOODWORK_ANALYTICS (35 Biomarkers)', type: '' },
-        { msg: 'CLEARANCE_GRANTED: OMEGA-CLASS BIO-ACCESS', type: 'success' },
-        { msg: 'SYNAPSE_LINK: NEUROCHEMICAL KINETICS // READY', type: '' },
-        { msg: 'BLOCKCHAIN_LEDGER_HASH: VERIFIED NOMINAL', type: 'success' },
-        { msg: 'ALL_SUBSYSTEMS_OPTIMAL // INITIALIZING INTERFACE', type: 'success' }
+        { msg: 'BIOS_HANDSHAKE // SECURE_BOOT_VERIFIED', type: '' },
+        { msg: 'LOADING_KERNEL: eclipse_core.sys', type: '' },
+        { msg: 'MOUNTING_ENCRYPTED_VOLUME: /dev/pharma_idx', type: '' },
+        { msg: 'DECRYPTING_COMPOUND_DATABASE... 2,912 ENTRIES', type: '' },
+        { msg: 'INITIALIZING_NEURAL_MESH_INTERFACE', type: '' },
+        { msg: 'ESTABLISHING_SYNAPTIC_BRIDGE: PORT 8832', type: '' },
+        { msg: 'WARNING: ELEVATED_CLEARANCE_REQUIRED', type: 'warning' },
+        { msg: 'CLEARANCE_GRANTED: OMEGA_LEVEL_ACCESS', type: 'success' },
+        { msg: 'SYNCING_CLINICAL_TRIAL_DATA... 14.2 GB', type: '' },
+        { msg: 'LOADING_MOLECULAR_RENDERER_v3.2', type: '' },
+        { msg: 'CALIBRATING_DOPAMINE_PATHWAY_MODELS', type: '' },
+        { msg: 'VERIFYING_BLOCKCHAIN_INTEGRITY... OK', type: 'success' },
+        { msg: 'SPAWNING_AI_INFERENCE_ENGINE: 8 THREADS', type: '' },
+        { msg: 'LOADING_SYNTHESIS_ORACLE', type: '' },
+        { msg: 'BINDING_BIOMETRIC_SIGNATURE', type: '' },
+        { msg: 'ALL_SUBSYSTEMS_NOMINAL', type: 'success' },
+        { msg: 'NEURAL_UPLINK_ESTABLISHED', type: 'success' },
+        { msg: 'DATABANK_EXPANSION: v4.1.0_PATCH_APPLIED', type: 'success' },
     ];
 
-    // Floating Skip Button
-    const skipBtn = document.createElement('button');
-    skipBtn.className = 'intro-skip-btn';
-    skipBtn.id = 'introSkipBtn';
-    skipBtn.innerHTML = '<i class="fas fa-forward"></i> SKIP INTRO ➔';
-    document.body.appendChild(skipBtn);
-
-    function cleanupListeners() {
-        if (skipBtn && skipBtn.parentNode) skipBtn.parentNode.removeChild(skipBtn);
-        window.removeEventListener('keydown', onIntroKey);
-        mount.removeEventListener('click', onMountClick);
-    }
-
-    function finishIntro() {
-        if (finished) return;
-        finished = true;
-        cleanupListeners();
-        if (logTimer) clearInterval(logTimer);
-        if (glitchInterval) clearInterval(glitchInterval);
-        if (phase1Timeout) clearTimeout(phase1Timeout);
-        if (phase2Timeout) clearTimeout(phase2Timeout);
-
-        if (introAudio) {
-            introAudio.pause();
-            introAudio.currentTime = 0;
-        }
-        bgMusic.play().catch(function(e){});
-
-        mount.classList.add('fade-out');
-        mount.style.pointerEvents = 'none';
-        if (appWindow) {
-            appWindow.style.opacity = '1';
-            appWindow.style.filter = 'blur(0)';
-            appWindow.style.pointerEvents = 'auto';
-        }
-        setTimeout(function() {
-            mount.style.display = 'none';
-            mount.classList.remove('fade-out');
-            initApp();
-        }, 300);
-    }
-
-    function onIntroKey(e) {
-        if (e.code === 'Space' || e.code === 'Enter' || e.code === 'Escape') {
-            e.preventDefault();
-            finishIntro();
-        }
-    }
-
-    function onMountClick(e) {
-        finishIntro();
-    }
-
-    skipBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        finishIntro();
-    });
-    window.addEventListener('keydown', onIntroKey);
-    mount.addEventListener('click', onMountClick);
-
     function pushLog() {
-        if (finished) return;
-        if (!logArea || logIdx >= bootLogs.length) {
-            if (logTimer) clearInterval(logTimer);
-            if (!phase2Fired) startPhase2(void0);
-            return;
-        }
+        if (!logArea || logIdx >= bootLogs.length) { if (logTimer) clearInterval(logTimer); return; }
         const entry = bootLogs[logIdx];
         const line = document.createElement('div');
         line.className = 'intro-log-line' + (entry.type ? ' ' + entry.type : '');
@@ -6721,15 +6651,14 @@ function startNeuralUplink() {
     }
 
     function startPhase1(v) {
-        if (phase1Fired || finished) return;
-        phase1Fired = true;
+        if (phase1Fired) return; phase1Fired = true;
         v.innerHTML = '<div class="intro-hex-grid"></div>' +
             '<div class="intro-corner tl"></div><div class="intro-corner tr"></div>' +
             '<div class="intro-corner bl"></div><div class="intro-corner br"></div>' +
             '<div class="intro-data-readout left" style="animation-delay:0.1s">NODE_ADDR: 0x7F3A92<br>CIPHER: AES-512-GCM<br>CLEARANCE: OMEGA</div>' +
-            '<div class="intro-data-readout right" style="animation-delay:0.1s">KERNEL: v5.6.5<br>LATENCY: 2ms<br>UPTIME: 99.99%</div>' +
+            '<div class="intro-data-readout right" style="animation-delay:0.2s">KERNEL: v5.1.882<br>LATENCY: 4ms<br>UPTIME: 99.97%</div>' +
             '<div class="intro-boot-terminal">' +
-                '<div class="intro-term-header"><div class="intro-term-dots"><span></span><span></span><span></span></div><span>ECLIPSE_KERNEL // MODERN_BOOT_SEQUENCE</span></div>' +
+                '<div class="intro-term-header"><div class="intro-term-dots"><span></span><span></span><span></span></div><span>ECLIPSE_KERNEL // BOOT_SEQUENCE</span></div>' +
                 '<div class="intro-log-area" id="intro-log-area"></div>' +
                 '<div class="intro-progress-wrap"><div class="intro-progress-bar" id="intro-progress-bar"></div></div>' +
                 '<div class="intro-progress-text"><span id="intro-status-text">INITIALIZING...</span><span id="intro-pct-text">0%</span></div>' +
@@ -6742,20 +6671,29 @@ function startNeuralUplink() {
     }
 
     function startPhase2(v) {
-        if (phase2Fired || finished) return;
-        phase2Fired = true;
+        if (phase2Fired) return; phase2Fired = true;
         if (logTimer) clearInterval(logTimer);
         while (logIdx < bootLogs.length) pushLog();
-
         const flash = document.createElement('div');
         flash.className = 'intro-access-granted';
-        flash.innerHTML = '<div class="intro-access-text">ACCESS_GRANTED // v5.6.5</div>';
+        flash.innerHTML = '<div class="intro-access-text">ACCESS_GRANTED</div>';
         document.body.appendChild(flash);
-
-        setTimeout(function() { flash.remove(); }, 600);
+        setTimeout(function() { flash.remove(); }, 1500);
         setTimeout(function() {
-            finishIntro();
-        }, 500);
+            if (introAudio) {
+                const fadeOut = setInterval(function() {
+                    if (introAudio.volume > 0.05) introAudio.volume -= 0.05;
+                    else { clearInterval(fadeOut); introAudio.pause(); bgMusic.play().catch(function(e){}); }
+                }, 60);
+            } else { bgMusic.play().catch(function(e){}); }
+            v.classList.add('fade-out');
+            setTimeout(function() {
+                mount.classList.add('fade-out');
+                mount.style.pointerEvents = 'none';
+                if (appWindow) { appWindow.style.opacity = '1'; appWindow.style.filter = 'blur(0)'; appWindow.style.pointerEvents = 'auto'; }
+                setTimeout(function() { mount.style.display = 'none'; initApp(); }, 500);
+            }, 1000);
+        }, 400);
     }
 
     // ====== PHASE 0: THE VOID ======
@@ -6766,46 +6704,51 @@ function startNeuralUplink() {
         '<div class="intro-scan-sweep"></div>' +
         '<div class="intro-corner tl"></div><div class="intro-corner tr"></div>' +
         '<div class="intro-corner bl"></div><div class="intro-corner br"></div>' +
-        '<div class="intro-data-readout left">SYSTEM: ECLIPSE BIOTECH<br>CIPHER: AES-512-GCM<br>REGION: GLOBAL<br>CLEARANCE: OMEGA</div>' +
-        '<div class="intro-data-readout right">KERNEL: v5.6.5<br>3D ENGINE: WEBGL PBR<br>UPTIME: 99.99%<br>INTEGRITY: NOMINAL</div>' +
-        '<div class="intro-data-readout bottom-left">SESSION: ' + Date.now().toString(16).toUpperCase() + '<br>PROTOCOL: BIO_NEURAL_LINK</div>' +
-        '<div class="intro-data-readout bottom-right">COMPOUNDS: 2,912<br>MODE: RESEARCH</div>' +
+        '<div class="intro-data-readout left">NODE_ADDR: 0x7F3A92<br>CIPHER: AES-512-GCM<br>REGION: EU-WEST-3<br>CLEARANCE: OMEGA</div>' +
+        '<div class="intro-data-readout right">KERNEL: v5.1.882<br>LATENCY: 4ms<br>UPTIME: 99.97%<br>THREAT_LVL: NULL</div>' +
+        '<div class="intro-data-readout bottom-left">SESSION: ' + Date.now().toString(16).toUpperCase() + '<br>PROTOCOL: NEURAL_LINK_v3</div>' +
+        '<div class="intro-data-readout bottom-right">TEMP: 31.2\u00B0C<br>PWR_DRAW: 847W</div>' +
         '<div class="intro-title-wrap">' +
             '<div class="intro-main-title" id="introGlitchTitle">ECLIPSE</div>' +
-            '<div style="display:flex;justify-content:center;"><div class="intro-subtitle">BIOTECH RESEARCH TERMINAL // v5.6.5</div></div>' +
+            '<div style="display:flex;justify-content:center;"><div class="intro-subtitle">BIOTECH RESEARCH TERMINAL v5.1</div></div>' +
         '</div>';
     mount.appendChild(void0);
 
-    // Fast title scramble
-    const titleEl = document.getElementById('introGlitchTitle');
+    // Title scramble
+    var titleEl = document.getElementById('introGlitchTitle');
     if (titleEl) {
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        const original = 'ECLIPSE';
-        let iter = 0;
-        glitchInterval = setInterval(function() {
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        var original = 'ECLIPSE';
+        var iter = 0;
+        var glitchInterval = setInterval(function() {
             titleEl.innerText = original.split('').map(function(c, i) {
                 if (i < iter) return original[i];
                 return chars[Math.floor(Math.random() * chars.length)];
             }).join('');
-            iter += 0.8;
+            iter += 0.4;
             if (iter >= original.length) { clearInterval(glitchInterval); titleEl.innerText = original; }
-        }, 30);
+        }, 40);
     }
 
-    // Audio & automated fast sequence
+    // ====== AUDIO-SYNCED TRIGGERS ======
     if (introAudio) {
         introAudio.volume = bgMusic.volume;
         introAudio.currentTime = 0;
         introAudio.play().catch(function(e){});
+        var onTimeUpdate = function() {
+            var t = introAudio.currentTime;
+            if (t >= 3.0 && !phase1Fired) startPhase1(void0);
+            if (t >= 8.5 && !phase2Fired) startPhase2(void0);
+        };
+        introAudio.addEventListener('timeupdate', onTimeUpdate);
+        introAudio.addEventListener('ended', function() {
+            introAudio.removeEventListener('timeupdate', onTimeUpdate);
+            if (!phase2Fired) startPhase2(void0);
+        }, { once: true });
+    } else {
+        setTimeout(function() { startPhase1(void0); }, 3000);
+        setTimeout(function() { startPhase2(void0); }, 8500);
     }
-
-    phase1Timeout = setTimeout(function() {
-        startPhase1(void0);
-    }, 600);
-
-    phase2Timeout = setTimeout(function() {
-        if (!phase2Fired) startPhase2(void0);
-    }, 1500);
 }
 
 function initTrackSelector() {
@@ -6861,23 +6804,14 @@ window.selectTrack = function(index) {
 function attachInitListener() {
     const initBtn = document.getElementById('init-btn');
     const overlay = document.getElementById('init-trigger-overlay');
-    const handleInit = () => {
-        if (!overlay || overlay.style.display === 'none') return;
-        console.log("ECLIPSE_CORE: Initialization triggered.");
-        overlay.style.display = 'none';
-        initAudio(true);
-        startNeuralUplink();
-    };
     if (initBtn) {
-        initBtn.onclick = handleInit;
+        initBtn.onclick = () => {
+            console.log("ECLIPSE_CORE: Initialization triggered.");
+            if (overlay) overlay.style.display = 'none';
+            initAudio(true);
+            startNeuralUplink();
+        };
     }
-    window.addEventListener('keydown', function gateKeyHandler(e) {
-        if (overlay && overlay.style.display !== 'none' && (e.code === 'Space' || e.code === 'Enter')) {
-            e.preventDefault();
-            window.removeEventListener('keydown', gateKeyHandler);
-            handleInit();
-        }
-    });
 }
 
 function toggleVisuals() {
