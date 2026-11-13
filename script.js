@@ -4160,7 +4160,7 @@ function generateBloodworkReport(results) {
 
 window.saveBloodworkToVault = function() {
     if (!currentUser) {
-        alert("PLEASE VALIDATE BIO_ID TO ACCESS RESEARCH VAULT.");
+        if (window.showNotify) showNotify("ACCESS_DENIED: Please validate Bio-ID to access Research Vault.");
         document.getElementById('bioIdBtn').click();
         return;
     }
@@ -4186,15 +4186,18 @@ window.saveBloodworkToVault = function() {
         ...snapshot
     };
 
-    const key = 'eclipse_bloodwork_' + currentUser;
-    let history = JSON.parse(localStorage.getItem(key)) || [];
+    const userKey = (currentUser && currentUser.username) ? currentUser.username : 'guest';
+    const key = 'eclipse_bloodwork_' + userKey;
+    let history = [];
+    try { history = JSON.parse(localStorage.getItem(key)) || []; } catch(e) {}
     history.push(entry);
     localStorage.setItem(key, JSON.stringify(history));
 
     // Also save to main vault
-    let vault = JSON.parse(localStorage.getItem('eclipse_vault_' + currentUser)) || [];
+    let vault = [];
+    try { vault = JSON.parse(localStorage.getItem('eclipse_vault_' + userKey)) || []; } catch(e) {}
     vault.push(entry);
-    localStorage.setItem('eclipse_vault_' + currentUser, JSON.stringify(vault));
+    localStorage.setItem('eclipse_vault_' + userKey, JSON.stringify(vault));
 
     if (window.showNotify) showNotify("BLOODWORK_SNAPSHOT saved to Research Vault.");
     else {
@@ -5239,7 +5242,7 @@ function getMealDesc(time, proteinTarget) {
 
 window.saveDietToVault = function(cals, p, c, f) {
     if (!currentUser) {
-        alert("PLEASE VALIDATE BIO_ID TO ACCESS RESEARCH VAULT.");
+        if (window.showNotify) showNotify("ACCESS_DENIED: Please validate Bio-ID to access Research Vault.");
         document.getElementById('bioIdBtn').click();
         return;
     }
@@ -5255,9 +5258,11 @@ window.saveDietToVault = function(cals, p, c, f) {
         cadence: nutritionData.cadence === 'if' ? '16:8 Fasting' : 'Standard'
     };
 
-    let vault = JSON.parse(localStorage.getItem('eclipse_vault_' + currentUser)) || [];
+    const userKey = (currentUser && currentUser.username) ? currentUser.username : 'guest';
+    let vault = [];
+    try { vault = JSON.parse(localStorage.getItem('eclipse_vault_' + userKey)) || []; } catch(e) {}
     vault.push(dietData);
-    localStorage.setItem('eclipse_vault_' + currentUser, JSON.stringify(vault));
+    localStorage.setItem('eclipse_vault_' + userKey, JSON.stringify(vault));
     
     if (window.showNotify) showNotify("DIET_PROTOCOL_SAVED: Saved to Research Vault.");
     else {
@@ -5395,7 +5400,7 @@ window.generateCOA = function() {
 
             <div class="coa-footer">
                 <div class="signature">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jon_Foreman_Signature.png" style="filter: invert(1); opacity: 0.5; height: 30px;">
+                    <svg viewBox="0 0 160 42" style="height: 32px; width: 140px; opacity: 0.75; stroke: #00f0ff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; display: block; margin: 0 auto 4px auto;"><path d="M12 30 C 26 12, 34 6, 42 24 C 47 34, 53 14, 64 22 C 72 28, 82 16, 96 20 C 108 22, 120 15, 142 18 M 38 27 L 92 26 M 102 30 C 114 22, 130 35, 146 24"/></svg>
                     <p>DR. ARIS KALE (HEAD OF ANALYTICS)</p>
                 </div>
                 <div class="btn-group">
